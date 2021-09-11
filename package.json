@@ -1,7 +1,7 @@
 {
-  "name": "back-artist",
+  "name": "mosqueda_cordova",
   "version": "1.0.0",
-  "description": "Proyecto para que los usuarios hagan publicidad de sus redes sociales.",
+  "description": "Proyecto",
   "main": "index.js",
   "scripts": {
     "start": "node src",
