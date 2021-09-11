@@ -1,0 +1,48 @@
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+{{#if msg}}
+<label id="msgs">{{msg}}</label>
+
+
+{{/if}}
+<script>
+  $( document ).ready(function() {
+  
+});
+</script>
+<div class="page-container">
+
+  <div class="main-content">
+    <div class="section__content section__content--p30">
+      <main>
+        <div class="container-fluid">
+          <div>
+             <div class="col-md-6">
+                      <label for="inputState">Categoría</label>
+                      <select id="categorias" class="form-control" name="categoria">
+                        <option value="todas" selected>Todas</option>
+                        {{#each categorias as |categoria i|}}
+                        <option value="{{categoria.nombre}}">{{categoria.nombre}} </option>
+                         {{/each}}
+                      </select>
+
+                    </div>
+            <div class="row" id="content">
+              {{#each publicaciones as |publicacion i|}}
+<div class="card item" style="width: 18rem;margin-right: 10px; border-radius: 20px;">
+  <img class="card-img-top" src="../assets/img_up/{{#fotoPrincipalPublicacion publicacion.fotos}}{{/fotoPrincipalPublicacion}}" alt="Card image cap" style="border-radius: 20px;">
+  <div class="card-body">
+    <h5 class="card-title">{{publicacion.titulo}} </h5>
+     <label class="card-title nombres" hidden>{{publicacion.titulo}} </label>
+     <label class="card-title categoria" hidden>{{publicacion.categoria}} </label>
+    <p class="card-text">S/ {{publicacion.precio}}</p>
+    <a href="/ver_publicacion/{{publicacion.id}}" class="btn btn-success">Ver más</a>
+  </div>
+</div>
+              {{/each}}
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>

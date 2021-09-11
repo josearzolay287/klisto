@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" href="" type="image/png">
+	<title>{{ pageName }} </title>
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+	<!-- Google Fonts -->
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="/assets/css/bootstrap.css">
+
+        <!-- Styles -->
+        <link rel="stylesheet" href="https://javierg.mosquedacordova.com/klizto/css/app.css">
+
+        <!--<link rel="stylesheet" type="text/css" href="https://javierg.mosquedacordova.com/klizto/app_home/css/font-face.css">-->
+       
+        <!--<link href="https://javierg.mosquedacordova.com/klizto/public/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">-->
+          <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" id="theme-styles">
+
+
+        <!-- Vendor CSS-->
+
+        <link rel="stylesheet" type="text/css" href="https://javierg.mosquedacordova.com/klizto/public/css/theme.css" media="all" defer>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.10.25/datatables.min.css"/>
+        <!-- <link rel="stylesheet" type="text/css" href="https://javierg.mosquedacordova.com/klizto/css/fonts.css"> -->
+        <!-- <link rel="stylesheet" type="text/css" href="https://javierg.mosquedacordova.com/klizto/css/bootstrap.css"> -->
+        <!-- <link rel="stylesheet" type="text/css" href="https://javierg.mosquedacordova.com/klizto/css/style.css"> -->
+<link rel="stylesheet" type="text/css" href="/assets/css/jquery-ui.css">
+
+
+	<style type="text/css">
+    #nprogress {
+      pointer-events: none;
+    }
+
+    #nprogress .bar {
+      background: #4B5563;
+
+      position: fixed;
+      z-index: 1031;
+      top: 0;
+      left: 0;
+
+      width: 100%;
+      height: 2px;
+    }
+
+    #nprogress .peg {
+      display: block;
+      position: absolute;
+      right: 0px;
+      width: 100px;
+      height: 100%;
+      box-shadow: 0 0 10px #4B5563, 0 0 5px #4B5563;
+      opacity: 1.0;
+
+      -webkit-transform: rotate(3deg) translate(0px, -4px);
+          -ms-transform: rotate(3deg) translate(0px, -4px);
+              transform: rotate(3deg) translate(0px, -4px);
+    }
+
+    #nprogress .spinner {
+      display: block;
+      position: fixed;
+      z-index: 1031;
+      top: 15px;
+      right: 15px;
+    }
+
+    #nprogress .spinner-icon {
+      width: 18px;
+      height: 18px;
+      box-sizing: border-box;
+
+      border: solid 2px transparent;
+      border-top-color: #4B5563;
+      border-left-color: #4B5563;
+      border-radius: 50%;
+
+      -webkit-animation: nprogress-spinner 400ms linear infinite;
+              animation: nprogress-spinner 400ms linear infinite;
+    }
+
+    .nprogress-custom-parent {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .nprogress-custom-parent #nprogress .spinner,
+    .nprogress-custom-parent #nprogress .bar {
+      position: absolute;
+    }
+
+    @-webkit-keyframes nprogress-spinner {
+      0%   { -webkit-transform: rotate(0deg); }
+      100% { -webkit-transform: rotate(360deg); }
+    }
+    @keyframes nprogress-spinner {
+      0%   { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .header-buscador{
+    width: 100% !important;
+    height: 50px;
+    border-radius: 10px;
+    border: 2px solid #c0c0c0;
+    font-weight: 600;
+    color: black;
+    font-size: 20px;
+    }
+    .header-buscador:focus{
+    width: 100% !important;
+    height: 50px;
+    border-radius: 10px;
+    border: 2px solid #c0c0c0;
+    font-weight: 600;
+    color: black;
+    box-shadow: none;
+    }
+    .header-buscador-buttom{
+      position: absolute;
+      right: 1%;
+      color: #c0c0c0 !important;
+      border-color: transparent !important;
+    }
+    .header-buscador-buttom:hover{
+      color: #c0c0c0 !important;
+      background-color: transparent !important;
+      border-color: transparent !important;
+      box-shadow: none;
+    }
+  </style>
+</head>
+<body >
+	{{#if landingPage}}
+	<!-- Header 
+	<header class="site-header">
+    
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/">
+					<img src="https://javierg.mosquedacordova.com/klizto/images/logo_fondo_claro.png" alt="Logo" width="80px">
+					<span></span>
+				</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Inicio </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Tiendas</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/publicaciones">Publicaciones</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/">Sobre nosotros </a>
+      </li>
+    </ul>
+
+
+   
+{{#if user.name}}            
+<div class="account-item clearfix js-item-menu">
+                {{#if dash_cliente}}{{else}}
+                <div class="image">
+                  <img
+                    src="{{#if user.photo}}{{#if logo}}../{{/if}}assets/img_up/{{user.photo}}{{else}}https://javierg.mosquedacordova.com/klizto/images/ico-image.png{{/if}}"
+                    alt="Logo"
+                  />
+                </div>
+                {{/if}}
+                <div class="content">
+                  <a class="js-acc-btn" href="/dashboard">
+                    {{user.name}}
+                  </a>
+                </div>
+                <div class="account-dropdown js-dropdown">
+                  <div class="info clearfix">
+                    <div class="image">
+                      <a href="/dashboard">
+                        <img
+                          src="{{#if user.photo}}assets/img_up/{{user.photo}}{{else}}https://javierg.mosquedacordova.com/klizto/images/ico-image.png{{/if}}"
+                          alt="Logo"
+                        />
+                      </a>
+                    </div>
+                    <div class="content">
+                      <h5 class="name">
+                        <a href="/dashboard">
+                          {{user.name}}
+                        </a>
+                      </h5>
+                      <span class="email">
+                        {{user.email}}
+                      </span>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+{{else}}
+ <div class="form-inline my-2 my-lg-0">
+                <a href="/login" class="form-control mr-sm-2">
+                    Acceder
+                </a>
+
+                <a href="/register" class="btn btn-outline-success my-2 my-sm-0">
+                    Registro
+                </a>
+            </div>
+{{/if}}
+  </div>
+</nav>
+	</header>-->	<!-- End Header -->
+
+  <div class="header">
+    <div class="menu-front">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container" style="max-width: 1200px;">
+                <a class="navbar-brand" href="#">
+                    <img src="../assets/img/logo-blanco.png" alt="">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+              
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                      <a class="nav-link" href="#">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Servicio</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">Negocios</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">Afiliar mi negocio</a>
+                      </li>
+                      <li class="nav-item ingresar">
+                        <a class="nav-link" href="/login">Ingresar</a>
+                      </li>
+                  </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div class="contenido-header">
+        <div class="container">
+            <div class="row pb-5">
+                <div class="col-md-6">
+                    <div class="img-yt" style="background-image: url('../assets/img/yt-inicio.jpg'); background-size: cover;">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                <div class="col-md-6 d-flex" style="height: 300px;
+                justify-content: flex-end;
+                align-items: center;">
+                    <div>
+                        <h1>
+                            Reserva tus
+                            <br>
+                            servicios de 
+                            <br>
+                            manera rápida
+                            <br>
+                            y sencilla
+                        </h1>
+                        <a href="#" class="boton-titulo">
+                                Ver Servicios
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 pt-3 pb-3">
+                  <h2 class="text-center">    
+                    <form class="form-inline my-2 my-lg-0" action="" method="POST" style="margin-right: 5px;">
+                      <input class="form-control mr-sm-2 header-buscador" type="text" name="search" placeholder="Buscar" id="buscador">
+                      <button class="btn btn-outline-success my-2 my-sm-0 header-buscador-buttom" type="submit">
+                        <i class="fas fa-search" style="font-size: 30px;"></i>
+                      </button>
+                    </form>
+                  </h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+	{{/if}}
+ {{#if dashboardPage}} 
+  <header class="header-desktop">
+    <div class="section__content section__content--p30">
+      <div class="container-fluid">
+        <div class="header-wrap">
+          <div class="search_header">
+            <form class="form-header" action="" method="POST">
+              <input
+                class="au-input au-input--xl"
+                type="text"
+                name="search"
+                placeholder="Buscar"
+                id="{{#if admin}}buscador_admin{{else}}buscador{{/if}}"
+              />
+              <button class="au-btn--submit" type="submit">
+                <i class="fas fa-search"></i>
+              </button>
+            </form>
+          </div>
+          <div class="header-button">
+            <div class="noti-wrap">
+              <div class="noti__item js-item-menu">
+                <span>
+                  0.00$
+                </span>
+              </div>
+              <div class="noti__item js-item-menu">
+                <i class="fas fa-bell"></i>
+                <div class="notifi-dropdown js-dropdown">
+                  <div class="notifi__title">
+                    <p>
+                      You have 3 Notifications
+                    </p>
+                  </div>
+                  <div class="notifi__item">
+                    <div class="bg-c1 img-cir img-40">
+                      <i class="zmdi zmdi-email-open"></i>
+                    </div>
+                    <div class="content">
+                      <p>
+                        You got a email notification
+                      </p>
+                      <span class="date">
+                        April 12, 2018 06:50
+                      </span>
+                    </div>
+                  </div>
+                  <div class="notifi__footer">
+                    <a href="#">
+                      All notifications
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="account-wrap">
+              <div class="account-item clearfix js-item-menu">
+                {{#if dash_cliente}}{{else}}
+                <div class="image">
+                  <img
+                    src="{{#if user.photo}}{{#if logo}}../{{/if}}assets/img_up/{{user.photo}}{{else}}https://javierg.mosquedacordova.com/klizto/images/ico-image.png{{/if}}"
+                    alt="Logo"
+                  />
+                </div>
+                {{/if}}
+                <div class="content">
+                  <a class="js-acc-btn" href="#">
+                    {{user.name}}
+                  </a>
+                </div>
+                <div class="account-dropdown js-dropdown">
+                  <div class="info clearfix">
+                    <div class="image">
+                      <a href="#">
+                        <img
+                          src="{{#if user.photo}}assets/img_up/{{user.photo}}{{else}}https://javierg.mosquedacordova.com/klizto/images/ico-image.png{{/if}}"
+                          alt="Logo"
+                        />
+                      </a>
+                    </div>
+                    <div class="content">
+                      <h5 class="name">
+                        <a href="#">
+                          {{user.name}}
+                        </a>
+                      </h5>
+                      <span class="email">
+                        {{user.email}}
+                      </span>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  {{/if}}
+   {{#if landingPage}} 
+
+  <!--  <div class="section__content section__content--p30">
+      <div class="container-fluid">
+        <div class="header-wrap">
+          <div class="search_header">
+           
+          </div>
+          <div class="header-button">
+            <div class="noti-wrap">
+              <div class="noti__item js-item-menu">
+                <span>
+                  0.00$
+                </span>
+              </div>
+              <div class="noti__item js-item-menu">
+                <i class="fas fa-bell"></i>
+                <div class="notifi-dropdown js-dropdown">
+                  <div class="notifi__title">
+                    <p>
+                      You have 3 Notifications
+                    </p>
+                  </div>
+                  <div class="notifi__item">
+                    <div class="bg-c1 img-cir img-40">
+                      <i class="zmdi zmdi-email-open"></i>
+                    </div>
+                    <div class="content">
+                      <p>
+                        You got a email notification
+                      </p>
+                      <span class="date">
+                        April 12, 2018 06:50
+                      </span>
+                    </div>
+                  </div>
+                  <div class="notifi__footer">
+                    <a href="#">
+                      All notifications
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="account-wrap">
+              <div class="account-item clearfix js-item-menu">
+                {{#if dash_cliente}}{{else}}
+                <div class="image">
+                  <img
+                    src="{{#if user.photo}}{{#if logo}}../{{/if}}assets/img_up/{{user.photo}}{{else}}https://javierg.mosquedacordova.com/klizto/images/ico-image.png{{/if}}"
+                    alt="Logo"
+                  />
+                </div>
+                {{/if}}
+                <div class="content">
+                  <a class="js-acc-btn" href="#">
+                    {{user.name}}
+                  </a>
+                </div>
+                <div class="account-dropdown js-dropdown">
+                  <div class="info clearfix">
+                    <div class="image">
+                      <a href="#">
+                        <img
+                          src="{{#if user.photo}}assets/img_up/{{user.photo}}{{else}}https://javierg.mosquedacordova.com/klizto/images/ico-image.png{{/if}}"
+                          alt="Logo"
+                        />
+                      </a>
+                    </div>
+                    <div class="content">
+                      <h5 class="name">
+                        <a href="#">
+                          {{user.name}}
+                        </a>
+                      </h5>
+                      <span class="email">
+                        {{user.email}}
+                      </span>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>-->
+  
+  {{/if}}

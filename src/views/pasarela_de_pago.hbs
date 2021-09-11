@@ -1,0 +1,307 @@
+<!--<link rel="stylesheet" type="text/css" href="https://www.paypalobjects.com/webstatic/en_US/developer/docs/css/cardfields.css"/>-->
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+  function showPago(mostrar, ocultar) {
+    if ($('#' + ocultar).is(':visible')) {
+      $('#' + ocultar).hide();
+      $('#' + mostrar).show();
+    } else {
+      //$('#'+ocultar).show(); 
+      $('#' + mostrar).show();
+    }
+
+  }
+</script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<div class="page-container">
+  <div class="main-content">
+    <div class="section__content section__content--p30">
+      <main>
+
+        <div class="card-box shadow position-relative calculate-height">
+          <div class="row">
+            <div class="col-xl-7">
+              <div
+                class="card-box--icon card-box--mini-icon dashboard__card-box-header dashboard__card-box-header--mini align-items-center">
+                <div class="card-box__icon card-box__icon--celeste">
+                  <i class="fa fa-credit-card"></i>
+                </div>
+                <div class="card-box__body">
+                  <h2 class="card-box__title m-0" id="pasarale_name">{{pageName}}</h2>
+                </div>
+              </div><!-- .card-box -->
+            </div><!-- .col-xl-7 -->
+          </div><!-- .row -->
+          <div class="grid-plans grid-plans--dashboard" style="grid-template-columns: 1fr">
+            <table class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <!--<th class="text-xs-center">
+									Id
+								</th>-->
+                  <th class="text-xs-center">
+                    Producto
+                  </th>
+                  <th class="text-xs-center">
+                    Cantidad
+                  </th>
+                  <th class="text-xs-center">
+                    Precio
+                  </th>
+                  <th class="text-xs-center">
+                    Metodo de Pago
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{product}}</td>
+
+                  <td>{{#if Backcoin}}{{amount}} {{else}}1{{/if}}</td>
+                  <td>S/{{monto_soles}}</td>
+                  <td>
+                    <input type="radio" onclick="showPago('MP','paypal')" name="metodo_pago"
+                      value="Mercado Pago">Mercado Pago
+
+
+                    <!--  <input type="radio" id="tarjeta" name="metodo_pago" value="PayPal" onclick="showPago('paypal','MP')">PayPal
+          {{#if Backcoin}}{{else}}{{#if backstore_sell}}<input type="radio" id="backcoins_pay" name="metodo_pago" value="backcoins_pay" onclick="backcoins_pay_back('backcoins')">Backcoins{{else}}<input type="radio" id="backcoins_pay" name="metodo_pago" value="backcoins_pay" onclick="backcoins_pay('backcoins')">Backcoins{{/if}}{{/if}}
+          -->
+                  </td>
+
+
+                </tr>
+              </tbody>
+            </table>
+            <div class="card card-plan">
+              <div class="card-body" id="MP">
+                <!--<script
+  src="https://www.mercadopago.com.pe/integrations/v1/web-payment-checkout.js"
+  data-preference-id='{{global}}'>
+</script>-->
+<div class="container py-5">
+<div class="row">
+        <div class="col-lg-6 mx-auto">
+            <div class="card ">
+              <div class="card-header">
+              <div class="tab-content">
+                <div id="credit-card" class="tab-pane fade show active pt-3">
+                  <form role="form" id="form-checkout" method="post" action="/process_payment">
+                    <div class="form-group"> 
+                      <input type="text" name="cardholderName" id="form-checkout__cardholderName" required
+                        class="form-control " style="border: 1px solid #ccc;border-radius: 4px;"/>
+                    </div>
+                    <div class="form-group"> 
+                      <input type="email" name="cardholderEmail" id="form-checkout__cardholderEmail" required  class="form-control " style="border: 1px solid #ccc;border-radius: 4px;"/>
+                    </div>
+                    <div class="form-row">
+                         <div class="form-group col-md-6"> 
+                      <select name="identificationType" id="form-checkout__identificationType" class="form-control "></select>
+                     
+                    </div>
+                     <div class="form-group col-md-6"> 
+                      <input type="number" name="identificationNumber" id="form-checkout__identificationNumber" class="form-control " style="border: 1px solid #ccc;border-radius: 4px;" required/>
+                     
+                    </div>
+                        </div>
+                    <div class="form-group"> 
+                      <div class="input-group">
+                        <input type="text" name="cardNumber" id="form-checkout__cardNumber" class="form-control "
+                          required style="border: 1px solid #ccc;border-radius: 4px;"/>
+                        <div class="input-group-append"> <span class="input-group-text text-muted"> <i
+                              class="fab fa-cc-visa mx-1"></i> <i class="fab fa-cc-mastercard mx-1"></i> <i
+                              class="fab fa-cc-amex mx-1"></i> </span> </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-8">
+                        <div class="form-group"> 
+                          <div class="input-group">
+                            <input type="number" name="cardExpirationMonth" id="form-checkout__cardExpirationMonth"
+                              class="form-control" required style="border: 1px solid #ccc;border-radius: 4px;"/>
+                            <input type="number" name="cardExpirationYear" id="form-checkout__cardExpirationYear"
+                              class="form-control" required style="border: 1px solid #ccc;border-radius: 4px;"/>
+
+                          </div>
+                        </div>
+                        
+                      </div>
+                      <div class="col-sm-4">
+                          <div class="form-group"> <input type="text" name="securityCode" id="form-checkout__securityCode" required class="form-control" style="border: 1px solid #ccc;border-radius: 4px;"/></div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                         <div class="form-group col-md-6"> 
+                      <select name="installments" id="form-checkout__installments" class="form-control "></select>
+                     
+                    </div>
+                    </div>
+                    
+                    <select name="issuer" id="form-checkout__issuer" hidden></select>
+                    <input type="hidden" name="descripcion" id="form-checkout__descripcion" value="{{product}}" />
+                    <input type="hidden" name="id_publicacion" id="form-checkout__id_publicacion" value="{{publicacion.id}}" />
+                     <input type="hidden" name="id_usuario" id="form-checkout__id_publicacion" value="{{publicacion.usuarioId}}" />
+                     <input type="hidden" name="monto_billetera" id="form-checkout__id_publicacion" value="{{publicacion.billetera}}" />
+                     <input type="hidden" name="id_agenda" id="form-checkout__id_publicacion" value="{{id_agenda}}" />
+                    <div class="progress">
+  <div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 0;">Procesando pago...
+              Por favor espere...</div>
+</div>
+                    
+                      <div class="card-footer"> <button type="submit"
+                          class="subscribe btn btn-primary btn-block shadow-sm" id="form-checkout__submit"> Pagar</button></div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            </div>
+            </div> 
+            </div>
+            </div>
+            </div><!-- End -->
+              <script src="https://sdk.mercadopago.com/js/v2"></script>
+             <!-- <form id="form-checkout" method="post" action="/process_payment">
+                <input type="text" name="cardNumber" id="form-checkout__cardNumber" />
+                <input type="text" name="cardExpirationMonth" id="form-checkout__cardExpirationMonth" />
+                <input type="text" name="cardExpirationYear" id="form-checkout__cardExpirationYear" />
+                <input type="text" name="cardholderName" id="form-checkout__cardholderName" />
+                <input type="email" name="cardholderEmail" id="form-checkout__cardholderEmail" />
+                <input type="text" name="securityCode" id="form-checkout__securityCode" />
+                <select name="issuer" id="form-checkout__issuer" hidden></select>
+                <select name="identificationType" id="form-checkout__identificationType"></select>
+                <input type="text" name="identificationNumber" id="form-checkout__identificationNumber" />
+                <input type="hidden" name="descripcion" id="form-checkout__descripcion" value="{{product}}" />
+                <select name="installments" id="form-checkout__installments"></select>
+                <button type="submit" id="form-checkout__submit">Pagar</button>
+                <progress value="0" class="progress-bar">Cargando...</progress>
+              </form>-->
+              <script>
+                const mp = new MercadoPago('TEST-46e6db42-df00-4ba4-80c8-ce9b9e7303f4');
+                // Add step #3
+                // Step #3
+                const cardForm = mp.cardForm({
+                  amount: "{{monto_soles}}",
+                  autoMount: true,
+                  form: {
+                    id: "form-checkout",
+                    cardholderName: {
+                      id: "form-checkout__cardholderName",
+                      placeholder: "Titular de la tarjeta",
+                    },
+                    cardholderEmail: {
+                      id: "form-checkout__cardholderEmail",
+                      placeholder: "E-mail",
+                    },
+                    cardNumber: {
+                      id: "form-checkout__cardNumber",
+                      placeholder: "Número de la tarjeta",
+                    },
+                    cardExpirationMonth: {
+                      id: "form-checkout__cardExpirationMonth",
+                      placeholder: "MM",
+                    },
+                    cardExpirationYear: {
+                      id: "form-checkout__cardExpirationYear",
+                      placeholder: "AA",
+                    },
+                    securityCode: {
+                      id: "form-checkout__securityCode",
+                      placeholder: "CVV",
+                    },
+                    installments: {
+                      id: "form-checkout__installments",
+                      placeholder: "Cuotas",
+                    },
+                    identificationType: {
+                      id: "form-checkout__identificationType",
+                      placeholder: "Tipo de documento",
+                    },
+                    identificationNumber: {
+                      id: "form-checkout__identificationNumber",
+                      placeholder: "Número de documento",
+                    },
+                    issuer: {
+                      id: "form-checkout__issuer",
+                      placeholder: "Banco",
+                    },
+                    descripcion: {
+                      id: "form-checkout__descripcion",
+                      placeholder: "descripcion",
+                    },
+                  },
+                  callbacks: {
+                    onFormMounted: error => {
+                      if (error) return console.warn("Form Mounted handling error: ", error);
+                      console.log("Form mounted");
+                    },
+                    onSubmit: event => {
+                      event.preventDefault();
+
+                      const {
+                        paymentMethodId: payment_method_id,
+                        issuerId: issuer_id,
+                        cardholderEmail: email,
+                        amount,
+                        token,
+                        installments,
+                        identificationNumber,
+                        identificationType,
+                      } = cardForm.getCardFormData();
+                      const cardData = cardForm.getCardFormData();
+                      console.log('CardForm data available: ', cardData)
+                      const progressBar = document.querySelector(".progress-bar");
+                        progressBar.setAttribute("style", "width: 100%");
+                      $('#form-checkout').submit();
+
+                    },
+                    onFetching: (resource) => {
+                      console.log("Fetching resource: ", resource);
+                      let count = 0
+                      console.log(count++);
+                      // Animate progress bar
+                     // const progressBar = document.querySelector(".progress-bar");
+                     // progressBar.removeAttribute("style");
+
+                    //  return () => {
+                    //    progressBar.setAttribute("style", "width: 100%");
+                    //    progressBar.removeAttribute("style");
+                    //  };
+                    },
+                  },
+                });
+              </script>
+
+            </div>
+            <div id="cargando" style="display:none"><img src="/assets/img/Settings.gif" alt="Gate 1">Procesando pago...
+              Por favor espere...</div>
+            <div class="card-body" id="paypal" style="display: none;">
+
+              <!-- JavaScript SDK -->
+              <script
+                src="https://www.paypal.com/sdk/js?components=hosted-fields&client-id={{CLIENT_ID}}&merchant-id=AUQDSYSBC7JR6&currency=USD&intent=capture"
+                data-partner-attribution-id="FLAVORsb-qjuoo6097065_MP" data-client-token="{{clien_token}}"
+                data-namespace="paypal_sdk"></script>
+              <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+              <div id="paypal-button-container"></div>
+
+            </div>
+
+
+
+          </div>
+        </div>
+
+
+
+        <a href="" class="before-page">
+          <i class="fa fa-arrow-left"></i>
+        </a>
+    </div><!-- .card-box -->
+
+    </main>
+  </div>
+</div>
+</div>

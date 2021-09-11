@@ -1,0 +1,152 @@
+<div class="page-container">
+  <div class="main-content">
+    <div class="section__content section__content--p30">
+      <main id="tabla_empleados">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="overview-wrap">
+                <h2 class="title-1">
+                 <a href="/minegocio">Mis Negocios</a> 
+                </h2>
+                <div class="float-right">
+                  <a href="#" id="agregar_empleados">
+                    Agregar
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card-blank">
+                <div class="card-body">
+                  <h3>
+                    Empleados
+                  </h3>
+                  <table class="table dataTable">
+                    <thead>
+                      <tr>
+                        <th>
+                          Nombre
+                        </th>
+                        <th>
+                          Apellido
+                        </th>
+                        <th>
+                          Correo
+                        </th>
+                        <th>
+                          Telefono
+                        </th>
+                         <th>
+                          Tipo
+                        </th>
+                        <th>
+                          Sucursal
+                        </th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                      {{#each encargados as |encargado i|}}
+
+                      <tr>
+                        <td>
+                          {{encargado.nombre}}
+                        </td>
+                        <td>
+                          {{encargado.apellido}}
+                        </td>
+                        <td>
+                          {{encargado.correo}}
+                        </td>
+                        <td>
+                          {{encargado.telefono}}
+                        </td>
+                        <td>
+                          {{encargado.tipo}}
+                        </td>
+                        <td>
+                          <span>
+                            <strong style="color:{{#ColorSucursal ../sucursales.tipo}}{{/ColorSucursal}};">
+                              {{../sucursales.tipo}}
+                            </strong>
+                          </span>
+                        </td>
+                        <td align="center">
+                          <div class="table-data-feature">
+                            <a class="item" href="/editar_encargado/{{encargado.id}}/{{../sucursales.id}}" data-toggle="tooltip" data-placement="top" title=""
+                              data-original-title="Editar">
+                              <i class="fas fa-edit"></i>
+                            </a>
+                            <a class="item" href="/eliminar_encargado/{{encargado.id}}/{{../sucursales.id}}">
+                              <i class="fas fa-trash-alt"></i>
+                            </a>
+                          </div>
+                        </td>
+                      </tr>
+                      {{/each}}
+
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+      <main id="add_empleados" hidden>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="overview-wrap">
+                <h2 class="title-1">Vincular Nuevo Empleado</h2>
+                <div class="float-right"><a href="#" id="volver_empleados"> Volver </a></div>
+              </div>
+            </div>
+          </div>
+          <div class="row m-t-25">
+            <div class="col-md-12">
+              <div class="card-blank">
+                <form action="/agregar_encargado" method="post">
+                <input type="text" name="id_sucursal" class="form-control" value="{{sucursales.id}}" hidden>
+                  <div class="card-body">
+                    <div class="form-group">
+                      <label>Nombre</label>
+                      <input type="text" name="nombre" class="form-control" required />
+                    </div>
+                    <div class="form-group">
+                      <label>Apellido</label>
+                      <input id="last_name" type="text" name="apellido"   class="form-control" required/>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="inputState">Tipo</label>
+                      <select id="inputState" class="form-control" name="tipo">
+                        <option value="Empleado">Empleado</option>
+                        <option value="Encargado">Encargado</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label>Correo</label>
+                      <input type="text" name="correo" class="form-control" required />
+                    </div>
+                    <div class="form-group">
+                      <label>Telefonos</label>
+                      <input id="last_name" type="text" name="telefono"  class="form-control" required/></div>
+
+                    <center><button class="btn btn-success mt-4" type="submit"> Añadir </button></center>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+
+
+    </div>
+  </div>
+</div>

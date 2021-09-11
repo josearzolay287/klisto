@@ -1,0 +1,248 @@
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+ <style>
+th.headerSortUp { 
+  background-image: url('assets/img/asc.gif') !important; 
+      background-repeat: no-repeat;
+  background-position: center right;
+  cursor: pointer;
+ /* background-color: #3399FF; */
+} 
+ 
+table.tablesorter thead tr .header {
+  background-image: url('assets/img/bg.gif');
+  background-repeat: no-repeat;
+  background-position: center right;
+  cursor: pointer;
+  }
+  th.headerSortDown { 
+  background-image: url('assets/img/desc.gif') !important;
+      background-repeat: no-repeat;
+  background-position: center right;
+  cursor: pointer; 
+/* background-color: #3399FF; */
+}
+.linea-oculta{display: none;}
+</style>
+<script>
+  var resultados_por_pagina = 10;
+var pagina_actual = 1;
+var pagina_ultima = 0;
+var cargarPagina = function(intPaginaP){
+	//evaluar si la pagina a cargar es mayor que el numero de paginas o es menor que 1
+	if(intPaginaP < 1){intPaginaP = 1;}
+	if(intPaginaP > pagina_ultima){intPaginaP = pagina_ultima;}
+	//ocultar todas las lineas
+	$("#tabla_>tbody>tr").addClass("linea-oculta");
+	var primer_registro = (intPaginaP - 1) * resultados_por_pagina;
+	for (var i = primer_registro; i < (primer_registro + resultados_por_pagina); i++){
+		$("#tabla_>tbody>tr").eq(i).removeClass("linea-oculta");
+	}
+	//indicar en qué pagina estamos
+	pagina_actual = intPaginaP;
+	$("#indicador_paginas").html("Página: " + pagina_actual + " / " + pagina_ultima);
+}
+  $(function () {
+var total_registros = $("#tabla_>tbody>tr").length;
+	console.log("tabla"+pagina_ultima)
+	//saber cuantas paginas vamos a mostrar
+	pagina_ultima = Math.round(total_registros / resultados_por_pagina);
+	//cargar la primera pagina
+	cargarPagina(pagina_actual);
+	//eventos para los botones
+	$("#cargar_primera_pagina").click(function(){
+		cargarPagina(1);
+	});
+	$("#cargar_anterior_pagina").click(function(){
+		cargarPagina(pagina_actual - 1);
+	});
+	$("#cargar_siguiente_pagina").click(function(){
+		cargarPagina(pagina_actual + 1);
+	});
+	$("#cargar_ultima_pagina").click(function(){
+		cargarPagina(pagina_ultima);
+	});
+ 
+
+})
+</script>
+
+{{#if msg}}
+<label id="msgs">{{msg}}</label>
+{{/if}}
+<div class="page-container">
+  <div class="main-content">
+    <div class="section__content section__content--p30">
+      <main>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="overview-wrap">
+                <h2 class="title-1">
+                  {{#if admin}}Negocios{{else}}Mis Negocios{{/if}}
+                </h2>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            {{#if admin}}{{else}}
+            <div class="card-blank" style="width: 65%;margin-left: 15px; margin-bottom: 10px;">
+              <div class="card-body">
+                <form action="/actualizar_negocio" method="post">
+                  <input type="text" class="form-control" name="userid" value="{{user.id}}" hidden/>
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label for="inputEmail4">Nombre</label>
+                      <input type="text" class="form-control" id="inputEmail4" placeholder="Nombre" name="nombre" value="{{user.name}}">
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="inputPassword4">Teléfono</label>
+                      <input type="text" class="form-control" id="inputPassword4" name="telefono" value="{{user.telefono}}">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                     <label for="exampleFormControlTextarea1">Descripción</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="descripcion">{{user.descripcion}}</textarea>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label for="inputState">Banco</label>
+                      <select id="inputState" class="form-control" name="banco">
+                        <option selected value="{{user.banco}}">{{user.banco}} </option>
+                        <option value="BBVA">BBVA</option>
+                        <option value="BCP">BCP</option>
+                      </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="inputZip">Nro de Cuenta</label>
+                      <input type="text" class="form-control" id="cuenta" name="cuenta" value="{{user.cuenta}}" maxlength="22">
+                    </div>
+                  </div>
+                  <input type="text" id="profile_img_" class="" name='photo1' value="{{user.photo}}" hidden>
+                  <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                  <a class="btn btn-primary" href="/perfiles/{{user.id}}" target="_blank">Ver mi perfil</a>
+                 </form>
+              </div>
+            </div>
+            <div class="card-blank" style="width: 30%; margin-left: 10px; margin-bottom: 10px;">
+              <div class="card-body">
+                <div class="row">
+                  <center>
+                    <img id="imageSelected" class="img-fluid"
+                      src="{{#if user.photo}}{{#if logo}}../{{/if}}assets/img_up/{{user.photo}}{{else}}https://javierg.mosquedacordova.com/klizto/images/ico-image.png{{/if}}"
+                      onclick="document.getElementById('profile-img').click();" width="250px"/>
+                    <input
+                      class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+                      id="profile-img" type="file" accept=".png" name="image" hidden />
+                    <p>
+                      Recomendado: Imágen de mismas dimensiones. Ejm: 300x300<br>
+                      <span id="resultado"></span>
+                    </p>
+                  </center>
+                  
+                </div>
+              </div>
+            </div>
+            {{/if}}
+
+
+
+
+
+
+
+            <div class="col-md-12">
+              <div class="card-blank">
+                <div class="card-body">
+                  <h3>
+                    Sucursales
+                  </h3>
+                  
+                <div class="float-right">
+                  <a href="/create_sucursal">
+                    Añadir Sucursal
+                  </a>
+                </div>
+                  <table class="table dataTable tablesorter" id="tabla_">
+                    <thead>
+                      <tr>
+                        <th>
+                          Distrito
+                        </th>
+                        <th>
+                          Departamento
+                        </th>
+                        <th>
+                          Dirección
+                        </th>
+                        <th>
+                          Teléfono
+                        </th>
+                        <th>
+                          Tipo Local
+                        </th>
+                        <th align="center">
+                          Opciones
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                      {{#each sucursales as |sucursal i|}}
+
+                      <tr>
+                        <td>
+                          {{sucursal.distrito}}
+                        </td>
+                        <td>
+                          {{sucursal.departamento}}
+                        </td>
+                        <td>
+                          {{sucursal.direccion}}
+                        </td>
+                        <td>
+                          {{sucursal.telefono}}
+                        </td>
+                        <td>
+                          <span>
+                            <strong style="color: {{#ColorSucursal sucursal.tipo}}{{/ColorSucursal}};">
+                              {{sucursal.tipo}}
+                            </strong>
+                          </span>
+                        </td>
+                        <td align="center">
+                          <div class="table-data-feature">
+                            <a class="item" href="/encargados/{{sucursal.id}}" data-toggle="tooltip" data-placement="top" title="Encargados" id="empleados_button">
+                              <i class="fas fa-users" ></i>
+                            </a>
+                            <a class="item" href="/editar_sucursal/{{sucursal.id}}" data-toggle="tooltip" data-placement="top" title="Editar" id="empleados_button">
+                              <i class="fas fa-edit"></i>
+                            </a>
+                            <a class="item delete {{sucursal.id}} {{sucursal.tipo}}" href="#" id="delete_sucursal" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
+                              <i class="fas fa-trash-alt {{sucursal.id}} {{sucursal.tipo}}"></i>
+                            </a>
+                          </div>
+                        </td>
+                      </tr>
+                      {{/each}}
+
+                    </tbody>
+                    <tfoot>
+	<td><input type="button" id="cargar_primera_pagina" value="<< Primero"/></td>
+	<td><input type="button" id="cargar_anterior_pagina" value="< Anterior"/></td>
+	<td id="indicador_paginas"></td>
+	<td><input type="button" id="cargar_siguiente_pagina" value="Siguiente >"/></td>
+	<td><input type="button" id="cargar_ultima_pagina" value="Ultimo >>"/></td>
+</tfoot>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>

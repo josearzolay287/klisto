@@ -1,0 +1,175 @@
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+  $(function () {
+  
+$('.sucursales_check:checked').each(function() {
+   var id_suc = $(this).val()
+        $('.sucur'+id_suc).show()
+        let suc_actual=$('#sucursales_p').text()
+        console.log($(this).text())
+        $('#sucursales_p').text($('#suc'+id_suc).text()+'/'+suc_actual+'' )
+      console.log("hola")
+    }
+);
+      $('.btn_submit_preview').on('click',()=>{
+        if($('#preview_publicacion').is(':visible')){
+        $('#crear_publicacion').show()
+        $('#preview_publicacion').hide()
+      }
+        $('.btn_submit').click()})
+
+    $('.preview').on('click', () => {
+        if($('#preview_publicacion').is(':visible')){
+        $('#preview_publicacion').hide()
+        $('#crear_publicacion').show()
+      }else{
+      $('#preview_publicacion').show()
+      $('#crear_publicacion').hide()
+      $('#titulo_preview').text($('#titulo').val())
+      $('#precio_preview').text('S/' + $('#precio').val())
+      $('#descripcion_preview').text($('#descripcion').val())
+      $('#condiciones_preview').text($('#condiciones').val())
+      $('#desde_preview').text($('#desde').val())
+      $('#hasta_preview').text($('#hasta').val())
+      $('#preparacion_p').text($('#preparacion').val()+' min') 
+      $('#ejecucion_p').text($('#ejecucion').val()+' min') 
+       if($('.editar_public')){
+          $('#img_preview').attr('src', "../assets/img_up/" + $('#imagen1').val())
+       $('#img1').attr('src', "../assets/img_up/" + $('#imagen2').val())
+      $('#img2').attr('src', "../assets/img_up/" + $('#imagen3').val())
+      $('#img3').attr('src', "../assets/img_up/" + $('#imagen4').val())
+      $('#img4').attr('src', "../assets/img_up/" + $('#imagen5').val())
+      }else{
+         $('#img_preview').attr('src', "assets/img_up/" + $('#imagen1').val())
+        $('#img1').attr('src', "assets/img_up/" + $('#imagen2').val())
+      $('#img2').attr('src', "assets/img_up/" + $('#imagen3').val())
+      $('#img3').attr('src', "assets/img_up/" + $('#imagen4').val())
+      $('#img4').attr('src', "assets/img_up/" + $('#imagen5').val())
+      }
+      }
+
+
+    })
+    $('.sucursales_check').on('change', (e) => {
+      var id_suc = e.target.classList.item(1)
+      if($('.sucur'+id_suc).is(':visible')){
+        $('.sucur'+id_suc).hide()
+      }else{
+        $('.sucur'+id_suc).show()
+        let suc_actual=$('#sucursales_p').text()
+        console.log(suc_actual)
+        $('#sucursales_p').text($('#suc'+id_suc).text()+'/'+suc_actual+'' )
+      }
+
+
+      
+
+
+    })
+
+  })
+</script>
+{{#if msg}}
+<label id="msgs">{{msg}}</label>
+
+
+{{/if}}
+
+<div class="page-container" style="padding-left: 0;">
+  <div class="main-content">
+    <div class="section__content section__content--p30">
+      <main>
+        <div class="container-fluid">
+          <div class="container" id="preview_publicacion" >
+            <div class="row">
+              <div class="col">
+                <div class="card-blank" style="margin-left: 15px; margin-bottom: 10px;">
+                  <div class="card-body">
+                    <img src="../assets/img_up/{{user.photo}}" alt="..."
+                      class="img-thumbnail" id="img_preview" style="height: 400px;">
+                  </div>
+                </div>
+
+              </div>
+              <div class="col">
+                <div class="card-blank">
+                  <div class="card-body">
+                    <h5 class="card-title" id="titulo_preview" style="text-align: left;">{{user.name}}</h5>  
+                    <h6 class="card-title" id="titulo_preview" style="text-align: left;">Descripciónn de los servicios prestados</h6>                    
+                    <p class="card-text" id="descripcion_preview" style="text-align: left;">{{user.descripcion}}</p>
+                    <h6 class="card-title" style="text-align: left;">Horario de atención:</h6>
+                    <p class="card-text" id="condiciones_preview" style="text-align: left;"></p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="col-md-12">
+              <div class="card-blank">
+                <div class="card-body">
+                  <h3>
+                    Sucursales
+                  </h3>
+                  <table class="table dataTable" id="tabla_sucursales_minegocio">
+                    <thead>
+                      <tr>
+                        <th>
+                          Distrito
+                        </th>
+                        <th>
+                          Departamento
+                        </th>
+                        <th>
+                          Dirección
+                        </th>
+                        <th>
+                          Teléfono
+                        </th>
+                        <th>
+                          Tipo Local
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                      {{#each sucursales as |sucursal i|}}
+
+                      <tr>
+                        <td>
+                          {{sucursal.distrito}}
+                        </td>
+                        <td>
+                          {{sucursal.departamento}}
+                        </td>
+                        <td>
+                          {{sucursal.direccion}}
+                        </td>
+                        <td>
+                          {{sucursal.telefono}}
+                        </td>
+                        <td>
+                          <span>
+                            <strong style="color: {{#ColorSucursal sucursal.tipo}}{{/ColorSucursal}};">
+                              {{sucursal.tipo}}
+                            </strong>
+                          </span>
+                        </td>
+                      </tr>
+                      {{/each}}
+
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+  </div>
+</div>

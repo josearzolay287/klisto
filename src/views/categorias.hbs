@@ -1,0 +1,169 @@
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+  $(function () {
+ 
+
+  })
+</script>
+{{#if msg}}
+<label id="msgs">{{msg}}</label>
+
+
+{{/if}}
+
+<div class="page-container">
+  <div class="main-content">
+    <div class="section__content section__content--p30">
+      <main>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="overview-wrap">
+                <h2 class="title-1">
+                  Categorias
+                </h2>
+              </div>
+            </div>
+          </div>
+
+          {{#if cate}}
+          <div class="col-md-12">
+            <div class="card-blank">
+              <div class="card-body">
+                <div class="float-right">
+                  <a href="/crear_categoria">
+                    Crear Categoria
+                  </a>
+                </div>
+                <table class="table dataTable" id="tabla_mis_categorias">
+                  <thead>
+                    <tr>
+                      <th>
+                        Id
+                      </th>
+                      <th>
+                        Nombre
+                      </th>
+                      <th>
+                        Estado
+                      </th>
+                      <th align="center">
+                        Opciones
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {{#each categorias as |categoria i|}}
+                    <tr>
+                      <td>
+                        {{categoria.id}}
+                      </td>
+                      <td>
+                        {{categoria.nombre}}
+                      </td>
+                      <td>
+                        <span>
+                          <strong style="color: {{#ColorSucursal categoria.estado}}{{/ColorSucursal}};">
+                            {{categoria.estado}}
+                          </strong>
+                        </span>
+                      </td>
+                      <td align="center">
+                        <div class="table-data-feature">
+                          <a class="item" href="/editar_categoria/{{categoria.id}}" data-toggle="tooltip"
+                            data-placement="top" title="Editar" id="empleados_button">
+                            <i class="fas fa-edit"></i>
+                          </a>
+                          <a class="item delete {{categoria.id}} {{categoria.tipo}}" href="#"
+                            id="delete_categoria" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
+                            <i class="fas fa-trash-alt {{categoria.id}} {{categoria.tipo}}"></i>
+                          </a>
+                        </div>
+                      </td>
+                    </tr>
+                    {{/each}}
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          {{/if}}
+
+          {{#if crear_cate}}
+          <div class="row" id="crear_categoria">
+
+            <div class="card-blank" style="width: 65%;margin-left: 15px; margin-bottom: 10px;">
+              <div class="overview-wrap">
+                <h2 class="title-1">Crear categoria</h2>
+                <div class="float-right"><a href="/categorias" id="volver_categorias"> Volver </a></div>
+              </div>
+              <form action="/crear_categoria" method="post" id="form_mis_categorias">
+
+                <div class="card-body">
+                  <input type="text" class="form-control" name="userid" hidden value="{{user.id}}" />
+
+                  <div class="form-row">
+                    <div class="form-group col-md-6 mb-1">
+                      <label for="inputEmail4">Nombre</label>
+                      <input type="text" class="form-control" id="titulo" placeholder="Nombre" name="categoria" required>
+                    </div>
+                      <div class="form-group col-md-6">
+                      <label for="inputState">Estado</label>
+                      <select id="inputState" class="form-control" name="estado">
+                        <option selected value="Activa">Activa </option>
+                        <option value="Inactiva">Inactiva</option>
+                      </select>
+                    </div>
+                  </div>
+                  <button type="submit" class="btn btn-primary btn_submit">Guardar Cambios</button>
+                </div>
+              </form>
+            </div>
+
+          </div>
+          {{/if}}
+           {{#if editar_categoria}}
+        <div class="row" id="editar_categoria">
+
+            <div class="card-blank" style="width: 65%;margin-left: 15px; margin-bottom: 10px;">
+              <div class="overview-wrap">
+                <h2 class="title-1">Editar categoria</h2>
+                <div class="float-right"><a href="/categorias" id="volver_categorias"> Volver </a></div>
+              </div>
+              <form action="/editar_categoria" method="post" id="form_mis_categorias">
+
+                <div class="card-body">
+                  <input type="text" class="form-control" name="id_categoria" hidden value="{{categoria.id}}" />
+
+                  <div class="form-row">
+                    <div class="form-group col-md-6 mb-1">
+                      <label for="inputEmail4">Nombre</label>
+                      <input type="text" class="form-control" id="titulo" placeholder="Nombre" name="categoria" required value="{{categoria.nombre}}">
+                    </div>
+                      <div class="form-group col-md-6">
+                      <label for="inputState">Estado</label>
+                      <select id="inputState" class="form-control" name="estado">
+                        <option selected value="{{categoria.estado}}">{{categoria.estado}} </option>
+                        <option selected value="Activa">Activa </option>
+                        <option value="Inactiva">Inactiva</option>
+                      </select>
+                    </div>
+                  </div>
+                  <button type="submit" class="btn btn-primary btn_submit">Guardar Cambios</button>
+                </div>
+              </form>
+            </div>
+
+          </div>
+          {{/if}}
+        </div>
+      </main>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,155 @@
+<div class="page-container">
+  <div class="main-content">
+    <div class="section__content section__content--p30">
+     {{#if sucursal_edit}}
+      <main id="tabla_empleados">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="overview-wrap">
+                <h2 class="title-1">
+                 <a href="/minegocio">Mis Negocios</a> 
+                </h2>
+                <div class="overview-wrap">
+                <div class="float-right"><a href="/minegocio" id="volver_empleados"> Volver </a></div>
+              </div>
+              </div>
+            </div>
+          </div>
+          <div class="container-fluid">
+          <div class="row m-t-25">
+            <div class="col-md-12">
+              <div class="card-blank">
+                <h2 class="title-1">Editar Local: {{sucursales.tipo}}</h2>
+                <form action="/guardar_editar_local" method="post">
+                <input type="text" name="id_sucursal" class="form-control" value="{{sucursales.id}}" hidden>
+                  <div class="card-body">
+                    <div class="form-group">
+                      <label>Departamento</label>
+                      <input type="text" name="departamento" class="form-control" required  value="{{sucursales.departamento}}"/>
+                    </div>
+                    <div class="form-group">
+                      <label>Distrito</label>
+                      <input id="last_name" type="text" name="distrito"   class="form-control" required value="{{sucursales.distrito}}"/>
+                    </div>
+                    <div class="form-group">
+                      <label>Direccion</label>
+                      <input type="text" name="direccion" class="form-control" required value="{{sucursales.direccion}}" />
+                    </div>
+                    <div class="form-group">
+                      <label>Telefono</label>
+                      <input id="last_name" type="text" name="telefono"  class="form-control" required value="{{sucursales.telefono}}"/></div>
+
+                    <center><button class="btn btn-success mt-4" type="submit"> Guardar </button></center>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </main>
+      {{/if}}
+      {{#if encargados_edit}}
+      <main id="encargados">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="overview-wrap">
+                <h2 class="title-1">Editar Empleado</h2>
+                <div class="float-right"><a href="/minegocio" id="volver_empleados"> Volver </a></div>
+              </div>
+            </div>
+          </div>
+          <div class="row m-t-25">
+            <div class="col-md-12">
+              <div class="card-blank">
+                <form action="/editar_encargado" method="post">
+                <input type="text" name="id_empleado" class="form-control" value="{{encargado.id}}" hidden>
+                  <div class="card-body">
+                    <div class="form-group">
+                      <label>Nombre</label>
+                      <input type="text" name="nombre" class="form-control" required  value="{{encargado.nombre}}"/>
+                    </div>
+                    <div class="form-group">
+                      <label>Apellido</label>
+                      <input id="last_name" type="text" name="apellido"   class="form-control" required value="{{encargado.apellido}}"/>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="inputState">Tipo</label>
+                      <select id="inputState" class="form-control" name="tipo">
+                        <option value="{{encargado.tipo}}">{{encargado.tipo}}</option>
+                        <option value="Empleado">Empleado</option>
+                        <option value="Encargado">Encargado</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label>Correo</label>
+                      <input type="text" name="correo" class="form-control" required  value="{{encargado.correo}}"/>
+                    </div>
+                    <div class="form-group">
+                      <label>Telefonos</label>
+                      <input id="last_name" type="text" name="telefono"  class="form-control" required value="{{encargado.telefono}}"/></div>
+
+                    <center><button class="btn btn-success mt-4" type="submit"> Guardar </button></center>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+      {{/if}}
+ {{#if sucursal_create}}
+      <main id="tabla_empleados">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="overview-wrap">
+                <h2 class="title-1">
+                 <a href="/minegocio">Mis Negocios</a> 
+                </h2>
+                <div class="overview-wrap">
+                <div class="float-right"><a href="/minegocio" id="volver_empleados"> Volver </a></div>
+              </div>
+              </div>
+            </div>
+          </div>
+          <div class="container-fluid">
+          <div class="row m-t-25">
+            <div class="col-md-12">
+              <div class="card-blank">
+                <h2 class="title-1">Crear Sucursal</h2>
+                <form action="/crear_sucursal" method="post">
+                <input type="text" name="id_usuario" class="form-control" hidden value="{{user.id}}">
+                  <div class="card-body">
+                    <div class="form-group">
+                      <label>Departamento</label>
+                      <input type="text" name="departamento" class="form-control" required />
+                    </div>
+                    <div class="form-group">
+                      <label>Distrito</label>
+                      <input id="last_name" type="text" name="distrito"   class="form-control" required />
+                    </div>
+                    <div class="form-group">
+                      <label>Direccion</label>
+                      <input type="text" name="direccion" class="form-control" required  />
+                    </div>
+                    <div class="form-group">
+                      <label>Telefono</label>
+                      <input id="last_name" type="text" name="telefono"  class="form-control" required /></div>
+
+                    <center><button class="btn btn-success mt-4" type="submit"> Guardar </button></center>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </main>
+      {{/if}}
+
+    </div>
+  </div>
+</div>

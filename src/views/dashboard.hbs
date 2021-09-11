@@ -1,0 +1,185 @@
+<div class="page-container">
+
+  <div class="main-content">
+    <div class="section__content section__content--p30">
+      <main>
+        <div class="container-fluid">
+          <div>
+            <div class="row mt-5 mb-5">
+              <div class="col-md-12">
+                <div class="overview-wrap">
+                  <h2 class="title-1">
+                    Dashboard
+                  </h2>
+                </div>
+              </div>
+            </div>
+            <div class="row m-t-25">
+              <div class="col-md-4">
+                <div class="card-blank m-b-25">
+                  <div class="card-header-blank">
+                    <span class="card-title" style="font-size: 20px;">
+                      <strong>
+                        Balance
+                      </strong>
+                    </span>
+                  </div>
+                  <div class="card-body">
+                    <h2>
+                      S/ {{parsed_wallet.saldo}}
+                    </h2>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="card-blank m-b-25">
+                  <div class="card-header-blank">
+                    <span class="card-title" style="font-size: 20px;">
+                      <strong>
+                        Ventas Recientes
+                      </strong>
+                    </span>
+                  </div>
+                  <div class="card-body">
+                    <h2>
+                      {{contar_ventas}}
+                    </h2>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="card-blank m-b-25">
+                  <div class="card-header-blank">
+                    <span class="card-title" style="font-size: 20px;">
+                      <strong>
+                        Nuevas Citas
+                      </strong>
+                    </span>
+                  </div>
+                  <div class="card-body">
+                    <h2>
+                      0
+                    </h2>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="card-blank m-b-25">
+                  <div class="card-header-blank">
+                    <span class="card-title" style="font-size: 20px;">
+                      <strong>
+                        Últimas Transacciones
+                      </strong>
+                    </span>
+                  </div>
+                  <div class="card-body">
+                    <div class="table-responsive table-responsive-data2">
+                      <table class="table table-data2">
+                        <tbody>
+                          <tr class="tr-shadow">
+                            <td align="left">
+                              <label class="au-checkbox">
+                                <input type="checkbox" disabled=""  checked/>
+                                <span class="au-checkmark"></span>
+                              </label>
+                            </td>
+                            <td>
+                              <h5>
+                                Depósito de servicio
+                              </h5>
+                              18 de Marzo, 2021
+                            </td>
+                            <td align="right">
+                              -$45
+                            </td>
+                          </tr>
+                          <tr class="spacer"></tr>
+                          <tr class="tr-shadow">
+                            <td align="left">
+                              <label class="au-checkbox">
+                                <input type="checkbox" disabled="" checked/>
+                                <span class="au-checkmark"></span>
+                              </label>
+                            </td>
+                            <td>
+                              <h5>
+                                Depósito de servicio
+                              </h5>
+                              18 de Marzo, 2021
+                            </td>
+                            <td align="right">
+                              -$45
+                            </td>
+                          </tr>
+                          
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card-blank m-b-25">
+                  <div class="card-header-blank">
+                    <span class="card-title" style="font-size: 20px;">
+                      <strong>
+                        Publicaciones Activas
+                      </strong>
+                    </span>
+                  </div>
+                  <div class="card-body">
+                    <div class="table--no-card m-b-30">
+                      <table class="table table-borderless">
+                        <tbody>
+                           {{#each publicaciones as |publicacion i|}}
+                    <tr>
+                      <td>
+                        <center>
+                          <img id="imageSelected1" class="img-fluid"
+                            src="../assets/img_up/{{#fotoPrincipalPublicacion publicacion.fotos}}{{/fotoPrincipalPublicacion}}"
+                            width="50px" />
+                        </center>
+                      </td>
+                      <td>
+                        {{publicacion.titulo}}
+                      </td>
+                      <td>
+                        <span>
+                          <strong style="color: {{#ColorSucursal publicacion.estado}}{{/ColorSucursal}};">
+                            {{publicacion.estado}}
+                          </strong>
+                        </span>
+                      </td>
+                      <td>
+                        S/ {{publicacion.precio}}
+                      </td>
+                      <td align="center">
+                        <div class="table-data-feature">
+                          <a class="item" href="/editar_publicacion/{{publicacion.id}}" data-toggle="tooltip"
+                            data-placement="top" title="Editar" id="empleados_button">
+                            <i class="fas fa-edit"></i>
+                          </a>
+                          <a class="item delete {{publicacion.id}} {{publicacion.tipo}}" href="#"
+                            id="delete_publicacion" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
+                            <i class="fas fa-trash-alt {{publicacion.id}} {{publicacion.tipo}}"></i>
+                          </a>
+                        </div>
+                      </td>
+                    </tr>
+                    {{/each}}
+                          
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>

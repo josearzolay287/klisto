@@ -1,0 +1,253 @@
+<div class="page-container">
+  <div class="main-content">
+    <div class="section__content section__content--p30">
+      <main>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="overview-wrap">
+                <h2 class="title-1">
+                  Mi cuenta
+                </h2>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            {{#if dash_negocio}}
+            <div class="col-md-6">
+              <div class="card-blank">
+                <div class="card-body">
+                  <center>
+                    <img src="/storage/16271802333.png" class="img-user shadow"
+                      style="width: 300px !important; border-radius: 50%;" />
+                  </center>
+                  <hr />
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label>
+                        Saldo disponible
+                      </label>
+                      <h3>
+                        $ 0
+                        <span style="color: green;">
+                          .00
+                        </span>
+                      </h3>
+                      <br />
+                      <label>
+                        Puntuación
+                      </label>
+                      <h3>
+                        0/5
+                      </h3>
+                    </div>
+                    <div class="col-md-6">
+                      <label>
+                        Negocios/Sucursales
+                      </label>
+                      <h3>
+                        1
+                      </h3>
+                      <br />
+                      <label>
+                        Trabajos realizados
+                      </label>
+                      <h3>
+                        0
+                      </h3>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+              {{/if}}
+
+            <div class="col-md-6">
+              <div class="card-blank">
+                <h3>Mis datos</h2>
+                <div class="card-body">
+                  <form action="update-profile"  method="post" id="form_datos_cuenta">
+                   
+                  <div class="form-group">
+                    <input type="text" class="form-control" name="userid" value="{{user.id}}" hidden/>
+                    <label>
+                      Nombre
+                    </label>
+                    <input type="text" class="form-control" name="name" placeholder="Nombre" value="{{user.name}} {{user.lastName}}"/>
+                  </div>
+                  <div class="form-group">
+                    <label>
+                      Email
+                    </label>
+                    <input type="text" class="form-control" name="email" placeholder="Email"  value="{{user.email}}" />
+                  </div>
+                  <div class="form-group">
+                    <label>
+                      Contraseña nueva
+                    </label>
+                    <input type="password" class="form-control" name="new_password" placeholder="Contraseña" />
+                  </div>
+                  <div class="form-group">
+                    <label>
+                      Confirmar Contraseña
+                    </label>
+                    <input type="password" class="form-control" name="confirm_password" placeholder="Confirmar" />
+                  </div>
+                  <br />
+                  <button class="btn btn-primary" type="submit">
+                    Guardar
+                  </button>
+                </div>
+                </form>
+              </div>
+            </div>
+        {{#if dash_cliente}}
+             <div class="col-md-6">
+              <div class="card-blank">
+                <h3>Otros datos</h2>
+                <div class="card-body">
+                  <form action="update_client"  method="post" id="form_datos_cuenta">
+                   
+                  <div class="form-group">
+                    <input type="text" class="form-control" name="userid" value="{{user.id}}" hidden/>
+                    <label>
+                      Direccion
+                    </label>
+                    <input type="text" class="form-control" name="direccion" placeholder="direccion" value="{{parse_cliente.direccion}}"/>
+                  </div>
+                  <div class="form-group">
+                    <label>
+                      Distrito
+                    </label>
+                    <input type="text" class="form-control" name="distrito" placeholder="distrito"  value="{{parse_cliente.distrito}}" />
+                  </div>
+                  <div class="form-group">
+                    <label>
+                      Departamento
+                    </label>
+                    <input type="text" class="form-control" name="departamento" placeholder="departamento" value="{{parse_cliente.departamento}}"/>
+                  </div>
+                  <div class="form-group">
+                    <label>
+                      Telefono
+                    </label>
+                    <input type="text" class="form-control" name="telefono" placeholder="telefono" value="{{parse_cliente.telefono}}"/>
+                  </div>
+                  <br />
+                  <button class="btn btn-primary" type="submit">
+                    Guardar
+                  </button>
+                  </div>
+                </form>
+              </div>              
+            </div>
+          {{/if}}
+
+          {{#if encargados_micuenta}}
+            <div class="col-md-6">
+              <div class="card-blank">
+                <h3>Encargado</h2>
+                <div class="card-body">
+                  <form action="/editar_encargado"  method="post" id="form_datos_cuenta">
+                   
+                  <input type="text" name="id_empleado" class="form-control" value="{{encargados_micuenta.0.id}}" hidden>
+                  <div class="card-body">
+                    <div class="form-group">
+                      <label>Nombre</label>
+                      <input type="text" name="nombre" class="form-control" required  value="{{encargados_micuenta.0.nombre}}"/>
+                    </div>
+                    <div class="form-group">
+                      <label>Apellido</label>
+                      <input id="last_name" type="text" name="apellido"   class="form-control" required value="{{encargados_micuenta.0.apellido}}"/>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputState">Tipo</label>
+                      <input id="last_name" type="text" name="tipo"   class="form-control" value="{{encargados_micuenta.0.tipo}}" readonly/>
+                    </div>
+                    <div class="form-group">
+                      <label>Correo</label>
+                      <input type="text" name="correo" class="form-control" required  value="{{encargados_micuenta.0.correo}}"/>
+                    </div>
+                    <div class="form-group">
+                      <label>Telefonos</label>
+                      <input id="last_name" type="text" name="telefono"  class="form-control" required value="{{encargados_micuenta.0.telefono}}"/></div>
+
+                  <br />
+                  <button class="btn btn-primary" type="submit">
+                    Guardar
+                  </button>
+                </div>
+                </form>
+              </div>
+            </div>
+            {{/if}}
+          </div>
+
+          {{#if dash_negocio}}
+          <div class="row">
+            <div class="col-md-4">
+              <div class="card-blank">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <strong>
+                        Datos Bancarios
+                      </strong>
+                      <br />
+                      BBVA
+                      <br />
+                      435522
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card-blank">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <strong>
+                        Encargado
+                      </strong>
+                      <br />
+                      gsg fgsd
+                      <br />
+                      924628653
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {{/if}}
+
+
+        <!--  <div class="row">
+            <div class="col-md-12">
+              <div class="card-blank">
+                <div class="card-body">
+                  <div class="float-left">
+                    <button class="btn btn-danger">
+                      Suspender
+                      Cuenta
+                    </button>
+                  </div>
+                  <div class="float-right">
+                    <button class="btn btn-danger">
+                      Eliminar
+                      Cuenta
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>-->
+
+
+
+        </div>
+      </main>
+    </div>
+  </div>
+</div>

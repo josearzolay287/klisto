@@ -1,0 +1,730 @@
+	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+	{{#if msg}}
+	<!-- Sweet Alert -->
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<!--jQuery -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	
+<script>
+	$( document ).ready(function() {
+    if ( $("#msgs").length ) {
+     let mensaje = `{{msg}}`;
+	 console.log("mensaje");
+	 Swal.fire(mensaje)
+	}
+
+	$()
+
+});
+
+	 
+</script>
+<label id="msgs"></label>
+{{/if}}
+<style>
+	.texto-gris{
+    color: #CCC;
+	margin-left: 10px;
+}
+.contenedor_usuarios {
+ 
+    width:120%;
+}
+/* Estilos para motores Webkit y blink (Chrome, Safari, Opera... )*/
+/* Ponemos un color de fondo y redondeamos las esquinas del track */
+::-webkit-scrollbar {
+    width: 12px;
+}
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+table>thead>tr{font-weight: bolder;}
+.linea-oculta{display: none;}
+
+.Activo{
+	color: green;
+}
+.Caducado{
+	color: orange;
+}
+.Agotado{
+	color: red;
+}
+</style>
+
+<script>
+	var resultados_por_pagina = 10;
+var pagina_actual = 1;
+var pagina_ultima = 0;
+	$( document ).ready(function() {
+   jQuery("#buscador").keyup(function(){
+	console.log("hola mundo")
+    if( jQuery(this).val() != ""){
+        jQuery("#tabla_ tbody>tr").hide();
+        jQuery("#tabla_ td:contiene-palabra('" + jQuery(this).val() + "')").parent("tr").show();
+    }
+    else{
+        jQuery("#tabla_ tbody>tr").show();
+    }
+});
+ 
+jQuery.extend(jQuery.expr[":"], 
+{
+    "contiene-palabra": function(elem, i, match, array) {
+        return (elem.textContent || elem.innerText || jQuery(elem).text() || "").toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
+    }
+});
+//contar todos los registros que tenemos
+	var total_registros = $("#tabla_>tbody>tr").length;
+	//saber cuantas paginas vamos a mostrar
+	pagina_ultima = Math.round(total_registros / resultados_por_pagina);
+	//cargar la primera pagina
+	cargarPagina(pagina_actual);
+	//eventos para los botones
+	$("#cargar_primera_pagina").click(function(){
+		cargarPagina(1);
+	});
+	$("#cargar_anterior_pagina").click(function(){
+		cargarPagina(pagina_actual - 1);
+	});
+	$("#cargar_siguiente_pagina").click(function(){
+		cargarPagina(pagina_actual + 1);
+	});
+	$("#cargar_ultima_pagina").click(function(){
+		cargarPagina(pagina_ultima);
+	});
+});
+var cargarPagina = function(intPaginaP){
+	//evaluar si la pagina a cargar es mayor que el numero de paginas o es menor que 1
+	if(intPaginaP < 1){intPaginaP = 1;}
+	if(intPaginaP > pagina_ultima){intPaginaP = pagina_ultima;}
+	//ocultar todas las lineas
+	$("#tabla_>tbody>tr").addClass("linea-oculta");
+	var primer_registro = (intPaginaP - 1) * resultados_por_pagina;
+	for (var i = primer_registro; i < (primer_registro + resultados_por_pagina); i++){
+		$("#tabla_>tbody>tr").eq(i).removeClass("linea-oculta");
+	}
+	//indicar en qué pagina estamos
+	pagina_actual = intPaginaP;
+	$("#indicador_paginas").html("Página: " + pagina_actual + " / " + pagina_ultima);
+}
+
+
+function Askdelete(id, tipo, link){
+	Swal.fire({
+  title: 'Eliminar',
+  text: "Seguro desea eliminar el "+ tipo +" indicado!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  cancelButtonText: 'Cancelar',
+  confirmButtonText: 'Eliminar'
+}).then((result) => {
+  if (result.isConfirmed) {
+	  window.location.href = '/'+ link +'/'+id;
+    Swal.fire(
+      'Eliminado!',
+      '',
+      'success'
+    )
+  }
+})
+}
+</script>
+<div class="card-box data-user text-center text-lg-left d-lg-inline-block">
+	<h2 class="data-user__name">{{user.name}} {{user.lastName}}</h2>
+	<p class="data-user__user-name">{{user.tipo}}</p>
+</div><!-- data-user -->       
+<div class="card-box shadow"><!-- Aquí se aplica el height solo por la seccion fans -->
+
+	{{#if planes}}<div><a class="" href="/agregar_plan" ><label style="cursor: pointer;"><i class="fa fa-plus"></i> Agregar Plan</label></a></i></div>{{/if}}
+	<div class="grid-gates" style="max-height: 500px; grid-template-columns: 1fr ;">
+
+	{{#if aboutUs}}<div><a class="" href="/aboutus_create" ><label style="cursor: pointer;"><i class="fa fa-plus"></i> Agregar</label></a></i></div>{{/if}}
+	{{#if cupones}}<div><a class="" href="/cupones_create" ><label style="cursor: pointer;"><i class="fa fa-plus"></i> Agregar Cupon</label></a></i></div>{{/if}}
+	{{#if banners}}<div><a class="" href="/banner_create" ><label style="cursor: pointer;"><i class="fa fa-plus"></i> Agregar Banner</label></a></i></div>{{/if}}
+	{{#if notificaciones}}<div><a class="" href="/notificaciones_create" ><label style="cursor: pointer;"><i class="fa fa-plus"></i> Agregar Notificación</label></a></i></div>{{/if}}
+	{{#if tipo_cambio}}<div><a class="" href="/tipo_cambio_create" ><label style="cursor: pointer;"><i class="fa fa-plus"></i> Agregar Tipo de Cambio</label></a></i></div>{{/if}}
+	{{#if terminos_ayuda}}<div><a class="" href="/terminos_ayuda_create" ><label style="cursor: pointer;"><i class="fa fa-plus"></i> Agregar</label></a></i></div>{{/if}}
+<div>
+<label for="buscador">Buscar:</label><input type="text" class="texto-gris" id="buscador" />	
+
+</div>	
+	
+{{#if usuarios}}
+<div class="contenedor_usuarios">
+{{#if cupones_usados}}
+<div>
+<label for="buscador">Nombre de Usuario: {{username}}</label>	
+
+</div>
+<table class="table table-bordered table-striped" id="tabla_">
+						<thead>
+							<tr>
+								<th class="text-xs-center">
+									Cupon
+								</th>
+								<th class="text-xs-center">
+									Usado en
+								</th> 
+								<th class="text-xs-center">
+									Tipo de cupon
+								</th> 
+								<th class="text-xs-center">
+									Valor del cupon
+								</th> 
+								
+								<th class="text-xs-center">
+									Fecha de Uso
+								</th> 
+								
+							</tr>
+						</thead><tbody ></tbody>
+	{{#each cupones_usados as |cupon i|}}	 
+			<tr>
+				<td>{{cupon.nombre_cupon}}</td>
+				<td>{{cupon.usado_en}}</td>
+				<td>{{cupon.tipo}}</td>
+				<td>{{cupon.valor}}</td>
+				<td>{{#formatoFecha2 cupon.fecha_uso}}{{/formatoFecha2}}</td>
+				
+				
+				
+				</tr>		
+	{{/each}}
+	</tbody> 
+	<tfoot>
+	<td><input type="button" id="cargar_primera_pagina" value="<< Primero"/></td>
+	<td><input type="button" id="cargar_anterior_pagina" value="< Anterior"/></td>
+	<td id="indicador_paginas"></td>
+	<td><input type="button" id="cargar_siguiente_pagina" value="Siguiente >"/></td>
+	<td><input type="button" id="cargar_ultima_pagina" value="Ultimo >>"/></td>
+</tfoot>
+ 			</table>
+
+
+{{else}}
+<table class="table table-bordered table-striped" id="tabla_">
+						<thead>
+							<tr>
+                            <!--<th class="text-xs-center">
+									Id
+								</th>-->
+								<th class="text-xs-center">
+									Nombre y Apellido
+								</th>
+								<th class="text-xs-center">
+									Usuario
+								</th>
+								<th class="text-xs-center">
+									Correo
+								</th> 
+								<th class="text-xs-center">
+									Fecha de registro
+								</th> 
+								<th class="text-xs-center">
+									Tipo de usuario
+								</th> 
+								<th class="text-xs-center">
+									Tipo de Plan
+								</th> 
+								<th class="text-xs-center">
+									Modalidad
+								</th> 
+								<th class="text-xs-center">
+									Inicio de Plan
+								</th> 
+								<th class="text-xs-center">
+									Fin de Plan
+								</th> 
+								<th class="text-xs-center">
+									Cupones usados
+								</th> 
+								<th class="text-xs-center">
+									Opciones
+								</th> 
+							</tr>
+						</thead><tbody ></tbody>
+	{{#each usuarios as |user i|}}	 
+			<tr>
+				<td>{{user.name}} {{user.lastName}}</td>
+				<td>{{user.userName}}</td>
+				<td>{{user.email}}</td>
+				<td>{{#formatoFecha2 user.createdAt}}{{/formatoFecha2}}</td>
+				<td>{{user.tipo}}</td>
+				<td>{{user.membership}}</td>
+				<td>{{user.modo}}</td>
+				<td>{{#formatoFecha2 user.desde}}{{/formatoFecha2}}</td>
+				<td>{{#formatoFecha2 user.hasta}}{{/formatoFecha2}}</td>
+				<td><a href="/cupones_usados/{{user.id}}/{{user.userName}}" class="gate-item__option">Ver
+						<i class="fa fa-eyes"></i>
+					</a></td>
+				<td><div class="gate-item__options">
+					<a class="gate-item__option" onclick="Askdelete('{{user.id}}','usuario','borrar_user')">
+						<i class="fa fa-trash-alt"></i>
+					</a>
+					<a href="/editar_user/{{user.id}}" class="gate-item__option">
+						<i class="fa fa-pen"></i>
+					</a>
+					
+				</div></td>
+				</tr>		
+	{{/each}}
+	</tbody> 
+	<tfoot>
+	<td><input type="button" id="cargar_primera_pagina" value="<< Primero"/></td>
+	<td><input type="button" id="cargar_anterior_pagina" value="< Anterior"/></td>
+	<td id="indicador_paginas"></td>
+	<td><input type="button" id="cargar_siguiente_pagina" value="Siguiente >"/></td>
+	<td><input type="button" id="cargar_ultima_pagina" value="Ultimo >>"/></td>
+</tfoot>
+ 			</table>
+			 {{/if}}
+			 </div>
+	<!-- .gate-item -->
+	{{/if}}
+
+	
+	{{#if planes}}
+<table class="table table-bordered table-striped" id="tabla_">
+						<thead>
+							<tr>
+                            <!--<th class="text-xs-center">
+									Id
+								</th>-->
+								<th class="text-xs-center">
+									Tipo
+								</th>
+								<th class="text-xs-center">
+									Costo
+								</th>
+								<th class="text-xs-center">
+									Modo
+								</th> 
+								<th class="text-xs-center">
+									Opciones
+								</th> 
+							</tr>
+						</thead><tbody ></tbody>
+	{{#each planes_parsed as |plan i|}}	 
+			<tr>
+				<td>{{plan.tipo_create}}</td>
+				<td>${{plan.costo}}</td>
+				<td> {{plan.modo}}</td>
+				<td><div class="gate-item__options">
+					<a class="gate-item__option" onclick="Askdelete('{{plan.id}}','plan','borrar_plan')">
+						<i class="fa fa-trash-alt"></i>
+					</a>
+					<a href="/editar_plan/{{plan.id}}" class="gate-item__option">
+						<i class="fa fa-pen"></i>
+					</a>
+					
+				</div></td>
+				</tr>		
+	{{/each}}
+	</tbody> 
+ 			</table>
+	<!-- .gate-item -->
+	{{/if}}
+	{{#if aboutUs_parsed}}
+<table class="table table-bordered table-striped" id="tabla_">
+						<thead>
+							<tr>
+                            <!--<th class="text-xs-center">
+									Id
+								</th>-->
+								<th class="text-xs-center">
+									Teléfono
+								</th>
+								<th class="text-xs-center">
+									Whatsapp
+								</th>
+								<th class="text-xs-center">
+									Correo
+								</th> 
+								<th class="text-xs-center">
+									Facebook
+								</th> 
+								<th class="text-xs-center">
+									Opciones
+								</th> 
+							</tr>
+						</thead><tbody ></tbody>
+	{{#each aboutUs_parsed as |about i|}}	 
+			<tr>
+				<td>{{about.telefono}}</td>
+				<td>{{about.ws}}</td>
+				<td>{{about.correo}}</td>
+				<td>{{about.facebook}}</td>
+				<td><div class="gate-item__options">
+					<a href="/borrar_about/{{about.id}}" class="gate-item__option">
+						<i class="fa fa-trash-alt"></i>
+					</a>
+					<a href="/edit_aboutus/{{about.id}}" class="gate-item__option">
+						<i class="fa fa-pen"></i>
+					</a>
+					
+				</div></td>
+				</tr>		
+	{{/each}}
+	</tbody> 
+ 			</table>
+	<!-- .gate-item -->
+	{{/if}}
+
+	{{#if cupones}}
+<table class="table table-bordered table-striped" id="tabla_">
+						<thead>
+							<tr>
+                            <!--<th class="text-xs-center">
+									Id
+								</th>-->
+								<th class="text-xs-center">
+									Tipo Cupon
+								</th>
+								<th class="text-xs-center">
+									Valor
+								</th> 
+								<th class="text-xs-center">
+									Nombre Cupon
+								</th>
+								<th class="text-xs-center">
+									Fecha creacion
+								</th>
+								<th class="text-xs-center">
+									Fecha final
+								</th> 
+								<th class="text-xs-center">
+									Cantidad Actual
+								</th>								
+								<th class="text-xs-center">
+									Estado
+								</th> 
+								<th class="text-xs-center">
+									Opciones
+								</th> 
+							</tr>
+						</thead><tbody ></tbody>
+	{{#each cuponoes_parsed as |cupon i|}}	 
+			<tr>
+				<td>{{cupon.tipo}}</td>
+				<td>{{cupon.valor}}</td>
+				<td>{{cupon.nombre_cupon}}</td>
+				<td>{{#formatoFecha2 cupon.fecha_inicio}}{{/formatoFecha2}}</td>
+				<td>{{#formatoFecha2 cupon.fecha_final}}{{/formatoFecha2}}</td>
+				<td>{{cupon.cantidad_actual}} / {{cupon.cantidad}}</td>				
+				<td class="{{#estadoCupon cupon.fecha_final cupon.cantidad_actual}}{{/estadoCupon}}">{{#estadoCupon cupon.fecha_final cupon.cantidad_actual}}{{/estadoCupon}}</td>
+				<td><div class="gate-item__options">
+					<a class="gate-item__option" onclick="Askdelete('{{cupon.id}}','cupón','borrar_cupon')">
+						<i class="fa fa-trash-alt"></i>
+					</a>
+					<a href="/edit_cupon/{{cupon.id}}" class="gate-item__option">
+						<i class="fa fa-pen"></i>
+					</a>
+					
+				</div></td>
+				</tr>		
+	{{/each}}
+	</tbody> 
+	<tfoot>
+	<td><input type="button" id="cargar_primera_pagina" value="<< Primero"/></td>
+	<td><input type="button" id="cargar_anterior_pagina" value="< Anterior"/></td>
+	<td id="indicador_paginas"></td>
+	<td><input type="button" id="cargar_siguiente_pagina" value="Siguiente >"/></td>
+	<td><input type="button" id="cargar_ultima_pagina" value="Ultimo >>"/></td>
+</tfoot>
+ 			</table>
+	<!-- .gate-item -->
+	{{/if}}
+
+	{{#if ventas}}
+	
+<table class="table table-bordered table-striped" id="tabla_" >
+						<thead>
+							<tr>
+                            	<th class="text-xs-center">
+								Usuario
+								</th>
+								<th class="text-xs-center">
+									Tipo de venta
+								</th>
+								<th class="text-xs-center">
+									Fecha de venta
+								</th>
+								<th class="text-xs-center">
+									Numero de referencia
+								</th>
+								<th class="text-xs-center">
+									Metodo de Pago
+								</th> 
+								<th class="text-xs-center">
+									Monto
+								</th> 
+								
+							</tr>
+						</thead><tbody></tbody>
+						<tbody id="paginationdemo">
+	{{#each ventas_parsed as |venta i|}}	 
+			<tr  class="pagination__item">
+				<td>{{venta.usuario.userName}}</td>
+				<td>{{venta.tipo_compra}}</td>
+				<td>{{#formatoFecha2 venta.createdAt}}{{/formatoFecha2}}</td>
+				<td>{{venta.numero_referencia}}</td>
+				<td>{{venta.metodo_pago}}</td>
+				<td>${{venta.monto}}</td>
+				
+				</tr>		
+	{{/each}}
+	</tbody> 
+	
+<tfoot>
+	<td><input type="button" id="cargar_primera_pagina" value="<< Primero"/></td>
+	<td><input type="button" id="cargar_anterior_pagina" value="< Anterior"/></td>
+	<td id="indicador_paginas"></td>
+	<td><input type="button" id="cargar_siguiente_pagina" value="Siguiente >"/></td>
+	<td><input type="button" id="cargar_ultima_pagina" value="Ultimo >>"/></td>
+</tfoot>
+ 			</table>
+			 
+	<!-- .gate-item -->
+	{{/if}}
+		{{#if banners}}
+	<table class="table table-bordered table-striped" id="tabla_">
+						<thead>
+							<tr>
+                            <!--<th class="text-xs-center">
+									Id
+								</th>-->
+								<th class="text-xs-center">
+									Nombre
+								</th>
+								<th class="text-xs-center">
+									Link
+								</th>
+								<th class="text-xs-center">
+									Opciones
+								</th>
+								
+								
+							</tr>
+						</thead><tbody ></tbody>
+	{{#each banners_parsed as |banner i|}}	 
+			<tr>
+				<td>{{banner.nombre}}</td>
+				<td>{{banner.link}}</td>
+				<td><div class="gate-item__options">
+					<a class="gate-item__option" onclick="Askdelete('{{banner.id}}','logo','borrar_banner')">
+						<i class="fa fa-trash-alt"></i>
+					</a>
+					<a href="/edit_banner/{{banner.id}}" class="gate-item__option">
+						<i class="fa fa-pen"></i>
+					</a>
+					
+				</div></td>
+				</tr>		
+	{{/each}}
+	</tbody> 
+	
+ 			</table>
+	<!-- .gate-item -->
+	{{/if}}
+	{{#if notificaciones}}
+	<table class="table table-bordered table-striped" id="tabla_">
+						<thead>
+							<tr>
+                            <!--<th class="text-xs-center">
+									Id
+								</th>-->
+								<th class="text-xs-center">
+									Id
+								</th>
+								<th class="text-xs-center">
+									Nombre
+								</th>
+								<th class="text-xs-center">
+									Estado
+								</th>
+								<th class="text-xs-center">
+									Opciones
+								</th>
+								
+								
+							</tr>
+						</thead><tbody ></tbody>
+	{{#each notificaciones_parsed as |notificaciones i|}}	 
+			<tr class="pagedemo ">
+				<td>{{notificaciones.id}}</td>
+				<td>{{notificaciones.nombre}}</td>
+				<td>{{notificaciones.estado}}</td>
+				<td><div class="gate-item__options">
+					<a class="gate-item__option" onclick="Askdelete('{{notificaciones.id}}','notificación','borrar_notificaciones')">
+						<i class="fa fa-trash-alt"></i>
+					</a>
+					<a href="/edit_notificaciones/{{notificaciones.id}}" class="gate-item__option">
+						<i class="fa fa-pen"></i>
+					</a>
+					
+				</div></td>
+				</tr>		
+	{{/each}}
+	
+	</tbody> 
+ 			</table>
+			
+	<!-- .gate-item -->
+	{{/if}}
+
+	{{#if tipo_cambio}}
+	<table class="table table-bordered table-striped" id="tabla_">
+						<thead>
+							<tr>
+                            <!--<th class="text-xs-center">
+									Id
+								</th>-->
+								<th class="text-xs-center">
+									Id
+								</th>
+								<th class="text-xs-center">
+									Tipo de Cambio Actual
+								</th>
+								<th class="text-xs-center">
+									Opciones
+								</th>
+								
+								
+							</tr>
+						</thead><tbody ></tbody>
+	{{#each parsed_tipo_cambio as |tipo_c i|}}	 
+			<tr class="pagedemo ">
+				<td>{{tipo_c.id}}</td>
+				<td>{{tipo_c.tipo_cambio}}</td>
+				<td><div class="gate-item__options">
+					<a href="/borrar_tipo_cambio/{{tipo_c.id}}" class="gate-item__option">
+						<i class="fa fa-trash-alt"></i>
+					</a>
+					<a href="/edit_tipo_cambio/{{tipo_c.id}}" class="gate-item__option">
+						<i class="fa fa-pen"></i>
+					</a>
+					
+				</div></td>
+				</tr>		
+	{{/each}}
+	
+	</tbody> 
+ 			</table>
+			
+	<!-- .gate-item -->
+	{{/if}}
+	{{#if terminos_ayuda}}
+	<table class="table table-bordered table-striped" id="tabla_">
+						<thead>
+							<tr>
+                            <!--<th class="text-xs-center">
+									Id
+								</th>-->
+								<th class="text-xs-center">
+									Id
+								</th>
+								<th class="text-xs-center">
+									Tipo
+								</th>
+								<th class="text-xs-center">
+									Opciones
+								</th>
+								
+								
+							</tr>
+						</thead><tbody ></tbody>
+	{{#each parsed_ayuda as |ayuda i|}}	 
+			<tr class="pagedemo ">
+				<td>{{ayuda.id}}</td>
+				<td>{{ayuda.tipo}}</td>
+				<td><div class="gate-item__options">
+					<a class="gate-item__option" onclick="Askdelete('{{ayuda.id}}','ayuda','borrar_ayuda')">
+						<i class="fa fa-trash-alt"></i>
+					</a>
+					<a href="/edit_ayuda/{{ayuda.id}}" class="gate-item__option">
+						<i class="fa fa-pen"></i>
+					</a>
+					
+				</div></td>
+				</tr>		
+	{{/each}}
+	
+	</tbody> 
+ 			</table>
+			
+	<!-- .gate-item -->
+	{{/if}}
+	{{#if retiros}}
+	<table class="table table-bordered table-striped" id="tabla_">
+						<thead>
+							<tr>
+                            <!--<th class="text-xs-center">
+									Id
+								</th>-->
+								<th class="text-xs-center">
+									Nº Retiro
+								</th>
+								<th class="text-xs-center">
+									A nombre de
+								</th>
+								<th class="text-xs-center">
+									Monto
+								</th>
+								<th class="text-xs-center">
+									Fecha de Solicitud
+								</th>
+								<th class="text-xs-center">
+									Estado
+								</th>
+								<th class="text-xs-center">
+									Fecha de Pago
+								</th>
+								<th class="text-xs-center">
+									Comprobante
+								</th>
+								<th class="text-xs-center">
+									Observación
+								</th>
+								<th class="text-xs-center">
+									Opciones
+								</th>
+								
+								
+							</tr>
+						</thead><tbody ></tbody>
+	{{#each parsed_retiros as |retiros i|}}	 
+			<tr class="pagedemo ">
+				<td>{{retiros.id}}</td>
+				<td>{{retiros.backcoin.nombre_apellido}}</td>
+				<td>${{retiros.monto}}</td>
+				<td>{{#formatoFecha2 retiros.fecha_solicitud}}{{/formatoFecha2}}</td>
+				<td class="{{#ColorPay retiros.status}}{{/ColorPay}}">{{retiros.status}}</td>
+				<td>{{#if retiros.fecha_pago}}{{#formatoFecha2 retiros.fecha_pago}}{{/formatoFecha2}}{{/if}}</td>
+				<td><img src="{{#if retiros.comprobante_pago}}/assets/uploads/{{retiros.comprobante_pago}}{{else}}https://operaencastellano.com/wp-content/uploads/2019/05/sin-imagen.jpg{{/if}}" alt="Foto de baucher" id="img_photo" style=" height: 100px;    object-fit: cover;    width: 100px;    border-radius: 10%;"></td>
+				<td>{{retiros.observacion}}</td>
+				<td><div class="gate-item__options">
+					<a href="/edit_retiros/{{retiros.id}}" class="gate-item__option">
+						<i class="fa fa-pen"></i>
+					</a>
+					
+				</div></td>
+				</tr>		
+	{{/each}}
+	
+	</tbody> 
+ 			</table>
+			
+	<!-- .gate-item -->
+	{{/if}}
+	</div><!-- .grid-gates -->
+</div><!-- .card-box -->

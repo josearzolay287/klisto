@@ -1,0 +1,532 @@
+{{> header }}
+<main>
+		<!-- Jumbo Banner -->
+	<div class="">
+  <style>
+      .header .menu-front .navbar-brand img{
+        height: 70px;
+      }
+    .header{
+        width: 100%;
+        height: 100vh;
+        background-color:#06cc60 ;
+        position: relative;
+    }
+    .menu-front .bg-light {
+        background-color: transparent !important;
+    }
+    .navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link{
+        color: white;
+    }
+
+    .navbar-light .navbar-nav .nav-link{
+        color: white;
+    }
+    .navbar-light .ingresar .nav-link{
+        color: white;
+        background-color: #f7c400;
+        border-radius: 25px;
+        padding: .2rem 2rem;
+        margin-top: .3rem;
+        margin-left: 1rem;
+    }
+    .contenido-header{
+        width: 100%;
+        height: 80%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .video-inicio{
+        width: 50%;
+    }
+    .img-yt{
+        width: 100%;
+        height: 300px;
+        border-radius: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .img-yt i{
+        background-color: #f7c400;
+        padding: 20px;
+        font-size: 30px;
+        clip-path: circle(50% at 50% 50%);
+        color: white;
+    }
+    .titulo-inicio{
+        width: 50%;
+    }
+    .contenido-header h1{
+        font-weight: bold;
+        color: white;
+        text-align: right;
+    }
+    .contenido-header .container{
+    width: 1000px;
+    }
+    .boton-titulo{
+        background-color: #f7c400;
+        padding: .2rem 2rem;
+        float: right;
+        border-radius: 20px;
+        text-decoration: none;
+        color: white;
+    }
+    .boton-titulo:hover{
+        background-color: #f7c400;
+        padding: .2rem 2rem;
+        float: right;
+        border-radius: 20px;
+        text-decoration: none;
+        color: white;
+    }
+    .cont-servicios{
+        width: 100%;
+        border-radius: 20px;
+        padding: 1rem;
+        font-size: 13px;
+        color: white;
+    }
+    .cont-servicios img {
+    height: 80px;
+    }
+    .servicios{
+        background-color: #f2f2f2;
+    }
+    .cont-categorias{
+        width: 70%;
+        padding: 1.5rem;
+        background-color: #c1f2d7;
+        border-radius: 25px;
+        margin: auto;
+    }
+    .cont-categorias img{
+        width: 70%;
+    }
+    .cont-categorias h2{
+        margin:0;
+        padding: 0;
+        font-weight: bold;
+    }
+    .categorias h1{
+        font-weight: bold;
+        font-size: 6rem;
+    }
+    .contador{
+        background-color: #06cc60;
+    }
+    .contador h1{
+        text-align: center;
+        color: white;
+        font-size: 6rem;
+        font-weight: bold;
+    }
+    .contador p{
+        font-size: 2rem;
+        color: white;
+        text-align: center;
+        font-weight: 500;
+    }
+    .footer{
+        background-color: #000823;
+        height: 500px;
+        border-radius: 50px 50px 0px 0px;
+        -moz-border-radius: 50px 50px 0px 0px;
+        -webkit-border-radius: 50px 50px 0px 0px;
+        border: 0px solid #000000;
+        position: relative;
+    }
+    .img-footer{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: calc(500px - 75px);
+    }
+    .footer img{
+        width: 250px;
+        height: auto;
+    }
+    .footer .text-footer{
+        position: absolute;
+        bottom: 0;
+        background: rgb(0 0 0 / 25%);
+        padding: 2rem;
+        width: 100%;
+        text-align: center;
+    }
+    .footer a{
+        text-decoration: none;
+        color: white;
+        text-align: center;
+        font-weight: 700;
+        font-size: 1.6rem;
+    }
+    .mas-nuevo h1{
+        font-size: 5rem;
+        font-weight: bold;
+    }
+    .card-mas-nuevo{
+        width: 100%;
+        height: 295px;
+        background-color: #f7f7f7;
+        border-radius: 20px;
+    }
+    .img-card img{
+        width: 100%;
+        height: 175px;
+        border-radius: 15px 15px 0px 0px;
+        -moz-border-radius: 15px 15px 0px 0px;
+        -webkit-border-radius: 15px 15px 0px 0px;
+    }
+    .cont-card{
+        padding: 1rem;
+        position: relative;
+    }
+    .cont-card h3{
+        font-weight: bold;
+        padding-bottom: .7rem;
+    }
+    .cont-card span{
+        font-size: 14px;
+    }
+    .precio-buscador span{
+        color: #06cc60;
+        float: left;
+        font-size: 18px;
+        font-weight: bold;
+    }
+    .buscador-vermas a{
+        text-decoration: none;
+        background: #f7c400;
+        float: right;
+        border-radius: 20px;
+        padding: .1rem 1rem;
+        color: white;
+        font-size: 14px;
+    }
+
+    .grid-services {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 3rem;
+    }
+
+    .grid-services > *:nth-child(2) .cont-servicios {
+        position: relative;
+    }
+
+    .grid-services > *:nth-child(2) .cont-servicios::before,
+    .grid-services > *:nth-child(2) .cont-servicios::after {
+        content: "";
+        display: block;
+        width: 100px;
+        height: 100px;
+        background-image: url('../assets/img/flecha-spiral.svg');
+        background-size: 100px;
+        position: absolute;
+    }
+    .grid-services > *:nth-child(2) .cont-servicios::before {
+        transform: rotate(90deg);
+        bottom: 100%;
+        left: -2rem;
+        margin-bottom: 1rem;
+    }
+    .grid-services > *:nth-child(2) .cont-servicios::after {
+        top: 0;
+        left: calc(100% + 1rem);
+    }
+    .contador-up{
+        margin-top: -3rem;
+    }
+    .contador-up path{
+        fill: white;
+    }
+    .categorias::before {
+    background-image: url("../assets/img/k.png");
+    content: "";
+    width: 50px;
+    height: 62px;
+    position: absolute;
+    background-size: cover;
+    left: 10%;
+    top: 15%;
+    transform: rotate(-10deg);
+    opacity: .3;
+    }
+    .categorias::after {
+    background-image: url("../assets/img/k.png");
+    content: "";
+    width: 50px;
+    height: 62px;
+    position: absolute;
+    background-size: cover;
+    right: 10%;
+    bottom: -3%;
+    transform: rotate(-10deg);
+    opacity: .3;
+    }
+    .categorias{
+        position: relative;
+    }
+    .cont-servicios h3{
+        color: white;
+    }
+    .nav-home{
+        font-size: 18px;
+    }
+    .nav-home li a{
+border-bottom: 2px solid #d7d7d7;
+    text-transform: uppercase;
+    }
+        .nav-home li a:hover{
+border-bottom: 2px solid #06cc60;
+    text-transform: uppercase;
+            color: #06cc60;
+    }
+    .nav-home li >.active{
+        color: #06cc60;
+        border-bottom: 2px solid #06cc60;
+    }
+  </style>
+
+
+{{#if home}}
+
+<div style="width: 100%; position: absolute; margin-top: -3rem;">
+<img src="../assets/img/header-curve.png" alt="" class="img-fluid"></div>
+<div class="main">
+    <section class="servicios pb-5" style="padding-top: 8rem;">
+        <div class="container">
+            <div class="grid-services">
+                <div>
+                    <div class="cont-servicios" style="margin-top: -3rem; background-image: url('../assets/img/cuadro-amarillo.png'); background-size: cover; min-width: 330px; min-height: 200px; display: flex; align-items: center;">
+                        <div class="contianer" style="margin-top: 10px;">
+                            <div class="row">
+                                <div class="col-4" style="padding: 0px !important;">
+                                    <img src="../assets/img/ubicacion.svg" alt="" style="float: right;">
+                                </div>
+                                <div class="col-8">
+                                    <h3>Buscar</h3>
+                                    <p>
+                                        Encuentra el servicio que necesitas de una manera fácil y rápida
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="cont-servicios" style="background-image: url('../assets/img/cuadro-verde.png'); background-size: cover; margin-top: 7rem; min-width: 330px; min-height: 200px; display: flex; align-items: center;">
+                        <div class="contianer">
+                            <div class="row">
+                                <div class="col-4" style="padding: 0px !important;">
+                                    <img src="../assets/img/calendario.svg" alt="" style="float: right;">
+                                </div>
+                                <div class="col-8">
+                                    <h3>Reservar</h3>
+                                    <p>
+                                        Realiza la reserva del servicio que haz elegido
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="cont-servicios" style="    background-image: url('../assets/img/cuadro-amarillo.png'); background-size: cover; margin-top: -5rem; min-width: 330px; min-height: 200px; display: flex; justify-content: center; align-items: center;">
+                        <div class="contianer">
+                            <div class="row">
+                                <div class="col-4" style="padding: 0px !important;">
+                                    <img src="../assets/img/notificacion.svg" alt="" style="float: right;">
+                                </div>
+                                <div class="col-8">
+                                    <h3>Asistir</h3>
+                                    <p>
+                                        El servicio se realizará en el local o tu domicilio según tu elección
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="categorias pt-5 pb-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 pb-5">
+                    <h1 class="text-center mt-5 mb-5">Categorias</h1>
+                </div>
+                <div class="col-md-4 pb-5">
+                    <div class="cont-categorias">
+                        <center><img src="../assets/img/rostro.svg" alt=""></center>
+                        <h2 class="text-center">Rostro</h2>
+                    </div>
+                </div>
+                <div class="col-md-4 pb-5">
+                    <div class="cont-categorias">
+                        <center><img src="../assets/img/cuerpo-entero.svg" alt=""></center>
+                        <h2 class="text-center">Cuerpo entero</h2>
+                    </div>
+                </div>
+                <div class="col-md-4 pb-5">
+                    <div class="cont-categorias">
+                        <center><img src="../assets/img/manos.svg" alt=""></center>
+                        <h2 class="text-center">Manos</h2>
+                    </div>
+                </div>
+                <div class="col-md-4 pb-5">
+                    <div class="cont-categorias">
+                        <center><img src="../assets/img/cabello.svg" alt=""></center>
+                        <h2 class="text-center">Cabello</h2>
+                    </div>
+                </div>
+                <div class="col-md-4 pb-5">
+                    <div class="cont-categorias">
+                        <center><img src="../assets/img/piernas.svg" alt=""></center>
+                        <h2 class="text-center">Piernas</h2>
+                    </div>
+                </div>
+                <div class="col-md-4 pb-5">
+                    <div class="cont-categorias">
+                        <center><img src="../assets/img/pies.svg" alt=""></center>
+                        <h2 class="text-center">Pies</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+        <div style="width: 100%;">
+        <img src="../assets/img/counte-up.png" alt="" class="img-fluid">
+    </div>
+    <section class="contador pt-5 pb-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h1>+100</h1>
+                    <p>servicios disponibles</p>
+                </div>
+                <div class="col-md-4">
+                    <h1>+40</h1>
+                    <p>negocios afiliados</p>
+                </div>
+                <div class="col-md-4">
+                    <h1>+250</h1>
+                    <p>clientes satisfechos</p>
+                </div>
+            </div>
+        </div>
+    </section>
+        <div style="width: 100%;">
+        <img src="../assets/img/counte-bottom.png" alt="" class="img-fluid">
+    </div>
+    <section class="mas-nuevo pt-5 pb-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="text-center pt-5 pb-5">Lo más nuevo</h1>
+                </div>
+            </div>
+            <div class="row pb-5">
+                <div class="col-12">
+                    <ul class="nav justify-content-center nav-home">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">Todas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Cabellos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Manos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Pies</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Facial</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">Cuerpo Entero</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+                <div class="row">
+                    {{#each parse_publi as |publicacion i |}}
+                <div class="col-md-3">
+                    <div class="card-mas-nuevo">
+                        <div class="img-card">
+                            <img src="../assets/img/yt-inicio.jpg" alt="">
+                        </div>
+                        <div class="cont-card">
+                            <span>{{categoria}}</span>
+                            <h3>{{titulo}}</h3>
+                            <div class="precio-buscador">
+                                <span>
+                                    S/ {{precio}}
+                                </span>
+                                <div class="buscador-vermas">
+                                    <a href="/publicacion/{{id}}">
+                                        Ver más
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+          {{/each}}
+    </div>
+        </div>
+    </section>
+    <section class="footer">
+        <div class="img-footer">
+            <img src="../assets/img/logo-blanco.png" alt="">
+        </div>
+        <div class="text-footer">
+            <a href="#">
+                Copyright 2021 Klizto | Todos los derechos reservados
+            </a>
+        </div>
+    </section>
+</div>
+{{/if}}
+
+{{#if publicaciones_landing}}
+       <div class="container-fluid">
+          <div>
+             <div class="col-md-6">
+                      <label for="inputState">Categoría</label>
+                      <select id="categorias" class="form-control" name="categoria">
+                        <option value="todas" selected>Todas</option>
+                        {{#each categorias as |categoria i|}}
+                        <option value="{{categoria.nombre}}">{{categoria.nombre}} </option>
+                         {{/each}}
+                         
+                      </select>
+
+                    </div>
+            <div class="row" id="content">
+              {{#each publicaciones as |publicacion i|}}
+<div class="card item" style="width: 18rem;margin-right: 10px; border-radius: 20px;">
+  <img class="card-img-top" src="../assets/img_up/{{#fotoPrincipalPublicacion publicacion.fotos}}{{/fotoPrincipalPublicacion}}" alt="Card image cap" style="border-radius: 20px;">
+  <div class="card-body">
+    <h5 class="card-title">{{publicacion.titulo}} </h5>
+     <label class="card-title nombres" hidden>{{publicacion.titulo}} </label>
+     <label class="card-title categoria" hidden>{{publicacion.categoria}} </label>
+    <p class="card-text">S/ {{publicacion.precio}}</p>
+    <a href="/publicacion/{{publicacion.id}}" class="btn btn-success">Ver más</a>
+  </div>
+</div>
+              {{/each}}
+            </div>
+          </div>
+        </div>
+{{/if}}
+
+    </div>
+		<!-- End Jumbo Banner -->
+	</main>
+{{> footer }}
