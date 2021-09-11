@@ -20,9 +20,6 @@ db.sync()
 		console.log('Error: ', err);
 	});
 
-require('./models/Usuarios');
-require('./models/Ventas');
-require('./models/Wallet');
 
 // Crear el servidor de express
 const app = express();

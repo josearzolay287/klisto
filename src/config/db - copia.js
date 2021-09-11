@@ -2,10 +2,9 @@ const { Sequelize } = require('sequelize');
 
 // Variables desde variables.env
 require('dotenv').config({path: 'variables.env'});
-
-DB_NAME="klisto";
-DB_USER="root";
-DB_PASS=null;
+DB_NAME="javierg_klisto";
+DB_USER="javierg_jose";
+DB_PASS="c4@1[WOyKpOL";
 DB_HOST="localhost";
 DB_PORT=3306;
 

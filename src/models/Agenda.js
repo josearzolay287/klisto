@@ -3,7 +3,7 @@ const db = require('../config/db');
 const bcrypt = require('bcrypt-nodejs');
 const Usuarios = require('./Usuarios');
 const Publicaciones = require('./Publicaciones');
-const Encargados = require('./encargados');
+const Encargados = require('./Encargados');
 
 const Agenda = db.define('Agenda', {
 	id: {
