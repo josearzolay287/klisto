@@ -250,9 +250,9 @@ exports.dashboard = (req, res) => {
   const { id_usuario,departamento,
     distrito,
     direccion,
-    telefono } = req.body;
+    telefono,nombre_local,distritos_atendidos } = req.body;
 
-   Modulo_BD.guardar_sucursal(id_usuario,departamento, distrito,direccion,telefono).then((respuesta) =>{
+   Modulo_BD.guardar_sucursal(id_usuario,departamento, distrito,direccion,telefono,nombre_local,distritos_atendidos).then((respuesta) =>{
     
      console.log(respuesta)
       res.redirect('/minegocio')
@@ -309,9 +309,9 @@ if (tipo == "Principal") {
   const { id_sucursal,departamento,
     distrito,
     direccion,
-    telefono } = req.body;
+    telefono, nombre_local, distritos_atendidos } = req.body;
 
-   Modulo_BD.guardar_editar_sucursal(id_sucursal,departamento, distrito,direccion,telefono).then((respuesta) =>{
+   Modulo_BD.guardar_editar_sucursal(id_sucursal,departamento, distrito,direccion,telefono, nombre_local, distritos_atendidos).then((respuesta) =>{
     
      console.log(respuesta)
      let msg ="Se actualizó con éxito la sucursal indicada"
@@ -514,10 +514,10 @@ if (user.tipo == "Administrador") {
 
  exports.guardar_publicacion = (req, res) => {
   const user = res.locals.user;
-  const {userid, photo,  desde,hasta, titulo, precio,billetera, categoria, estado,  descripcion, condiciones,preparacion, ejecucion,sucursales,empleados } = req.body;
+  const {userid, photo,  desde,hasta, titulo, precio,billetera, categoria, estado,  descripcion, condiciones,preparacion, ejecucion,sucursales,empleados,costo_domicilio } = req.body;
   console.log(sucursales + 'Empleados:'+empleados)
 
-   Modulo_BD.guardar_publicacion(userid, photo,  desde,hasta, titulo, precio,billetera, categoria, estado,  descripcion, condiciones,preparacion, ejecucion,sucursales,empleados).then((respuesta) =>{
+   Modulo_BD.guardar_publicacion(userid, photo,  desde,hasta, titulo, precio,billetera, categoria, estado,  descripcion, condiciones,preparacion, ejecucion,sucursales,empleados,costo_domicilio).then((respuesta) =>{
     
      console.log(respuesta)
      let msg="Se creó con exito la publicación"
@@ -588,10 +588,10 @@ if (user.tipo == "Administrador") {
 
  exports.guardar_editar_publicacion = (req, res) => {
   const user = res.locals.user;
-  const {id_publicacion,userid, photo,  desde,hasta, titulo, precio,billetera, categoria, estado,  descripcion, condiciones,preparacion, ejecucion,sucursales,empleados } = req.body;
+  const {id_publicacion,userid, photo,  desde,hasta, titulo, precio,billetera, categoria, estado,  descripcion, condiciones,preparacion, ejecucion,sucursales,empleados,costo_domicilio } = req.body;
   console.log(sucursales + 'Empleados:'+empleados)
 
-   Modulo_BD.guardaredit_publicacion(id_publicacion,userid, photo,  desde,hasta, titulo, precio,billetera, categoria, estado,  descripcion, condiciones,preparacion, ejecucion,sucursales,empleados).then((respuesta) =>{
+   Modulo_BD.guardaredit_publicacion(id_publicacion,userid, photo,  desde,hasta, titulo, precio,billetera, categoria, estado,  descripcion, condiciones,preparacion, ejecucion,sucursales,empleados,costo_domicilio).then((respuesta) =>{
     
      console.log(respuesta)
      let msg="Se acrualizó con exito la publicación"
@@ -1334,18 +1334,19 @@ if (tipo == "Principal") {
     Modulo_BD.Sucursalesbyuser(id_user).then((respuesta) =>{
       let sucursales = JSON.parse(respuesta)
      let encargados = sucursales[0].encargados
-      console.log(encargados)
       Modulo_BD.UsuariobyId(id_user).then((datauser) =>{
         let usuario = JSON.parse(datauser)[0]
         //console.log(user)
         Modulo_BD.AgendaAll().then((data_agenda) =>{
           let data_agenda_p = JSON.parse(data_agenda)
-          console.log(data_agenda_p)
+
           let fechas_agenda = []
 for (let i = 0; i < data_agenda_p.length; i++) {
   fechas_agenda.push(data_agenda_p[i].fecha_agenda);
   
 }
+console.log(publicacion)
+console.log(sucursales)
    res.render("publicacion", {
      pageName: "Mi cuenta",
      dashboardPage: true,
@@ -1363,7 +1364,8 @@ for (let i = 0; i < data_agenda_p.length; i++) {
 
  exports.guardar_agenda = (req, res) => {
    console.log(req.body)
-  const {fecha, id_publicacion,h_desde, h_hasta,id_encargado, lugar_servicio, nombre_del_tercero, telefono_tercero, direccion_tercero,lugar_serv_propio,  telefono_contacto,direccion_propio_otra} = req.body;
+   
+  const {fecha, id_publicacion,h_desde, h_hasta,id_encargado, lugar_servicio, nombre_del_tercero, telefono_tercero, direccion_tercero,lugar_serv_propio,costo_domicilio} = req.body;
   const user = res.locals.user;
   const f = new Date(fecha);
 						f.toLocaleString()
@@ -1372,10 +1374,10 @@ for (let i = 0; i < data_agenda_p.length; i++) {
 						var Mes = ('0' + (f.getMonth()+1)).slice(-2)
 						var Dia = f.getDate();
 							var fecha_ = Anyo+ '-'+Mes+ '-'+Dia
-  Modulo_BD.guardar_Agenda(fecha,id_publicacion, h_desde,h_hasta,id_encargado, lugar_servicio, nombre_del_tercero, telefono_tercero, direccion_tercero,lugar_serv_propio,  telefono_contacto,direccion_propio_otra).then((data) =>{
+  Modulo_BD.guardar_Agenda(fecha,id_publicacion, h_desde,h_hasta,id_encargado, lugar_servicio, nombre_del_tercero, telefono_tercero, direccion_tercero,lugar_serv_propio).then((data) =>{
     let agenda = JSON.parse(data)
     let id_agenda = agenda.id
 console.log(id_agenda)
-res.redirect('/pasarela_publicacion/'+id_publicacion+'/'+id_agenda)
+res.redirect('/pasarela_publicacion/'+id_publicacion+'/'+id_agenda+'/'+costo_domicilio)
 })
  };

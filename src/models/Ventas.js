@@ -31,6 +31,10 @@ const Ventas = db.define('ventas', {
 		type: DataTypes.TEXT,
 		allowNull: true,
 	},
+	costo_domicilio: {
+		type: DataTypes.TEXT,
+		allowNull: true,
+	},
 	
 });
 Ventas.Usuarios= Ventas.belongsTo(Usuarios);

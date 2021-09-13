@@ -32,31 +32,68 @@ module.exports = {
 		}
 	},
 	sucursalesdisponibles: (sucursales, id_suc) => {
-		//console.log(sucursales)
-		//console.log(id_suc)
 		var aux = sucursales.split(",");
 		let cont =	aux.length;
 		var out = "";
 			 for (let i = 0; i < id_suc.length; i++) {
 				 
-				 console.log(aux[i])
 				 if (id_suc[i].id ==  aux[i]) {
-					out	+=`<label><input type="radio" id="sucursal${id_suc[i].id}" value="${id_suc[i].id}" name="sucursal[]" class="sucursal_check${id_suc[i].id}" > ${id_suc[i].distrito}</label><br>` 
+					out	+=`<label><input type="radio" id="sucursal${id_suc[i].id}" value="${id_suc[i].id}" name="sucursal" class="sucursal_check${id_suc[i].id}" > ${id_suc[i].nombre}</label><br>` 
 				 }
 			
 			}
 		 return out;
 	},
+	distritos_habilitados: (sucursales, id_suc) => {
+
+		var aux = id_suc.split(",");
+		let cont =	aux.length;
+		var out = "";
+		if (aux.length == 1) {
+			let array2 = sucursales
+			let filtrar_id = array2.filter(id => id.id == aux)
+			console.log(filtrar_id);
+			out	+=`<label>${filtrar_id[0].nombre}</label><br>` 
+			let distritos = sucursales[0].distritos
+			
+			var aux2 = distritos.split(",");
+			for (let j = 0; j < aux2.length; j++) {
+				
+				out	+=`<label><input type="radio" id="distrito${sucursales.id}" value="${aux2[j]}" name="distrito" class="distrito${sucursales.id}" > 
+			${aux2[j]}</label><br>`
+			}
+		 }else{
+			 for (let i = 0; i < sucursales.length; i++) {
+				 console.log(aux[i])
+				 console.log(sucursales[i].id)
+				 
+ 				if (sucursales[i].id == aux[i]) {				
+
+					out	+=`<label>${sucursales[i].nombre}</label><br>` 
+					let distritos = sucursales[i].distritos
+					
+					var aux2 = distritos.split(",");
+					for (let j = 0; j < aux2.length; j++) {
+						
+						out	+=`<label><input type="radio" id="distrito${sucursales[i].id}" value="${aux2[j]}" name="distrito" class="distrito${sucursales[i].id}" > 
+					${aux2[j]}</label><br>`
+					}
+				 }
+
+				 }
+				
+				
+			
+			}
+		 return out;
+	},
 	empleados_disponibles: (sucursales, id_empleado) => {
-		//console.log(sucursales)
-		//console.log(id_suc)
+	
 		var aux = sucursales.split(",");
 		let cont =	aux.length;
 		var out = "";
-		console.log(id_empleado)
 			 for (let i = 0; i < id_empleado.length; i++) {
 				 
-				 console.log(id_empleado[i].sucursaleId)
 				 if (id_empleado[i].id ==  aux[i]) {
 					out	+=`<label><input type="radio" id="empleado${id_empleado[i].id}" value="${id_empleado[i].id}" name="empleado" class="empleado_check${id_empleado[i].id}" > ${id_empleado[i].nombre}</label><br>` 
 				 }
@@ -149,7 +186,6 @@ module.exports = {
 		empleados_publicacion: (sucursal, id_suc) => {
 			let cont =	sucursal.length;
 			var out = "";
-			console.log(cont)
 			out	+=`<div class="sucur${id_suc}" style="display:none;"> `
 				 for (let i = 0; i < cont; i++) {
 				out	+=`	 
@@ -163,7 +199,6 @@ module.exports = {
 			var aux = sucursales.split(",");
 			let cont =	aux.length;
 			var out = "";
-			console.log(cont)
 				 for (let i = 0; i < cont; i++) {
 					 if (id_suc ==  aux[i]) {
 						out	+=`checked` 
@@ -176,10 +211,8 @@ module.exports = {
 				var aux = empleados.split(",");
 				let cont =	aux.length;
 				var out = "";
-				console.log(aux)
 					 for (let i = 0; i < cont; i++) {
 						 if (id_empleado ==  aux[i]) {
-							console.log('cont'+ aux[i])
 							out	+=`checked` 
 						 }
 					
@@ -204,8 +237,8 @@ module.exports = {
 						 
 						var Anyo = f.getFullYear();
 						var Mes = ('0' + (f.getMonth()+1)).slice(-2)
-						var Dia = f.getDate();
-							var fecha_ = Anyo+ '-'+Mes+ '-'+Dia
+						var Dia = ('0' +f.getDate()).slice(-2);
+							var fecha_ = Anyo+ '/'+Mes+ '/'+Dia
 							
 							//console.log(fecha_)
 						 return fecha_;

@@ -34,6 +34,14 @@ const Sucursales = db.define('sucursales', {
 		type: DataTypes.TEXT,
 		allowNull: true,
 	},
+	nombre: {
+		type: DataTypes.TEXT,
+		allowNull: true,
+	},
+	distritos: {
+		type: DataTypes.TEXT,
+		allowNull: true,
+	},
 	
 	
 	

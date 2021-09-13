@@ -188,7 +188,7 @@ exports.createUser_empresa = async (req, res) => {
       let id_usuario = parsed.id
        Sucursales.create({
         tipo: 'Principal', direccion: direccion, descripcion: descripcion, telefono: telefono,departamento: departamento,
-        distrito: distrito,usuarioId: id_usuario
+        distrito: distrito,nombre: name_empresa,usuarioId: id_usuario
       }).then((data_sucursal) =>{
         let parsed_sucursal = data_sucursal.toJSON()
         console.log(parsed_sucursal)

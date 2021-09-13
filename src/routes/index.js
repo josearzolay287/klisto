@@ -158,7 +158,7 @@ router.post('/consulta_bd', AgendaCtrl.revisar_fecha_agenda);
 
 // Paserela
 router.post('/pasarela_publicacion', authController.authenticatedUser, mercadopago.pasarela2);
-router.get('/pasarela_publicacion/:id/:id_agenda', authController.authenticatedUser, mercadopago.pasarela2);
+router.get('/pasarela_publicacion/:id/:id_agenda/:costo_domicilio', authController.authenticatedUser, mercadopago.pasarela2);
 router.post('/process_payment', mercadopago.procesar);
 router.get('/process_payment', mercadopago.procesar);
 router.get('/visa/respuesta/success',  mercadopago.pagar);

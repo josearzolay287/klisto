@@ -13,45 +13,7 @@
   }
 
   $(function () {
-  $('.lugar_serv').on('click', (e)=>{
-    let valor = e.target.value;
-    console.log(valor)
-
-    if(valor == 'Personal'){
-        if ($('#domicilio_servicio_propio').is(':visible')){
-         $('#domicilio_servicio_propio').attr('style', 'display:none')
-      }
-      if ($('#servicio_tercero').is(':visible')){
-         $('#servicio_tercero').attr('style', 'display:none')
-        $('.lugar_serv_propio').prop('checked', false);
-        return $('#servicio_propio').removeAttr('style')
-      }
-      $('.lugar_serv_propio').prop('checked', false);
-        $('#servicio_propio').removeAttr('style')
-    }else{
-       if ($('#domicilio_servicio_propio').is(':visible')){
-         $('#domicilio_servicio_propio').attr('style', 'display:none')
-      }
-      if ($('#servicio_propio').is(':visible')){
-         $('#servicio_propio').attr('style', 'display:none')
-        return $('#servicio_tercero').removeAttr('style')
-      }
-        $('#servicio_tercero').removeAttr('style') 
-    }
-  })
-    $('.lugar_serv_propio').on('click', (e)=>{
-    let valor = e.target.value;
-    console.log(valor)
-
-    if(valor == 'A Domicilio'){
-      
-        $('#domicilio_servicio_propio').removeAttr('style')
-    }else{
-      if ($('#domicilio_servicio_propio').is(':visible')){
-         $('#domicilio_servicio_propio').attr('style', 'display:none')
-      }
-    }
-  })
+  
 //
 
 
@@ -122,7 +84,8 @@ $('.sucursales_check:checked').each(function() {
 
 $("input[name=empleado]").click(function () {    
         console.log("La edad seleccionada es: " + $('input:radio[name=empleado]:checked').val());
-       $('#id_encargado').val($(this).val());
+      $('#id_encargado').val($(this).val());
+        $('#dirigido_a').removeAttr('style')
     });
 
 
@@ -183,6 +146,8 @@ let preparacion_p = $('#preparacion_p').text()
 let ejecucion_p = $('#ejecucion_p').text()
 let tiempo = parseInt(preparacion_p)+parseInt(ejecucion_p)
 let diferencia = parseInt(hasta[0])-parseInt(desde[0])
+
+console.log(diferencia)
 let hora_ = ($('#desde_preview').text()).replace(':', ''); 
 let h =parseInt(desde[0])-1
 let sumah = "";
@@ -192,13 +157,24 @@ console.log(hora_desde_arr)
   console.log(hora_hasta_arr)
  document.getElementById('disponibles').innerHTML='';
 for (let i = 0; i < diferencia; i++) {
-
-h++
+if (i == 0){
+ h++
 hora_d = moment(h + "00", "hmm").format('hh:mm');
-// console.log(hora_d)
-sumah = (moment(h + "00", "hmm").add(tiempo, 'm').format('hh:mm'))
-let res = (moment(h + "00", "hmm").subtract(tiempo, 'm').format('hh:mm'))
-// console.log(sumah)
+ sumah = (moment(h + "00", "hmm").add(tiempo, 'm').format('hh:mm'))
+ console.log("primera hora")
+ 
+}else{
+  hora_ = (sumah).replace(':', '');
+let siguiente_minuto = (parseInt(hora_)+1)
+hora_d = moment(siguiente_minuto, "hmm").format('hh:mm');
+sumah = (moment(siguiente_minuto, "hmm").add(tiempo, 'm').format('hh:mm'))
+
+}
+
+
+
+
+
   var found = fecha_agenda_ar.find(element => element.hora_cita_desde == hora_d);
    if (found == null ){
 var input = document.createElement("a");
@@ -227,6 +203,94 @@ parent.appendChild(div);
 
   })
 </script>
+<script>
+   $(function () { 
+  $('.lugar_serv_').on('click', (e)=>{
+    let valor = e.target.value;
+    console.log(valor)
+
+    if(valor == 'A Domicilio'){
+        if ($('#locales_habiles').is(':visible')){
+         $('#locales_habiles').attr('style', 'display:none')
+         $('input[name="sucursal"]').prop('checked', false);
+         $('input[name="empleado"]').prop('checked', false);
+          $('#empleados_').attr('style', 'display:none')
+           $('#dirigido_a').attr('style', 'display:none')
+            $('input[name="lugar_serv_propio"]').prop('checked', false);
+            $('#servicio_domicilio').attr('style', 'display:none')
+            $('#domicilio_').attr('style', 'display:none')
+          
+
+      }
+      /*if ($('#servicio_tercero').is(':visible')){
+         $('#servicio_tercero').attr('style', 'display:none')
+        $('.lugar_serv_propio').prop('checked', false);
+        return $('#servicio_propio').removeAttr('style')
+      }*/
+      $('input[name="costo_domicilio"]').val('{{publicacion.costo_domicilio}}')
+      $('input[name="distrito"]').prop('checked', false);
+        $('#distritos_habilitados').removeAttr('style')
+       
+
+    }else{
+       if ($('#distritos_habilitados').is(':visible')){
+         $('#distritos_habilitados').attr('style', 'display:none')
+         $('input[name="distrito"]').prop('checked', false);
+          $('#empleados_').attr('style', 'display:none')          
+         $('input[name="empleado"]').prop('checked', false);
+         $('#dirigido_a').attr('style', 'display:none')
+          $('input[name="lugar_serv_propio"]').prop('checked', false);
+           $('#servicio_domicilio').attr('style', 'display:none')
+            $('#domicilio_').attr('style', 'display:none')
+            $('input[name="costo_domicilio"]').val('')
+      }
+      /*if ($('#servicio_propio').is(':visible')){
+         $('#servicio_propio').attr('style', 'display:none')
+        return $('#servicio_tercero').removeAttr('style')
+      }*/
+      $('input[name="sucursal"]').prop('checked', false);
+        $('#locales_habiles').removeAttr('style') 
+    }
+  })
+
+  $('input[name="distrito').on('click', (e) => {
+        // $('#empleados_').attr('style', 'display:none')
+         $('#empleados_').removeAttr('style') 
+   })
+  $('input[name="sucursal').on('click', (e) => {
+   
+         $('#empleados_').removeAttr('style') 
+   })
+
+
+    $('input[name="lugar_serv_propio"]').on('click', (e)=>{
+      let valor = e.target.value
+      console.log(valor)
+        if ($('#distritos_habilitados').is(':visible')){
+         if (valor =="Personal"){
+           $('input[name="nombre_del_tercero"]').val('{{user.name}}')
+         }else{
+           $('input[name="nombre_del_tercero"]').val('')
+         }
+        $('#servicio_domicilio').removeAttr('style')
+        $('#domicilio_').removeAttr('style')
+      }else{
+         if (valor =="Personal"){
+           $('input[name="nombre_del_tercero"]').val('{{user.name}}')
+         }else{
+           $('input[name="nombre_del_tercero"]').val('')
+         }
+        $('#servicio_domicilio').removeAttr('style')
+
+      }
+      
+
+  })
+
+
+
+   })
+</script>
 {{#if msg}}
 <label id="msgs">{{msg}}</label>
 
@@ -249,7 +313,7 @@ parent.appendChild(div);
           </div>
 
           {{#if publicacion_activa}}
-
+<form method="post"  action="/guardar_agenda">
           <div class="container" id="preview_publicacion" >
             <div class="row">
               <div class="col">
@@ -275,33 +339,8 @@ parent.appendChild(div);
               </div>
 
             </div>
-
-            <div class="row">
-              <div class="col">
-                <div class="card-blank">
-                  <div class="card-body">
-                    <h5 class="card-title" id="titulo_preview" style="text-align: left;">Información del anunciante</h5>
-                    <p class="card-text" id="descripcion_preview" style="text-align: left;"><strong>{{usuario.name}}</strong></p>
-                    <p class="card-text" id="descripcion_preview" style="text-align: left;">{{principal.direccion}}</p>
-                    <p class="card-text" id="descripcion_preview" style="text-align: left;">Tiempo de preparación: Preparación:<span id="preparacion_p">{{publicacion.preparacion}} min.</span> y Ejecución:<span id="ejecucion_p">{{publicacion.ejecucion}} min.</span> </p>
-                    <p class="card-text" id="descripcion_preview" style="text-align: left;">Disponible en:<br>
-                      {{#sucursalesdisponibles publicacion.sucursales sucursales}}{{/sucursalesdisponibles}}
-                    <span id="sucursales_p"></span></p>
-                     <p class="card-text" id="descripcion_preview" style="text-align: left;">Empleados en:<br>
-                     {{#empleados_disponibles publicacion.empleados encargados}}{{/empleados_disponibles}}
-                    <span id="sucursales_p"></span></p>
-                    <p class="card-text" id="descripcion_preview" style="text-align: left;">Abierto de: <span
-                        id="desde_preview">{{publicacion.horario_desde}}</span> hasta: <span id="hasta_preview">{{publicacion.horario_hasta}}</span></p>
-                    <p class="card-text" id="descripcion_preview" style="text-align: left;">Calificación</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row" style=" margin-bottom: 60px;">
-              <div class="col">
-
-
-                
+<div class="col">
+               
                 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                   <div class="carousel-inner">
                     <div class="carousel-item active">
@@ -336,6 +375,68 @@ parent.appendChild(div);
                     <span class="sr-only">Next</span>
                   </a>
                 </div>
+            <div class="row">
+              
+              <div class="col">
+                <div class="card-blank">
+                  <div class="card-body">
+                    <h5 class="card-title" id="titulo_preview" style="text-align: left;">Información del anunciante</h5>
+                    <p class="card-text" id="descripcion_preview" style="text-align: left;"><strong>{{usuario.name}}</strong></p>
+                    <p class="card-text" id="descripcion_preview" style="text-align: left;">{{principal.direccion}}</p>
+                    <p class="card-text" id="descripcion_preview" style="text-align: left;">Tiempo de preparación: Preparación: <span id="preparacion_p">{{publicacion.preparacion}} min.</span> y Ejecución: <span id="ejecucion_p">{{publicacion.ejecucion}} min.</span> </p>
+                      <p class="card-text" id="descripcion_preview" style="text-align: left;">Abierto de: <span
+                        id="desde_preview">{{publicacion.horario_desde}}</span> hasta: <span id="hasta_preview">{{publicacion.horario_hasta}}</span></p>
+                     <div class="col" id="servicio_lugar" >
+                        <label for="formGroupExampleInput">Selecciones a donde desea el servicio</label> 
+                        <input type="radio" class="form-control lugar_serv_" value="A Domicilio" name="lugar_serv_" id=""><label>A Domicilio <span>(Adicional: S/ {{publicacion.costo_domicilio}})</span></label>
+                        <input type="radio" class="form-control lugar_serv_" value="En Local" name="lugar_serv_" id=""><label>En Local</label>
+                      </div>
+
+                      <div class="col" id="distritos_habilitados" style="display: none;">
+                        <label for="formGroupExampleInput">Seleccione el distrito (local):</label>
+                        {{#distritos_habilitados sucursales publicacion.sucursales}}{{/distritos_habilitados}} 
+                      </div>
+
+                        <div class="col" id="locales_habiles" style="display: none;">
+                        <label for="formGroupExampleInput">Seleccione el local:</label>
+                          <p class="card-text" id="descripcion_preview" style="text-align: left;">
+                      {{#sucursalesdisponibles publicacion.sucursales sucursales}}{{/sucursalesdisponibles}}
+                    <span id="sucursales_p"></span></p>
+                      </div>
+                    <div class="col" id="empleados_" style="display: none;">
+                <p class="card-text" id="descripcion_preview" style="text-align: left;">Empleados en:<br>
+                     {{#empleados_disponibles publicacion.empleados encargados}}{{/empleados_disponibles}}
+                    <span id="sucursales_p"></span></p>
+
+                    </div>                   
+
+
+                      <div class="col" id="dirigido_a" style="display: none;">
+                        <label for="formGroupExampleInput">Indique para quien es el servicio:</label><br>
+                        <input type="radio" class="form-control servicio_para" value="Personal" name="lugar_serv_propio" id=""><label>Personal</label>
+                        <input type="radio" class="form-control servicio_para" value="A Tercero" name="lugar_serv_propio" id=""><label>Tercero</label>
+                      </div>
+
+                  
+                      <div  id="servicio_domicilio"  style="display: none;">
+                         <label for="formGroupExampleInput">Datos del Servicio</label> 
+                        <input type="text" class="form-control" placeholder="Nombre" name="nombre_del_tercero" id="">
+                        <div id="domicilio_"  style="display: none;">
+                        <input type="text" class="form-control" placeholder="Teléfono" name="telefono_tercero" id="">
+                        <input type="text" class="form-control" placeholder="Dirección" name="direccion_tercero" id="">
+                        </div>
+                        
+
+                      </div>
+                    
+                  
+                    <!--<p class="card-text" id="descripcion_preview" style="text-align: left;">Calificación</p>-->
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row" style=" margin-bottom: 60px;">
+              
                 
               </div>
               <style>
@@ -352,7 +453,7 @@ input:valid+span:after {
 }
               </style>
              <!-- <form method="post"  action="/pasarela_publicacion">-->
-               <form method="post"  action="/guardar_agenda">
+               
                 <input type="text" id="id_publicacion" class="" name='id_publicacion' hidden value="{{publicacion.id}}">
                   <div class="col">
                     <div class="form-row">
@@ -366,37 +467,13 @@ input:valid+span:after {
                        
                       </div>
                       <div class="form-row">
-                      <div class="col">
-                        <label for="formGroupExampleInput">Datos del Servicio</label> 
-                        <input type="radio" class="form-control lugar_serv" value="Personal" name="lugar_servicio" id="personal"><label>Personal</label>
-                        <input type="radio" class="form-control lugar_serv" value="A Tercero" name="lugar_servicio" id="atercero"><label>A Tercero</label>
-                        <br>
-                      <div  id="servicio_tercero" style="display: none;">
-                         <label for="formGroupExampleInput">Datos del Servicio</label> 
-                        <input type="text" class="form-control" placeholder="Nombre" name="nombre_del_tercero" id="">
-                        <input type="text" class="form-control" placeholder="Teléfono" name="telefono_tercero" id="">
-                        <input type="text" class="form-control" placeholder="Dirección" name="direccion_tercero" id="">
-                      </div>
-                       
-
-                      </div>
                     </div>
-                    
-                       <div class="col" id="servicio_propio" style="display: none;">
-                        <label for="formGroupExampleInput">Datos del Servicio Propio</label> 
-                        <input type="radio" class="form-control lugar_serv_propio" value="A Domicilio" name="lugar_serv_propio" id=""><label>A Domicilio</label>
-                        <input type="radio" class="form-control lugar_serv_propio" value="En Local" name="lugar_serv_propio" id=""><label>En Local</label>
-                      </div>
-                       <div  id="domicilio_servicio_propio" style="display: none;">
-                         <label for="formGroupExampleInput">Datos del Servicio</label> 
-                         <input type="text" class="form-control" placeholder="Telefono de contacto" name="telefono_contacto" id="">
-                        <input type="text" class="form-control" placeholder="Dirección" name="direccion_propio_otra" id="">
-                      </div>
                     </div>
                   </div>
                   <input type="text" class="form-control" placeholder="Hasta" name="h_desde"  id= "h_desde" hidden><span class="validity"></span>
                         <input type="text" class="form-control" placeholder="Hasta" name="h_hasta" id="h_hasta" hidden>
                       <input type="text" class="form-control" name="id_encargado" id="id_encargado" hidden>
+                      <input type="text" class="form-control" name="costo_domicilio" id="id_encargado" hidden>
                  <button type="submit" class="btn btn-primary ">Comprar</button>
               </form>
              

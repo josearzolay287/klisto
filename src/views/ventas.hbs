@@ -61,6 +61,7 @@ $( ".onlynum" ).keypress(function(evt) {
       position: relative;
     }
 </style>
+
 <script>
 var resultados_por_pagina = 5;
 var pagina_actual = 1;
@@ -127,41 +128,8 @@ if (estado == "Realizada"){
 })
   })
 }
-//contar todos los registros que tenemos
-	var total_registros = $("#tabla_>tbody>tr").length;
-	console.log("tabla"+pagina_ultima)
-	//saber cuantas paginas vamos a mostrar
-	pagina_ultima = Math.round(total_registros / resultados_por_pagina);
-	//cargar la primera pagina
-	cargarPagina(pagina_actual);
-	//eventos para los botones
-	$("#cargar_primera_pagina").click(function(){
-		cargarPagina(1);
-	});
-	$("#cargar_anterior_pagina").click(function(){
-		cargarPagina(pagina_actual - 1);
-	});
-	$("#cargar_siguiente_pagina").click(function(){
-		cargarPagina(pagina_actual + 1);
-	});
-	$("#cargar_ultima_pagina").click(function(){
-		cargarPagina(pagina_ultima);
-	});
+
 });
-var cargarPagina = function(intPaginaP){
-	//evaluar si la pagina a cargar es mayor que el numero de paginas o es menor que 1
-	if(intPaginaP < 1){intPaginaP = 1;}
-	if(intPaginaP > pagina_ultima){intPaginaP = pagina_ultima;}
-	//ocultar todas las lineas
-	$("#tabla_>tbody>tr").addClass("linea-oculta");
-	var primer_registro = (intPaginaP - 1) * resultados_por_pagina;
-	for (var i = primer_registro; i < (primer_registro + resultados_por_pagina); i++){
-		$("#tabla_>tbody>tr").eq(i).removeClass("linea-oculta");
-	}
-	//indicar en qué pagina estamos
-	pagina_actual = intPaginaP;
-	$("#indicador_paginas").html("Página: " + pagina_actual + " / " + pagina_ultima);
-}
 </script>
 <div class="page-container">
   <div class="main-content">
@@ -181,7 +149,8 @@ var cargarPagina = function(intPaginaP){
 
 	<div class="row">
 
-		{{#if ventas}}<div class="col-12" style="margin-top: 1.5rem;">
+		{{#if ventas}}
+		<div class="col-12" style="margin-top: 1.5rem;">
 			<div class="col-md-12">
             <div class="card-blank">
 				<div class="row">
@@ -195,16 +164,21 @@ var cargarPagina = function(intPaginaP){
                       </select>
 
                     </div>
-    	<div class="col-sm">
-                     <label for="inputState">Fecha</label>
-                      <input type="date" id="meeting-time"  name="meeting-time">
-                      <button id="reset_fecha">Reset</button>
-                    </div>
     <div class="col-sm">
                       
                     </div>
   </div>
               <div class="card-body">
+				  <table border="0" cellspacing="5" cellpadding="5">
+        <tbody><tr>
+            <td>Fecha inicio:</td>
+            <td><input type="text" id="min" name="min"></td>
+        </tr>
+        <tr>
+            <td>Fecha final:</td>
+            <td><input type="text" id="max" name="max"></td>
+        </tr>
+    </tbody></table>
                 <table class="table dataTable tablesorter" id="tabla_">
                   <thead>
                     <tr>
@@ -241,10 +215,7 @@ var cargarPagina = function(intPaginaP){
                         {{#if ../admin}}{{venta.usuario.name}}{{else}}{{venta.id}}{{/if}}
 
                       </td>
-					   <td>
-                      {{#formatoFecha2 venta.createdAt}}  {{/formatoFecha2}}
-					  <span style="display: none;">{{#formatoFecha venta.createdAt}}  {{/formatoFecha}} </span>
-                      </td>
+					   <td>{{#formatoFecha venta.createdAt}}{{/formatoFecha}}</td>
                       <td>
                         {{venta.publicacione.titulo}}
                       </td>
@@ -331,13 +302,7 @@ var cargarPagina = function(intPaginaP){
                     </tr>
                     {{/each}}            
 				</tbody>
-					<tfoot>
-		<td><input type="button" id="cargar_primera_pagina" value="<< Primero"/></td>
-		<td><input type="button" id="cargar_anterior_pagina" value="< Anterior"/></td>
-		<td id="indicador_paginas"></td>
-		<td><input type="button" id="cargar_siguiente_pagina" value="Siguiente >"/></td>
-		<td><input type="button" id="cargar_ultima_pagina" value="Ultimo >>"/></td>
-	</tfoot>
+
 			</table>  </div>
             </div>
           </div>{{/if}}

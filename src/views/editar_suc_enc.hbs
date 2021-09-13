@@ -24,6 +24,10 @@
                 <form action="/guardar_editar_local" method="post">
                 <input type="text" name="id_sucursal" class="form-control" value="{{sucursales.id}}" hidden>
                   <div class="card-body">
+                     <div class="form-group">
+                      <label>Nombre del Local</label>
+                      <input type="text" name="nombre_local" class="form-control" required  value="{{sucursales.nombre}}"/>
+                    </div>
                     <div class="form-group">
                       <label>Departamento</label>
                       <input type="text" name="departamento" class="form-control" required  value="{{sucursales.departamento}}"/>
@@ -38,7 +42,12 @@
                     </div>
                     <div class="form-group">
                       <label>Telefono</label>
-                      <input id="last_name" type="text" name="telefono"  class="form-control" required value="{{sucursales.telefono}}"/></div>
+                      <input id="last_name" type="text" name="telefono"  class="form-control" required value="{{sucursales.telefono}}"/>
+                      </div>
+                      <div class="form-group">
+                      <label>Qué distritos atiende? (Favor separar por coma (,) </label>
+                      <input id="last_name" type="text" name="distritos_atendidos"  placeholder="Ej.: Miraflores, San Borja,etc" class="form-control" required value="{{sucursales.distritos}}"/>
+                      </div>
 
                     <center><button class="btn btn-success mt-4" type="submit"> Guardar </button></center>
                   </div>
@@ -124,6 +133,10 @@
                 <input type="text" name="id_usuario" class="form-control" hidden value="{{user.id}}">
                   <div class="card-body">
                     <div class="form-group">
+                      <label>Nombre del Local</label>
+                      <input type="text" name="nombre_local" class="form-control" required  />
+                    </div>
+                    <div class="form-group">
                       <label>Departamento</label>
                       <input type="text" name="departamento" class="form-control" required />
                     </div>
@@ -138,7 +151,10 @@
                     <div class="form-group">
                       <label>Telefono</label>
                       <input id="last_name" type="text" name="telefono"  class="form-control" required /></div>
-
+                      <div class="form-group">
+                      <label>Qué distritos atiende? (Favor separar por coma (,) </label>
+                      <input id="last_name" type="text" name="distritos_atendidos"  placeholder="Ej.: Miraflores, San Borja,etc" class="form-control" required />
+                      </div>
                     <center><button class="btn btn-success mt-4" type="submit"> Guardar </button></center>
                   </div>
                 </form>

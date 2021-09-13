@@ -393,10 +393,10 @@ module.exports = {
     });
   },
 
-  guardar_editar_sucursal(id_sucursal,departamento, distrito,direccion,telefono){
+  guardar_editar_sucursal(id_sucursal,departamento, distrito,direccion,telefono,nombre_local, distritos_atendidos){
     return new Promise((resolve, reject) => {
       Sucursales.update({
-        departamento: departamento,distrito: distrito, direccion: direccion,  telefono: telefono
+        departamento: departamento,distrito: distrito, direccion: direccion,  telefono: telefono,nombre: nombre_local, distritos: distritos_atendidos
       },{
         where: {
           id: id_sucursal,
@@ -411,10 +411,10 @@ module.exports = {
         });
     });
   },
-  guardar_sucursal(id_usuario,departamento, distrito,direccion,telefono){
+  guardar_sucursal(id_usuario,departamento, distrito,direccion,telefono,nombre_local,distritos_atendidos){
     return new Promise((resolve, reject) => {
       Sucursales.create({
-        departamento: departamento, distrito:distrito,direccion:direccion,telefono:telefono,tipo:'Sucursal',usuarioId: id_usuario
+        departamento: departamento, distrito:distrito,direccion:direccion,telefono:telefono,tipo:'Sucursal',nombre: nombre_local, distritos:distritos_atendidos ,usuarioId: id_usuario
       }).then((data_encargado) =>{
         let datas = JSON.stringify(data_encargado);
         resolve(datas);
@@ -487,13 +487,13 @@ module.exports = {
     });
   },
 
-  guardar_publicacion(userid, photo,  desde,hasta, titulo, precio,billetera, categoria, estado,  descripcion, condiciones,preparacion, ejecucion,sucursales,empleados){
+  guardar_publicacion(userid, photo,  desde,hasta, titulo, precio,billetera, categoria, estado,  descripcion, condiciones,preparacion, ejecucion,sucursales,empleados,costo_domicilio){
     let fotos = photo.toString()
     let sucursalesS = sucursales.toString()
     let empleadosS = empleados.toString()
     return new Promise((resolve, reject) => {
       Publicaciones.create({
-        titulo: titulo,precio: precio,billetera:billetera, categoria: categoria,  fotos: fotos,horario_desde:desde,horario_hasta:hasta,descripcion:descripcion,condiciones:condiciones, estado:estado,preparacion: preparacion, ejecucion: ejecucion,sucursales: sucursalesS,empleados: empleadosS,usuarioId: userid
+        titulo: titulo,precio: precio,billetera:billetera, categoria: categoria,  fotos: fotos,horario_desde:desde,horario_hasta:hasta,descripcion:descripcion,condiciones:condiciones, estado:estado,preparacion: preparacion, ejecucion: ejecucion,sucursales: sucursalesS,empleados: empleadosS,costo_domicilio:costo_domicilio,usuarioId: userid
       }).then((data_encargado) =>{
         let datas = JSON.stringify(data_encargado);
         resolve(datas);
@@ -518,13 +518,13 @@ module.exports = {
       });
     });
   },
-  guardaredit_publicacion(id_publicacion,userid, photo,  desde,hasta, titulo, precio,billetera, categoria, estado,  descripcion, condiciones,preparacion, ejecucion,sucursales,empleados){
+  guardaredit_publicacion(id_publicacion,userid, photo,  desde,hasta, titulo, precio,billetera, categoria, estado,  descripcion, condiciones,preparacion, ejecucion,sucursales,empleados,costo_domicilio){
     let fotos = photo.toString()
     let sucursalesS = sucursales.toString()
     let empleadosS = empleados.toString()
     return new Promise((resolve, reject) => {
       Publicaciones.update({
-        titulo: titulo,precio: precio,billetera:billetera, categoria: categoria,  fotos: fotos,horario_desde:desde,horario_hasta:hasta,descripcion:descripcion,condiciones:condiciones, estado:estado,preparacion: preparacion, ejecucion: ejecucion,sucursales: sucursalesS,empleados: empleadosS,usuarioId: userid
+        titulo: titulo,precio: precio,billetera:billetera, categoria: categoria,  fotos: fotos,horario_desde:desde,horario_hasta:hasta,descripcion:descripcion,condiciones:condiciones, estado:estado,preparacion: preparacion, ejecucion: ejecucion,sucursales: sucursalesS,empleados: empleadosS,costo_domicilio:costo_domicilio,usuarioId: userid
       }, {
         where:{
           id: id_publicacion
@@ -562,10 +562,10 @@ AgendaAll(){
       });
   });
 },
-guardar_Agenda(fecha,id_publicacion, h_desde,h_hasta,id_encargado, lugar_servicio, nombre_del_tercero, telefono_tercero, direccion_tercero,lugar_serv_propio,  telefono_contacto,direccion_propio_otra){
+guardar_Agenda(fecha,id_publicacion, h_desde,h_hasta,id_encargado, lugar_servicio, nombre_del_tercero, telefono_tercero, direccion_tercero,lugar_serv_propio){
   return new Promise((resolve, reject) => {
     Agenda.create({
-      fecha_agenda:fecha,hora_cita_desde:h_desde, hora_cita_hasta:h_hasta,lugar_servicio: lugar_servicio, nombre_del_tercero: nombre_del_tercero, telefono_tercero: telefono_tercero, direccion_tercero: direccion_tercero,lugar_serv_propio: lugar_serv_propio,  telefono_contacto: telefono_contacto,direccion_propio_otra: direccion_propio_otra, encargadoId:id_encargado, publicacioneId:id_publicacion
+      fecha_agenda:fecha,hora_cita_desde:h_desde, hora_cita_hasta:h_hasta,lugar_servicio: lugar_servicio, nombre_del_tercero: nombre_del_tercero, telefono_tercero: telefono_tercero, direccion_tercero: direccion_tercero,lugar_serv_propio: lugar_serv_propio, encargadoId:id_encargado, publicacioneId:id_publicacion
     }).then((data_) =>{
       let datas = JSON.stringify(data_);
       resolve(datas);
@@ -709,10 +709,10 @@ WalletbyIduser(usuarioId){
       });
   });
 },
-guardar_wallet_ventas(monto,estado,comprobante,publicacionId,usuarioId, monto_wallet, id_comprador,id_agenda){
+guardar_wallet_ventas(monto,estado,comprobante,publicacionId,usuarioId, monto_wallet, id_comprador,id_agenda,costo_domicilio){
   return new Promise((resolve, reject) => {
     Ventas.create({
-      monto:monto, estado: "Por confirmar", comprobante:comprobante,id_comprador:id_comprador,publicacioneId: publicacionId, usuarioId: usuarioId, AgendaId: id_agenda
+      monto:monto, estado: "Por confirmar", comprobante:comprobante,id_comprador:id_comprador,publicacioneId: publicacionId,costo_domicilio:costo_domicilio, usuarioId: usuarioId, AgendaId: id_agenda
     }).then((data_venta) =>{
       console.log(data_venta)
       Wallet.findAll({where:{
@@ -891,7 +891,10 @@ VentasbyIdComprador(usuarioId){
       {
         association: Ventas.Agenda,
       },
-    ], })
+    ],order: [
+      // Will escape title and validate DESC against a list of valid direction parameters
+      ["updatedAt", "DESC"],
+    ],})
       .then((data) => {
         let datas = JSON.stringify(data);
         resolve(datas);

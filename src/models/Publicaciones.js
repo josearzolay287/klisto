@@ -67,6 +67,10 @@ const Publicaciones = db.define('publicaciones', {
 		type: DataTypes.TEXT,
 		allowNull: true,
 	},
+	costo_domicilio: {
+		type: DataTypes.TEXT,
+		allowNull: true,
+	},
 	
 });
 Publicaciones.Usuarios= Publicaciones.belongsTo(Usuarios);

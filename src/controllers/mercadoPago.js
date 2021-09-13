@@ -214,6 +214,7 @@ exports.pasarela2 = async (req, res, next) => {
   //let id_publicacion = req.body.id_publicacion;
   let id_publicacion = req.params.id;
   let id_agenda = req.params.id_agenda;
+  let costo_domicilio = req.params.costo_domicilio;
    BD_conect.publicacionesbyId(id_publicacion).then((resultado) => {
      let publicacion = JSON.parse(resultado)[0];
      console.log(publicacion)
@@ -228,7 +229,8 @@ res.render("pasarela_de_pago", {
                          monto_soles,
                          product,
                          publicacion,
-                         id_agenda
+                         id_agenda,
+                         costo_domicilio
                          //user
                        });
    });
@@ -250,7 +252,8 @@ res.render("pasarela_de_pago", {
           id: req.body.id_publicacion,
           title: req.body.id_usuario,
           quantity: Number(req.body.id_agenda),
-          unit_price: Number(req.body.monto_billetera)
+          unit_price: Number(req.body.monto_billetera),
+          description: req.body.costo_domicilio,
         }
       ]
     },
@@ -279,6 +282,7 @@ mercadopago.payment.save(payment_data)
     let usuarioId = payment_data.additional_info.items[0].title;
     let id_agenda = payment_data.additional_info.items[0].quantity;
     let msg =""
+    let costo_domicilio = payment_data.additional_info.items[0].description;
 
     if (aprobado.status == "rejected") {
       msg = "Su tarjeta fue rechazada"
@@ -286,7 +290,7 @@ mercadopago.payment.save(payment_data)
 
     }else{
       console.log(monto+'/'+estado+'/'+comprobante+'/'+publicacionId+'/'+usuarioId+'/'+monto_billetera+'/'+user.id)
-    BD_conect.guardar_wallet_ventas(monto,estado,comprobante,publicacionId,usuarioId,monto_billetera,user.id, id_agenda).then((resultado) => {
+    BD_conect.guardar_wallet_ventas(monto,estado,comprobante,publicacionId,usuarioId,monto_billetera,user.id, id_agenda, costo_domicilio).then((resultado) => {
        console.log(resultado)
       msg = "Su pago se aprobó con éxito"
       res.redirect('/dash_cliente/'+msg)

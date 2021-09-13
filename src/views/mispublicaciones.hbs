@@ -289,6 +289,10 @@ $('.sucursales_check:checked').each(function() {
                       <label for="inputPassword4">Billetera</label>
                       <input type="number" class="form-control" id="billetera" name="billetera" step="0.01" required>
                     </div>
+                     <div class="col-md-3 mb-3">
+                      <label for="inputPassword4">Costo Domicilio</label>
+                      <input type="number" class="form-control" id="billetera" name="costo_domicilio" step="0.01" required  >
+                    </div>
                   </div>
                   <div class="form-row">
                     <div class="form-group col-md-6">
@@ -324,7 +328,7 @@ $('.sucursales_check:checked').each(function() {
                     <div class="form-group col-md-6">
                       <label for="exampleFormControlTextarea1">Sucursales</label><br>
                       {{#each sucursales as | sucursal i|}}
-                      <label id="suc{{sucursal.id}}"><input type="checkbox" id="cbox1" value="{{sucursal.id}}" name="sucursales[]" class="sucursales_check {{sucursal.id}}"> {{sucursal.distrito}}</label><br>
+                      <label id="suc{{sucursal.id}}"><input type="checkbox" id="cbox1" value="{{sucursal.id}}" name="sucursales[]" class="sucursales_check {{sucursal.id}}"> {{sucursal.nombre}}</label><br>
                       {{/each}}
                     </div>
                     <div class="form-group col-md-6">
@@ -529,7 +533,7 @@ $('.sucursales_check:checked').each(function() {
                     </div>
                   </div>
                   <div class="form-row">
-                    <div class="col-md-6 mb-3">
+                    <div class="col-md-3 mb-3">
                       <label for="inputEmail4">Titulo Principal</label>
                       <input type="text" class="form-control" id="titulo" placeholder="Nombre" name="titulo" required value="{{publicacion.titulo}}">
                     </div>
@@ -541,6 +545,10 @@ $('.sucursales_check:checked').each(function() {
                     <div class="col-md-3 mb-3">
                       <label for="inputPassword4">Billetera</label>
                       <input type="number" class="form-control" id="billetera" name="billetera" step="0.01" required value="{{publicacion.billetera}}" readonly>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                      <label for="inputPassword4">Costo Domicilio</label>
+                      <input type="number" class="form-control" id="billetera" name="costo_domicilio" step="0.01" required value="{{publicacion.costo_domicilio}}" >
                     </div>
                   </div>
                   <div class="form-row">
