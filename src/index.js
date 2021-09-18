@@ -30,7 +30,7 @@ app.use(fileupload());
 
 app.use('/api', router);
 // Configuraciones de expressnp
-app.set('port', 3005);
+app.set('port', 3002);
 
 // Directiorio de las vistas
 app.set('views', path.resolve(__dirname, './views'));
