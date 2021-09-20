@@ -3,7 +3,122 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.3/moment.min.js"></script>
+ <style>
+        body{
+            background-color: #f5f6f8;
+        }
+        #gallery-presentation h2 span{
+            color: #06cc60;
+        }
+        #gallery-presentation .btn-primary{
+            background-color: #06cc60;
+            border: 1px solid #06cc60;
+            box-shadow: none;
+            width: 100%;
+            padding: 1rem;
+            border-radius: 10px;
+        }
+        #gallery-presentation .btn-primary:hover{
+            background-color: #06cc60;
+            border: 1px solid #06cc60;
+            box-shadow: none;
+        }
+        #gallery-presentation .btn-primary:focus{
+            background-color: #171817;
+            border: 1px solid #06cc60;
+            box-shadow: none;
+        }
 
+        .cat-gallery-gallery-presentation span{
+            color: #f7c400;
+        }
+        #reservar .container{
+            background-color: #ffffff;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        #reservar .form-control {
+            display: block;
+            width: 100%;
+            padding: .375rem .75rem;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #495057;
+            background-color: #eaeaea;
+            background-clip: padding-box;
+            border: 1px solid #f5f6f8;
+            border-radius: 10px;
+            transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        }
+
+        #reservar .btn-primary{
+            background-color: white;
+            border:1px solid #06cc60;
+            color: #06cc60;
+            border-radius: 0px;
+            box-shadow: none;
+            margin-bottom: .7rem;
+        }
+        #reservar .btn-primary:hover{
+            background-color: #06cc60;
+            border:1px solid #06cc60;
+            color: white;
+            border-radius: 0px;
+            box-shadow: none;
+            margin-bottom: .7rem;
+        }
+        #reservar .btn-primary:focus{
+            background-color: #06cc60;
+            border:1px solid #06cc60;
+            color: white;
+            border-radius: 0px;
+            box-shadow: none;
+            margin-bottom: .7rem;
+        }
+        #reservar .active{
+            background-color: #06cc60;
+            border:1px solid #06cc60;
+            color: white;
+            border-radius: 0px;
+            box-shadow: none;
+            margin-bottom: .7rem;
+        }
+        #reservar .btn-outline-success{
+            background-color: #06cc60;
+            position: absolute;
+            color: white;
+            border-color: #06cc60;
+            border-radius: 10px;
+            top: 0;
+            right: 0;
+            box-shadow: none;
+            padding: .33rem 1.5rem;
+        }
+        #reservar .btn-outline-success:hover{
+            background-color: #06cc60;
+            position: absolute;
+            color: white;
+            border-color: #06cc60;
+            border-radius: 10px;
+            top: 0;
+            right: 0;
+            box-shadow: none;
+        }
+        #reservar .btn-outline-success:focus{
+            background-color: #06cc60;
+            position: absolute;
+            color: white;
+            border-color: #06cc60;
+            border-radius: 10px;
+            top: 0;
+            right: 0;
+            box-shadow: none;
+        }
+
+    </style>
 
 <script>
   function select_hora(hora_desde, hora_hasta){
@@ -173,17 +288,15 @@ sumah = (moment(siguiente_minuto, "hmm").add(tiempo, 'm').format('hh:mm'))
 
 
 
-
-
   var found = fecha_agenda_ar.find(element => element.hora_cita_desde == hora_d);
    if (found == null ){
-var input = document.createElement("a");
 var div = document.createElement("div");
-input.innerHTML = hora_d + '-'+sumah+'<br>';
-input.setAttribute('class', 'select_hora');
-input.setAttribute('onclick', 'select_hora("'+hora_d+'", "'+sumah+'")');
-
-div.appendChild(input);
+var button = document.createElement("button");
+button.innerHTML = hora_d + '-'+sumah;
+button.setAttribute('class', 'btn btn-primary active select_hora');
+button.setAttribute('onclick', 'select_hora("'+hora_d+'", "'+sumah+'")');
+div.setAttribute('class', 'col-4');
+div.appendChild(button);
 
 parent.appendChild(div);
 
@@ -205,6 +318,11 @@ parent.appendChild(div);
 </script>
 <script>
    $(function () { 
+     let preparacion_p = $('#preparacion_p').text()
+let ejecucion_p = $('#ejecucion_p').text()
+let tiempo = parseInt(preparacion_p)+parseInt(ejecucion_p)
+$('#duracion_total').text(tiempo+ ' min')
+
   $('.lugar_serv_').on('click', (e)=>{
     let valor = e.target.value;
     console.log(valor)
@@ -313,7 +431,187 @@ parent.appendChild(div);
           </div>
 
           {{#if publicacion_activa}}
-<form method="post"  action="/guardar_agenda">
+          <form method="post"  action="/guardar_agenda">
+<section class="pb-5 pt-5" id="gallery-presentation">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+
+                </div>
+                <div class="col-md-6">
+                    <h2 class="pb-3">
+                        <strong>
+                            {{publicacion.titulo}}
+                            <br>
+                            <span >
+                            S/ {{publicacion.precio}}
+                            </span>
+                        </strong>
+                    </h2>
+
+                    <p>
+                        <strong>
+                            Atención: Lunes a Sábado (8:00 am - 9:00 pm)
+                            <br >
+                            <span id="duracion_total">Duración: 20 min. </span>
+                        </strong>
+                    </p>
+                    <p>
+                       {{publicacion.descripcion}}
+                    </p>
+
+                    <div class="dom-loc pb-3">
+                      <input type="radio" class="lugar_serv_" value="A Domicilio" name="lugar_serv_" id=""><label>A Domicilio <span></span></label>
+                        <input type="radio" class="lugar_serv_" value="En Local" name="lugar_serv_" id=""><label>En Local</label>
+                    </div>
+
+                    <button class="btn btn-primary">
+                        Reservar
+                    </button>
+
+                    <div class="cat-gallery-gallery-presentation pt-3">
+                        <strong>Categorías:</strong> <span>Cabello, Cabeza</span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <section id="reservar">
+        <div class="container">
+          <input type="radio" class="lugar_serv_" value="A Domicilio" name="lugar_serv_" id=""><label>A Domicilio <span></span></label>
+                        <input type="radio" class="lugar_serv_" value="En Local" name="lugar_serv_" id=""><label>En Local</label>
+            <div class="row">
+                <div class="col-12">
+                    <h1>
+                        <strong>
+                        Reservar
+                        </strong>
+                    </h1>
+                </div>
+                <div class="col" id="distritos_habilitados" style="display: none;">
+                        <label for="formGroupExampleInput">Seleccione el distrito (local):</label>
+                        {{#distritos_habilitados sucursales publicacion.sucursales}}{{/distritos_habilitados}} 
+                      </div>
+
+                        <div class="col" id="locales_habiles" style="display: none;">
+                        <label for="formGroupExampleInput">Seleccione el local:</label>
+                          <p class="card-text" id="descripcion_preview" style="text-align: left;">
+                      {{#sucursalesdisponibles publicacion.sucursales sucursales}}{{/sucursalesdisponibles}}
+                    <span id="sucursales_p"></span></p>
+                      </div>
+                    <div class="col" id="empleados_" style="display: none;">
+                <p class="card-text" id="descripcion_preview" style="text-align: left;">Empleados en:<br>
+                     {{#empleados_disponibles publicacion.empleados encargados}}{{/empleados_disponibles}}
+                    <span id="sucursales_p"></span></p>
+
+                    </div>                   
+
+
+                      <div class="col" id="dirigido_a" style="display: none;">
+                        <label for="formGroupExampleInput">Indique para quien es el servicio:</label><br>
+                        <input type="radio" class="form-control servicio_para" value="Personal" name="lugar_serv_propio" id=""><label>Personal</label>
+                        <input type="radio" class="form-control servicio_para" value="A Tercero" name="lugar_serv_propio" id=""><label>Tercero</label>
+                      </div>
+
+                <div class="col-md-6 pt-5">
+                    <form>
+                        <div class="form-group">
+                          <label for="">Distrito:*</label>
+                          <input type="text" class="form-control" id="">
+                        </div>
+                        <div class="form-group">
+                          <label for="">Dirección:*</label>
+                          <input type="text" class="form-control" id="">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Escoger trabajador:*</label>
+                            <input type="text" class="form-control" id="">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Nombre y apellido:*</label>
+                            <input type="text" class="form-control" id="">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Correo:*</label>
+                            <input type="text" class="form-control" id="">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Celular:*</label>
+                            <input type="text" class="form-control" id="">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Agregar comentario:</label>
+                            <textarea class="form-control" id="" rows="3"></textarea>
+                          </div>
+                    </form>
+                </div>
+                <div class="col-md-6 pt-5">
+                    <p>Escoger fecha: <input type="date" class="form-control" placeholder="Desde" name="fecha" id="fecha_ag"></p>
+                    <p>Escoger hora:*</p>
+                    <div class="row" id="disponibles">
+                       
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div style="float: left; padding-top: .35rem;">Agregar cupón:</div>
+                    <div style="float: right; width: calc(100% - 110px); position: relative;">
+                        <input type="text" class="form-control">
+                        <button class="btn btn-outline-success my-2 my-sm-0 añadir" type="submit">
+                            Añadir
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 pt-3">
+                    <div style="float: left;">
+                        Precio de servicio:
+                    </div> 
+                    <div style="float: right;">
+                        S/<span>25.00</span>
+                    </div>
+                </div>
+                <div class="col-12 pt-3" style="border-bottom: 1px solid black;">
+                    <div style="float: left;">
+                        Precio de transporte:
+                    </div> 
+                    <div style="float: right;">
+                        S/<span>{{publicacion.costo_domicilio}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 pt-3">
+                    <div style="float: left;">
+                        <h2>
+                            <strong>
+                                TOTAL A PAGAR:
+                            </strong>
+                        </h2>
+                    </div>
+                    <div style="float: right;">
+                        <h2>
+                            <strong>
+                                S/<span>35.00</span> 
+                            </strong>
+                        </h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 pt-3">
+                    <button type="submit" class="btn btn-primary active" style="width: 100%;padding: 1.5rem; font-size: 25px; font-weight: 700; border-radius: 15px;">
+                        Realizar reserva
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
           <div class="container" id="preview_publicacion" >
             <div class="row">
               <div class="col">
@@ -386,37 +684,9 @@ parent.appendChild(div);
                     <p class="card-text" id="descripcion_preview" style="text-align: left;">Tiempo de preparación: Preparación: <span id="preparacion_p">{{publicacion.preparacion}} min.</span> y Ejecución: <span id="ejecucion_p">{{publicacion.ejecucion}} min.</span> </p>
                       <p class="card-text" id="descripcion_preview" style="text-align: left;">Abierto de: <span
                         id="desde_preview">{{publicacion.horario_desde}}</span> hasta: <span id="hasta_preview">{{publicacion.horario_hasta}}</span></p>
-                     <div class="col" id="servicio_lugar" >
-                        <label for="formGroupExampleInput">Selecciones a donde desea el servicio</label> 
-                        <input type="radio" class="form-control lugar_serv_" value="A Domicilio" name="lugar_serv_" id=""><label>A Domicilio <span>(Adicional: S/ {{publicacion.costo_domicilio}})</span></label>
-                        <input type="radio" class="form-control lugar_serv_" value="En Local" name="lugar_serv_" id=""><label>En Local</label>
-                      </div>
+                    
 
-                      <div class="col" id="distritos_habilitados" style="display: none;">
-                        <label for="formGroupExampleInput">Seleccione el distrito (local):</label>
-                        {{#distritos_habilitados sucursales publicacion.sucursales}}{{/distritos_habilitados}} 
-                      </div>
-
-                        <div class="col" id="locales_habiles" style="display: none;">
-                        <label for="formGroupExampleInput">Seleccione el local:</label>
-                          <p class="card-text" id="descripcion_preview" style="text-align: left;">
-                      {{#sucursalesdisponibles publicacion.sucursales sucursales}}{{/sucursalesdisponibles}}
-                    <span id="sucursales_p"></span></p>
-                      </div>
-                    <div class="col" id="empleados_" style="display: none;">
-                <p class="card-text" id="descripcion_preview" style="text-align: left;">Empleados en:<br>
-                     {{#empleados_disponibles publicacion.empleados encargados}}{{/empleados_disponibles}}
-                    <span id="sucursales_p"></span></p>
-
-                    </div>                   
-
-
-                      <div class="col" id="dirigido_a" style="display: none;">
-                        <label for="formGroupExampleInput">Indique para quien es el servicio:</label><br>
-                        <input type="radio" class="form-control servicio_para" value="Personal" name="lugar_serv_propio" id=""><label>Personal</label>
-                        <input type="radio" class="form-control servicio_para" value="A Tercero" name="lugar_serv_propio" id=""><label>Tercero</label>
-                      </div>
-
+                      
                   
                       <div  id="servicio_domicilio"  style="display: none;">
                          <label for="formGroupExampleInput">Datos del Servicio</label> 
@@ -459,11 +729,11 @@ input:valid+span:after {
                     <div class="form-row">
                       <div class="col">
                         <label for="formGroupExampleInput">Agenda</label> 
-                        <input type="date" class="form-control" placeholder="Desde" name="fecha" id="fecha_ag">
+                        
                       </div>
                     </div>
                      <div class="form-row">
-                      <div class="" id="disponibles">
+                      <div class="" >
                        
                       </div>
                       <div class="form-row">
@@ -474,12 +744,14 @@ input:valid+span:after {
                         <input type="text" class="form-control" placeholder="Hasta" name="h_hasta" id="h_hasta" hidden>
                       <input type="text" class="form-control" name="id_encargado" id="id_encargado" hidden>
                       <input type="text" class="form-control" name="costo_domicilio" id="id_encargado" hidden>
-                 <button type="submit" class="btn btn-primary ">Comprar</button>
+                 
               </form>
              
             </div>
           </div>
           {{/if}}
+
+
         </div>
       </main>
     </div>

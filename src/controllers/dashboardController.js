@@ -1386,3 +1386,41 @@ console.log(id_agenda)
 res.redirect('/pasarela_publicacion/'+id_publicacion+'/'+id_agenda+'/'+costo_domicilio)
 })
  };
+
+
+ //para el landing aca
+
+ exports.negocio_view = (req, res) => {
+  const id_negocio = req.params.id;
+   let msg = false;
+   var logo =false;
+  if (req.params.msg) {
+    msg = req.params.msg
+    logo = true
+  }
+  
+    Modulo_BD.Sucursalesbyuser(id_negocio).then((respuesta) =>{
+      let sucursales = JSON.parse(respuesta)
+      let principal = []
+
+      for (let i = 0; i < sucursales.length; i++) {
+        if (sucursales[i].tipo == "Principal") {
+          principal.push(sucursales[i])
+        }
+        
+        
+      }
+      console.log(sucursales)
+      console.log(sucursales.encargados)
+       res.render("negocio_view", {
+      pageName: "Mi cuenta",
+      sucursales, 
+      principal,
+      layout: "page-form",
+      //user,
+    });
+    }).catch((err) => {
+      console.log(err);
+    });
+ 
+ };

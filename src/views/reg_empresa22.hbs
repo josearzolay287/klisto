@@ -1,0 +1,294 @@
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+<script>
+  $(function () {
+
+
+  });
+</script>
+
+
+<div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
+  <div>{{#if messages}}
+    {{#showAlerts messages}}
+    {{/showAlerts}}
+    {{/if}}</div>
+
+  <div class="w-full sm:max-w-3xl mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
+    <!---->
+    <form action="/registrar_empresa" method="post" id="registrar_empresa">
+      <center>
+        <img src="https://javierg.mosquedacordova.com/klizto/images/logo_fondo_claro.png" width="140" />
+      </center>
+      <div class="row">
+        <div class="col-lg-12">
+          <!---->
+          <!---->
+          <div class="card">
+            <div class="card-body">
+              <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item active">
+                  <a class="nav-link" id="login-tab" data-toggle="tab" href="#login" role="tab" aria-controls="login"
+                    aria-selected="true">
+                    Inicio de sesión
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="logo-tab" data-toggle="tab" href="#logo" role="tab" aria-controls="logo"
+                    aria-selected="false">
+                    Logo
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="basic-tab" data-toggle="tab" href="#basic" role="tab" aria-controls="basic"
+                    aria-selected="false">
+                    Datos básicos
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="banks-tab" data-toggle="tab" href="#banks" role="tab" aria-controls="banks"
+                    aria-selected="false">
+                    Datos Bancarios
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="employed-tab" data-toggle="tab" href="#employed" role="tab"
+                    aria-controls="employed" aria-selected="false">
+                    Encargado
+                  </a>
+                </li>
+              </ul>
+              <div class="tab-content pl-3 p-1" id="myTabContent">
+                <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
+                  <div class="mt-4">
+                    <label class="block font-medium text-sm text-gray-700" for="email">
+                      <span>
+                        Email
+                      </span>
+                    </label>
+                    <input
+                      class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full"
+                      id="email" type="email" name="email" />
+                  </div>
+                  <div class="mt-4">
+                    <label class="block font-medium text-sm text-gray-700" for="password">
+                      <span>
+                        Contraseña
+                      </span>
+                    </label>
+                    <input
+                      class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full"
+                      id="password" type="password" autocomplete="new-password" name="password" />
+                  </div>
+                  <div class="mt-4">
+                    <label class="block font-medium text-sm text-gray-700" for="password_confirmation">
+                      <span>
+                        Confirmar Contraseña
+                      </span>
+                    </label>
+                    <input
+                      class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full"
+                      id="password_confirmation" type="password" autocomplete="new-password" name="confirmPassword" />
+                  </div>
+                  <!---->
+                  <div class="float-right mt-4 ">
+                    <a class="btn btn-success text-white" id="logo_next">
+                      Siguiente
+                    </a>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="logo" role="tabpanel" aria-labelledby="logo-tab">
+                  <div>
+                    <label class="block font-medium text-sm text-gray-700" ><span>Nombre del negocio</span></label>
+                    <input class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full"
+                      id="name" type="text" name="name_empresa" placeholder="Nombre del negocio"/>
+                  </div>
+                  <div class="mt-4 mb-4">
+                    <center>
+                      <img id="imageSelected" class="shadow mb-5"
+                        src="https://javierg.mosquedacordova.com/klizto/images/ico-image.png" width="300" height="300"
+                        onclick="document.getElementById('profile-img').click();" />
+                      <input
+                        class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+                        id="profile-img" type="file" accept=".png" name="image" style="display: none;" />
+                      <p>
+                        Recomendado: Imagen de mismas
+                        dimensiones. Ejm: 300x300<br>
+                        <span id="resultado"></span>
+                      </p>
+                    </center>
+                    <input type="text" id="profile_img_" class="" name='photo1' hidden>
+                  </div>
+                  <div>
+                    <div class="float-left mt-4">
+                      <a class="btn btn-success text-white" id="login_prev">
+                        Anterior
+                      </a>
+                    </div>
+                    <div class="float-right mt-4">
+                      <a class="btn btn-success text-white" id="basic_next">
+                        Siguiente
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="basic" role="tabpanel" aria-labelledby="basic-tab">
+                  <div>
+                    <label class="block font-medium text-sm text-gray-700" for="direction">
+                      <span>
+                        Departamento
+                      </span>
+                    </label>
+                    <input type="text" id="direction" class="form-control mt-1 block w-full" autocomplete="direction"
+                      name="departamento">
+                  </div>
+                  <div>
+                    <label class="block font-medium text-sm text-gray-700" for="direction">
+                      <span>
+                        Distrito
+                      </span>
+                    </label>
+                    <input type="text" id="direction" class="form-control mt-1 block w-full" autocomplete="direction"
+                      name="distrito">
+                  </div>
+                  <div>
+                    <label class="block font-medium text-sm text-gray-700" for="direction">
+                      <span>
+                        Dirección
+                      </span>
+                    </label>
+                    <textarea id="direction" class="form-control mt-1 block w-full" autocomplete="direction"
+                      name="direccion"></textarea>
+                  </div>
+                  <div>
+                    <label class="block font-medium text-sm text-gray-700" for="name">
+                      <span>
+                        Descripción
+                      </span>
+                    </label>
+                    <textarea id="description" class="form-control mt-1 block w-full" autocomplete="description"
+                      name="descripcion"></textarea>
+                  </div>
+                  <div class="mt-4">
+                    <label class="block font-medium text-sm text-gray-700" for="phone">
+                      <span>
+                        Teléfono
+                      </span>
+                    </label>
+                    <input id="phone" type="number" class="form-control" name="telefono" />
+                  </div>
+                  <div class="float-left mt-4">
+                    <a class="btn btn-success text-white" id="logo_prev">
+                      Anterior
+                    </a>
+                  </div>
+                  <div class="float-right mt-4">
+                    <a class="btn btn-success text-white" id="banks_next">
+                      Siguiente
+                    </a>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="banks" role="tabpanel" aria-labelledby="banks-tab">
+                  <div class="mt-4">
+                    <label class="block font-medium text-sm text-gray-700" for="bank_id">
+                      <span>
+                        Banco
+                      </span>
+                    </label>
+                    <select class="form-control select2" name="bank_id">
+                      <option value="BBVA">
+                        BBVA
+                      </option>
+                      <option value="BCP">
+                        BCP
+                      </option>
+                    </select>
+                  </div>
+                  <div class="mb-4">
+                    <label class="block font-medium text-sm text-gray-700" for="count_bank">
+                      <span>
+                        Número de cuenta
+                      </span>
+                    </label>
+                    <input type="number" id="count_bank" class="form-control" name="cuenta" maxlength="22"  />
+                  </div>
+                  <div class="float-left mt-4">
+                    <a class="btn btn-success text-white" id="basic_prev">
+                      Anterior
+                    </a>
+                  </div>
+                  <div class="float-right mt-4">
+                    <a class="btn btn-success text-white" id="empleados_next">
+                      Siguiente
+                    </a>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="employed" role="tabpanel" aria-labelledby="employed-tab">
+                  <div>
+                    <label class="block font-medium text-sm text-gray-700" for="name_employed">
+                      <span>
+                        Nombre
+                      </span>
+                    </label>
+                    <input
+                      class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full"
+                      type="text" id="name_employed" name="nombre_empleado" />
+                  </div>
+                  <div>
+                    <label class="block font-medium text-sm text-gray-700" for="last_name_employed">
+                      <span>
+                        Apellido
+                      </span>
+                    </label>
+                    <input
+                      class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full"
+                      type="text" id="last_name_employed" name="apellido_empleado" />
+                  </div>
+                  <div>
+                    <label class="block font-medium text-sm text-gray-700" for="personal_email">
+                      <span>
+                        Correo(Personal)
+                      </span>
+                    </label>
+                    <input
+                      class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full"
+                      type="text" id="personal_email" name="correo_empleado" />
+                  </div>
+                  <div>
+                    <label class="block font-medium text-sm text-gray-700" for="phone_employed">
+                      <span>
+                        Teléfono(Personal)
+                      </span>
+                    </label>
+                    <input type="text" id="phone_employed" class="form-control" name="telefono_empleado" />
+                  </div>
+                  <div>
+                    <div class="float-left mt-4">
+                      <a class="btn btn-success text-white" id="banks_prev">
+                        Anterior
+                      </a>
+                    </div>
+                    <div class="float-right mt-4">
+                      <button type="submit"
+                        class="items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition btn btn-success text-white">
+                        Registrar
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="items-center mt-4">
+        <center>
+          <a class="underline text-sm text-gray-600 hover:text-gray-900" href="/login">
+            Ya está registrado?
+          </a>
+        </center>
+      </div>
+    </form>
+  </div>
+</div>
+{{> footer }}

@@ -178,7 +178,8 @@ router.get('/confirmar_miscompras/:id/:estado/:billetera', authController.authen
 
 
 
-
+//PARA EL LANDGIN ACA
+router.get('/negocios/:id', dashboardController.negocio_view);
 
 
 
@@ -219,18 +220,6 @@ router.get('/mis_retiros', authController.authenticatedUser, walletController.re
 
 
 
-//PAGO PAYPAR PASERALA
-router.post('/my-api/create-payment/', authController.authenticatedUser, paypal.crearpago);
-router.post('/my-api/execute-payment/', authController.authenticatedUser, paypal.procesar);
-
-//RECARGAR SALDO
-router.post('/recargar_mi_saldo', authController.authenticatedUser, mercadopago.pasarela);
-router.post('/create-order/:token/:product/:amount',  paypal.crearOrden);
-router.post('/handle-approve/:id/:token/:product/:amount/:id_user/:modo',  paypal.aprobarOrden);
-router.post('/handle-approve/:id/:token/:product/:amount/:id_user',  paypal.aprobarOrden);
-
-
-router.get('/backstore_sell/:archivo/:id_gate/:user_id/:costo/:tipo/:correo', mercadopago.pasarela);
 
 
 

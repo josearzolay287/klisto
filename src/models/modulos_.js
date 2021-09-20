@@ -75,7 +75,9 @@ module.exports = {
         }, include: [
           {
             association: Sucursales.Encargados,
-          },
+          },{
+            association: Sucursales.Usuarios,
+          }
 
         ],
       })

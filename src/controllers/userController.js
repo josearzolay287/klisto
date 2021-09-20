@@ -81,7 +81,7 @@ exports.formCreateUser_client = (req, res) => {
   });
 };
 exports.formCreateUser_empres = (req, res) => {
-  res.render("reg_empresa copy", {
+  res.render("reg_empresa", {
     pageName: "Registrate",
     layout: "page-form",
   });
@@ -129,7 +129,7 @@ exports.createUser = async (req, res) => {
 };
 
 exports.createUser_client = async (req, res) => {
-  const { name_client,  email_client, password, confirmPassword, bank_id,cuenta_num } = req.body;
+  const { name_client,  email_client, password, confirmPassword, } = req.body;
 
   // La contraseña y cofirmar contraseña no son iguales
   if (password !== confirmPassword) {
@@ -143,7 +143,7 @@ exports.createUser_client = async (req, res) => {
   }
   try {
     await Usuarios.create({
-      name: name_client, email: email_client, password: password, banco: bank_id,cuenta: cuenta_num, tipo: 'Cliente'
+      name: name_client, email: email_client, password: password, tipo: 'Cliente'
     });
 
     res.redirect("/login");
