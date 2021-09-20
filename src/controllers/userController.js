@@ -81,7 +81,7 @@ exports.formCreateUser_client = (req, res) => {
   });
 };
 exports.formCreateUser_empres = (req, res) => {
-  res.render("reg_empresa", {
+  res.render("reg_empresa copy", {
     pageName: "Registrate",
     layout: "page-form",
   });
