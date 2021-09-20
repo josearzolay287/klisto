@@ -250,9 +250,9 @@ exports.dashboard = (req, res) => {
   const { id_usuario,departamento,
     distrito,
     direccion,
-    telefono,nombre_local,distritos_atendidos } = req.body;
+    telefono,nombre_local,distritos_atendidos,dias_laborables,  desde, hasta } = req.body;
 
-   Modulo_BD.guardar_sucursal(id_usuario,departamento, distrito,direccion,telefono,nombre_local,distritos_atendidos).then((respuesta) =>{
+   Modulo_BD.guardar_sucursal(id_usuario,departamento, distrito,direccion,telefono,nombre_local,distritos_atendidos,dias_laborables,  desde, hasta).then((respuesta) =>{
     
      console.log(respuesta)
       res.redirect('/minegocio')
@@ -291,6 +291,7 @@ if (tipo == "Principal") {
      let encargados = sucursales.encargados
      console.log(sucursales)
 
+     let distritos = (sucursales.distritos).split(',')
       res.render("editar_suc_enc", {
      pageName: "Mi cuenta",
      dashboardPage: true,
@@ -298,6 +299,7 @@ if (tipo == "Principal") {
      sucursales,
      encargados,
      logo:true,
+     distritos,
      sucursal_edit:true, admin
    });
 
@@ -306,12 +308,15 @@ if (tipo == "Principal") {
 
  exports.guardar_editar_sucursal = (req, res) => {
   const user = res.locals.user;
+  console.log(req.body)
+  
   const { id_sucursal,departamento,
     distrito,
     direccion,
-    telefono, nombre_local, distritos_atendidos } = req.body;
+    telefono, nombre_local, distritos_atendidos, dias_laborables,  desde, hasta} = req.body;
 
-   Modulo_BD.guardar_editar_sucursal(id_sucursal,departamento, distrito,direccion,telefono, nombre_local, distritos_atendidos).then((respuesta) =>{
+
+   Modulo_BD.guardar_editar_sucursal(id_sucursal,departamento, distrito,direccion,telefono, nombre_local, distritos_atendidos, dias_laborables,  desde, hasta).then((respuesta) =>{
     
      console.log(respuesta)
      let msg ="Se actualizó con éxito la sucursal indicada"

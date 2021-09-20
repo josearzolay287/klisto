@@ -42,13 +42,71 @@
                     </div>
                     <div class="form-group">
                       <label>Telefono</label>
-                      <input id="last_name" type="text" name="telefono"  class="form-control" required value="{{sucursales.telefono}}"/>
+                        <input id="last_name" type="text" name="telefono"  class="form-control" required value="{{sucursales.telefono}}"/>
                       </div>
                       <div class="form-group">
                       <label>Qué distritos atiende? (Favor separar por coma (,) </label>
-                      <input id="last_name" type="text" name="distritos_atendidos"  placeholder="Ej.: Miraflores, San Borja,etc" class="form-control" required value="{{sucursales.distritos}}"/>
+                      <!--<input id="last_name" type="text" name="distritos_atendidos"  placeholder="Ej.: Miraflores, San Borja,etc" class="form-control" required value="{{sucursales.distritos}}"/>-->
+                      <select class="select2 form-select" id="select2-multiple2" multiple name="distritos_atendidos">
+                                                <optgroup label="Distritos">
+                                                  {{#each distritos as |dist i|}}
+                                                    <option value="{{dist}}" selected>{{dist}}</option>
+                                                  {{/each}}
+                                                    <option value="Cercado de Lima">Cercado de Lima</option>
+                                                    <option value="Ate">Ate</option>
+                                                    <option value="Comas">Comas</option>
+                                                    <option value="Barranco">Barranco</option>
+                                                    <option value="Breña">Breña</option>
+                                                    <option value="Comas">Comas</option>
+                                                    <option value="Chorrillos">Chorrillos</option>
+                                                    <option value="El Agustino">El Agustino</option>
+                                                    <option value="Jesús María">Jesús María</option>
+                                                    <option value="La Molina">La Molina</option>
+                                                    <option value="La Victoria">La Victoria</option>
+                                                    <option value="Lince">Lince</option>
+                                                    <option value="Magdalena del Mar">Magdalena del Mar</option>
+                                                    <option value="Miraflores">Miraflores</option>
+                                                    <option value="Pueblo Libre">Pueblo Libre</option>
+                                                    <option value="Puente Piedra">Puente Piedra</option>
+                                                    <option value="Rimac">Rimac</option>
+                                                    <option value="San Isidro">San Isidro</option>
+                                                    <option value="Independencia">Independencia</option>
+                                                    <option value="San Juan de Miraflores">San Juan de Miraflores</option>
+                                                    <option value="San Luis">San Luis</option>
+                                                    <option value="San Martin de Porres">San Martin de Porres</option>
+                                                    <option value="San Miguel">San Miguel</option>
+                                                    <option value="Santiago de Surco">Santiago de Surco</option>
+                                                    <option value="Surquillo">Surquillo</option>
+                                                    <option value="Villa María del Triunfo">Villa María del Triunfo</option>
+                                                    <option value="San Juan de Lurigancho">San Juan de Lurigancho</option>
+                                                    <option value="Santa Rosa">Santa Rosa</option>
+                                                    <option value="Los Olivos">Los Olivos</option>
+                                                    <option value="San Borja">San Borja</option>
+                                                    <option value="Villa El Savador">Villa El Savador</option>
+                                                    <option value="Santa Anita">Santa Anita</option>
+                                                </optgroup>                                                
+                                            </select>
                       </div>
-
+                      <div class="form-group">
+                                            <label class="" for="select2-multiple">Seleccione los dias de trabajo</label>
+                                            <select class="select2 form-select" id="select2-multiple" multiple name="dias_laborables">
+                                                <optgroup label="Días">
+                                                    <option value="Lunes">Lunes</option>
+                                                    <option value="Martes">Martes</option>
+                                                    <option value="Miercoles">Miercoles</option>
+                                                    <option value="Jueves">Jueves</option>
+                                                    <option value="Viernes">Viernes</option>
+                                                    <option value="Sabado">Sabado</option>
+                                                    <option value="Domingo">Domingo</option>
+                                                </optgroup>                                                
+                                            </select>
+                                        </div>
+                      <div class="col">
+                      Hoario  Desde <input type="time" class="form-control" placeholder="Desde" name="desde" id="desde">
+                      </div>
+                      <div class="col">
+                       Hasta <input type="time" class="form-control" placeholder="Hasta" name="hasta" id="hasta">
+                      </div>
                     <center><button class="btn btn-success mt-4" type="submit"> Guardar </button></center>
                   </div>
                 </form>
@@ -153,7 +211,63 @@
                       <input id="last_name" type="text" name="telefono"  class="form-control" required /></div>
                       <div class="form-group">
                       <label>Qué distritos atiende? (Favor separar por coma (,) </label>
-                      <input id="last_name" type="text" name="distritos_atendidos"  placeholder="Ej.: Miraflores, San Borja,etc" class="form-control" required />
+                      <!--<input id="last_name" type="text" name="distritos_atendidos"  placeholder="Ej.: Miraflores, San Borja,etc" class="form-control" required value="{{sucursales.distritos}}"/>-->
+                      <select class="select2 form-select" id="select2-multiple" multiple name="distritos_atendidos">
+                                                <optgroup label="Días">
+                                                    <option value="Cercado de Lima">Cercado de Lima</option>
+                                                    <option value="Ate">Ate</option>
+                                                    <option value="Comas">Comas</option>
+                                                    <option value="Barranco">Barranco</option>
+                                                    <option value="Breña">Breña</option>
+                                                    <option value="Comas">Comas</option>
+                                                    <option value="Chorrillos">Chorrillos</option>
+                                                    <option value="El Agustino">El Agustino</option>
+                                                    <option value="Jesús María">Jesús María</option>
+                                                    <option value="La Molina">La Molina</option>
+                                                    <option value="La Victoria">La Victoria</option>
+                                                    <option value="Lince">Lince</option>
+                                                    <option value="Magdalena del Mar">Magdalena del Mar</option>
+                                                    <option value="Miraflores">Miraflores</option>
+                                                    <option value="Pueblo Libre">Pueblo Libre</option>
+                                                    <option value="Puente Piedra">Puente Piedra</option>
+                                                    <option value="Rimac">Rimac</option>
+                                                    <option value="San Isidro">San Isidro</option>
+                                                    <option value="Independencia">Independencia</option>
+                                                    <option value="San Juan de Miraflores">San Juan de Miraflores</option>
+                                                    <option value="San Luis">San Luis</option>
+                                                    <option value="San Martin de Porres">San Martin de Porres</option>
+                                                    <option value="San Miguel">San Miguel</option>
+                                                    <option value="Santiago de Surco">Santiago de Surco</option>
+                                                    <option value="Surquillo">Surquillo</option>
+                                                    <option value="Villa María del Triunfo">Villa María del Triunfo</option>
+                                                    <option value="San Juan de Lurigancho">San Juan de Lurigancho</option>
+                                                    <option value="Santa Rosa">Santa Rosa</option>
+                                                    <option value="Los Olivos">Los Olivos</option>
+                                                    <option value="San Borja">San Borja</option>
+                                                    <option value="Villa El Savador">Villa El Savador</option>
+                                                    <option value="Santa Anita">Santa Anita</option>
+                                                </optgroup>                                                
+                                            </select>
+                      </div>
+                      <div class="form-group">
+                                            <label class="" for="select2-multiple">Seleccione los dias de trabajo</label>
+                                            <select class="select2 form-select" id="select2-multiple" multiple name="dias_laborables">
+                                                <optgroup label="Días">
+                                                    <option value="Lunes">Lunes</option>
+                                                    <option value="Martes">Martes</option>
+                                                    <option value="Miercoles">Miercoles</option>
+                                                    <option value="Jueves">Jueves</option>
+                                                    <option value="Viernes">Viernes</option>
+                                                    <option value="Sabado">Sabado</option>
+                                                    <option value="Domingo">Domingo</option>
+                                                </optgroup>                                                
+                                            </select>
+                                        </div>
+                                         <div class="col">
+                      Hoario  Desde <input type="time" class="form-control" placeholder="Desde" name="desde" id="desde">
+                      </div>
+                      <div class="col">
+                       Hasta <input type="time" class="form-control" placeholder="Hasta" name="hasta" id="hasta">
                       </div>
                     <center><button class="btn btn-success mt-4" type="submit"> Guardar </button></center>
                   </div>

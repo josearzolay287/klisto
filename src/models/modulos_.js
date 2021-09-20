@@ -393,10 +393,12 @@ module.exports = {
     });
   },
 
-  guardar_editar_sucursal(id_sucursal,departamento, distrito,direccion,telefono,nombre_local, distritos_atendidos){
+  guardar_editar_sucursal(id_sucursal,departamento, distrito,direccion,telefono,nombre_local, distritos_atendidos, dias_laborables,  desde, hasta){
+    let dist = distritos_atendidos.toString()
+    let dias_laborablesS = dias_laborables.toString()
     return new Promise((resolve, reject) => {
       Sucursales.update({
-        departamento: departamento,distrito: distrito, direccion: direccion,  telefono: telefono,nombre: nombre_local, distritos: distritos_atendidos
+        departamento: departamento,distrito: distrito, direccion: direccion,  telefono: telefono,nombre: nombre_local, distritos: dist, dias_laborables: dias_laborablesS, desde: desde,  hasta: hasta
       },{
         where: {
           id: id_sucursal,
@@ -407,14 +409,17 @@ module.exports = {
         
       })
         .catch((err) => {
-          ////console.log(err);
+          console.log(err);
+          reject(err)
         });
     });
   },
-  guardar_sucursal(id_usuario,departamento, distrito,direccion,telefono,nombre_local,distritos_atendidos){
+  guardar_sucursal(id_usuario,departamento, distrito,direccion,telefono,nombre_local,distritos_atendidos, dias_laborables,  desde, hasta){
+    let dist = distritos_atendidos.toString()
+    let dias_laborablesS = dias_laborables.toString()
     return new Promise((resolve, reject) => {
       Sucursales.create({
-        departamento: departamento, distrito:distrito,direccion:direccion,telefono:telefono,tipo:'Sucursal',nombre: nombre_local, distritos:distritos_atendidos ,usuarioId: id_usuario
+        departamento: departamento, distrito:distrito,direccion:direccion,telefono:telefono,tipo:'Sucursal',nombre: nombre_local, distritos:dist ,usuarioId: id_usuario, dias_laborables: dias_laborablesS, desde: desde,  hasta: hasta
       }).then((data_encargado) =>{
         let datas = JSON.stringify(data_encargado);
         resolve(datas);

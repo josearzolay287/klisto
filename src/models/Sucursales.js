@@ -42,7 +42,18 @@ const Sucursales = db.define('sucursales', {
 		type: DataTypes.TEXT,
 		allowNull: true,
 	},
-	
+	dias_laborables: {
+		type: DataTypes.TEXT,
+		allowNull: true,
+	},
+	desde: {
+		type: DataTypes.TEXT,
+		allowNull: true,
+	},
+	hasta: {
+		type: DataTypes.TEXT,
+		allowNull: true,
+	},
 	
 	
 });
