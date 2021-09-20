@@ -9,7 +9,8 @@
     .header{
         width: 100%;
         height: 100vh;
-        background-color:#06cc60 ;
+        max-height: 1080px;
+        background-image:url("../assets/img/header.JPG") ;
         position: relative;
     }
     .menu-front .bg-light {
@@ -73,6 +74,7 @@
         border-radius: 20px;
         text-decoration: none;
         color: white;
+        font-weight: 600;
     }
     .boton-titulo:hover{
         background-color: #f7c400;
@@ -92,30 +94,39 @@
     .cont-servicios img {
     height: 80px;
     }
+    .cont-servicios p{
+        font-size: 10px;
+        margin:0;
+    }
     .servicios{
         background-color: #f2f2f2;
     }
     .cont-categorias{
-        width: 70%;
+        width: 85%;
         padding: 1.5rem;
         background-color: #c1f2d7;
         border-radius: 25px;
         margin: auto;
     }
     .cont-categorias img{
-        width: 70%;
+        width: 60%;
+        margin-bottom: 2rem;
+        margin-top: 2rem;
     }
-    .cont-categorias h2{
+    .cont-categorias h3{
         margin:0;
         padding: 0;
         font-weight: bold;
+        margin-bottom: 1rem;
     }
     .categorias h1{
         font-weight: bold;
-        font-size: 6rem;
+        font-size: 4rem;
+        margin-top: 8rem;
     }
     .contador{
         background-color: #06cc60;
+        margin-top: 10rem;
     }
     .contador h1{
         text-align: center;
@@ -130,7 +141,7 @@
         font-weight: 500;
     }
     .footer{
-        background-color: #000823;
+        background-image: url("../assets/img/footer.jpg");
         height: 500px;
         border-radius: 50px 50px 0px 0px;
         -moz-border-radius: 50px 50px 0px 0px;
@@ -138,11 +149,17 @@
         border: 0px solid #000000;
         position: relative;
     }
+    @media (max-width: 1440px){
+        .footer{
+            background-image: url("../assets/img/footer-2.jpg");
+            background-size: cover;
+        }
+    }
     .img-footer{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: calc(500px - 75px);
+    height: calc(500px - 75px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     }
     .footer img{
         width: 250px;
@@ -164,7 +181,7 @@
         font-size: 1.6rem;
     }
     .mas-nuevo h1{
-        font-size: 5rem;
+        font-size: 4rem;
         font-weight: bold;
     }
     .card-mas-nuevo{
@@ -184,12 +201,13 @@
         padding: 1rem;
         position: relative;
     }
-    .cont-card h3{
+    .cont-card h5{
         font-weight: bold;
         padding-bottom: .7rem;
     }
     .cont-card span{
         font-size: 14px;
+        font-weight: 600;
     }
     .precio-buscador span{
         color: #06cc60;
@@ -251,7 +269,7 @@
     position: absolute;
     background-size: cover;
     left: 10%;
-    top: 15%;
+    top: 10%;
     transform: rotate(-10deg);
     opacity: .3;
     }
@@ -272,13 +290,17 @@
     }
     .cont-servicios h3{
         color: white;
+    font-weight: bold;
+    margin: 0;
     }
     .nav-home{
         font-size: 18px;
     }
     .nav-home li a{
-border-bottom: 2px solid #d7d7d7;
+    border-bottom: 2px solid #d7d7d7;
     text-transform: uppercase;
+    color: #d7d7d7;
+    font-weight: 600;
     }
         .nav-home li a:hover{
 border-bottom: 2px solid #06cc60;
@@ -289,25 +311,56 @@ border-bottom: 2px solid #06cc60;
         color: #06cc60;
         border-bottom: 2px solid #06cc60;
     }
+.servicios::before {
+    content: '';
+    background-image: url(../assets/img/header-curve.png);
+    background-size: cover;
+    width: 100%;
+    max-width: 1920px;
+    height: 150px;
+    position: absolute;
+    top: -149px;
+    left: 0;
+}
+.contador:before{
+    content: '';
+    background-image: url("../assets/img/counte-up.png");
+        background-size: cover;
+    width: 100%;
+    max-width: 1920px;
+    height: 150px;
+    position: absolute;
+    top: -149px;
+    left: 0;
+}
+.contador::after{
+        content: '';
+    background-image: url("../assets/img/counte-bottom.png");
+        background-size: cover;
+    width: 100%;
+    max-width: 1920px;
+    height: 150px;
+    position: absolute;
+    bottom: -149px;
+    left: 0;
+}
   </style>
 
 
 {{#if home}}
 
-<div style="width: 100%; position: absolute; margin-top: -3rem;">
-<img src="../assets/img/header-curve.png" alt="" class="img-fluid"></div>
 <div class="main">
     <section class="servicios pb-5" style="padding-top: 8rem;">
         <div class="container">
             <div class="grid-services">
                 <div>
-                    <div class="cont-servicios" style="margin-top: -3rem; background-image: url('../assets/img/cuadro-amarillo.png'); background-size: cover; min-width: 330px; min-height: 200px; display: flex; align-items: center;">
-                        <div class="contianer" style="margin-top: 10px;">
+                    <div class="cont-servicios" style="margin-top: -3rem; background-image: url('../assets/img/cuadro-amarillo.png'); background-size: cover; min-width: 330px; min-height: 170px; display: flex; align-items: center;">
+                        <div class="contianer" style="margin-top: 10px; margin-left:-15px;">
                             <div class="row">
                                 <div class="col-4" style="padding: 0px !important;">
                                     <img src="../assets/img/ubicacion.svg" alt="" style="float: right;">
                                 </div>
-                                <div class="col-8">
+                                <div class="col-8" style="padding-left: 0px;">
                                     <h3>Buscar</h3>
                                     <p>
                                         Encuentra el servicio que necesitas de una manera fácil y rápida
@@ -318,8 +371,8 @@ border-bottom: 2px solid #06cc60;
                     </div>
                 </div>
                 <div>
-                    <div class="cont-servicios" style="background-image: url('../assets/img/cuadro-verde.png'); background-size: cover; margin-top: 7rem; min-width: 330px; min-height: 200px; display: flex; align-items: center;">
-                        <div class="contianer">
+                    <div class="cont-servicios" style="background-image: url('../assets/img/cuadro-verde.png'); background-size: cover; margin-top: 7rem; min-width: 330px; min-height: 170px; display: flex; align-items: center;">
+                        <div class="contianer" >
                             <div class="row">
                                 <div class="col-4" style="padding: 0px !important;">
                                     <img src="../assets/img/calendario.svg" alt="" style="float: right;">
@@ -335,7 +388,7 @@ border-bottom: 2px solid #06cc60;
                     </div>
                 </div>
                 <div>
-                    <div class="cont-servicios" style="    background-image: url('../assets/img/cuadro-amarillo.png'); background-size: cover; margin-top: -5rem; min-width: 330px; min-height: 200px; display: flex; justify-content: center; align-items: center;">
+                    <div class="cont-servicios" style="    background-image: url('../assets/img/cuadro-amarillo.png'); background-size: cover; margin-top: -5rem; min-width: 330px; min-height: 170px; display: flex; justify-content: center; align-items: center;">
                         <div class="contianer">
                             <div class="row">
                                 <div class="col-4" style="padding: 0px !important;">
@@ -358,50 +411,47 @@ border-bottom: 2px solid #06cc60;
         <div class="container">
             <div class="row">
                 <div class="col-12 pb-5">
-                    <h1 class="text-center mt-5 mb-5">Categorias</h1>
+                    <h1 class="text-center mb-5">Categorías</h1>
                 </div>
                 <div class="col-md-4 pb-5">
                     <div class="cont-categorias">
                         <center><img src="../assets/img/rostro.svg" alt=""></center>
-                        <h2 class="text-center">Rostro</h2>
+                        <h3 class="text-center">Rostro</h3>
                     </div>
                 </div>
                 <div class="col-md-4 pb-5">
                     <div class="cont-categorias">
                         <center><img src="../assets/img/cuerpo-entero.svg" alt=""></center>
-                        <h2 class="text-center">Cuerpo entero</h2>
+                        <h3 class="text-center">Cuerpo entero</h3>
                     </div>
                 </div>
                 <div class="col-md-4 pb-5">
                     <div class="cont-categorias">
                         <center><img src="../assets/img/manos.svg" alt=""></center>
-                        <h2 class="text-center">Manos</h2>
+                        <h3 class="text-center">Manos</h3>
                     </div>
                 </div>
                 <div class="col-md-4 pb-5">
                     <div class="cont-categorias">
                         <center><img src="../assets/img/cabello.svg" alt=""></center>
-                        <h2 class="text-center">Cabello</h2>
+                        <h3 class="text-center">Cabello</h3>
                     </div>
                 </div>
                 <div class="col-md-4 pb-5">
                     <div class="cont-categorias">
                         <center><img src="../assets/img/piernas.svg" alt=""></center>
-                        <h2 class="text-center">Piernas</h2>
+                        <h3 class="text-center">Piernas</h3>
                     </div>
                 </div>
                 <div class="col-md-4 pb-5">
                     <div class="cont-categorias">
                         <center><img src="../assets/img/pies.svg" alt=""></center>
-                        <h2 class="text-center">Pies</h2>
+                        <h3 class="text-center">Pies</h3>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-        <div style="width: 100%;">
-        <img src="../assets/img/counte-up.png" alt="" class="img-fluid">
-    </div>
     <section class="contador pt-5 pb-5">
         <div class="container">
             <div class="row">
@@ -420,9 +470,6 @@ border-bottom: 2px solid #06cc60;
             </div>
         </div>
     </section>
-        <div style="width: 100%;">
-        <img src="../assets/img/counte-bottom.png" alt="" class="img-fluid">
-    </div>
     <section class="mas-nuevo pt-5 pb-5">
         <div class="container">
             <div class="row">
@@ -463,7 +510,7 @@ border-bottom: 2px solid #06cc60;
                         </div>
                         <div class="cont-card">
                             <span>{{categoria}}</span>
-                            <h3>{{titulo}}</h3>
+                            <h5>{{titulo}}</h5>
                             <div class="precio-buscador">
                                 <span>
                                     S/ {{precio}}
