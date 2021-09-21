@@ -121,10 +121,13 @@
     </style>
 
 <script>
-  function select_hora(hora_desde, hora_hasta){
-    document.getElementById('h_desde').value= hora_desde  
-    document.getElementById('h_hasta').value= hora_hasta  
-    console.log(hora_desde+'-'+hora_hasta)
+  function select_hora(hora_desde, hora_hasta, id){
+    $(`.select_hora `).removeClass('active')
+    document.getElementById('h_desde').value= hora_desde; 
+    document.getElementById('h_hasta').value= hora_hasta; 
+     console.log(id)
+    $(`#${id}`).addClass('active')
+    
   }
 
   $(function () {
@@ -280,7 +283,7 @@ hora_d = moment(h + "00", "hmm").format('hh:mm');
  
 }else{
   hora_ = (sumah).replace(':', '');
-let siguiente_minuto = (parseInt(hora_)+1)
+let siguiente_minuto = (parseInt(hora_))
 hora_d = moment(siguiente_minuto, "hmm").format('hh:mm');
 sumah = (moment(siguiente_minuto, "hmm").add(tiempo, 'm').format('hh:mm'))
 
@@ -291,10 +294,11 @@ sumah = (moment(siguiente_minuto, "hmm").add(tiempo, 'm').format('hh:mm'))
   var found = fecha_agenda_ar.find(element => element.hora_cita_desde == hora_d);
    if (found == null ){
 var div = document.createElement("div");
-var button = document.createElement("button");
+var button = document.createElement("a");
 button.innerHTML = hora_d + '-'+sumah;
-button.setAttribute('class', 'btn btn-primary active select_hora');
-button.setAttribute('onclick', 'select_hora("'+hora_d+'", "'+sumah+'")');
+button.setAttribute('class', 'btn btn-primary select_hora');
+button.setAttribute('id', 'hora'+i);
+button.setAttribute('onclick', 'select_hora("'+hora_d+'","'+sumah+'","hora'+i+'")');
 div.setAttribute('class', 'col-4');
 div.appendChild(button);
 
@@ -387,16 +391,26 @@ $('#duracion_total').text(tiempo+ ' min')
         if ($('#distritos_habilitados').is(':visible')){
          if (valor =="Personal"){
            $('input[name="nombre_del_tercero"]').val('{{user.name}}')
+           $('input[name="distrito_tercero"]').val('')
+           $('input[name="correo_tercero"]').val('')
          }else{
            $('input[name="nombre_del_tercero"]').val('')
+             $('input[name="distrito_tercero"]').val('')
+           $('input[name="correo_tercero"]').val('')
          }
         $('#servicio_domicilio').removeAttr('style')
         $('#domicilio_').removeAttr('style')
       }else{
          if (valor =="Personal"){
            $('input[name="nombre_del_tercero"]').val('{{user.name}}')
+           $('input[name="distrito_tercero"]').val('{{user.distrito}}')
+           $('input[name="correo_tercero"]').val('{{user.email}}')
+           
+
          }else{
            $('input[name="nombre_del_tercero"]').val('')
+           $('input[name="distrito_tercero"]').val('')
+           $('input[name="correo_tercero"]').val('')
          }
         $('#servicio_domicilio').removeAttr('style')
 
@@ -471,7 +485,7 @@ $('#duracion_total').text(tiempo+ ' min')
                     </button>
 
                     <div class="cat-gallery-gallery-presentation pt-3">
-                        <strong>Categorías:</strong> <span>Cabello, Cabeza</span>
+                        <strong>Categorías:</strong> <span>{{publicacion.categoria}}</span>
                     </div>
 
                 </div>
@@ -483,15 +497,7 @@ $('#duracion_total').text(tiempo+ ' min')
         <div class="container">
           <input type="radio" class="lugar_serv_" value="A Domicilio" name="lugar_serv_" id=""><label>A Domicilio <span></span></label>
                         <input type="radio" class="lugar_serv_" value="En Local" name="lugar_serv_" id=""><label>En Local</label>
-            <div class="row">
-                <div class="col-12">
-                    <h1>
-                        <strong>
-                        Reservar
-                        </strong>
-                    </h1>
-                </div>
-                <div class="col" id="distritos_habilitados" style="display: none;">
+                           <div class="col" id="distritos_habilitados" style="display: none;">
                         <label for="formGroupExampleInput">Seleccione el distrito (local):</label>
                         {{#distritos_habilitados sucursales publicacion.sucursales}}{{/distritos_habilitados}} 
                       </div>
@@ -502,51 +508,62 @@ $('#duracion_total').text(tiempo+ ' min')
                       {{#sucursalesdisponibles publicacion.sucursales sucursales}}{{/sucursalesdisponibles}}
                     <span id="sucursales_p"></span></p>
                       </div>
-                    <div class="col" id="empleados_" style="display: none;">
+                    <!--<div class="col" id="empleados_" style="display: none;">
                 <p class="card-text" id="descripcion_preview" style="text-align: left;">Empleados en:<br>
                      {{#empleados_disponibles publicacion.empleados encargados}}{{/empleados_disponibles}}
                     <span id="sucursales_p"></span></p>
 
-                    </div>                   
+                    </div>   -->               
 
 
                       <div class="col" id="dirigido_a" style="display: none;">
                         <label for="formGroupExampleInput">Indique para quien es el servicio:</label><br>
-                        <input type="radio" class="form-control servicio_para" value="Personal" name="lugar_serv_propio" id=""><label>Personal</label>
-                        <input type="radio" class="form-control servicio_para" value="A Tercero" name="lugar_serv_propio" id=""><label>Tercero</label>
+                        <input type="radio" class="servicio_para" value="Personal" name="lugar_serv_propio" id=""><label>Personal</label>
+                        <input type="radio" class="servicio_para" value="A Tercero" name="lugar_serv_propio" id=""><label>Tercero</label>
                       </div>
+            <div class="row">
+                <div class="col-12">
+                    <h1>
+                        <strong>
+                        Reservar
+                        </strong>
+                    </h1>
+                </div>
+             
 
                 <div class="col-md-6 pt-5">
-                    <form>
+                  <div class="form-group" id="empleados_" style="display: none;">
+                            <label for="">Escoger trabajador:*</label>
+                            {{#empleados_disponibles publicacion.empleados encargados}}{{/empleados_disponibles}}
+                    <span id="sucursales_p"></span></p>
+                        </div>
                         <div class="form-group">
                           <label for="">Distrito:*</label>
-                          <input type="text" class="form-control" id="">
+                          <input type="text" class="form-control" id="" name="distrito_tercero">
                         </div>
                         <div class="form-group">
                           <label for="">Dirección:*</label>
-                          <input type="text" class="form-control" id="">
+                          <input type="text" class="form-control" id="" name="direccion_tercero">
                         </div>
-                        <div class="form-group">
-                            <label for="">Escoger trabajador:*</label>
-                            <input type="text" class="form-control" id="">
-                        </div>
+                        
                         <div class="form-group">
                             <label for="">Nombre y apellido:*</label>
-                            <input type="text" class="form-control" id="">
+                            <input type="text" class="form-control" id="" name="nombre_del_tercero">
+
+
                         </div>
                         <div class="form-group">
                             <label for="">Correo:*</label>
-                            <input type="text" class="form-control" id="">
+                            <input type="text" class="form-control" id="" name="correo_tercero">
                         </div>
                         <div class="form-group">
                             <label for="">Celular:*</label>
-                            <input type="text" class="form-control" id="">
+                            <input type="text" class="form-control" id="" name="telefono_tercero">
                         </div>
                         <div class="form-group">
                             <label for="">Agregar comentario:</label>
-                            <textarea class="form-control" id="" rows="3"></textarea>
+                            <textarea class="form-control" id="" rows="3" name="comentario_p"></textarea>
                           </div>
-                    </form>
                 </div>
                 <div class="col-md-6 pt-5">
                     <p>Escoger fecha: <input type="date" class="form-control" placeholder="Desde" name="fecha" id="fecha_ag"></p>
@@ -690,10 +707,10 @@ $('#duracion_total').text(tiempo+ ' min')
                   
                       <div  id="servicio_domicilio"  style="display: none;">
                          <label for="formGroupExampleInput">Datos del Servicio</label> 
-                        <input type="text" class="form-control" placeholder="Nombre" name="nombre_del_tercero" id="">
+                        <input type="text" class="form-control" placeholder="Nombre"  id="">
                         <div id="domicilio_"  style="display: none;">
-                        <input type="text" class="form-control" placeholder="Teléfono" name="telefono_tercero" id="">
-                        <input type="text" class="form-control" placeholder="Dirección" name="direccion_tercero" id="">
+                        <input type="text" class="form-control" placeholder="Teléfono"  id="">
+                        <input type="text" class="form-control" placeholder="Dirección"  id="">
                         </div>
                         
 
