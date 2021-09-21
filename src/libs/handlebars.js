@@ -259,6 +259,17 @@ module.exports = {
 
 					 return estado;
 			},
+			Titulo:(titulo) => {
+				const desc = titulo.length;
+				const MaxDesc = 17;
+				var out = "";
+				if (desc > MaxDesc) {
+					out += `${titulo.substring(0,17)}...`
+				}else{
+					out += `${titulo}`
+				}
+				return out;
+			},
 
 			ColorSucursal: (sucursal) => {
 				var color = "";
