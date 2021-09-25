@@ -1360,11 +1360,19 @@ console.log(sucursales)
      publicacion,usuario,
      sucursales,fechas_agenda, encargados
    });
-  })
-})
-})
+  }).catch((err) => {
+    console.log(err);
+  });
+}).catch((err) => {
+  console.log(err);
+});
+}).catch((err) => {
+  console.log(err);
+});
   
-})
+}).catch((err) => {
+  console.log(err);
+});
  };
 
  exports.guardar_agenda = (req, res) => {
@@ -1411,16 +1419,25 @@ res.redirect('/pasarela_publicacion/'+id_publicacion+'/'+id_agenda+'/'+costo_dom
         
       }
       console.log(sucursales)
-      console.log(sucursales.encargados)
+      console.log(sucursales[0].usuarioId)
+      Modulo_BD.publicaciones(sucursales[0].usuarioId).then((respuesta) =>{
+        let parse_publi = JSON.parse(respuesta)
+    
+         console.log(parse_publi)
+        //console.log(req);
        res.render("negocio_view", {
       pageName: "Mi cuenta",
       sucursales, 
       principal,
+      parse_publi,
       layout: "page-form",
       //user,
     });
     }).catch((err) => {
       console.log(err);
     });
+  }).catch((err) => {
+    console.log(err);
+  });
  
  };

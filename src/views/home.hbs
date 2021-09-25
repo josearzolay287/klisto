@@ -348,7 +348,34 @@ border-bottom: 2px solid #06cc60;
 
 
 {{#if home}}
-
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="  crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function(){
+    //CATEGORIAS SEARCH
+jQuery(".select_cat").on('click',function(e){
+	console.log(e.target)
+    $(".select_cat").removeClass("active"); 
+    $(e.target).addClass("active"); 
+     //this.attr("class", "nav-link select_cat active");
+  var categoria = $('.categoria');
+   var buscando =  (e.target.innerHTML).toLowerCase();
+   var item='';
+   for( var i = 0; i < categoria.length; i++ ){
+       item = $(categoria[i]).html().toLowerCase();
+        for(var x = 0; x < item.length; x++ ){
+            if(buscando == 'todas'){
+                $(categoria[i]).parents('.item').show(); 
+            }else if( buscando.length == 0 || item.indexOf( buscando ) > -1 ){
+                $(categoria[i]).parents('.item').show(); 
+                $(categoria[i]).parents('.item').attr('active');
+            }else{
+                 $(categoria[i]).parents('.item').hide();
+            }
+        }
+   }
+});
+})
+</script>
 <div class="main">
     <section class="servicios pb-5" style="padding-top: 8rem;">
         <div class="container">
@@ -481,35 +508,27 @@ border-bottom: 2px solid #06cc60;
                 <div class="col-12">
                     <ul class="nav justify-content-center nav-home">
                         <li class="nav-item">
-                            <a class="nav-link active" href="#">Todas</a>
+                            <a class="nav-link active select_cat" >Todas</a>
                         </li>
+                        {{#each categorias as |categoria i|}}
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Cabellos</a>
+                            <a class="nav-link select_cat" >{{categoria.nombre}}</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Manos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Pies</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Facial</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="#">Cuerpo Entero</a>
-                        </li>
+                         {{/each}}
                     </ul>
                 </div>
             </div>
                 <div class="row">
                     {{#each parse_publi as |publicacion i |}}
-                <div class="col-md-3">
+                <div class="col-md-3 item">
                     <div class="card-mas-nuevo">
                         <div class="img-card">
                             <img src="../assets/img/yt-inicio.jpg" alt="">
                         </div>
                         <div class="cont-card">
                             <span>{{categoria}}</span>
+                            <label class="card-title nombres" hidden>{{publicacion.titulo}} </label>
+                            <label class="card-title categoria" hidden>{{publicacion.categoria}} </label>
                             <h5>{{#Titulo titulo}}{{/Titulo}}</h5>
                             <div class="precio-buscador">
                                 <span>

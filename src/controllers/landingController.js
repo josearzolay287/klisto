@@ -8,15 +8,22 @@ exports.showLandingPage = (req, res) => {
   Modulo_BD.publicacionesAll().then((data)=>{
     let parse_publi = JSON.parse(data)
     console.log(parse_publi)
+    Modulo_BD.categoriasAct().then((cat) =>{
+      let categorias = JSON.parse(cat)
     res.render("home", {
           pageName: "Inicio",
           landingPage: true,
           home:true,
-          msg,
+          msg,categorias,
           layout: false,
           parse_publi
         });
-  })
+  }).catch((err) => {
+    console.log(err);
+  });
+}).catch((err) => {
+  console.log(err);
+});
          
 };
 
@@ -92,19 +99,36 @@ exports.publi_landing = (req, res) => {
     let id_user = publicacion.usuarioId;
     Modulo_BD.Sucursalesbyuser(id_user).then((respuesta) =>{
       let sucursales = JSON.parse(respuesta)
-      console.log(sucursales)
+      let encargados = sucursales[0].encargados
+
       Modulo_BD.UsuariobyId(id_user).then((datauser) =>{
         let usuario = JSON.parse(datauser)[0]
+        Modulo_BD.AgendaAll().then((data_agenda) =>{
+          let data_agenda_p = JSON.parse(data_agenda)
+
+          let fechas_agenda = []
+for (let i = 0; i < data_agenda_p.length; i++) {
+  fechas_agenda.push(data_agenda_p[i].fecha_agenda);
+  
+}
    res.render("publicacion", {
      pageName: "Mi cuenta",
      landingPage: true,
      publicaciones_landing:true,
      publicacion_activa:true,
      publicacion,usuario,
-     sucursales,
+     sucursales,fechas_agenda,encargados
    });
-  })
-})
-  
-})
+  }).catch((err) => {
+    console.log(err);
+  });
+}).catch((err) => {
+  console.log(err);
+});
+ }) .catch((err) => {
+  console.log(err);
+});
+}).catch((err) => {
+  console.log(err);
+});
  };

@@ -38,7 +38,9 @@ module.exports = {
 			 for (let i = 0; i < id_suc.length; i++) {
 				 
 				 if (id_suc[i].id ==  aux[i]) {
-					out	+=`<label><input type="radio" id="sucursal${id_suc[i].id}" value="${id_suc[i].id}" name="sucursal" class="sucursal_check${id_suc[i].id}" > ${id_suc[i].nombre}</label><br>` 
+					out	+=`<label><input type="radio" id="sucursal-${id_suc[i].id}" value="${id_suc[i].id}" name="sucursal" class="sucursal_check${id_suc[i].id}" > ${id_suc[i].nombre}</label>
+					<span style="display: none;"><span id="horaD${id_suc[i].id}">${id_suc[i].desde}</span> <span id="horaH${id_suc[i].id}">${id_suc[i].hasta}</span></span>
+					<br>` 
 				 }
 			
 			}
