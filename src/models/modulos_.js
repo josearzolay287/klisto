@@ -91,6 +91,30 @@ module.exports = {
         });
     });
   },
+  Sucursalesbylink(id){
+    return new Promise((resolve, reject) => {
+      Sucursales.findAll({
+        where: {
+          link: id,
+        }, include: [
+          {
+            association: Sucursales.Encargados,
+          },{
+            association: Sucursales.Usuarios,
+          }
+
+        ],
+      })
+        .then((data) => {
+          let data_p = JSON.stringify(data);
+          resolve(data_p);
+          ////console.log(id_usuario);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    });
+  },
   SucursalesAll(){
     return new Promise((resolve, reject) => {
       Sucursales.findAll({
@@ -395,12 +419,12 @@ module.exports = {
     });
   },
 
-  guardar_editar_sucursal(id_sucursal,departamento, distrito,direccion,telefono,nombre_local, distritos_atendidos, dias_laborables,  desde, hasta){
+  guardar_editar_sucursal(id_sucursal,link,departamento, distrito,direccion,telefono,nombre_local, distritos_atendidos, dias_laborables,  desde, hasta){
     let dist = distritos_atendidos.toString()
     let dias_laborablesS = dias_laborables.toString()
     return new Promise((resolve, reject) => {
       Sucursales.update({
-        departamento: departamento,distrito: distrito, direccion: direccion,  telefono: telefono,nombre: nombre_local, distritos: dist, dias_laborables: dias_laborablesS, desde: desde,  hasta: hasta
+        departamento: departamento,distrito: distrito, direccion: direccion,  telefono: telefono,nombre: nombre_local, distritos: dist, dias_laborables: dias_laborablesS, desde: desde,  hasta: hasta, link: link
       },{
         where: {
           id: id_sucursal,
@@ -416,12 +440,12 @@ module.exports = {
         });
     });
   },
-  guardar_sucursal(id_usuario,departamento, distrito,direccion,telefono,nombre_local,distritos_atendidos, dias_laborables,  desde, hasta){
+  guardar_sucursal(id_usuario,link,departamento, distrito,direccion,telefono,nombre_local,distritos_atendidos, dias_laborables,  desde, hasta){
     let dist = distritos_atendidos.toString()
     let dias_laborablesS = dias_laborables.toString()
     return new Promise((resolve, reject) => {
       Sucursales.create({
-        departamento: departamento, distrito:distrito,direccion:direccion,telefono:telefono,tipo:'Sucursal',nombre: nombre_local, distritos:dist ,usuarioId: id_usuario, dias_laborables: dias_laborablesS, desde: desde,  hasta: hasta
+        departamento: departamento, distrito:distrito,direccion:direccion,telefono:telefono,tipo:'Sucursal',nombre: nombre_local, distritos:dist ,usuarioId: id_usuario, dias_laborables: dias_laborablesS, desde: desde,  hasta: hasta, link:link,
       }).then((data_encargado) =>{
         let datas = JSON.stringify(data_encargado);
         resolve(datas);
@@ -598,11 +622,43 @@ Agendabyfecha(fecha){
     ], })
       .then((data) => {
         let datas = JSON.stringify(data);
+        console.log(data.length);
+        for (let i = 0; i < data.length; i++) {
+          if (data[i].estado == null) {
+           console.log("aqui")
+           Agenda.destroy({
+            where: {
+              fecha_agenda: fecha,
+            },
+          })
+          }
+          
+
+          if(i == data.length){
+            Agenda.findAll({where:{
+              fecha_agenda: fecha
+            }},{include: [
+              {
+                association: Agenda.Usuarios
+              },{
+                association: Agenda.Publicaciones,
+              },{
+                association: Agenda.Encargados,
+              },
+            ], })
+              .then((upd) => {
+                let data2 = JSON.stringify(upd);
+               return resolve(data2);
+              })
+          }
+          
+        }
         resolve(datas);
-        ////console.log(id_usuario);
+        
       })
       .catch((err) => {
-        ////console.log(err);
+        console.log(err);
+        reject(err)
       });
   });
 },
@@ -705,7 +761,9 @@ WalletbyIduser(usuarioId){
   return new Promise((resolve, reject) => {
     Wallet.findAll({where:{
       usuarioId: usuarioId
-    } })
+    }, order: [
+      ['updatedAt', 'DESC'],
+  ], })
       .then((data) => {
         let datas = JSON.stringify(data);
         resolve(datas);
@@ -722,6 +780,9 @@ guardar_wallet_ventas(monto,estado,comprobante,publicacionId,usuarioId, monto_wa
       monto:monto, estado: "Por confirmar", comprobante:comprobante,id_comprador:id_comprador,publicacioneId: publicacionId,costo_domicilio:costo_domicilio, usuarioId: usuarioId, AgendaId: id_agenda
     }).then((data_venta) =>{
       console.log(data_venta)
+      Agenda.update({estado:"Por confirmar"},{where:{
+        id:id_agenda 
+      }})
       Wallet.findAll({where:{
         usuarioId: usuarioId
       } })

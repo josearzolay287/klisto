@@ -241,7 +241,7 @@ var cargarPagina = function(intPaginaP){
                     
               <div class="card-body">
 				  <form action="/pagar_admin" method="post" id="form_pay">				 
-                <table class="table dataTable tablesorter" id="tabla_pagos_admin">
+                <table class="table dataTable" id="tabla_">
                   <thead>
                     <tr>
                       <th>
@@ -312,13 +312,7 @@ var cargarPagina = function(intPaginaP){
                     {{/each}}            
 				</tbody>
 				 </form>
-				<tfoot>
-	<td><input type="button" id="cargar_primera_pagina" value="<< Primero"/></td>
-	<td><input type="button" id="cargar_anterior_pagina" value="< Anterior"/></td>
-	<td id="indicador_paginas"></td>
-	<td><input type="button" id="cargar_siguiente_pagina" value="Siguiente >"/></td>
-	<td><input type="button" id="cargar_ultima_pagina" value="Ultimo >>"/></td>
-</tfoot>
+
 			</table>  
       </div>
             </div>
@@ -495,13 +489,6 @@ var cargarPagina = function(intPaginaP){
 	{{/each}}
 					
 				</tbody>
-				<tfoot>
-	<td><input type="button" id="cargar_primera_pagina" value="<< Primero"/></td>
-	<td><input type="button" id="cargar_anterior_pagina" value="< Anterior"/></td>
-	<td id="indicador_paginas"></td>
-	<td><input type="button" id="cargar_siguiente_pagina" value="Siguiente >"/></td>
-	<td><input type="button" id="cargar_ultima_pagina" value="Ultimo >>"/></td>
-</tfoot>
 			</table>
 </div>
 </div>

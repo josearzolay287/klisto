@@ -215,6 +215,7 @@ exports.pasarela2 = async (req, res, next) => {
   let id_publicacion = req.params.id;
   let id_agenda = req.params.id_agenda;
   let costo_domicilio = req.params.costo_domicilio;
+  
    BD_conect.publicacionesbyId(id_publicacion).then((resultado) => {
      let publicacion = JSON.parse(resultado)[0];
      console.log(publicacion)

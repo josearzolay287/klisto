@@ -54,7 +54,10 @@ const Sucursales = db.define('sucursales', {
 		type: DataTypes.TEXT,
 		allowNull: true,
 	},
-	
+	link: {
+		type: DataTypes.TEXT,
+		allowNull: true,
+	},
 	
 });
 // El trabajador pertenece a una oficina

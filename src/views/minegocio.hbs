@@ -92,6 +92,7 @@ var total_registros = $("#tabla_>tbody>tr").length;
               <div class="card-body">
                 <form action="/actualizar_negocio" method="post">
                   <input type="text" class="form-control" name="userid" value="{{user.id}}" hidden/>
+                  <input type="text" class="form-control" name="link" value="{{user.name}}" hidden/>
                   <div class="form-row">
                     <div class="form-group col-md-6">
                       <label for="inputEmail4">Nombre</label>
@@ -122,7 +123,7 @@ var total_registros = $("#tabla_>tbody>tr").length;
                   </div>
                   <input type="text" id="profile_img_" class="" name='photo1' value="{{user.photo}}" hidden>
                   <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-                  <a class="btn btn-primary" href="/perfiles/{{user.id}}" target="_blank">Ver mi perfil</a>
+                  <a class="btn btn-primary" href="/negocios/{{user.name}}" target="_blank">Ver mi perfil</a>
                  </form>
               </div>
             </div>
@@ -235,13 +236,6 @@ var total_registros = $("#tabla_>tbody>tr").length;
                       {{/each}}
 
                     </tbody>
-                    <tfoot>
-	<td><input type="button" id="cargar_primera_pagina" value="<< Primero"/></td>
-	<td><input type="button" id="cargar_anterior_pagina" value="< Anterior"/></td>
-	<td id="indicador_paginas"></td>
-	<td><input type="button" id="cargar_siguiente_pagina" value="Siguiente >"/></td>
-	<td><input type="button" id="cargar_ultima_pagina" value="Ultimo >>"/></td>
-</tfoot>
                   </table>
                 </div>
               </div>

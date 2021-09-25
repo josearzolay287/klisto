@@ -247,12 +247,12 @@ exports.dashboard = (req, res) => {
  };
  exports.guardar_sucursal = (req, res) => {
   const user = res.locals.user;
-  const { id_usuario,departamento,
+  const { id_usuario,departamento,link,
     distrito,
     direccion,
     telefono,nombre_local,distritos_atendidos,dias_laborables,  desde, hasta } = req.body;
 
-   Modulo_BD.guardar_sucursal(id_usuario,departamento, distrito,direccion,telefono,nombre_local,distritos_atendidos,dias_laborables,  desde, hasta).then((respuesta) =>{
+   Modulo_BD.guardar_sucursal(id_usuario,link,departamento, distrito,direccion,telefono,nombre_local,distritos_atendidos,dias_laborables,  desde, hasta).then((respuesta) =>{
     
      console.log(respuesta)
       res.redirect('/minegocio')
@@ -292,6 +292,7 @@ if (tipo == "Principal") {
      console.log(sucursales)
 
      let distritos = (sucursales.distritos).split(',')
+     let dias = (sucursales.dias_laborables).split(',')
       res.render("editar_suc_enc", {
      pageName: "Mi cuenta",
      dashboardPage: true,
@@ -300,6 +301,7 @@ if (tipo == "Principal") {
      encargados,
      logo:true,
      distritos,
+     dias,
      sucursal_edit:true, admin
    });
 
@@ -310,13 +312,13 @@ if (tipo == "Principal") {
   const user = res.locals.user;
   console.log(req.body)
   
-  const { id_sucursal,departamento,
+  const { id_sucursal,departamento,link,
     distrito,
     direccion,
     telefono, nombre_local, distritos_atendidos, dias_laborables,  desde, hasta} = req.body;
 
 
-   Modulo_BD.guardar_editar_sucursal(id_sucursal,departamento, distrito,direccion,telefono, nombre_local, distritos_atendidos, dias_laborables,  desde, hasta).then((respuesta) =>{
+   Modulo_BD.guardar_editar_sucursal(id_sucursal,link,departamento, distrito,direccion,telefono, nombre_local, distritos_atendidos, dias_laborables,  desde, hasta).then((respuesta) =>{
     
      console.log(respuesta)
      let msg ="Se actualizó con éxito la sucursal indicada"
@@ -658,6 +660,7 @@ if (user.tipo == "Administrador") {
     console.log(DiaHoy)
 
     for (let i = 0; i < parsed_ventas.length; i++) {
+      console.log(parsed_ventas[i])
       console.log(parsed_ventas[i].Agenda.fecha_agenda)
       var fecha_agendada = parsed_ventas[i].Agenda.fecha_agenda
       var Fecha_aux = fecha_agendada.split("-");
@@ -1390,8 +1393,13 @@ console.log(sucursales)
   Modulo_BD.guardar_Agenda(fecha,id_publicacion, h_desde,h_hasta,id_encargado, lugar_servicio, nombre_del_tercero, telefono_tercero, direccion_tercero,lugar_serv_propio).then((data) =>{
     let agenda = JSON.parse(data)
     let id_agenda = agenda.id
-console.log(id_agenda)
-res.redirect('/pasarela_publicacion/'+id_publicacion+'/'+id_agenda+'/'+costo_domicilio)
+
+let domi = costo_domicilio
+if (domi == "") {
+  domi = 0
+}
+console.log(domi)
+res.redirect('/pasarela_publicacion/'+id_publicacion+'/'+id_agenda+'/'+domi)
 })
  };
 
@@ -1407,7 +1415,7 @@ res.redirect('/pasarela_publicacion/'+id_publicacion+'/'+id_agenda+'/'+costo_dom
     logo = true
   }
   
-    Modulo_BD.Sucursalesbyuser(id_negocio).then((respuesta) =>{
+    Modulo_BD.Sucursalesbylink(id_negocio).then((respuesta) =>{
       let sucursales = JSON.parse(respuesta)
       let principal = []
 
@@ -1426,7 +1434,9 @@ res.redirect('/pasarela_publicacion/'+id_publicacion+'/'+id_agenda+'/'+costo_dom
          console.log(parse_publi)
         //console.log(req);
        res.render("negocio_view", {
-      pageName: "Mi cuenta",
+        landingPage:true,
+        publicaciones_landing:true,
+      pageName: "Negocio",
       sucursales, 
       principal,
       parse_publi,
