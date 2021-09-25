@@ -3,19 +3,15 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.3/moment.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.min.css" integrity="sha512-3JRrEUwaCkFUBLK1N8HehwQgu8e23jTH4np5NHOmQOobuC4ROQxFwFgBLTnhcnQRMs84muMh0PnnwXlPq5MGjg==" crossorigin="anonymous" />
 
  <style>
-   .glyphicon {
-    position: relative;
-    top: 1px;
-    display: inline-block;
-    font-family: 'Glyphicons Halflings';
-    font-style: normal;
-    font-weight: 400;
-    line-height: 1;
-    -webkit-font-smoothing: antialiased;
+.table td, .table th {
+   border-top: none;
+}
+   .table thead th{
+     border-bottom: none;
    }
-   
    #content-wrapper{
 	display: flex;
 	flex-wrap: wrap;
@@ -274,7 +270,7 @@ var fecha_agenda_ar =[]
 var empleado_oc =[]
 var hora_desde_arr =[]
 var hora_hasta_arr =[]
-$('#datetimepicker12').on('dp.change', (e)=>{
+$('#datetimepicker12').on('change.datetimepicker', (e)=>{
   if($('#id_encargado').val() ==""){
  // alert ('Debe seleccionar un empleado para avanzar')
   return
@@ -699,13 +695,13 @@ $('#duracion_total').text(tiempo+ ' min')
                   <p>Escoger fecha: </p>
                   <div style="overflow:hidden;">
 
-   <div class="form-group">
-      <div class="">
-         <div class="">
-            <div id="datetimepicker12"></div>
-         </div>
-      </div>
-   </div>
+ <div class="form-group">
+        <div class="">
+            <div class="">
+                <div id="datetimepicker12"></div>
+            </div>
+        </div>
+    </div>
    <script type="text/javascript">
       $(function () {
           $('#datetimepicker12').datetimepicker({
