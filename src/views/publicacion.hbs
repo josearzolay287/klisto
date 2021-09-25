@@ -296,6 +296,7 @@ $('#datetimepicker12').on('change.datetimepicker', (e)=>{
 ///let fecha = $('#fecha_ag').val()
 let fecha = e.date.format('YYYY-MM-DD')
 console.log(fecha)
+$('#fecha').val(fecha)
 const data = new FormData();
 data.append("fecha", fecha);
 $.ajax({
@@ -714,7 +715,7 @@ $('#duracion_total').text(tiempo+ ' min')
                 <div class="col-md-6 pt-5">
                   <p>Escoger fecha: </p>
                   <div style="overflow:hidden;">
-
+<input type="date" name="fecha" id="fecha" hidden>
  <div class="form-group">
         <div class="">
             <div class="">
