@@ -2,7 +2,218 @@
   crossorigin="anonymous"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<style>
+.table td, .table th {
+   border-top: none;
+}
+   .table thead th{
+     border-bottom: none;
+   }
+   #content-wrapper{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+}
 
+.column{
+	width: 600px;
+	padding: 10px;
+
+}
+
+#featured{
+	max-width: 500px;
+	max-height: 600px;
+	object-fit: cover;
+	cursor: pointer;
+	border: 2px solid black;
+
+}
+
+.thumbnail{
+	object-fit: cover;
+	max-width: 180px;
+	max-height: 100px;
+	cursor: pointer;
+	opacity: 0.5;
+	margin: 5px;
+	border: 2px solid black;
+
+}
+
+.thumbnail:hover{
+	opacity:1;
+}
+
+.active{
+	opacity: 1;
+}
+
+#slide-wrapper{
+	max-width: 500px;
+	display: flex;
+	min-height: 100px;
+	align-items: center;
+}
+
+#slider{
+	width: 440px;
+	display: flex;
+	flex-wrap: nowrap;
+	overflow-x: auto;
+
+}
+
+#slider::-webkit-scrollbar {
+		width: 8px;
+
+}
+
+#slider::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+
+}
+ 
+#slider::-webkit-scrollbar-thumb {
+  background-color: #dede2e;
+  outline: 1px solid slategrey;
+   border-radius: 100px;
+
+}
+
+#slider::-webkit-scrollbar-thumb:hover{
+    background-color: #18b5ce;
+}
+
+.arrow{
+	width: 30px;
+	height: 30px;
+	cursor: pointer;
+	transition: .3s;
+}
+
+.arrow:hover{
+	opacity: .5;
+	width: 35px;
+	height: 35px;
+}
+        body{
+            background-color: #f5f6f8;
+        }
+        .gallery-presentation h2 span{
+            color: #06cc60;
+        }
+        .gallery-presentation .btn-primary{
+            background-color: #06cc60;
+            border: 1px solid #06cc60;
+            box-shadow: none;
+            width: 100%;
+            padding: 1rem;
+            border-radius: 10px;
+        }
+        .gallery-presentation .btn-primary:hover{
+            background-color: #06cc60;
+            border: 1px solid #06cc60;
+            box-shadow: none;
+        }
+        .gallery-presentation .btn-primary:focus{
+            background-color: #171817;
+            border: 1px solid #06cc60;
+            box-shadow: none;
+        }
+
+        .cat-gallery-gallery-presentation span{
+            color: #f7c400;
+        }
+        .reservar .container{
+            background-color: #ffffff;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .reservar .form-control {
+            display: block;
+            width: 100%;
+            padding: .375rem .75rem;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #495057;
+            background-color: #eaeaea;
+            background-clip: padding-box;
+            border: 1px solid #f5f6f8;
+            border-radius: 10px;
+            transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        }
+
+        .reservar .btn-primary{
+            background-color: white;
+            border:1px solid #06cc60;
+            color: #06cc60;
+            border-radius: 0px;
+            box-shadow: none;
+            margin-bottom: .7rem;
+        }
+        .reservar .btn-primary:hover{
+            background-color: #06cc60;
+            border:1px solid #06cc60;
+            color: white;
+            border-radius: 0px;
+            box-shadow: none;
+            margin-bottom: .7rem;
+        }
+        
+        .reservar .btn-primary:focus{
+            background-color: #06cc60;
+            border:1px solid #06cc60;
+            color: white;
+            border-radius: 0px;
+            box-shadow: none;
+            margin-bottom: .7rem;
+        }
+        .reservar .active{
+            background-color: #06cc60 !important;
+            border:1px solid #06cc60 !important;
+            color: white !important;
+            border-radius: 0px;
+            box-shadow: none;
+            margin-bottom: .7rem;
+        }
+        .reservar .btn-outline-success{
+            background-color: #06cc60;
+            position: absolute;
+            color: white;
+            border-color: #06cc60;
+            border-radius: 10px;
+            top: 0;
+            right: 0;
+            box-shadow: none;
+            padding: .33rem 1.5rem;
+        }
+        .reservar .btn-outline-success:hover{
+            background-color: #06cc60;
+            position: absolute;
+            color: white;
+            border-color: #06cc60;
+            border-radius: 10px;
+            top: 0;
+            right: 0;
+            box-shadow: none;
+        }
+        .reservar .btn-outline-success:focus{
+            background-color: #06cc60;
+            position: absolute;
+            color: white;
+            border-color: #06cc60;
+            border-radius: 10px;
+            top: 0;
+            right: 0;
+            box-shadow: none;
+        }
+
+    </style>
 <script>
   $(function () {
   
@@ -31,12 +242,20 @@ $('.sucursales_check:checked').each(function() {
       $('#crear_publicacion').hide()
       $('#titulo_preview').text($('#titulo').val())
       $('#precio_preview').text('S/' + $('#precio').val())
+      $('#costo_serv').text($('#precio').val())
+       $('#costo_trans').text($('#costo_domicilio').val())
       $('#descripcion_preview').text($('#descripcion').val())
       $('#condiciones_preview').text($('#condiciones').val())
+      console.log($('#desde').val())
       $('#desde_preview').text($('#desde').val())
       $('#hasta_preview').text($('#hasta').val())
-      $('#preparacion_p').text($('#preparacion').val()+' min') 
-      $('#ejecucion_p').text($('#ejecucion').val()+' min') 
+      $('#preparacion_p').text($('#preparacion').val()) 
+      $('#ejecucion_p').text($('#ejecucion').val()) 
+ let preparacion_p = $('#preparacion_p').text()
+let ejecucion_p = $('#ejecucion_p').text()
+let tiempo = parseInt(preparacion_p)+parseInt(ejecucion_p)
+$('#duracion_total').text(tiempo+ ' min')
+
        if($('.editar_public')){
           $('#img_preview').attr('src', "../assets/img_up/" + $('#imagen1').val())
        $('#img1').attr('src', "../assets/img_up/" + $('#imagen2').val())
@@ -175,7 +394,7 @@ $('.sucursales_check:checked').each(function() {
           {{/if}}
 
           {{#if crear_publicacion}}
-          <div class="row" id="crear_publicacion">
+          <div class="row reservar" id="crear_publicacion">
 
             <div class="card-blank" style="width: 65%;margin-left: 15px; margin-bottom: 10px;">
               <div class="overview-wrap">
@@ -187,7 +406,7 @@ $('.sucursales_check:checked').each(function() {
                   <div class="col">
                     <center>
                       <img id="imageSelected1" class="img-fluid"
-                        src="https://javierg.mosquedacordova.com/klizto/images/ico-image.png"
+                        src="../assets/img_up/foto_camara.png"
                         onclick="document.getElementById('profile-img1').click();" width="50px" />
                       <input
                         class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm img_publicacion"
@@ -198,7 +417,7 @@ $('.sucursales_check:checked').each(function() {
                   <div class="col">
                     <center>
                       <img id="imageSelected2" class="img-fluid"
-                        src="https://javierg.mosquedacordova.com/klizto/images/ico-image.png"
+                        src="../assets/img_up/foto_camara.png"
                         onclick="document.getElementById('profile-img2').click();" width="50px" />
                       <input
                         class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm img_publicacion"
@@ -210,7 +429,7 @@ $('.sucursales_check:checked').each(function() {
                   <div class="col">
                     <center>
                       <img id="imageSelected3" class="img-fluid"
-                        src="https://javierg.mosquedacordova.com/klizto/images/ico-image.png"
+                        src="../assets/img_up/foto_camara.png"
                         onclick="document.getElementById('profile-img3').click();" width="50px" />
                       <input
                         class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm img_publicacion"
@@ -222,7 +441,7 @@ $('.sucursales_check:checked').each(function() {
                   <div class="col">
                     <center>
                       <img id="imageSelected4" class="img-fluid"
-                        src="https://javierg.mosquedacordova.com/klizto/images/ico-image.png"
+                        src="../assets/img_up/foto_camara.png"
                         onclick="document.getElementById('profile-img4').click();" width="50px" />
                       <input
                         class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm img_publicacion"
@@ -234,7 +453,7 @@ $('.sucursales_check:checked').each(function() {
                   <div class="col">
                     <center>
                       <img id="imageSelected5" class="img-fluid"
-                        src="https://javierg.mosquedacordova.com/klizto/images/ico-image.png"
+                        src="../assets/img_up/foto_camara.png"
                         onclick="document.getElementById('profile-img5').click();" width="50px" />
                       <input
                         class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm img_publicacion"
@@ -250,23 +469,21 @@ $('.sucursales_check:checked').each(function() {
                   <input type="text" class="form-control" name="userid" hidden value="{{user.id}}" />
 
                   <div class="col">
-                    <div class="form-row">
+                    <div class="form-row" style="display: none";>
                       <div class="col-7">
                         <label for="formGroupExampleInput">Horario de atención:</label>
                       </div>
                       <div class="col">
-                        Desde <input type="time" class="form-control" placeholder="Desde" name="desde" id="desde" value="">
+                        Desde <input type="time" class="form-control" placeholder="Desde" name="desde" id="desde" value="{{sucursales.0.desde}}">
                       </div>
                       <div class="col">
-                        A <input type="time" class="form-control" placeholder="Hasta" name="hasta" id="hasta" value="">
+                        A <input type="time" class="form-control" placeholder="Hasta" name="hasta" id="hasta" value="{{sucursales.0.hasta}}">
                       </div>
                     </div>
                   </div>
                   <div class="col">
                     <div class="form-row">
-                      <div class="col-7">
                         <label for="formGroupExampleInput">Tiempo de duración del servicio:</label>
-                      </div>
                       <div class="col">
                         Preparación <input type="text" class="form-control" placeholder="Tiempo de Preparación" name="preparacion" id="preparacion">
                       </div>
@@ -276,28 +493,28 @@ $('.sucursales_check:checked').each(function() {
                     </div>
                   </div>
                   <div class="form-row">
-                    <div class="col-md-6 mb-3">
+                    <div class="col-md-3">
                       <label for="inputEmail4">Título Principal</label>
                       <input type="text" class="form-control" id="titulo" placeholder="Nombre" name="titulo" required>
                     </div>
-                    <div class="col-md-3 mb-3">
+                    <div class="col-md-3">
                       <label for="inputPassword4">Precio</label>
                       <input type="number" class="form-control" id="precio" name="precio" step="0.01" required>
                       <input type="number" class="form-control" id="comision" name="comision" step="0.01" value="{{comision.valor}}" hidden>
                     </div>
-                    <div class="col-md-3 mb-3">
+                    <div class="col-md-3">
                       <label for="inputPassword4">Billetera</label>
-                      <input type="number" class="form-control" id="billetera" name="billetera" step="0.01" required>
+                      <input type="number" class="form-control" id="billetera" name="billetera" step="0.01" required readonly>
                     </div>
-                     <div class="col-md-3 mb-3">
+                     <div class="col-md-3">
                       <label for="inputPassword4">Costo Domicilio</label>
-                      <input type="number" class="form-control" id="billetera" name="costo_domicilio" step="0.01" required  >
+                      <input type="number" class="form-control" id="costo_domicilio" name="costo_domicilio" step="0.01" required  >
                     </div>
                   </div>
                   <div class="form-row">
                     <div class="form-group col-md-6">
                       <label for="inputState">Categoría</label>
-                      <select id="inputState" class="form-control" name="categoria">
+                      <select id="categorias" class="form-control" name="categoria">
                        <option value="todas" selected>Todas</option>
                         {{#each categorias as |categoria i|}}
                         <option value="{{categoria.nombre}}">{{categoria.nombre}} </option>
@@ -349,89 +566,266 @@ $('.sucursales_check:checked').each(function() {
           </div>
 
           <div class="container" id="preview_publicacion" style="display: none;">
+
+            <section class="pb-5 pt-5 gallery-presentation" id="gallery-presentation">
+<div style="display:none">
+  <p class="card-text"  style="text-align: left;"><span id="preparacion_p"></span> y Ejecución: <span id="ejecucion_p"></span> </p>
+</div>
+        <div class="container">
             <div class="row">
-              <div class="col">
-                <div class="card-blank" style="margin-left: 15px; margin-bottom: 10px;">
-                  <div class="card-body">
-                    <img src="https://javierg.mosquedacordova.com/klizto/images/ico-image.png" alt="..."
-                      class="img-thumbnail" id="img_preview" style="height: 400px;">
-                  </div>
-                </div>
+                <div class="col-md-6">
+<div id="content-wrapper">
+  <div class="column">
+		<img id="featured" src="../assets/img_up/">
 
-              </div>
-              <div class="col">
-                <div class="card-blank">
-                  <div class="card-body">
-                    <h5 class="card-title" id="titulo_preview" style="text-align: left;"></h5>
-                    <h6 class="card-subtitle mb-2 " id="precio_preview" style="text-align: left;"></h6>
-                    <h6 class="card-subtitle mb-2 " style="text-align: left;">Descripcion</h6>
-                    <p class="card-text" id="descripcion_preview" style="text-align: left;"></p>
-                    <h6 class="card-title" style="text-align: left;">Condiciones</h6>
-                    <p class="card-text" id="condiciones_preview" style="text-align: left;"></p>
-                  </div>
-                </div>
-              </div>
+			<div id="slide-wrapper" >
+				<img id="slideLeft" class="arrow" src="../assets/img/arrow-left.png"  id="img_preview">
 
+				<div id="slider">
+					<img class="thumbnail active" src="../assets/img_up/" id="img_preview">
+					<img class="thumbnail" src="../assets/img_up/" id="img1">
+					<img class="thumbnail" src="../assets/img_up/" id="img2">
+
+					<img class="thumbnail" src="../assets/img_up/"   id="img3">
+					<img class="thumbnail" src="../assets/img_up/" id="img4">
+				</div>
+
+				<img id="slideRight" class="arrow" src="../assets/img/arrow-right.png">
+			</div>
+</div>
+<script type="text/javascript">
+		let thumbnails = document.getElementsByClassName('thumbnail')
+
+		let activeImages = document.getElementsByClassName('active')
+
+		for (var i=0; i < thumbnails.length; i++){
+
+			thumbnails[i].addEventListener('mouseover', function(){				
+				if (activeImages.length > 0){
+					activeImages[0].classList.remove('active')
+				}
+				
+
+				this.classList.add('active')
+				document.getElementById('featured').src = this.src
+			})
+		}
+
+
+		let buttonRight = document.getElementById('slideRight');
+		let buttonLeft = document.getElementById('slideLeft');
+
+		buttonLeft.addEventListener('click', function(){
+			document.getElementById('slider').scrollLeft -= 180
+		})
+
+		buttonRight.addEventListener('click', function(){
+			document.getElementById('slider').scrollLeft += 180
+		})
+
+
+	</script>
+                <div class="col-md-6">
+                    <h2 class="pb-3" >
+
+                        <strong id="">
+                          <span id="titulo_preview" style="color: black;">
+
+                            </span>
+                            <br>
+                            <span id="precio_preview" >
+
+                            </span>
+                        </strong>
+                    </h2>
+
+                    <p>
+                        <strong>
+                            Atención: Lunes a Sábado (<span id="desde_preview"></span> am - <span id="hasta_preview"></span> pm)
+                            <br >
+                           Duración:  <span id="duracion_total">20 min. </span>
+                        </strong>
+                    </p>
+                    <p id="descripcion_preview">
+                      
+                    </p>
+
+                    <div class="dom-loc pb-3">
+                      <input type="radio" class="lugar_serv_ " value="A Domicilio" name="lugar_serv_" id=""><label>A Domicilio <span></span></label>
+                        <input type="radio" class="lugar_serv_" value="En Local" name="lugar_serv_" id=""><label>En Local</label>
+                    </div>
+
+                    <button class="btn btn-primary">
+                        Reservar
+                    </button>
+
+                    <div class="cat-gallery-gallery-presentation pt-3">
+                        <strong>Categorías:</strong> <span></span>
+                    </div>
+
+                </div>
             </div>
+        </div>
 
-            <div class="row">
-              <div class="col">
-                <div class="card-blank">
-                  <div class="card-body">
-                    <h5 class="card-title" id="titulo_preview" style="text-align: left;">Información del anunciante</h5>
-                    <p class="card-text" id="descripcion_preview" style="text-align: left;">{{user.name}}</p>
-                    <p class="card-text" id="descripcion_preview" style="text-align: left;">{{principal.direccion}}</p>
-                    <p class="card-text" id="descripcion_preview" style="text-align: left;">Tiempo de preparación: Preparación:<span id="preparacion_p"></span> y Ejecución:<span id="ejecucion_p"></span> </p>
-                    <p class="card-text" id="descripcion_preview" style="text-align: left;">Disponible en:<br>
+    </section>
+    <section id="reservar" class="reservar">
+        <div class="container">
+          <input type="radio" class="lugar_serv_" value="A Domicilio" name="lugar_serv_" id=""><label>A Domicilio <span></span></label>
+                        <input type="radio" class="lugar_serv_" value="En Local" name="lugar_serv_" id=""><label>En Local</label>
+                           <div class="col" id="distritos_habilitados" style="display: none;">
+                        <label for="formGroupExampleInput">Seleccione el distrito (local):</label>
+                        
+                      </div>
+
+                        <div class="col" id="locales_habiles" style="display: none;">
+                        <label for="formGroupExampleInput">Seleccione el local:</label>
+                          <p class="card-text"  style="text-align: left;">
+                     
                     <span id="sucursales_p"></span></p>
-                    <p class="card-text" id="descripcion_preview" style="text-align: left;">Abierto de: <span
-                        id="desde_preview"></span> hasta: <span id="hasta_preview"></span></p>
-                    <p class="card-text" id="descripcion_preview" style="text-align: left;">Calificación</p>
-                  </div>
+                      </div>
+
+                      <div class="col" id="dirigido_a" style="display: none;">
+                        <label for="formGroupExampleInput">Indique para quien es el servicio:</label><br>
+                        <input type="radio" class="servicio_para" value="Personal" name="lugar_serv_propio" id=""><label>Personal</label>
+                        <input type="radio" class="servicio_para" value="A Tercero" name="lugar_serv_propio" id=""><label>Tercero</label>
+                      </div>
+            <div class="row">
+                <div class="col-12">
+                    <h1>
+                        <strong>
+                        Reservar
+                        </strong>
+                    </h1>
                 </div>
-              </div>
+             
+
+                <div class="col-md-6 pt-5">
+                  <div class="form-group" id="empleados_" style="display: none;">
+                            <label for="">Escoger trabajador:*</label>
+                            
+                    <span id="sucursales_p"></span></p>
+                        </div>
+                        <div class="form-group">
+                          <label for="">Distrito:*</label>
+                          <input type="text" class="form-control" id="" name="distrito_tercero">
+                        </div>
+                        <div class="form-group">
+                          <label for="">Dirección:*</label>
+                          <input type="text" class="form-control" id="" name="direccion_tercero">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="">Nombre y apellido:*</label>
+                            <input type="text" class="form-control" id="" name="nombre_del_tercero">
+
+
+                        </div>
+                        <div class="form-group">
+                            <label for="">Correo:*</label>
+                            <input type="text" class="form-control" id="" name="correo_tercero">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Celular:*</label>
+                            <input type="text" class="form-control" id="" name="telefono_tercero">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Agregar comentario:</label>
+                            <textarea class="form-control" id="" rows="3" name="comentario_p"></textarea>
+                          </div>
+                </div>
+                <div class="col-md-6 pt-5">
+                  <p>Escoger fecha: </p>
+                  <div style="overflow:hidden;">
+
+ <div class="form-group">
+        <div class="">
+            <div class="">
+                <div id="datetimepicker12"></div>
             </div>
-            <div class="row" style=" margin-bottom: 60px;">
-              <div class="col">
+        </div>
+    </div>
+   <script type="text/javascript">
+      $(function () {
+          $('#datetimepicker12').datetimepicker({
+              inline: true,
+              sideBySide: true,
+              format: 'L',
+              
+          });
+    /*  $("#datetimepicker12").on("dp.change", function (e) {
+        console.log(e.date.format('YYYY-MM-DD'))
 
-
-                
-                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                  <div class="carousel-inner">
-                    <div class="carousel-item active">
-                      <img class="imgpreview" src="https://javierg.mosquedacordova.com/klizto/images/ico-image.png"
-                        alt="First slide" style="width: auto; height: 150px;" id="img1">
+});*/
+      });
+   </script>
+</div>
+                    
+                    <p>Escoger hora:*</p>
+                    <div class="row" id="disponibles">
+                       
                     </div>
-                    <div class="carousel-item">
-                      <img class="imgpreview" src="https://javierg.mosquedacordova.com/klizto/images/ico-image.png"
-                        alt="Second slide" style="width: auto; height: 150px;" id="img2">
-                    </div>
-                    <div class="carousel-item">
-                      <img class="imgpreview" src="https://javierg.mosquedacordova.com/klizto/images/ico-image.png"
-                        alt="Third slide" style="width: auto; height: 150px;" id="img3">
-                    </div>
-                    <div class="carousel-item">
-                      <img class="imgpreview" src="https://javierg.mosquedacordova.com/klizto/images/ico-image.png"
-                        alt="Third slide" style="width: auto; height: 150px;" id="img4">
-                    </div>
-                  </div>
-                  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                  </a>
-                  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                  </a>
                 </div>
-                <button type="submit" class="btn btn-primary btn_submit_preview">Guardar Cambios</button>
+                <div class="col-md-12">
+                    <div style="float: left; padding-top: .35rem;">Agregar cupón:</div>
+                    <div style="float: right; width: calc(100% - 110px); position: relative;">
+                        <input type="text" class="form-control">
+                        <button class="btn btn-outline-success my-2 my-sm-0 añadir" type="submit">
+                            Añadir
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 pt-3">
+                    <div style="float: left;">
+                        Precio de servicio:
+                    </div> 
+                    <div style="float: right;">
+                        S/<span id="costo_serv"></span>
+                    </div>
+                </div>
+                <div class="col-12 pt-3" style="border-bottom: 1px solid black;">
+                    <div style="float: left;">
+                        Precio de transporte:
+                    </div> 
+                    <div style="float: right;">
+                        S/<span id="costo_trans"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 pt-3">
+                    <div style="float: left;">
+                        <h2>
+                            <strong>
+                                TOTAL A PAGAR:
+                            </strong>
+                        </h2>
+                    </div>
+                    <div style="float: right;">
+                        <h2>
+                            <strong>
+                                S/<span>35.00</span> 
+                            </strong>
+                        </h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row reservar">
+                <div class="col-12 pt-3">
+                    <button type="submit" class="btn btn-primary active btn_submit_preview" style="width: 100%;padding: 1.5rem; font-size: 25px; font-weight: 700; border-radius: 15px;">
+                        Guardar Cambios
+                    </button>
                   <button type="button" class="btn btn-primary preview">Editar</button>
-              </div>
+                </div>
             </div>
+        </div>
+    </section>
+
           </div>
           {{/if}}
            {{#if editar_publicacion}}
-          <div class="row editar_public" id="crear_publicacion">
+          <div class="row editar_public reservar" id="crear_publicacion">
 
             <div class="card-blank" style="width: 65%;margin-left: 15px; margin-bottom: 10px;">
               <div class="overview-wrap">
@@ -507,7 +901,7 @@ $('.sucursales_check:checked').each(function() {
                   <input type="text" class="form-control" name="userid" hidden value="{{user.id}}" />
 
                   <div class="col">
-                    <div class="form-row">
+                    <div class="form-row" style="display: none;">
                       <div class="col-7">
                         <label for="formGroupExampleInput">Horario de atención:</label>
                       </div>
@@ -534,7 +928,7 @@ $('.sucursales_check:checked').each(function() {
                   </div>
                   <div class="form-row">
                     <div class="col-md-3 mb-3">
-                      <label for="inputEmail4">Titulo Principal</label>
+                      <label for="inputEmail4">Título Principal</label>
                       <input type="text" class="form-control" id="titulo" placeholder="Nombre" name="titulo" required value="{{publicacion.titulo}}">
                     </div>
                     <div class="col-md-3 mb-3">
@@ -548,13 +942,13 @@ $('.sucursales_check:checked').each(function() {
                     </div>
                     <div class="col-md-3 mb-3">
                       <label for="inputPassword4">Costo Domicilio</label>
-                      <input type="number" class="form-control" id="billetera" name="costo_domicilio" step="0.01" required value="{{publicacion.costo_domicilio}}" >
+                      <input type="number" class="form-control" id="costo_domicilio" name="costo_domicilio" step="0.01" required value="{{publicacion.costo_domicilio}}" >
                     </div>
                   </div>
                   <div class="form-row">
                     <div class="form-group col-md-6">
                       <label for="inputState">Categoria</label>
-                      <select id="inputState" class="form-control" name="categoria">
+                      <select id="categorias" class="form-control" name="categoria">
                         <option selected value="{{publicacion.categoria}}">{{publicacion.categoria}} </option>
                         {{#each categorias as |categoria i|}}
                         <option value="{{categoria.nombre}}">{{categoria.nombre}} </option>
@@ -610,87 +1004,261 @@ $('.sucursales_check:checked').each(function() {
           </div>
 
           <div class="container" id="preview_publicacion" style="display: none;">
+                    <section class="pb-5 pt-5 gallery-presentation" id="gallery-presentation">
+<div style="display:none">
+  <p class="card-text"  style="text-align: left;"><span id="preparacion_p"></span> y Ejecución: <span id="ejecucion_p"></span> </p>
+</div>
+        <div class="container">
             <div class="row">
-              <div class="col">
-                <div class="card-blank" style="margin-left: 15px; margin-bottom: 10px;">
-                  <div class="card-body">
-                    <img src="https://javierg.mosquedacordova.com/klizto/images/ico-image.png" alt="..."
-                      class="img-thumbnail" id="img_preview" style="height: 400px;">
-                  </div>
-                </div>
+                <div class="col-md-6">
+<div id="content-wrapper">
+  <div class="column">
+		<img id="featured" src="../assets/img_up/">
 
-              </div>
-              <div class="col">
-                <div class="card-blank">
-                  <div class="card-body">
-                    <h5 class="card-title" id="titulo_preview" style="text-align: left;"></h5>
-                    <h6 class="card-subtitle mb-2 " id="precio_preview" style="text-align: left;"></h6>
-                    <h6 class="card-subtitle mb-2 " style="text-align: left;">Descripción</h6>
-                    <p class="card-text" id="descripcion_preview" style="text-align: left;"></p>
-                    <h6 class="card-title" style="text-align: left;">Condiciones</h6>
-                    <p class="card-text" id="condiciones_preview" style="text-align: left;"></p>
-                  </div>
-                </div>
-              </div>
+			<div id="slide-wrapper" >
+				<img id="slideLeft" class="arrow" src="../assets/img/arrow-left.png"  id="img_preview">
 
+				<div id="slider">
+					<img class="thumbnail active" src="../assets/img_up/" id="img_preview">
+					<img class="thumbnail" src="../assets/img_up/" id="img1">
+					<img class="thumbnail" src="../assets/img_up/" id="img2">
+
+					<img class="thumbnail" src="../assets/img_up/"   id="img3">
+					<img class="thumbnail" src="../assets/img_up/" id="img4">
+				</div>
+
+				<img id="slideRight" class="arrow" src="../assets/img/arrow-right.png">
+			</div>
+</div>
+<script type="text/javascript">
+		let thumbnails = document.getElementsByClassName('thumbnail')
+
+		let activeImages = document.getElementsByClassName('active')
+
+		for (var i=0; i < thumbnails.length; i++){
+
+			thumbnails[i].addEventListener('mouseover', function(){				
+				if (activeImages.length > 0){
+					activeImages[0].classList.remove('active')
+				}
+				
+
+				this.classList.add('active')
+				document.getElementById('featured').src = this.src
+			})
+		}
+
+
+		let buttonRight = document.getElementById('slideRight');
+		let buttonLeft = document.getElementById('slideLeft');
+
+		buttonLeft.addEventListener('click', function(){
+			document.getElementById('slider').scrollLeft -= 180
+		})
+
+		buttonRight.addEventListener('click', function(){
+			document.getElementById('slider').scrollLeft += 180
+		})
+
+
+	</script>
+                <div class="col-md-6">
+                    <h2 class="pb-3" >
+
+                        <strong id="">
+                          <span id="titulo_preview" style="color: black;">
+
+                            </span>
+                            <br>
+                            <span id="precio_preview" >
+
+                            </span>
+                        </strong>
+                    </h2>
+
+                    <p>
+                        <strong>
+                            Atención: Lunes a Sábado (<span id="desde_preview"></span> am - <span id="hasta_preview"></span> pm)
+                            <br >
+                           Duración:  <span id="duracion_total">20 min. </span>
+                        </strong>
+                    </p>
+                    <p id="descripcion_preview">
+                      
+                    </p>
+
+                    <div class="dom-loc pb-3">
+                      <input type="radio" class="lugar_serv_ " value="A Domicilio" name="lugar_serv_" id=""><label>A Domicilio <span></span></label>
+                        <input type="radio" class="lugar_serv_" value="En Local" name="lugar_serv_" id=""><label>En Local</label>
+                    </div>
+
+                    <button class="btn btn-primary">
+                        Reservar
+                    </button>
+
+                    <div class="cat-gallery-gallery-presentation pt-3">
+                        <strong>Categorías:</strong> <span></span>
+                    </div>
+
+                </div>
             </div>
+        </div>
 
-            <div class="row">
-              <div class="col">
-                <div class="card-blank">
-                  <div class="card-body">
-                    <h5 class="card-title" id="titulo_preview" style="text-align: left;">Información del anunciante</h5>
-                    <p class="card-text" id="descripcion_preview" style="text-align: left;">{{user.name}}</p>
-                    <p class="card-text" id="descripcion_preview" style="text-align: left;">{{principal.direccion}}</p>
-                    <p class="card-text" id="descripcion_preview" style="text-align: left;">Tiempo de preparacion: Preparación:<span id="preparacion_p"></span> y Ejecución:<span id="ejecucion_p"></span> </p>
-                    <p class="card-text" id="descripcion_preview" style="text-align: left;">Disponible en:<br>
+    </section>
+    <section id="reservar" class="reservar">
+        <div class="container">
+          <input type="radio" class="lugar_serv_" value="A Domicilio" name="lugar_serv_" id=""><label>A Domicilio <span></span></label>
+                        <input type="radio" class="lugar_serv_" value="En Local" name="lugar_serv_" id=""><label>En Local</label>
+                           <div class="col" id="distritos_habilitados" style="display: none;">
+                        <label for="formGroupExampleInput">Seleccione el distrito (local):</label>
+                        
+                      </div>
+
+                        <div class="col" id="locales_habiles" style="display: none;">
+                        <label for="formGroupExampleInput">Seleccione el local:</label>
+                          <p class="card-text"  style="text-align: left;">
+                     
                     <span id="sucursales_p"></span></p>
-                    <p class="card-text" id="descripcion_preview" style="text-align: left;">Abierto de: <span
-                        id="desde_preview"></span> hasta: <span id="hasta_preview"></span></p>
-                    <p class="card-text" id="descripcion_preview" style="text-align: left;">Calificación</p>
-                  </div>
+                      </div>
+
+                      <div class="col" id="dirigido_a" style="display: none;">
+                        <label for="formGroupExampleInput">Indique para quien es el servicio:</label><br>
+                        <input type="radio" class="servicio_para" value="Personal" name="lugar_serv_propio" id=""><label>Personal</label>
+                        <input type="radio" class="servicio_para" value="A Tercero" name="lugar_serv_propio" id=""><label>Tercero</label>
+                      </div>
+            <div class="row">
+                <div class="col-12">
+                    <h1>
+                        <strong>
+                        Reservar
+                        </strong>
+                    </h1>
                 </div>
-              </div>
+             
+
+                <div class="col-md-6 pt-5">
+                  <div class="form-group" id="empleados_" style="display: none;">
+                            <label for="">Escoger trabajador:*</label>
+                            
+                    <span id="sucursales_p"></span></p>
+                        </div>
+                        <div class="form-group">
+                          <label for="">Distrito:*</label>
+                          <input type="text" class="form-control" id="" name="distrito_tercero">
+                        </div>
+                        <div class="form-group">
+                          <label for="">Dirección:*</label>
+                          <input type="text" class="form-control" id="" name="direccion_tercero">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="">Nombre y apellido:*</label>
+                            <input type="text" class="form-control" id="" name="nombre_del_tercero">
+
+
+                        </div>
+                        <div class="form-group">
+                            <label for="">Correo:*</label>
+                            <input type="text" class="form-control" id="" name="correo_tercero">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Celular:*</label>
+                            <input type="text" class="form-control" id="" name="telefono_tercero">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Agregar comentario:</label>
+                            <textarea class="form-control" id="" rows="3" name="comentario_p"></textarea>
+                          </div>
+                </div>
+                <div class="col-md-6 pt-5">
+                  <p>Escoger fecha: </p>
+                  <div style="overflow:hidden;">
+
+ <div class="form-group">
+        <div class="">
+            <div class="">
+                <div id="datetimepicker12"></div>
             </div>
-            <div class="row" style=" margin-bottom: 60px;">
-              <div class="col">
-
-
-                
-                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                  <div class="carousel-inner">
-                    <div class="carousel-item active">
-                      <img class="imgpreview" src="https://javierg.mosquedacordova.com/klizto/images/ico-image.png"
-                        alt="First slide" style="width: auto; height: 150px;" id="img1">
-                    </div>
-                    <div class="carousel-item">
-                      <img class="imgpreview" src="https://javierg.mosquedacordova.com/klizto/images/ico-image.png"
-                        alt="Second slide" style="width: auto; height: 150px;" id="img2">
-                    </div>
-                    <div class="carousel-item">
-                      <img class="imgpreview" src="https://javierg.mosquedacordova.com/klizto/images/ico-image.png"
-                        alt="Third slide" style="width: auto; height: 150px;" id="img3">
-                    </div>
-                    <div class="carousel-item">
-                      <img class="imgpreview" src="https://javierg.mosquedacordova.com/klizto/images/ico-image.png"
-                        alt="Third slide" style="width: auto; height: 150px;" id="img4">
-                    </div>
-                  </div>
-                  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                  </a>
-                  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                  </a>
-                </div>
-              </div>
+        </div>
+    </div>
+   <script type="text/javascript">
+      $(function () {
+          $('#datetimepicker12').datetimepicker({
+              inline: true,
+              sideBySide: true,
+              format: 'L',
               
+          });
+    /*  $("#datetimepicker12").on("dp.change", function (e) {
+        console.log(e.date.format('YYYY-MM-DD'))
+
+});*/
+      });
+   </script>
+</div>
+                    
+                    <p>Escoger hora:*</p>
+                    <div class="row" id="disponibles">
+                       
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div style="float: left; padding-top: .35rem;">Agregar cupón:</div>
+                    <div style="float: right; width: calc(100% - 110px); position: relative;">
+                        <input type="text" class="form-control">
+                        <button class="btn btn-outline-success my-2 my-sm-0 añadir" type="submit">
+                            Añadir
+                        </button>
+                    </div>
+                </div>
             </div>
-            <button type="button" class="btn btn-primary btn_submit_preview">Guardar Cambios</button>
+            <div class="row">
+                <div class="col-12 pt-3">
+                    <div style="float: left;">
+                        Precio de servicio:
+                    </div> 
+                    <div style="float: right;">
+                        S/<span id="costo_serv"></span>
+                    </div>
+                </div>
+                <div class="col-12 pt-3" style="border-bottom: 1px solid black;">
+                    <div style="float: left;">
+                        Precio de transporte:
+                    </div> 
+                    <div style="float: right;">
+                        S/<span id="costo_trans"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 pt-3">
+                    <div style="float: left;">
+                        <h2>
+                            <strong>
+                                TOTAL A PAGAR:
+                            </strong>
+                        </h2>
+                    </div>
+                    <div style="float: right;">
+                        <h2>
+                            <strong>
+                                S/<span>35.00</span> 
+                            </strong>
+                        </h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row reservar">
+                <div class="col-12 pt-3">
+                    <button type="submit" class="btn btn-primary active btn_submit_preview" style="width: 100%;padding: 1.5rem; font-size: 25px; font-weight: 700; border-radius: 15px;">
+                        Guardar Cambios
+                    </button>
                   <button type="button" class="btn btn-primary preview">Editar</button>
-          </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
           {{/if}}
         </div>
       </main>

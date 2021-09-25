@@ -599,7 +599,7 @@ if (user.tipo == "Administrador") {
    Modulo_BD.guardaredit_publicacion(id_publicacion,userid, photo,  desde,hasta, titulo, precio,billetera, categoria, estado,  descripcion, condiciones,preparacion, ejecucion,sucursales,empleados,costo_domicilio).then((respuesta) =>{
     
      console.log(respuesta)
-     let msg="Se acrualizó con exito la publicación"
+     let msg="Se actualizó con exito la publicación"
       res.redirect('/mispublicaciones/'+msg)
 
    })   
