@@ -2,7 +2,27 @@
   crossorigin="anonymous"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<style>
+
+ <style>
+   thead .dow{
+     background: #f7c400;
+   }
+   .bootstrap-datetimepicker-widget table th{
+     color: white;
+   }
+    .bootstrap-datetimepicker-widget table .prev, .bootstrap-datetimepicker-widget table .picker-switch, .bootstrap-datetimepicker-widget table .next{
+     color: black;
+   }
+.bootstrap-datetimepicker-widget table td.day, .bootstrap-datetimepicker-widget table th{
+  padding: 15px;
+}
+   .bootstrap-datetimepicker-widget table th{
+     border-radius: 0px;
+   }
+   #datetimepicker12{
+     background: #eaeaea;
+     border-radius: 10px;
+   }
 .table td, .table th {
    border-top: none;
 }
@@ -23,23 +43,20 @@
 }
 
 #featured{
-	max-width: 500px;
-	max-height: 600px;
-	object-fit: cover;
+  width: 500px;
+	height: 350px;
 	cursor: pointer;
-	border: 2px solid black;
-
+  border-radius: 20px;
 }
 
 .thumbnail{
 	object-fit: cover;
-	max-width: 180px;
-	max-height: 100px;
+  width: 80px;
+	height: 80px;
 	cursor: pointer;
 	opacity: 0.5;
 	margin: 5px;
-	border: 2px solid black;
-
+  border-radius: 10px;
 }
 
 .thumbnail:hover{
@@ -61,7 +78,7 @@
 	width: 440px;
 	display: flex;
 	flex-wrap: nowrap;
-	overflow-x: auto;
+	overflow-x:hidden;
 
 }
 
@@ -164,7 +181,6 @@
             box-shadow: none;
             margin-bottom: .7rem;
         }
-        
         .reservar .btn-primary:focus{
             background-color: #06cc60;
             border:1px solid #06cc60;
@@ -174,12 +190,11 @@
             margin-bottom: .7rem;
         }
         .reservar .active{
-            background-color: #06cc60 !important;
-            border:1px solid #06cc60 !important;
-            color: white !important;
-            border-radius: 0px;
-            box-shadow: none;
-            margin-bottom: .7rem;
+    color: #06cc60 !;
+    border-radius: 0px;
+    background: #eaeaea !;
+    box-shadow: none;
+    margin-bottom: .7rem;
         }
         .reservar .btn-outline-success{
             background-color: #06cc60;
@@ -211,6 +226,9 @@
             top: 0;
             right: 0;
             box-shadow: none;
+        }
+        .bootstrap-datetimepicker-widget table td.active.today::before{
+              border-bottom-color: #eaeaea;
         }
 
     </style>
@@ -625,7 +643,10 @@ $('#duracion_total').text(tiempo+ ' min')
 
 
 	</script>
-                <div class="col-md-6">
+                
+            </div>
+        </div>
+        <div class="col-md-6">
                     <h2 class="pb-3" >
 
                         <strong id="">
@@ -664,8 +685,6 @@ $('#duracion_total').text(tiempo+ ' min')
                     </div>
 
                 </div>
-            </div>
-        </div>
 
     </section>
     <section id="reservar" class="reservar">
@@ -1009,7 +1028,7 @@ $('#duracion_total').text(tiempo+ ' min')
   <p class="card-text"  style="text-align: left;"><span id="preparacion_p"></span> y Ejecución: <span id="ejecucion_p"></span> </p>
 </div>
         <div class="container">
-            <div class="row">
+                     <div class="row">
                 <div class="col-md-6">
 <div id="content-wrapper">
   <div class="column">
@@ -1062,7 +1081,10 @@ $('#duracion_total').text(tiempo+ ' min')
 
 
 	</script>
-                <div class="col-md-6">
+                
+            </div>
+        </div>
+        <div class="col-md-6">
                     <h2 class="pb-3" >
 
                         <strong id="">
@@ -1101,9 +1123,6 @@ $('#duracion_total').text(tiempo+ ' min')
                     </div>
 
                 </div>
-            </div>
-        </div>
-
     </section>
     <section id="reservar" class="reservar">
         <div class="container">
