@@ -107,6 +107,7 @@ router.get('/categorias/:msg',authController.authenticatedUser, dashboardControl
 router.get('/crear_categoria',authController.authenticatedUser, dashboardController.crear_categoria);
 router.post('/crear_categoria',authController.authenticatedUser, dashboardController.guardar_categoria);
 router.get('/editar_categoria/:id',authController.authenticatedUser, dashboardController.editar_categoria);
+router.get('/delete_cate/:id',authController.authenticatedUser, dashboardController.delete_cate);
 router.post('/editar_categoria',authController.authenticatedUser, dashboardController.guardar_editar_categoria);
 
 

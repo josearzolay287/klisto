@@ -741,6 +741,21 @@ guardaredit_categoria(id_categoria,categoria,  estado,userid){
       });
   });
 },
+eliminar_cate(parametro_buscar) {
+  return new Promise((resolve, reject) => {
+    Categorias.destroy({
+      where: {
+        id: parametro_buscar,
+      },
+    }).then(() => {
+      //let gates= JSON.stringify(users)
+      resolve("respuesta exitosa");
+      ////console.log(JSON.stringify(users));
+    });
+  });
+},
+
+
 
 
 //Ventas - Wallet

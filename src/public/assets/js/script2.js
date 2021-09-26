@@ -261,6 +261,29 @@ if(tabla_usuarios_admin){
   })
 }
 
+///----DELETE CATEGORIA
+const tabla_mis_categorias = document.getElementById('tabla_mis_categorias')
+
+if(tabla_mis_categorias){
+  $('.delete').on('click', (e)=>{
+    let id = e.target.classList.item(2)
+    let tipo = e.target.classList.item(3)
+    Swal.fire({
+  title: 'Eliminar',
+  text: "Seguro desea eliminar la categoria indicada!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  cancelButtonText: 'Cancelar',
+  confirmButtonText: 'Eliminar'
+}).then((result) => {
+  if (result.isConfirmed) {
+    window.location.href = `/delete_cate/${id}`;
+  }
+})
+  })
+}
 
 ///----FILTROS DE TABLAS
     //POR STATUS
@@ -358,8 +381,6 @@ jQuery.extend(jQuery.expr[":"],
 
 //PAGOS_ADMIN
     //SORT TABLA
-$("#tabla_pagos_admin").tablesorter();
-$("#tabla_").tablesorter();
 if($('.Pagado')){
     $('.Pagado').attr('disabled', true)
 }
@@ -416,9 +437,9 @@ $("#meeting-time").val("yyyy-MM-dd");
       });
 
 ///----TABLA WALLET
-const tabla_pagos_admin = document.getElementById('tabla_pagos_admin')
+const tabla_pagos_admin = $('.tabla_pagos_admin')
 
-if(tabla_pagos_admin){
+if(tabla_pagos_admin.length){
 var estado = document.getElementById('estado').innerHTML
 console.log(estado)
 /*if (estado == "Realizada"){

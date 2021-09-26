@@ -290,9 +290,13 @@ if (tipo == "Principal") {
      let sucursales = JSON.parse(respuesta)[0]
      let encargados = sucursales.encargados
      console.log(sucursales)
-
-     let distritos = (sucursales.distritos).split(',')
+     let distritos = ""
+     let dias = ""
+    if (sucursales.distritos != null) {
+      let distritos = (sucursales.distritos).split(',')
      let dias = (sucursales.dias_laborables).split(',')
+    }
+     
       res.render("editar_suc_enc", {
      pageName: "Mi cuenta",
      dashboardPage: true,
@@ -874,6 +878,19 @@ exports.categorias = (req, res) => {
      console.log(respuesta)
      let msg="Se actualizó con exito la categoria"
       res.redirect('/categorias/'+msg)
+
+   })   
+ };
+ exports.delete_cate = (req, res) => {
+  const user = res.locals.user;
+  let tipo = req.params.tipo
+  let id_ = req.params.id
+
+  Modulo_BD.eliminar_cate(id_).then((respuesta) =>{
+    
+     console.log(respuesta)
+  let msg = "Categoria eliminada con éxito"
+  res.redirect('/categorias/'+msg)
 
    })   
  };

@@ -58,7 +58,10 @@ module.exports = {
 			out	+=`<label>${filtrar_id[0].nombre}</label><br>` 
 			let distritos = sucursales[0].distritos
 			
-			var aux2 = distritos.split(",");
+			var aux2 = "-"
+			if (distritos != null) {
+				aux2 = distritos.split(",");
+			}
 			for (let j = 0; j < aux2.length; j++) {
 				
 				out	+=`<label><input type="radio" id="distrito${sucursales.id}" value="${aux2[j]}" name="distrito" class="distrito${sucursales.id}" > 

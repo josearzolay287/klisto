@@ -706,7 +706,7 @@ sumah = (moment(siguiente_minuto, "hmm").add(tiempo, 'm').format('hh:mm'))
 
 var horaInicio = moment(hora_, `h:mma`);
 var horaFin = moment(sumah, `h:mma`);
-
+console.log(hora_)
 if(hora_ > 1200){
  let sumah2 = (moment(hora_, "hmm").add(60, 'm').format('hh:mm'))
   
@@ -714,7 +714,7 @@ if(hora_ > 1200){
 let siguiente_minuto2 = (parseInt(hora_2))
 hora_d = moment(siguiente_minuto2, "hmm").format('hh:mm');
 sumah = (moment(siguiente_minuto2, "hmm").add(tiempo, 'm').format('hh:mm'))
- console.log(sumah)
+ 
 }
 
 }

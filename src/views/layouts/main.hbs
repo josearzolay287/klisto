@@ -10,7 +10,7 @@
 		<aside class="menu-sidebar d-none d-lg-block">
 			<div class="logo">
 				<a href="{{#if dash_cliente}}/dash_cliente{{else}}/dashboard{{/if}}">
-					<img src="https://javierg.mosquedacordova.com/klizto/images/logo_fondo_claro.png" width="140">
+					<img src="../assets/img/logo_fondo_claro.png" width="140">
 				</a>
 			</div>
 			<div class="menu-sidebar__content js-scrollbar1">
@@ -37,10 +37,11 @@
    <i class="fa fa-tasks"></i> Administrador
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenu2" style="padding-left: 5px;">
+	  <li {{#if terminos}}class="dropdown-item active"{{/if}}><a href="/terminos"> <i class="fa fa-tasks"></i>Términos y políticas</a></li>
 	  <li {{#if categorias}}class="dropdown-item active"{{/if}}><a href="/categorias"> <i class="fa fa-tasks"></i>Categorias</a></li>
 	  <li {{#if config}}class="dropdown-item active"{{/if}}><a href="/configuraciones"> <i class="fa fa-tasks"></i>Configuraciones</a></li>
 	  <li {{#if public}}class="dropdown-item active"{{/if}}><a href="/publicidad"> <i class="fa fa-tasks"></i>Publcidad</a></li>
-	  <li {{#if terminos}}class="dropdown-item active"{{/if}}><a href="/terminos"> <i class="fa fa-tasks"></i>Términos y políticas</a></li>
+	  
 	  <li {{#if usuariosA}}class="dropdown-item active"{{/if}}><a href="/usuarios_a"> <i class="fa fa-tasks"></i>Usuarios</a></li>
   </div>
 </ul>

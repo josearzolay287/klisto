@@ -12,62 +12,12 @@ th.headerSortUp {
   background-position: center right;
   cursor: pointer;
  /* background-color: #3399FF; */
-} 
- 
-table.tablesorter thead tr .header {
-  background-image: url('assets/img/bg.gif');
-  background-repeat: no-repeat;
-  background-position: center right;
-  cursor: pointer;
-  }
-  th.headerSortDown { 
-  background-image: url('assets/img/desc.gif') !important;
-      background-repeat: no-repeat;
-  background-position: center right;
-  cursor: pointer; 
-/* background-color: #3399FF; */
 }
 .linea-oculta{display: none;}
 </style>
 <script>
-  var resultados_por_pagina = 10;
-var pagina_actual = 1;
-var pagina_ultima = 0;
-var cargarPagina = function(intPaginaP){
-	//evaluar si la pagina a cargar es mayor que el numero de paginas o es menor que 1
-	if(intPaginaP < 1){intPaginaP = 1;}
-	if(intPaginaP > pagina_ultima){intPaginaP = pagina_ultima;}
-	//ocultar todas las lineas
-	$("#tabla_>tbody>tr").addClass("linea-oculta");
-	var primer_registro = (intPaginaP - 1) * resultados_por_pagina;
-	for (var i = primer_registro; i < (primer_registro + resultados_por_pagina); i++){
-		$("#tabla_>tbody>tr").eq(i).removeClass("linea-oculta");
-	}
-	//indicar en qué pagina estamos
-	pagina_actual = intPaginaP;
-	$("#indicador_paginas").html("Página: " + pagina_actual + " / " + pagina_ultima);
-}
   $(function () {
-var total_registros = $("#tabla_>tbody>tr").length;
-	console.log("tabla"+pagina_ultima)
-	//saber cuantas paginas vamos a mostrar
-	pagina_ultima = Math.round(total_registros / resultados_por_pagina);
-	//cargar la primera pagina
-	cargarPagina(pagina_actual);
-	//eventos para los botones
-	$("#cargar_primera_pagina").click(function(){
-		cargarPagina(1);
-	});
-	$("#cargar_anterior_pagina").click(function(){
-		cargarPagina(pagina_actual - 1);
-	});
-	$("#cargar_siguiente_pagina").click(function(){
-		cargarPagina(pagina_actual + 1);
-	});
-	$("#cargar_ultima_pagina").click(function(){
-		cargarPagina(pagina_ultima);
-	});
- 
+
 
 })
 </script>
@@ -148,13 +98,7 @@ var total_registros = $("#tabla_>tbody>tr").length;
                       {{/each}}
 
                     </tbody>
-                    <tfoot>
-	<td><input type="button" id="cargar_primera_pagina" value="<< Primero"/></td>
-	<td><input type="button" id="cargar_anterior_pagina" value="< Anterior"/></td>
-	<td id="indicador_paginas"></td>
-	<td><input type="button" id="cargar_siguiente_pagina" value="Siguiente >"/></td>
-	<td><input type="button" id="cargar_ultima_pagina" value="Ultimo >>"/></td>
-</tfoot>
+
                   </table>
                 </div>
               </div>
