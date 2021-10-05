@@ -613,9 +613,9 @@ $('.sucursales_check:checked').each(function() {
     })
 
 
-$("input[name=empleado]").click(function () {    
-        console.log("La edad seleccionada es: " + $('input:radio[name=empleado]:checked').val());
-      $('#id_encargado').val($(this).val());
+$("#empleado").on('change',(e)=> {    
+        console.log("La edad seleccionada es: " + e.target.value);
+      $('#id_encargado').val(e.target.value);
         $('#dirigido_a').removeAttr('style')
     });
 
@@ -764,11 +764,11 @@ $('#duracion_total').text(tiempo+ ' min')
     if(valor == 'A Domicilio'){
         if ($('#locales_habiles').is(':visible')){
          $('#locales_habiles').attr('style', 'display:none')
-         $('input[name="sucursal"]').prop('checked', false);
-         $('input[name="empleado"]').prop('checked', false);
+         $('#empleado').prop('selectedIndex',0);
+         $('#sucursales').prop('selectedIndex',0);
+         $('#servicio_para').prop('selectedIndex',0);
           $('#empleados_').attr('style', 'display:none')
            $('#dirigido_a').attr('style', 'display:none')
-            $('input[name="lugar_serv_propio"]').prop('checked', false);
             $('#servicio_domicilio').attr('style', 'display:none')
             $('#domicilio_').attr('style', 'display:none')
           
@@ -791,7 +791,6 @@ $('#duracion_total').text(tiempo+ ' min')
           $('#empleados_').attr('style', 'display:none')          
          $('input[name="empleado"]').prop('checked', false);
          $('#dirigido_a').attr('style', 'display:none')
-          $('input[name="lugar_serv_propio"]').prop('checked', false);
            $('#servicio_domicilio').attr('style', 'display:none')
             $('#domicilio_').attr('style', 'display:none')
             $('input[name="costo_domicilio"]').val('')
@@ -809,9 +808,9 @@ $('#duracion_total').text(tiempo+ ' min')
         // $('#empleados_').attr('style', 'display:none')
          $('#empleados_').removeAttr('style') 
    })
-  $('input[name="sucursal').on('click', (e) => {
-    let split_id = (e.target.id).split('-')
-    let id_suc = split_id[1];    
+  $('#sucursales').on('change', (e) => {
+    console.log(e.target.value)
+    let id_suc = e.target.value;    
     $('#desde_preview').text($(`#horaD${id_suc}`).text())
     $('#hasta_preview').text($(`#horaH${id_suc}`).text())
  
@@ -819,7 +818,7 @@ $('#duracion_total').text(tiempo+ ' min')
    })
 
 
-    $('input[name="lugar_serv_propio"]').on('click', (e)=>{
+    $('#servicio_para').on('change', (e)=>{
       let valor = e.target.value
       console.log(valor)
         if ($('#distritos_habilitados').is(':visible')){
@@ -988,23 +987,16 @@ $('#duracion_total').text(tiempo+ ' min')
         <div class="container">
           <input type="radio" class="lugar_serv_" value="A Domicilio" name="lugar_serv_" id=""><label>A Domicilio <span></span></label>
                         <input type="radio" class="lugar_serv_" value="En Local" name="lugar_serv_" id=""><label>En Local</label>
-                           <div class="col" id="distritos_habilitados" style="display: none;">
-                        <label for="formGroupExampleInput">Seleccione el distrito (local):</label>
-                        {{#distritos_habilitados sucursales publicacion.sucursales}}{{/distritos_habilitados}} 
-                      </div>
+                           
 
-                        <div class="col" id="locales_habiles" style="display: none;">
+                        <div class="col" id="" style="display: none;">
                         <label for="formGroupExampleInput">Seleccione el local:</label>
                           <p class="card-text" id="descripcion_preview" style="text-align: left;">
-                      {{#sucursalesdisponibles publicacion.sucursales sucursales}}{{/sucursalesdisponibles}}
+                      
                     <span id="sucursales_p"></span></p>
                       </div>
 
-                      <div class="col" id="dirigido_a" style="display: none;">
-                        <label for="formGroupExampleInput">Indique para quien es el servicio:</label><br>
-                        <input type="radio" class="servicio_para" value="Personal" name="lugar_serv_propio" id=""><label>Personal</label>
-                        <input type="radio" class="servicio_para" value="A Tercero" name="lugar_serv_propio" id=""><label>Tercero</label>
-                      </div>
+                   
             <div class="row">
                 <div class="col-12">
                     <h1>
@@ -1016,11 +1008,44 @@ $('#duracion_total').text(tiempo+ ' min')
              
 
                 <div class="col-md-6 pt-5">
-                  <div class="form-group" id="empleados_" style="display: none;">
-                            <label for="">Escoger trabajador:*</label>
-                            {{#empleados_disponibles publicacion.empleados encargados}}{{/empleados_disponibles}}
+
+                  <div class="form-group" id="distritos_habilitados" style="display: none;">
+                        <label for="formGroupExampleInput">Seleccione el distrito (local):</label>
+                        <select class="select2 form-select" id="" name="distrito" id="distrito">
+{{#distritos_habilitados sucursales publicacion.sucursales}}{{/distritos_habilitados}} 
+
+                        </select>
+
+                        
+                      </div>
+                  
+                     <div class="form-group" id="locales_habiles" style="display: none;">
+                            <label for="">Escoger local:</label> 
+                            <select id="sucursales" class="form-control" name="sucursal">
+                        <option selected>Seleccione un local</option>
+                        {{#sucursalesdisponibles publicacion.sucursales sucursales}}{{/sucursalesdisponibles}}
                     <span id="sucursales_p"></span></p>
                         </div>
+                  <div class="form-group" id="empleados_" style="display: none;">
+                            <label for="">Escoger trabajador:</label> 
+                            <select id="empleado" class="form-control" name="empleado">
+                        <option selected>Seleccione un trabajador</option>
+                            {{#empleados_disponibles publicacion.empleados encargados}}{{/empleados_disponibles}}                  
+                      </select>
+                            
+                    <span id="sucursales_p"></span></p>
+                        </div>
+ <div class="form-group" id="dirigido_a" style="display: none;">
+                            <label for="">Indique para quien es el servicio:</label> 
+                            <select id="servicio_para" class="form-control servicio_para" name="lugar_serv_propio">
+                        <option selected>Seleccione una opcion</option>
+                         <option >Personal</option>    
+                          <option >A Tercero</option>        
+                      </select>
+                            
+                    <span id="sucursales_p"></span></p>
+                        </div>
+                        
                         <div class="form-group">
                           <label for="">Distrito:*</label>
                           <input type="text" class="form-control" id="" name="distrito_tercero">

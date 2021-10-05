@@ -38,12 +38,17 @@ module.exports = {
 			 for (let i = 0; i < id_suc.length; i++) {
 				 
 				 if (id_suc[i].id ==  aux[i]) {
-					out	+=`<label><input type="radio" id="sucursal-${id_suc[i].id}" value="${id_suc[i].id}" name="sucursal" class="sucursal_check${id_suc[i].id}" > ${id_suc[i].nombre}</label>
-					<span style="display: none;"><span id="horaD${id_suc[i].id}">${id_suc[i].desde}</span> <span id="horaH${id_suc[i].id}">${id_suc[i].hasta}</span></span>
-					<br>` 
+					out	+=`<option value="${id_suc[i].id}" class="sucursal_check${id_suc[i].id}" > ${id_suc[i].nombre}</option>` 
 				 }
 			
 			}
+			out +=`</select>`
+			for (let i = 0; i < id_suc.length; i++) {
+				 
+				if (id_suc[i].id ==  aux[i]) {
+					out +=`<span style="display: none;"><span id="horaD${id_suc[i].id}">${id_suc[i].desde}</span> <span id="horaH${id_suc[i].id}">${id_suc[i].hasta}</span></span>`
+				}
+		   }
 		 return out;
 	},
 	distritos_habilitados: (sucursales, id_suc) => {
@@ -55,7 +60,7 @@ module.exports = {
 			let array2 = sucursales
 			let filtrar_id = array2.filter(id => id.id == aux)
 			console.log(filtrar_id);
-			out	+=`<label>${filtrar_id[0].nombre}</label><br>` 
+			out	+=`<optgroup label="${filtrar_id[0].nombre}"></optgroup>` 
 			let distritos = sucursales[0].distritos
 			
 			var aux2 = "-"
@@ -64,9 +69,9 @@ module.exports = {
 			}
 			for (let j = 0; j < aux2.length; j++) {
 				
-				out	+=`<label><input type="radio" id="distrito${sucursales.id}" value="${aux2[j]}" name="distrito" class="distrito${sucursales.id}" > 
-			${aux2[j]}</label><br>`
+				out	+=`<option value="${aux2[j]}" class="distrito${sucursales.id}" > ${aux2[j]}</option>`
 			}
+			out	+=`</optgroup>` 
 		 }else{
 			 for (let i = 0; i < sucursales.length; i++) {
 				 console.log(aux[i])
@@ -74,15 +79,15 @@ module.exports = {
 				 
  				if (sucursales[i].id == aux[i]) {				
 
-					out	+=`<label>${sucursales[i].nombre}</label><br>` 
+					out	+=`<optgroup label="${sucursales[i].nombre}"></optgroup>` 
 					let distritos = sucursales[i].distritos
 					
 					var aux2 = distritos.split(",");
 					for (let j = 0; j < aux2.length; j++) {
 						
-						out	+=`<label><input type="radio" id="distrito${sucursales[i].id}" value="${aux2[j]}" name="distrito" class="distrito${sucursales[i].id}" > 
-					${aux2[j]}</label><br>`
+						out	+=`<option value="${aux2[j]}" name="distrito" class="distrito${sucursales[i].id}" >	${aux2[j]}</option>`
 					}
+					out	+=`</optgroup>` 
 				 }
 
 				 }
@@ -100,7 +105,7 @@ module.exports = {
 			 for (let i = 0; i < id_empleado.length; i++) {
 				 
 				 if (id_empleado[i].id ==  aux[i]) {
-					out	+=`<label><input type="radio" id="empleado${id_empleado[i].id}" value="${id_empleado[i].id}" name="empleado" class="empleado_check${id_empleado[i].id}" > ${id_empleado[i].nombre}</label><br>` 
+					out	+=`<option value="${id_empleado[i].id}" class="empleado_check${id_empleado[i].id}" > ${id_empleado[i].nombre}</option>` 
 				 }
 			
 			}
