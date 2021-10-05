@@ -126,7 +126,7 @@ if (estado == "Realizada"){
 			<div class="col-md-12">
             <div class="card-blank">
 				<div class="row">
-    <div class="col-sm">
+    <div class="col-sm" style="padding-left: 2.35rem; padding-top:1.25rem;">
                       <label for="inputState">Status</label>
                       <select id="status_filter" class="form-control" name="status_filter">
                         <option value="" selected>Todos</option>
@@ -142,10 +142,14 @@ if (estado == "Realizada"){
   </div>
               <div class="card-body">
 				  <table border="0" cellspacing="5" cellpadding="5">
-        <tbody><tr>
+        <tbody><tr class="mb-2">
             <td>Fecha inicio:</td>
             <td><input type="text" id="min" name="min"></td>
         </tr>
+		<tr>
+			<td>
+				<div style="height: 10px;"></div> </td>
+		</tr>
         <tr>
             <td>Fecha final:</td>
             <td><input type="text" id="max" name="max"></td>

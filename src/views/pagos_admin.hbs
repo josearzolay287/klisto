@@ -56,6 +56,19 @@ table.tablesorter thead tr .header {
   cursor: pointer; 
 /* background-color: #3399FF; */
 }
+.btn-primary{
+    background-color: var(--color-verde);
+    border: var(--color-verde);
+}
+.btn-primary:hover{
+    background-color: #09a550;
+    border: #09a550;
+}
+.btn-primary:focus{
+    background-color: #09a550;
+    border: #09a550;
+    box-shadow: none;
+}
 </style>
 <script>
 var resultados_por_pagina = 10;
@@ -195,12 +208,12 @@ var cargarPagina = function(intPaginaP){
 
 	<div class="row" style="margin-top: 5px;">
 	{{#if movimientos}}	<div class="col-lg-6 mb-3 mb-lg-0">
-			<div class="card card-box text-center border-0 bg-gradient text-white">
+			<div class="card card-box bg-gradient text-white pl-4 pt-3 pb-2" style="border-radius: 30px !important; ">
 				<h2 style="line-height: 1.5;" class="title-1">Saldo Actual: S/ {{saldo_actual}}</h2>
 				<h2 style="line-height: 1.5;" class="title-1">Para retiro: S/ {{para_retiro}}</h2>
 			</div>
 		</div>
-		<div class="col-lg-6 d-lg-flex flex-column justify-content-between" style="font-size: 14px;">
+		<div class="col-lg-6 d-lg-flex flex-column justify-content-center" style="font-size: 14px;">
 			<a class="btn btn-primary btn-block mb-3 mb-lg-0 btn_pay">Pagar</a>
 		<a href="/pagos" class="btn btn-primary btn-block mb-3 mb-lg-0">Ver Pagos</a>
 		<!--		<a href="/mis_pago" class="btn btn-primary btn-block mb-3 mb-lg-0">Mis retiros</a>-->
@@ -210,7 +223,7 @@ var cargarPagina = function(intPaginaP){
             <div class="card-blank">
 
               <div class="container">
-  <div class="row">
+  <div class="row pt-4" style="padding-left: .25rem;">
     <div class="col-sm">
                       <label for="inputState">Status</label>
                       <select id="status_filter_pago" class="form-control" name="status_filter_pago">

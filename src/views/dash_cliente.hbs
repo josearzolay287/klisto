@@ -373,6 +373,14 @@ border-bottom: 2px solid #06cc60;
     bottom: -149px;
     left: 0;
 }
+@media(max-width:1300px){
+    .mas-nuevo .card-mas-nuevo .precio-buscador span{
+    font-size: 16px;
+    }
+    .mas-nuevo .card-mas-nuevo .precio-buscador .buscador-vermas a{
+        font-size: 11px;
+    }
+    }
   </style>
 <div class="page-container">
 
@@ -400,7 +408,7 @@ border-bottom: 2px solid #06cc60;
             </div>
                 <div class="row">
                     {{#each publicaciones as |publicacion i |}}
-                <div class="col-md-3 item">
+                <div class="col-md-3 col-sm-6 item">
                     <div class="card-mas-nuevo">
                         <div class="img-card">
                             <img src="../assets/img_up/{{#fotoPrincipalPublicacion publicacion.fotos}}{{/fotoPrincipalPublicacion}}" alt="">

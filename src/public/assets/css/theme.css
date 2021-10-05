@@ -316,7 +316,7 @@ section {
 }
 
 .main-content {
-    padding-top: 116px;
+    padding-top: 90px;
     min-height: 100vh;
 }
 
@@ -846,10 +846,27 @@ section {
     background-clip: border-box;
     border-radius: 30px;
 }
+.card-blank .btn-primary{
+    background-color: var(--color-verde);
+    border: var(--color-verde);
+}
+.card-blank .btn-primary:hover{
+    background-color: #09a550;
+    border: #09a550;
+}
+.card-blank .btn-primary:focus{
+    background-color: #09a550;
+    border: #09a550;
+    box-shadow: none;
+}
 .card-blank > card-body > h1{
     display: none;
 }
-
+.card-blank h3{
+    padding-top: 1.25rem;
+    padding-left: 1.25rem;
+    font-weight: 600;
+}
 .card-header-blank{
     padding: .75rem 1.25rem;
 }
@@ -1613,6 +1630,8 @@ section {
     bottom: 0;
     background: #fff;
     overflow-y: auto;
+    padding-top: 2rem;
+    margin-bottom: -2rem;
 }
 
 .menu-sidebar .logo {
@@ -1670,11 +1689,12 @@ section {
 }
 
 .navbar-sidebar .navbar__list li a:hover {
-    color: #4272d7;
+    color: var(--color-verde);
+    text-decoration: none;
 }
 
 .navbar-sidebar .navbar__list li.active > a {
-    color: #4272d7;
+    color: var(--color-verde);
 }
 
 .has-sub {
@@ -14677,4 +14697,12 @@ section {
 
 .vue-lists ul, .vue-lists ol {
     padding-left: 30px;
+}
+.card-mas-nuevo{
+    margin-bottom: 2rem;
+}
+.cont-card h5{
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow: ellipsis;
 }
