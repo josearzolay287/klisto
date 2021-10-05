@@ -45,16 +45,16 @@
 }
 
 #featured{
-  width: 500px;
-	height: 350px;
-	cursor: pointer;
-  border-radius: 20px;
+width: 450px;
+    height: 320px;
+    cursor: pointer;
+    border-radius: 20px;
 }
 
 .thumbnail{
 	object-fit: cover;
   width: 80px;
-	height: 80px;
+	height: 70px;
 	cursor: pointer;
 	opacity: 0.5;
 	margin: 5px;
@@ -571,6 +571,70 @@ border-bottom: 2px solid #06cc60;
     bottom: -149px;
     left: 0;
 }
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 200px;
+  height: 45px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius:30px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "Domicilio";
+  left: 4px;
+  bottom: 3px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius:30px;
+    display: inline-block;
+  vertical-align: middle;
+  padding-top:8px;
+  padding-bottom:8px;
+  padding-left:10px;
+  padding-right:10px;
+  background-color: var(--color-verde);
+  color: white;
+}
+
+
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(105px);
+  -ms-transform: translateX(105px);
+  transform: translateX(105px);
+  content: 'Local';
+  padding-left:20px;
+  padding-right:20px;
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
   </style>
 <script>
   function select_hora(hora_desde, hora_hasta, id){
@@ -906,7 +970,7 @@ $('#duracion_total').text(tiempo+ ' min')
                             <img class="thumbnail" src="../assets/img_up/{{#fotoPublicacion5 publicacion.fotos}}{{/fotoPublicacion5}}">
                           </div>
 
-                          <img id="slideRight" class="arrow" src="../assets/img/arrow-right.png">
+                          <img id="slideRight" class="arrow" src="../assets/img/arrow-right.png" style="margin-top: 1px;">
                         </div>
                     </div>
                   <script type="text/javascript">
@@ -985,6 +1049,14 @@ $('#duracion_total').text(tiempo+ ' min')
     </section>
     <section id="reservar">
         <div class="container">
+          <div class="row">
+            <div class="col d-flex justify-content-center">
+              <label class="switch">
+                <input type="checkbox">
+                <span class="slider"></span>
+              </label>
+            </div>
+          </div>
           <input type="radio" class="lugar_serv_" value="A Domicilio" name="lugar_serv_" id=""><label>A Domicilio <span></span></label>
                         <input type="radio" class="lugar_serv_" value="En Local" name="lugar_serv_" id=""><label>En Local</label>
                            
