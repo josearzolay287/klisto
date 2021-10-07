@@ -39,7 +39,8 @@
 }
 
 .column{
-	width: 600px;
+	width: 100%;
+  max-width: 600px;
 	padding: 10px;
 
 }
@@ -1086,9 +1087,13 @@ $('#duracion_total').text(tiempo+ ' min')
                        {{publicacion.descripcion}}
                     </p>
 
-                    <div class="dom-loc pb-3">
+                    <div class="dom-loc pb-3 d-none">
                       <input type="radio" class="lugar_serv_ " value="A Domicilio" name="lugar_serv_" id=""><label>A Domicilio <span></span></label>
                         <input type="radio" class="lugar_serv_" value="En Local" name="lugar_serv_" id=""><label>En Local</label>
+                    </div>
+                    <div class="dom-loc pb-3">
+                      <img src="../assets/img/cancel.svg" alt="" class="checkeds-img"><span style="margin-top: 3px;">Domicilio</span>
+                      <img src="../assets/img/checked.svg" alt="" class="checkeds-img" style="margin-top: 0;"><span class="checkeds-p">Local</span>
                     </div>
 
                     <button class="btn btn-primary">
@@ -1228,7 +1233,7 @@ $('#duracion_total').text(tiempo+ ' min')
                 </div>
                 <div class="col-md-12">
                     <div style="float: left; padding-top: .35rem;">Agregar cupón:</div>
-                    <div style="float: right; width: calc(100% - 110px); position: relative;">
+                    <div style="float: right; width: calc(100% - 125px); position: relative;">
                         <input type="text" class="form-control">
                         <button class="btn btn-outline-success my-2 my-sm-0 añadir" type="submit">
                             Añadir
@@ -1274,7 +1279,7 @@ $('#duracion_total').text(tiempo+ ' min')
             </div>
             <div class="row">
                 <div class="col-12 pt-3">
-                    <button type="submit" class="btn btn-primary active" style="width: 100%;padding: 1.5rem; font-size: 25px; font-weight: 700; border-radius: 15px;">
+                    <button type="submit" class="btn btn-primary active" style="width: 100%;padding: 1.5rem; font-size: 25px; font-weight: 700; border-radius: 15px; background-color:var(--color-verde); color:white;">
                         Realizar reserva
                     </button>
                 </div>
