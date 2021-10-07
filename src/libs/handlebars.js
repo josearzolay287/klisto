@@ -69,9 +69,16 @@ module.exports = {
 			}
 			for (let j = 0; j < aux2.length; j++) {
 				
-				out	+=`<option value="${aux2[j]}" class="distrito${sucursales.id}" > ${aux2[j]}</option>`
+				out	+=`<option value="${aux2[j]}" data-id="${sucursales[i].id}" class="distrito${sucursales.id}" >${aux2[j]}</option>`
 			}
-			out	+=`</optgroup>` 
+			out	+=`</optgroup>`
+			out +=`</select>`
+			for (let i = 0; i < id_suc.length; i++) {
+				 
+				if (id_suc[i].id ==  aux[i]) {
+					out +=`<span style="display: none;"><span id="horaD${id_suc[i].id}">${id_suc[i].desde}</span> <span id="horaH${id_suc[i].id}">${id_suc[i].hasta}</span></span>`
+				}
+		   } 
 		 }else{
 			 for (let i = 0; i < sucursales.length; i++) {
 				 console.log(aux[i])
@@ -85,13 +92,19 @@ module.exports = {
 					var aux2 = distritos.split(",");
 					for (let j = 0; j < aux2.length; j++) {
 						
-						out	+=`<option value="${aux2[j]}" name="distrito" class="distrito${sucursales[i].id}" >	${aux2[j]}</option>`
+						out	+=`<option value="${aux2[j]}" data-id="${sucursales[i].id}" class="distrito${sucursales[i].id}" >${aux2[j]}</option>`
 					}
 					out	+=`</optgroup>` 
 				 }
 
 				 }
-				
+				 out +=`</select>`
+				 for (let i = 0; i < id_suc.length; i++) {
+					  
+					 if (id_suc[i].id ==  aux[i]) {
+						 out +=`<span style="display: none;"><span id="horaD${id_suc[i].id}">${id_suc[i].desde}</span> <span id="horaH${id_suc[i].id}">${id_suc[i].hasta}</span></span>`
+					 }
+				}
 				
 			
 			}

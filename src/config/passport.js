@@ -9,7 +9,7 @@ var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const Usuarios = require('../models/Usuarios');
 
 // Loca strategy - Login con credenciales propios
-passport.use(
+passport.use('local',
 	new LocalStrategy(
 		{
 			usernameField: 'email',
@@ -33,6 +33,39 @@ passport.use(
 				});
 			}
 		}
+	)
+);
+
+passport.use('cliente_out',
+	new LocalStrategy(
+		{
+			usernameField: 'correo',
+			passwordField: 'password',
+			passReqToCallback : true
+		},
+		async (req,correo,password, done) => {
+			console.log(correo)
+			try{
+		const	usuario = await Usuarios.findOne({where: {email: correo}});
+			if (!usuario) {
+				console.log("No hay:"+ usuario);
+				return done(null, usuario,{
+					message: '0'
+				});
+			}else{
+				if(!usuario.verifyPassword(password)) {
+					return done(null, false, {
+						message: 'Contraseña incorrecta'
+					});
+				}
+				return done(null, usuario);
+			}
+		}catch(err) {
+		return done(null, false, {
+			message: 'Esa cuenta no existe'
+		});
+	}
+}
 	)
 );
 

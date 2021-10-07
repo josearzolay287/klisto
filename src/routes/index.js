@@ -44,6 +44,7 @@ router.get('/reg_cliente', userController.formCreateUser_client);
 router.get('/reg_negocio', userController.formCreateUser_empres);
 router.post('/reg_cliente', userController.createUser_client);
 router.post('/registrar_empresa', userController.createUser_empresa);
+router.post('/verificar_usuario', userController.loginUserTemp);
 
 //email route
 router.post('/subscribe', EmailCtrl.sendEmail);

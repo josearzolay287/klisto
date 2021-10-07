@@ -57,7 +57,10 @@ const Agenda = db.define('Agenda', {
 		type: DataTypes.TEXT,
 		allowNull: true,
 	},
-	
+	comentario: {
+		type: DataTypes.TEXT,
+		allowNull: true,
+	},
 	
 });
 Agenda.Usuarios= Agenda.belongsTo(Usuarios);

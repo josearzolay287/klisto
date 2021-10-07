@@ -599,7 +599,7 @@ border-bottom: 2px solid #06cc60;
 
 .slider:before {
   position: absolute;
-  content: "Domicilio";
+  content: attr(data-content);
   left: 4px;
   bottom: 3px;
   background-color: white;
@@ -622,7 +622,7 @@ input:checked + .slider:before {
   -webkit-transform: translateX(105px);
   -ms-transform: translateX(105px);
   transform: translateX(105px);
-  content: 'Local';
+  content: attr(data-content);
   padding-left:20px;
   padding-right:20px;
 }
@@ -682,7 +682,56 @@ $("#empleado").on('change',(e)=> {
       $('#id_encargado').val(e.target.value);
         $('#dirigido_a').removeAttr('style')
     });
+//verificar inicio de sesion
+$('#correo_tercero').on('change', (e)=>{
 
+///let fecha = $('#fecha_ag').val()
+let correo = e.target.value
+let pass = $('#pass').val()
+console.log(correo)
+console.log(pass)
+if ( $('#servicio_para').val() != "Personal"){
+  return
+}
+const data = new FormData();
+data.append("correo", correo);
+data.append('password', pass);
+$.ajax({
+      url: '/verificar_usuario',
+      type: 'POST',
+      data: data,
+      cache: false,
+      contentType: false,
+      processData: false,
+      /*xhr: function () {        
+          var xhr = $.ajaxSettings.xhr();
+          xhr.upload.onprogress = function (event) {
+              var perc = Math.round((event.loaded / event.total) * 100);
+             // $("#nombreArchivoCalendario1").text(inputFile.name);
+             
+              $("#progressBar1").text(perc + '%');
+              $("#progressBar1").css('width', perc + '%');
+          };
+          return xhr;
+      },
+      beforeSend: function (xhr) {
+        displayLoading()
+          $("#progressBar1").text('0%');
+          $("#progressBar1").css('width', '0%');
+      },*/
+      success: function (data, textStatus, jqXHR)
+      {  
+
+if (data == 0 ){
+console.log(data)
+$('#password_r').removeAttr('style')
+}
+      },
+      error: function (jqXHR, textStatus) { 
+        console.log('error:'+ jqXHR)
+      }
+  });
+})
 
 // SCRIP BASE DE DATOS
 var fecha_agenda_ar =[]
@@ -816,17 +865,32 @@ parent.appendChild(div);
 </script>
 <script>
    $(function () { 
-     let preparacion_p = $('#preparacion_p').text()
-let ejecucion_p = $('#ejecucion_p').text()
-let tiempo = parseInt(preparacion_p)+parseInt(ejecucion_p)
-$('#duracion_total').text(tiempo+ ' min')
+     $('.switch > .slider').attr('data-content', 'Domicilio');
+$('.switch > .slider').on('click', (e)=>{
+  let modo = e.target.dataset.content
 
-  $('.lugar_serv_').on('click', (e)=>{
-    let valor = e.target.value;
-    console.log(valor)
-
-    if(valor == 'A Domicilio'){
-        if ($('#locales_habiles').is(':visible')){
+  console.log(modo)
+  if ( modo == "Domicilio"){
+    $('.switch > .slider').attr('data-content', 'Local');
+ if ($('#distritos_habilitados').is(':visible')){
+         $('#distritos_habilitados').attr('style', 'display:none')
+         $('input[name="distrito"]').prop('checked', false);
+          $('#empleados_').attr('style', 'display:none')          
+         $('input[name="empleado"]').prop('checked', false);
+         $('#dirigido_a').attr('style', 'display:none')
+           $('#servicio_domicilio').attr('style', 'display:none')
+            $('#domicilio_').attr('style', 'display:none')
+            $('input[name="costo_domicilio"]').val('')
+      }
+      /*if ($('#servicio_propio').is(':visible')){
+         $('#servicio_propio').attr('style', 'display:none')
+        return $('#servicio_tercero').removeAttr('style')
+      }*/
+      $('input[name="sucursal"]').prop('checked', false);
+        $('#locales_habiles').removeAttr('style') 
+  }else{
+    $('.switch > .slider').attr('data-content', 'Domicilio');
+           if ($('#locales_habiles').is(':visible')){
          $('#locales_habiles').attr('style', 'display:none')
          $('#empleado').prop('selectedIndex',0);
          $('#sucursales').prop('selectedIndex',0);
@@ -846,30 +910,22 @@ $('#duracion_total').text(tiempo+ ' min')
       $('input[name="costo_domicilio"]').val('{{publicacion.costo_domicilio}}')
       $('input[name="distrito"]').prop('checked', false);
         $('#distritos_habilitados').removeAttr('style')
-       
+  }
+ 
+ 
+})
 
-    }else{
-       if ($('#distritos_habilitados').is(':visible')){
-         $('#distritos_habilitados').attr('style', 'display:none')
-         $('input[name="distrito"]').prop('checked', false);
-          $('#empleados_').attr('style', 'display:none')          
-         $('input[name="empleado"]').prop('checked', false);
-         $('#dirigido_a').attr('style', 'display:none')
-           $('#servicio_domicilio').attr('style', 'display:none')
-            $('#domicilio_').attr('style', 'display:none')
-            $('input[name="costo_domicilio"]').val('')
-      }
-      /*if ($('#servicio_propio').is(':visible')){
-         $('#servicio_propio').attr('style', 'display:none')
-        return $('#servicio_tercero').removeAttr('style')
-      }*/
-      $('input[name="sucursal"]').prop('checked', false);
-        $('#locales_habiles').removeAttr('style') 
-    }
-  })
 
-  $('input[name="distrito').on('click', (e) => {
-        // $('#empleados_').attr('style', 'display:none')
+     let preparacion_p = $('#preparacion_p').text()
+let ejecucion_p = $('#ejecucion_p').text()
+let tiempo = parseInt(preparacion_p)+parseInt(ejecucion_p)
+$('#duracion_total').text(tiempo+ ' min')
+
+  $('#distritos_h').on('change', (e) => {
+    console.log($(this).find(':selected').attr('data-id'))
+         let id_suc = $(this).find(':selected').attr('data-id');    
+    $('#desde_preview').text($(`#horaD${id_suc}`).text())
+    $('#hasta_preview').text($(`#horaH${id_suc}`).text())
          $('#empleados_').removeAttr('style') 
    })
   $('#sucursales').on('change', (e) => {
@@ -1052,23 +1108,12 @@ $('#duracion_total').text(tiempo+ ' min')
           <div class="row">
             <div class="col d-flex justify-content-center">
               <label class="switch">
-                <input type="checkbox">
+                
+                <input type="checkbox" class="switch_chek">
                 <span class="slider"></span>
               </label>
             </div>
-          </div>
-          <input type="radio" class="lugar_serv_" value="A Domicilio" name="lugar_serv_" id=""><label>A Domicilio <span></span></label>
-                        <input type="radio" class="lugar_serv_" value="En Local" name="lugar_serv_" id=""><label>En Local</label>
-                           
-
-                        <div class="col" id="" style="display: none;">
-                        <label for="formGroupExampleInput">Seleccione el local:</label>
-                          <p class="card-text" id="descripcion_preview" style="text-align: left;">
-                      
-                    <span id="sucursales_p"></span></p>
-                      </div>
-
-                   
+          </div>                   
             <div class="row">
                 <div class="col-12">
                     <h1>
@@ -1083,10 +1128,9 @@ $('#duracion_total').text(tiempo+ ' min')
 
                   <div class="form-group" id="distritos_habilitados" style="display: none;">
                         <label for="formGroupExampleInput">Seleccione el distrito (local):</label>
-                        <select class="select2 form-select" id="" name="distrito" id="distrito">
-{{#distritos_habilitados sucursales publicacion.sucursales}}{{/distritos_habilitados}} 
+                        <select class="select2 form-select" name="distrito" id="distritos_h">
+                    {{#distritos_habilitados sucursales publicacion.sucursales}}{{/distritos_habilitados}} 
 
-                        </select>
 
                         
                       </div>
@@ -1135,7 +1179,11 @@ $('#duracion_total').text(tiempo+ ' min')
                         </div>
                         <div class="form-group">
                             <label for="">Correo:*</label>
-                            <input type="text" class="form-control" id="" name="correo_tercero">
+                            <input type="text" class="form-control" id="correo_tercero" name="correo_tercero">
+                        </div>
+                        <div class="form-group" id="password_r" style="display: none;">
+                            <label for="">Password:*</label>
+                            <input type="text" class="form-control" id="pass" name="password" value="0">
                         </div>
                         <div class="form-group">
                             <label for="">Celular:*</label>

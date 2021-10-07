@@ -393,3 +393,27 @@ exports.upload = function (req, res) {
     title: "ejemplo de subida de imagen por HispaBigData",
   });
 };
+
+exports.loginUserTemp = (req, res) => {
+  console.log(req.body);
+  passport.authenticate("cliente_out", function (err, user, info) {
+    if (err) {
+      console.log(err)
+      return next(err);
+    }
+    if (!user) {
+      console.log('info')
+      console.log(err)
+      console.log(user)
+      return res.send(info.message);
+    }
+    req.logIn(user, function (err) {
+      if (err) {
+        return next(err);
+      }
+      console.log('info2')
+      console.log(user.dataValues);
+      return res.send(user.dataValues);
+    });
+  })(req, res);
+};
