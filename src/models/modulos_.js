@@ -593,10 +593,10 @@ AgendaAll(){
       });
   });
 },
-guardar_Agenda(fecha,id_publicacion, h_desde,h_hasta,id_encargado, lugar_servicio, nombre_del_tercero, telefono_tercero, direccion_tercero,lugar_serv_propio){
+guardar_Agenda(fecha,id_publicacion, h_desde,h_hasta,id_encargado, lugar_servicio, nombre_del_tercero, telefono_tercero, direccion_tercero,lugar_serv_propio,comentario){
   return new Promise((resolve, reject) => {
     Agenda.create({
-      fecha_agenda:fecha,hora_cita_desde:h_desde, hora_cita_hasta:h_hasta,lugar_servicio: lugar_servicio, nombre_del_tercero: nombre_del_tercero, telefono_tercero: telefono_tercero, direccion_tercero: direccion_tercero,lugar_serv_propio: lugar_serv_propio, encargadoId:id_encargado, publicacioneId:id_publicacion
+      fecha_agenda:fecha,hora_cita_desde:h_desde, hora_cita_hasta:h_hasta,lugar_servicio: lugar_servicio, nombre_del_tercero: nombre_del_tercero, telefono_tercero: telefono_tercero, direccion_tercero: direccion_tercero,lugar_serv_propio: lugar_serv_propio,comentario:comentario, encargadoId:id_encargado, publicacioneId:id_publicacion
     }).then((data_) =>{
       let datas = JSON.stringify(data_);
       resolve(datas);

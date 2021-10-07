@@ -44,14 +44,21 @@ passport.use('cliente_out',
 			passReqToCallback : true
 		},
 		async (req,correo,password, done) => {
-			console.log(correo)
+			console.log(req.body)
 			try{
-		const	usuario = await Usuarios.findOne({where: {email: correo}});
+		usuario = await Usuarios.findOne({where: {email: correo}});
 			if (!usuario) {
 				console.log("No hay:"+ usuario);
-				return done(null, usuario,{
-					message: '0'
-				});
+			usuario = await Usuarios.create({
+				name: req.body.name,
+				email: correo,
+				password: password,
+			});	
+			usuario.save(function(err) {
+				if (err) console.log(err);
+				return done(null, usuario);
+			});
+			return done(null, usuario);
 			}else{
 				if(!usuario.verifyPassword(password)) {
 					return done(null, false, {

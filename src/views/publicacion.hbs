@@ -3,7 +3,9 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.3/moment.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.min.css" integrity="sha512-3JRrEUwaCkFUBLK1N8HehwQgu8e23jTH4np5NHOmQOobuC4ROQxFwFgBLTnhcnQRMs84muMh0PnnwXlPq5MGjg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.min.css" />
+<link href="https://cdn.jsdelivr.net/css-toggle-switch/latest/toggle-switch.css" rel="stylesheet" />
+
 
  <style>
    thead .dow{
@@ -617,7 +619,31 @@ border-bottom: 2px solid #06cc60;
   color: white;
 }
 
+.switch-toggle {
+  width: 15em;
+  cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc !important;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 30px !important;
+}
 
+.switch-toggle label:not(.disabled) {
+  cursor: pointer;
+}
+.switch-candy a {
+    border-radius:30px !important;
+    border: none !important;
+    background-color: white;
+    box-shadow: 0 1px 1px rgb(0 0 0 / 20%), inset 0 1px 1px rgb(255 255 255 / 45%);
+    background-color: var(--color-verde);
+    background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.2), transparent);
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.2), transparent);
+}
 
 input:checked + .slider:before {
   -webkit-transform: translateX(105px);
@@ -644,11 +670,14 @@ input:checked + .slider:before {
     document.getElementById('h_hasta').value= hora_hasta; 
      console.log(id)
     $(`#${id}`).addClass('active')
-    
+    $('#button_finish_reserv').removeAttr('disabled')
   }
 
   $(function () {
-
+activar_reservar
+ $('#activar_reservar').on('click',(e)=>{
+$('#reservar').removeAttr('style')
+  })
   $('.fc-daygrid-day ').on('click',(e)=>{
 
 console.log(e.target)
@@ -685,15 +714,11 @@ $("#empleado").on('change',(e)=> {
     });
 //verificar inicio de sesion
 $('#correo_tercero').on('change', (e)=>{
-
 ///let fecha = $('#fecha_ag').val()
 let correo = e.target.value
 let pass = $('#pass').val()
 console.log(correo)
 console.log(pass)
-if ( $('#servicio_para').val() != "Personal"){
-  return
-}
 const data = new FormData();
 data.append("correo", correo);
 data.append('password', pass);
@@ -722,12 +747,82 @@ $.ajax({
       },*/
       success: function (data, textStatus, jqXHR)
       {  
-
+        console.log(data)
 if (data == 0 ){
+  $('.password_r').removeAttr('style')
+  $('#password_c').removeAttr('style')  
 console.log(data)
-$('#password_r').removeAttr('style')
+$('#continuar_sesion').removeAttr('disabled') 
+
 }
+   $('.password_r').removeAttr('style') 
+   $('#continuar_sesion').removeAttr('disabled')  
+    },
+      error: function (jqXHR, textStatus) { 
+        console.log('error:'+ jqXHR)
+      }
+  });
+})
+
+$('#continuar_sesion').on('click', (e)=>{
+///let fecha = $('#fecha_ag').val()
+let correo = $('#correo_tercero').val()
+let pass = $('#pass').val()
+let confirm = $('#confirmpass').val()
+let name = $('#name_session').val()
+console.log(correo)
+console.log(pass)
+if ( pass ==""){
+Swal.fire("Campo contraseña vacio, verifique porfavor")
+return
+}
+if ($('#password_c').is(':visible')){
+  if ( pass != confirm){
+    Swal.fire('Password y confirmación no son iguales')
+return 
+}
+}
+
+const data = new FormData();
+data.append("correo", correo);
+data.append('password', pass);
+data.append('name', name);
+$.ajax({
+      url: '/inicia_sesion_modal',
+      type: 'POST',
+      data: data,
+      cache: false,
+      contentType: false,
+      processData: false,
+      /*xhr: function () {        
+          var xhr = $.ajaxSettings.xhr();
+          xhr.upload.onprogress = function (event) {
+              var perc = Math.round((event.loaded / event.total) * 100);
+             // $("#nombreArchivoCalendario1").text(inputFile.name);
+             
+              $("#progressBar1").text(perc + '%');
+              $("#progressBar1").css('width', perc + '%');
+          };
+          return xhr;
       },
+      beforeSend: function (xhr) {
+        displayLoading()
+          $("#progressBar1").text('0%');
+          $("#progressBar1").css('width', '0%');
+      },*/
+      success: function (data, textStatus, jqXHR)
+      {  
+        console.log(data)
+        if (data =="Contraseña incorrecta"){
+          console.log('error')
+          Swal.fire(data)
+          return 'Error'
+        }
+if (data != null){
+  console.log(data)
+$('#guardar_agenda').submit()
+}
+    },
       error: function (jqXHR, textStatus) { 
         console.log('error:'+ jqXHR)
       }
@@ -867,12 +962,12 @@ parent.appendChild(div);
 <script>
    $(function () { 
      $('.switch > .slider').attr('data-content', 'Domicilio');
-$('.switch > .slider').on('click', (e)=>{
-  let modo = e.target.dataset.content
+$('.switch > #on,.switch > #off').on('click', (e)=>{
+  console.log(e)
+  let modo = e.target.value
 
   console.log(modo)
-  if ( modo == "Domicilio"){
-    $('.switch > .slider').attr('data-content', 'Local');
+  if ( modo == "Local"){
  if ($('#distritos_habilitados').is(':visible')){
          $('#distritos_habilitados').attr('style', 'display:none')
          $('input[name="distrito"]').prop('checked', false);
@@ -887,10 +982,11 @@ $('.switch > .slider').on('click', (e)=>{
          $('#servicio_propio').attr('style', 'display:none')
         return $('#servicio_tercero').removeAttr('style')
       }*/
-      $('input[name="sucursal"]').prop('checked', false);
-        $('#locales_habiles').removeAttr('style') 
+        $('#locales_habiles').removeAttr('style')
+         $('#costo_trans').text('0')
+         let suma = parseInt($('#costo_trans').text())+ parseInt($('#costo_serv').text())
+        $('#total_pga').text(suma)
   }else{
-    $('.switch > .slider').attr('data-content', 'Domicilio');
            if ($('#locales_habiles').is(':visible')){
          $('#locales_habiles').attr('style', 'display:none')
          $('#empleado').prop('selectedIndex',0);
@@ -903,14 +999,12 @@ $('.switch > .slider').on('click', (e)=>{
           
 
       }
-      /*if ($('#servicio_tercero').is(':visible')){
-         $('#servicio_tercero').attr('style', 'display:none')
-        $('.lugar_serv_propio').prop('checked', false);
-        return $('#servicio_propio').removeAttr('style')
-      }*/
       $('input[name="costo_domicilio"]').val('{{publicacion.costo_domicilio}}')
       $('input[name="distrito"]').prop('checked', false);
         $('#distritos_habilitados').removeAttr('style')
+        $('#costo_trans').text('{{publicacion.costo_domicilio}}')
+    let suma = parseInt($('#costo_trans').text())+ parseInt($('#costo_serv').text())
+        $('#total_pga').text(suma)
   }
  
  
@@ -1002,7 +1096,7 @@ $('#duracion_total').text(tiempo+ ' min')
           </div>
 
           {{#if publicacion_activa}}
-          <form method="post"  action="/guardar_agenda">
+          <form method="post"  action="/guardar_agenda" id="guardar_agenda">
 <section class="pb-5 pt-5" id="gallery-presentation">
 <div style="display:none;">
   <p class="card-text" id="descripcion_preview" style="text-align: left;"><span id="preparacion_p">{{publicacion.preparacion}} min.</span> y Ejecución: <span id="ejecucion_p">{{publicacion.ejecucion}} min.</span> </p>
@@ -1096,7 +1190,7 @@ $('#duracion_total').text(tiempo+ ' min')
                       <img src="../assets/img/checked.svg" alt="" class="checkeds-img" style="margin-top: 0;"><span class="checkeds-p">Local</span>
                     </div>
 
-                    <button class="btn btn-primary">
+                    <button type="button" class="btn btn-primary" id="activar_reservar">
                         Reservar
                     </button>
 
@@ -1108,15 +1202,23 @@ $('#duracion_total').text(tiempo+ ' min')
             </div>
         </div>
     </section>
-    <section id="reservar">
+    <section id="reservar" style="display: none;">
         <div class="container">
           <div class="row">
+          
             <div class="col d-flex justify-content-center">
-              <label class="switch">
-                
-                <input type="checkbox" class="switch_chek">
-                <span class="slider"></span>
-              </label>
+                <div class="switch-toggle switch-3 switch-candy switch">
+  <input id="on" name="state-d" type="radio" checked="" value="Domicilio"/>
+  <label for="on" onclick="" >Domicilio</label>
+
+  <input id="na" name="state-d" type="radio" disabled checked="checked" />
+  <label for="na" class="disabled" onclick="">&nbsp;</label>
+
+  <input id="off" name="state-d" type="radio" value="Local"/>
+  <label for="off" onclick="">Local</label>
+
+  <a></a>
+</div>
             </div>
           </div>                   
             <div class="row">
@@ -1134,6 +1236,7 @@ $('#duracion_total').text(tiempo+ ' min')
                   <div class="form-group" id="distritos_habilitados" style="display: none;">
                         <label for="formGroupExampleInput">Seleccione el distrito (local):</label>
                         <select class="select2 form-select" name="distrito" id="distritos_h">
+                           <option selected value="0">Seleccione un distrito</option>
                     {{#distritos_habilitados sucursales publicacion.sucursales}}{{/distritos_habilitados}} 
 
 
@@ -1143,7 +1246,7 @@ $('#duracion_total').text(tiempo+ ' min')
                      <div class="form-group" id="locales_habiles" style="display: none;">
                             <label for="">Escoger local:</label> 
                             <select id="sucursales" class="form-control" name="sucursal">
-                        <option selected>Seleccione un local</option>
+                        <option selected value="0">Seleccione un local</option>
                         {{#sucursalesdisponibles publicacion.sucursales sucursales}}{{/sucursalesdisponibles}}
                     <span id="sucursales_p"></span></p>
                         </div>
@@ -1181,14 +1284,6 @@ $('#duracion_total').text(tiempo+ ' min')
                             <input type="text" class="form-control" id="" name="nombre_del_tercero">
 
 
-                        </div>
-                        <div class="form-group">
-                            <label for="">Correo:*</label>
-                            <input type="text" class="form-control" id="correo_tercero" name="correo_tercero">
-                        </div>
-                        <div class="form-group" id="password_r" style="display: none;">
-                            <label for="">Password:*</label>
-                            <input type="text" class="form-control" id="pass" name="password" value="0">
                         </div>
                         <div class="form-group">
                             <label for="">Celular:*</label>
@@ -1254,9 +1349,10 @@ $('#duracion_total').text(tiempo+ ' min')
                     <div style="float: left;">
                         Precio de transporte:
                     </div> 
-                    <div style="float: right;">
-                        S/<span id="costo_trans">{{publicacion.costo_domicilio}}</span>
+                    <div style="float: right;" id="transporte">
+                        S/<span id="costo_trans">0</span>
                     </div>
+                    
                 </div>
             </div>
             <div class="row">
@@ -1271,7 +1367,7 @@ $('#duracion_total').text(tiempo+ ' min')
                     <div style="float: right;">
                         <h2>
                             <strong>
-                                S/<span>35.00</span> 
+                                S/<span id="total_pga">{{publicacion.precio}}</span> 
                             </strong>
                         </h2>
                     </div>
@@ -1279,7 +1375,7 @@ $('#duracion_total').text(tiempo+ ' min')
             </div>
             <div class="row">
                 <div class="col-12 pt-3">
-                    <button type="submit" class="btn btn-primary active" style="width: 100%;padding: 1.5rem; font-size: 25px; font-weight: 700; border-radius: 15px; background-color:var(--color-verde); color:white;">
+                    <button type="button" class="btn btn-primary active" style="width: 100%;padding: 1.5rem; font-size: 25px; font-weight: 700; border-radius: 15px; background-color:var(--color-verde); color:white;" data-toggle="modal" data-target="#exampleModal" disabled id="button_finish_reserv">
                         Realizar reserva
                     </button>
                 </div>
@@ -1297,6 +1393,47 @@ $('#duracion_total').text(tiempo+ ' min')
              
             </div>
           </div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Sesión</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       
+                        <div class="form-group">
+                            <label for="">Correo:*</label>
+                            <input type="text" class="form-control" id="correo_tercero" name="correo_tercero">
+                        </div>
+                        <div class="form-group password_r" id="password_r" style="display:none;">
+                            <label for="">Password:*</label>
+                            <input type="password" class="form-control" id="pass" name="password" >
+                        </div>
+                        <div id="password_c" style="display:none;">
+                          <div class="form-group password_r" >
+                            <label for="">Confirmar Password:*</label>
+                            <input type="password" class="form-control" id="confirmpass" name="confirm_password" >
+                            <span class="no_iguales" style="display: none;">Contraseñas no coinciden</span>
+                        </div>
+                             <div class="form-group password_r"  >
+                            <label for="">Nombre:</label>
+                            <input type="text" class="form-control" id="name_session" name="nombre" >
+                        </div>
+                        </div>
+                        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" id="continuar_sesion" disabled>Continuar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
           {{/if}}
 
 

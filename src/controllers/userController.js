@@ -417,3 +417,14 @@ exports.loginUserTemp = (req, res) => {
     });
   })(req, res);
 };
+exports.verifMail = async(req, res) => {
+  console.log(req.body);
+		const	usuario = await Usuarios.findOne({where: {email: req.body.correo}});
+    console.log(usuario)
+			if (!usuario) {
+				console.log("No hay:"+ usuario);
+				return res.send('0');
+			}else{
+        return res.send('1');
+			}
+};

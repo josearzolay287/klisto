@@ -1398,7 +1398,7 @@ console.log(sucursales)
  exports.guardar_agenda = (req, res) => {
    console.log(req.body)
    
-  const {fecha, id_publicacion,h_desde, h_hasta,id_encargado, lugar_servicio, nombre_del_tercero, telefono_tercero, direccion_tercero,lugar_serv_propio,costo_domicilio} = req.body;
+  const {fecha, id_publicacion,h_desde, h_hasta,id_encargado, lugar_servicio, nombre_del_tercero, telefono_tercero, direccion_tercero,lugar_serv_propio,costo_domicilio, comentario} = req.body;
   const user = res.locals.user;
   const f = new Date(fecha);
 						f.toLocaleString()
@@ -1407,7 +1407,7 @@ console.log(sucursales)
 						var Mes = ('0' + (f.getMonth()+1)).slice(-2)
 						var Dia = f.getDate();
 							var fecha_ = Anyo+ '-'+Mes+ '-'+Dia
-  Modulo_BD.guardar_Agenda(fecha,id_publicacion, h_desde,h_hasta,id_encargado, lugar_servicio, nombre_del_tercero, telefono_tercero, direccion_tercero,lugar_serv_propio).then((data) =>{
+  Modulo_BD.guardar_Agenda(fecha,id_publicacion, h_desde,h_hasta,id_encargado, lugar_servicio, nombre_del_tercero, telefono_tercero, direccion_tercero,lugar_serv_propio, comentario).then((data) =>{
     let agenda = JSON.parse(data)
     let id_agenda = agenda.id
 
