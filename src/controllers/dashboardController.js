@@ -250,9 +250,9 @@ exports.dashboard = (req, res) => {
   const { id_usuario,departamento,link,
     distrito,
     direccion,
-    telefono,nombre_local,distritos_atendidos,dias_laborables,  desde, hasta } = req.body;
+    telefono,nombre_local,distritos_atendidos,dias_laborables,  desde, hasta,break_desde,   break_hasta } = req.body;
 
-   Modulo_BD.guardar_sucursal(id_usuario,link,departamento, distrito,direccion,telefono,nombre_local,distritos_atendidos,dias_laborables,  desde, hasta).then((respuesta) =>{
+   Modulo_BD.guardar_sucursal(id_usuario,link,departamento, distrito,direccion,telefono,nombre_local,distritos_atendidos,dias_laborables,  desde, hasta,break_desde,   break_hasta).then((respuesta) =>{
     
      console.log(respuesta)
       res.redirect('/minegocio')
@@ -293,8 +293,8 @@ if (tipo == "Principal") {
      let distritos = ""
      let dias = ""
     if (sucursales.distritos != null) {
-      let distritos = (sucursales.distritos).split(',')
-     let dias = (sucursales.dias_laborables).split(',')
+      distritos = (sucursales.distritos).split(',')
+     dias = (sucursales.dias_laborables).split(',')
     }
      
       res.render("editar_suc_enc", {
@@ -319,10 +319,10 @@ if (tipo == "Principal") {
   const { id_sucursal,departamento,link,
     distrito,
     direccion,
-    telefono, nombre_local, distritos_atendidos, dias_laborables,  desde, hasta} = req.body;
+    telefono, nombre_local, distritos_atendidos, dias_laborables,  desde, hasta,break_desde,   break_hasta} = req.body;
 
 
-   Modulo_BD.guardar_editar_sucursal(id_sucursal,link,departamento, distrito,direccion,telefono, nombre_local, distritos_atendidos, dias_laborables,  desde, hasta).then((respuesta) =>{
+   Modulo_BD.guardar_editar_sucursal(id_sucursal,link,departamento, distrito,direccion,telefono, nombre_local, distritos_atendidos, dias_laborables,  desde, hasta,break_desde,   break_hasta).then((respuesta) =>{
     
      console.log(respuesta)
      let msg ="Se actualizó con éxito la sucursal indicada"
@@ -1398,7 +1398,7 @@ console.log(sucursales)
  exports.guardar_agenda = (req, res) => {
    console.log(req.body)
    
-  const {fecha, id_publicacion,h_desde, h_hasta,id_encargado, lugar_servicio, nombre_del_tercero, telefono_tercero, direccion_tercero,lugar_serv_propio,costo_domicilio, comentario} = req.body;
+  const {fecha, id_publicacion,h_desde, h_hasta,id_encargado, lugar_servicio, nombre_del_tercero, telefono_tercero, direccion_tercero,lugar_serv_propio,costo_domicilio, comentario_p} = req.body;
   const user = res.locals.user;
   const f = new Date(fecha);
 						f.toLocaleString()
@@ -1407,7 +1407,7 @@ console.log(sucursales)
 						var Mes = ('0' + (f.getMonth()+1)).slice(-2)
 						var Dia = f.getDate();
 							var fecha_ = Anyo+ '-'+Mes+ '-'+Dia
-  Modulo_BD.guardar_Agenda(fecha,id_publicacion, h_desde,h_hasta,id_encargado, lugar_servicio, nombre_del_tercero, telefono_tercero, direccion_tercero,lugar_serv_propio, comentario).then((data) =>{
+  Modulo_BD.guardar_Agenda(fecha,id_publicacion, h_desde,h_hasta,id_encargado, lugar_servicio, nombre_del_tercero, telefono_tercero, direccion_tercero,lugar_serv_propio, comentario_p).then((data) =>{
     let agenda = JSON.parse(data)
     let id_agenda = agenda.id
 

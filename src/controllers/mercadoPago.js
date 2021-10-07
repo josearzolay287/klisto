@@ -220,7 +220,7 @@ exports.pasarela2 = async (req, res, next) => {
      let publicacion = JSON.parse(resultado)[0];
      console.log(publicacion)
  
-     let monto_soles = parseFloat(publicacion.precio);
+     let monto_soles = parseFloat(publicacion.precio)+parseFloat(costo_domicilio);
      console.log(monto_soles);
      let product = publicacion.titulo
 res.render("pasarela_de_pago", {

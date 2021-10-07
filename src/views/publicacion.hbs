@@ -886,25 +886,34 @@ hora_hasta_arr.splice(0, hora_hasta_arr.length);
 let desde = ($('#desde_preview').text()).split(':')
 let hasta = ($('#hasta_preview').text()).split(':')
 
+
 let preparacion_p = $('#preparacion_p').text()
 let ejecucion_p = $('#ejecucion_p').text()
 let tiempo = parseInt(preparacion_p)+parseInt(ejecucion_p)
 let diferencia = parseInt(hasta[0])-parseInt(desde[0])
 
-console.log(diferencia)
+
 let hora_ = ($('#desde_preview').text()).replace(':', ''); 
-let h =parseInt(desde[0])-1
+let hora_b_d = ($('#desde_break').text()); 
+let hora_b_h = ($('#hasta_break').text());
+ let hora_E = moment(hora_b_d, "hh:mm")
+ let hora_S = moment(hora_b_h, "hh:mm")
+ let hora_inicio_break = (hora_b_d).replace(':', '');
+var duration = hora_S.diff(hora_E, 'minutes');
+console.log(hora_b_d)
+console.log(hora_b_h)
+console.log(hora_inicio_break)
+
 let sumah = "";
 var hora_d = "";
 var parent = document.getElementById("disponibles");
-console.log(hora_desde_arr)
-  console.log(hora_hasta_arr)
  document.getElementById('disponibles').innerHTML='';
 for (let i = 0; i < diferencia; i++) {
 if (i == 0){
- h++
-hora_d = moment(h + "00", "hmm").format('hh:mm');
- sumah = (moment(h + "00", "hmm").add(tiempo, 'm').format('hh:mm'))
+
+ console.log(hora_)
+hora_d = moment(hora_, "hmm").format('hh:mm');
+ sumah = (moment(hora_, "hmm").add(tiempo, 'm').format('hh:mm'))
  console.log("primera hora")
  
 }else{
@@ -915,20 +924,16 @@ sumah = (moment(siguiente_minuto, "hmm").add(tiempo, 'm').format('hh:mm'))
 
 var horaInicio = moment(hora_, `h:mma`);
 var horaFin = moment(sumah, `h:mma`);
-console.log(hora_)
-if(hora_ > 1200){
- let sumah2 = (moment(hora_, "hmm").add(60, 'm').format('hh:mm'))
+if(hora_ > hora_inicio_break){
+ let sumah2 = (moment(hora_, "hmm").add(duration, 'm').format('hh:mm'))
   
  let hora_2 = (sumah2).replace(':', '');
 let siguiente_minuto2 = (parseInt(hora_2))
 hora_d = moment(siguiente_minuto2, "hmm").format('hh:mm');
 sumah = (moment(siguiente_minuto2, "hmm").add(tiempo, 'm').format('hh:mm'))
- 
-}
+ }
 
 }
-
-
 
   var found = fecha_agenda_ar.find(element => element.hora_cita_desde == hora_d);
    if (found == null ){
@@ -1021,6 +1026,9 @@ $('#duracion_total').text(tiempo+ ' min')
          let id_suc = $(this).find(':selected').attr('data-id');    
     $('#desde_preview').text($(`#horaD${id_suc}`).text())
     $('#hasta_preview').text($(`#horaH${id_suc}`).text())
+  $('#desde_break').text($(`#horabreakD${id_suc}`).text())
+    $('#hasta_break').text($(`#horabreakH${id_suc}`).text())
+
          $('#empleados_').removeAttr('style') 
    })
   $('#sucursales').on('change', (e) => {
@@ -1028,7 +1036,9 @@ $('#duracion_total').text(tiempo+ ' min')
     let id_suc = e.target.value;    
     $('#desde_preview').text($(`#horaD${id_suc}`).text())
     $('#hasta_preview').text($(`#horaH${id_suc}`).text())
- 
+ $('#desde_break').text($(`#horabreakD${id_suc}`).text())
+    $('#hasta_break').text($(`#horabreakH${id_suc}`).text())
+
          $('#empleados_').removeAttr('style') 
    })
 
@@ -1098,9 +1108,10 @@ $('#duracion_total').text(tiempo+ ' min')
           {{#if publicacion_activa}}
           <form method="post"  action="/guardar_agenda" id="guardar_agenda">
 <section class="pb-5 pt-5" id="gallery-presentation">
-<div style="display:none;">
+<div style="display: none">
   <p class="card-text" id="descripcion_preview" style="text-align: left;"><span id="preparacion_p">{{publicacion.preparacion}} min.</span> y Ejecución: <span id="ejecucion_p">{{publicacion.ejecucion}} min.</span> </p>
    <span id="desde_preview"></span><span id="hasta_preview"></span>
+   <span id="desde_break"></span><span id="hasta_break"></span>
 </div>
         <div class="container">
             <div class="row">

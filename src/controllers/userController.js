@@ -404,7 +404,6 @@ exports.loginUserTemp = (req, res) => {
     if (!user) {
       console.log('info')
       console.log(err)
-      console.log(user)
       return res.send(info.message);
     }
     req.logIn(user, function (err) {
@@ -412,7 +411,6 @@ exports.loginUserTemp = (req, res) => {
         return next(err);
       }
       console.log('info2')
-      console.log(user.dataValues);
       return res.send(user.dataValues);
     });
   })(req, res);

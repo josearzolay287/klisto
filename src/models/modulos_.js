@@ -247,7 +247,7 @@ module.exports = {
         .then((data) => {
           Sucursales.update(
             {
-              telefono: telefono, descripcion: descripcion
+              telefono: telefono, descripcion: descripcion, link:nombre
             },
             {
               where: {
@@ -419,12 +419,12 @@ module.exports = {
     });
   },
 
-  guardar_editar_sucursal(id_sucursal,link,departamento, distrito,direccion,telefono,nombre_local, distritos_atendidos, dias_laborables,  desde, hasta){
+  guardar_editar_sucursal(id_sucursal,link,departamento, distrito,direccion,telefono,nombre_local, distritos_atendidos, dias_laborables,  desde, hasta,break_desde,   break_hasta){
     let dist = distritos_atendidos.toString()
     let dias_laborablesS = dias_laborables.toString()
     return new Promise((resolve, reject) => {
       Sucursales.update({
-        departamento: departamento,distrito: distrito, direccion: direccion,  telefono: telefono,nombre: nombre_local, distritos: dist, dias_laborables: dias_laborablesS, desde: desde,  hasta: hasta, link: link
+        departamento: departamento,distrito: distrito, direccion: direccion,  telefono: telefono,nombre: nombre_local, distritos: dist, dias_laborables: dias_laborablesS, desde: desde,  hasta: hasta, link: link,hora_break_desde: break_desde,   hora_break_hasta: break_hasta
       },{
         where: {
           id: id_sucursal,
@@ -440,12 +440,12 @@ module.exports = {
         });
     });
   },
-  guardar_sucursal(id_usuario,link,departamento, distrito,direccion,telefono,nombre_local,distritos_atendidos, dias_laborables,  desde, hasta){
+  guardar_sucursal(id_usuario,link,departamento, distrito,direccion,telefono,nombre_local,distritos_atendidos, dias_laborables,  desde, hasta,break_desde,   break_hasta){
     let dist = distritos_atendidos.toString()
     let dias_laborablesS = dias_laborables.toString()
     return new Promise((resolve, reject) => {
       Sucursales.create({
-        departamento: departamento, distrito:distrito,direccion:direccion,telefono:telefono,tipo:'Sucursal',nombre: nombre_local, distritos:dist ,usuarioId: id_usuario, dias_laborables: dias_laborablesS, desde: desde,  hasta: hasta, link:link,
+        departamento: departamento, distrito:distrito,direccion:direccion,telefono:telefono,tipo:'Sucursal',nombre: nombre_local, distritos:dist ,usuarioId: id_usuario, dias_laborables: dias_laborablesS, desde: desde,  hasta: hasta, link:link,hora_break_desde: break_desde,   hora_break_hasta: break_hasta
       }).then((data_encargado) =>{
         let datas = JSON.stringify(data_encargado);
         resolve(datas);

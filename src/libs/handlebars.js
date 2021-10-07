@@ -46,7 +46,9 @@ module.exports = {
 			for (let i = 0; i < id_suc.length; i++) {
 				 
 				if (id_suc[i].id ==  aux[i]) {
-					out +=`<span style="display: none;"><span id="horaD${id_suc[i].id}">${id_suc[i].desde}</span> <span id="horaH${id_suc[i].id}">${id_suc[i].hasta}</span></span>`
+					console.log(sucursales[i]);
+						out +=`<span style="display:none" ><span id="horaD${id_suc[i].id}">${id_suc[i].desde}</span> <span id="horaH${id_suc[i].id}">${id_suc[i].hasta}</span></span>`
+						out +=`<span style="display:none" ><span id="horabreakD${id_suc[i].id}">${id_suc[i].hora_break_desde}</span> <span id="horabreakH${id_suc[i].id}">${id_suc[i].hora_break_hasta}</span></span>`
 				}
 		   }
 		 return out;
@@ -59,7 +61,6 @@ module.exports = {
 		if (aux.length == 1) {
 			let array2 = sucursales
 			let filtrar_id = array2.filter(id => id.id == aux)
-			console.log(filtrar_id);
 			out	+=`<optgroup label="${filtrar_id[0].nombre}"></optgroup>` 
 			let distritos = sucursales[0].distritos
 			
@@ -73,17 +74,10 @@ module.exports = {
 			}
 			out	+=`</optgroup>`
 			out +=`</select>`
-			for (let i = 0; i < id_suc.length; i++) {
-				 
-				if (id_suc[i].id ==  aux[i]) {
-					out +=`<span style="display: none;"><span id="horaD${id_suc[i].id}">${id_suc[i].desde}</span> <span id="horaH${id_suc[i].id}">${id_suc[i].hasta}</span></span>`
-				}
-		   } 
+		
 		 }else{
 			 for (let i = 0; i < sucursales.length; i++) {
-				 console.log(aux[i])
-				 console.log(sucursales[i].id)
-				 
+				 			 
  				if (sucursales[i].id == aux[i]) {				
 
 					out	+=`<optgroup label="${sucursales[i].nombre}"></optgroup>` 
@@ -99,12 +93,6 @@ module.exports = {
 
 				 }
 				 out +=`</select>`
-				 for (let i = 0; i < id_suc.length; i++) {
-					  
-					 if (id_suc[i].id ==  aux[i]) {
-						 out +=`<span style="display: none;"><span id="horaD${id_suc[i].id}">${id_suc[i].desde}</span> <span id="horaH${id_suc[i].id}">${id_suc[i].hasta}</span></span>`
-					 }
-				}
 				
 			
 			}

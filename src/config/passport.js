@@ -44,7 +44,6 @@ passport.use('cliente_out',
 			passReqToCallback : true
 		},
 		async (req,correo,password, done) => {
-			console.log(req.body)
 			try{
 		usuario = await Usuarios.findOne({where: {email: correo}});
 			if (!usuario) {

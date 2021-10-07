@@ -58,6 +58,14 @@ const Sucursales = db.define('sucursales', {
 		type: DataTypes.TEXT,
 		allowNull: true,
 	},
+	hora_break_desde: {
+		type: DataTypes.TEXT,
+		allowNull: true,
+	},
+	hora_break_hasta: {
+		type: DataTypes.TEXT,
+		allowNull: true,
+	},
 	
 });
 // El trabajador pertenece a una oficina
