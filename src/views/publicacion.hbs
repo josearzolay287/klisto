@@ -140,7 +140,7 @@ width: 450px;
             box-shadow: none;
         }
         #gallery-presentation .btn-primary:focus{
-            background-color: #171817;
+            background-color: #06cc60;
             border: 1px solid #06cc60;
             box-shadow: none;
         }
@@ -661,6 +661,19 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
+}
+.switch-toggle input + label{
+  padding: .32em 0.5em;
+}
+.switch-light.switch-candy input ~ span span:first-child, .switch-light.switch-candy input:checked ~ span span:nth-child(2), .switch-candy input:checked + label{
+  color: white;
+}
+.select2-container--default .select2-selection--single .select2-selection__arrow b{
+  top: 100% !important;
+}
+#continuar_sesion{
+  background-color: var(--color-verde);
+  border-color: var(--color-verde);
 }
   </style>
 <script>
@@ -1246,7 +1259,7 @@ $('#duracion_total').text(tiempo+ ' min')
 
                   <div class="form-group" id="distritos_habilitados" style="display: none;">
                         <label for="formGroupExampleInput">Seleccione el distrito (local):</label>
-                        <select class="select2 form-select" name="distrito" id="distritos_h">
+                        <select class="form-control" name="distrito" id="distritos_h">
                            <option selected value="0">Seleccione un distrito</option>
                     {{#distritos_habilitados sucursales publicacion.sucursales}}{{/distritos_habilitados}} 
 

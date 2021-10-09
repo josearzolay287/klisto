@@ -23,6 +23,33 @@ table.tablesorter thead tr .header {
   cursor: pointer; 
 /* background-color: #3399FF; */
 }
+tbody tr td{
+	padding-right: 10px;
+}
+#tabla__wrapper{
+	margin-top: 30px;
+}
+@media (min-width: 768px){
+	.row + .row {
+    margin-top: 10px;
+	}
+}
+#tabla__wrapper{
+	overflow: hidden;
+}
+
+.card-blank #tabla__wrapper .col-sm-12{
+	overflow: auto;
+}
+	tbody tr td{
+		padding-right: 20px;
+	}
+	.card-body input{
+		height: 30px !important;
+	}
+	.dataTables_wrapper .dataTables_filter input{
+		border: 1px solid #6b7280;
+	}
 </style>
 <script>
 	$( document ).ready(function() {
@@ -153,34 +180,24 @@ if (estado == "Realizada"){
 		<div class="col-12" style="margin-top: 1.5rem;">
 			<div class="col-md-12">
             <div class="card-blank">
-				<div class="row pt-3" style="padding-left: 1.25rem;">
-    <div class="col-sm">
-                      <label for="inputState">Status</label>
-                      <select id="status_filter" class="form-control" name="status_filter">
+
+              <div class="card-body">
+				  <table border="0" cellspacing="5" cellpadding="5">
+        <tbody><tr>
+			<td>
+				<label for="inputState">Status</label>
+			</td>
+			<td>
+				    <select id="status_filter" class="form-control" name="status_filter">
                         <option value="" selected>Todos</option>
 						<option value="Confirmada" >Confirmada</option>
 						<option value="Realizada" >Realizada</option>
 						<option value="Por confirmar" >Por confirmar</option>                         
-                      </select>
-
-                    </div>
-    <div class="col-sm">
-                      
-                    </div>
-  </div>
-              <div class="card-body">
-				  <table border="0" cellspacing="5" cellpadding="5">
-        <tbody><tr>
+                    </select>
+			</td>
             <td>Fecha inicio:</td>
             <td><input type="text" id="min" name="min"></td>
-        </tr>
-		<tr>
-			<td>
-				<div style="height:10px;"></div>
-			</td>
-		</tr>
-        <tr>
-            <td>Fecha final:</td>
+			            <td>Fecha final:</td>
             <td><input type="text" id="max" name="max"></td>
         </tr>
     </tbody></table>

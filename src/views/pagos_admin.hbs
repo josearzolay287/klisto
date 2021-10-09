@@ -69,6 +69,15 @@ table.tablesorter thead tr .header {
     border: #09a550;
     box-shadow: none;
 }
+.card-blank{
+  padding:1rem;
+}
+.card-blank #tabla__wrapper .col-sm-12{
+  overflow: auto;
+}
+ #tabla__wrapper{
+   overflow: hidden;
+ }
 </style>
 <script>
 var resultados_por_pagina = 10;
@@ -214,7 +223,7 @@ var cargarPagina = function(intPaginaP){
 			</div>
 		</div>
 		<div class="col-lg-6 d-lg-flex flex-column justify-content-center" style="font-size: 14px;">
-			<a class="btn btn-primary btn-block mb-3 mb-lg-0 btn_pay">Pagar</a>
+			<a class="btn btn-primary btn-block mb-3 mb-lg-0 btn_pay" style="color: white;">Pagar</a>
 		<a href="/pagos" class="btn btn-primary btn-block mb-3 mb-lg-0">Ver Pagos</a>
 		<!--		<a href="/mis_pago" class="btn btn-primary btn-block mb-3 mb-lg-0">Mis retiros</a>-->
 		</div>
@@ -414,7 +423,7 @@ var cargarPagina = function(intPaginaP){
             <div class="card-blank">
 			<table class="table table-striped table-hover" id="tabla_">
 				<p class="text-center font-weight-bold h3" style="margin-bottom: 1.5rem;">Pagos</p>
-				<thead class="thead-dark">
+				<thead >
 					<tr>
 						<th class="text-xs-center">
 									Id Pago

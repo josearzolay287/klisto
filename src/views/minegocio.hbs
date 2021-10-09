@@ -25,6 +25,10 @@ table.tablesorter thead tr .header {
 /* background-color: #3399FF; */
 }
 .linea-oculta{display: none;}
+ @media (min-width: 768px){
+    .row + .row{
+    margin-top: 0px !important;
+  }
 </style>
 <script>
  
@@ -127,7 +131,7 @@ table.tablesorter thead tr .header {
                     Sucursales
                   </h3>
                   
-                <div class="float-right">
+                <div class="float-right" style="margin-bottom: 20px;">
                   <a href="/create_sucursal">
                     Añadir Sucursal
                   </a>

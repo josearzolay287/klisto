@@ -37,6 +37,15 @@ $( ".onlynum" ).keypress(function(evt) {
 .modal-backdrop{
       position: relative;
     }
+	tbody tr td{
+		padding-right: 20px;
+	}
+	.card-body input{
+		height: 30px !important;
+	}
+	.dataTables_wrapper .dataTables_filter input{
+		border: 1px solid #6b7280;
+	}
 </style>
 <script>
 
@@ -125,9 +134,11 @@ if (estado == "Realizada"){
 		{{#if miscompras}}<div class="col-12" style="margin-top: 1.5rem;">
 			<div class="col-md-12">
             <div class="card-blank">
-				<div class="row">
-    <div class="col-sm" style="padding-left: 2.35rem; padding-top:1.25rem;">
-                      <label for="inputState">Status</label>
+              <div class="card-body">
+				  <table border="0" cellspacing="5" cellpadding="5" style="margin-bottom: 10px;">
+        <tbody><tr class="mb-2">
+			<td><label for="inputState">Status</label></td>
+			<td>
                       <select id="status_filter" class="form-control" name="status_filter">
                         <option value="" selected>Todos</option>
 						<option value="Confirmada" >Confirmada</option>
@@ -135,23 +146,10 @@ if (estado == "Realizada"){
 						<option value="Por confirmar" >Por confirmar</option>                         
                       </select>
 
-                    </div>
-    <div class="col-sm">
-                      
-                    </div>
-  </div>
-              <div class="card-body">
-				  <table border="0" cellspacing="5" cellpadding="5">
-        <tbody><tr class="mb-2">
+			</td>
             <td>Fecha inicio:</td>
             <td><input type="text" id="min" name="min"></td>
-        </tr>
-		<tr>
-			<td>
-				<div style="height: 10px;"></div> </td>
-		</tr>
-        <tr>
-            <td>Fecha final:</td>
+			            <td>Fecha final:</td>
             <td><input type="text" id="max" name="max"></td>
         </tr>
     </tbody></table>

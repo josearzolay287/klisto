@@ -65,7 +65,13 @@ table.tablesorter thead tr .header {
   cursor: pointer; 
 /* background-color: #3399FF; */
 }
+#tabla__wrapper{
+	overflow: hidden;
+}
 
+.card-blank #tabla__wrapper .col-sm-12{
+	overflow: auto;
+}
 </style>
 <script>
 var resultados_por_pagina = 10;
@@ -189,9 +195,9 @@ jQuery.extend(jQuery.expr[":"],
 	<div class="row" style="margin-top: 5px;">
 	{{#if movimientos}}	
 		<div class="col-lg-6 mb-3 mb-lg-0">
-			<div class="card card-box text-center border-0 bg-gradient text-white">
-				<h2 style="line-height: 1.5;" class="title-1">Saldo Actual: S/ {{parsed_wallet.saldo}}</h2>
-				<h2 style="line-height: 1.5;" class="title-1">Disponible para retiro: S/ {{parsed_wallet.disponible}}</h2>
+			<div class="card card-box text-center border-0 bg-gradient text-white" style="border-radius: 20px; padding:1rem;">
+				<h2 style="line-height: 1.5;" class="title-2">Saldo Actual: S/ {{parsed_wallet.saldo}}</h2>
+				<h2 style="line-height: 1.5;" class="title-2">Disponible para retiro: S/ {{parsed_wallet.disponible}}</h2>
 			</div>
 		</div>
 			<div class="col-lg-6 d-lg-flex flex-column justify-content-between" style="font-size: 14px;">
@@ -306,9 +312,9 @@ jQuery.extend(jQuery.expr[":"],
 		{{#if movimientos_pagos}}
 		<div class="col-12" style="margin-top: 1.5rem;">
 			<div class="col-lg-6 mb-3 mb-lg-0">
-			<div class="card card-box text-center border-0 bg-gradient text-white">
-				<h2 style="line-height: 1.5;" class="title-1">Saldo Actual: S/ {{parsed_wallet.saldo}}</h2>
-				<h2 style="line-height: 1.5;" class="title-1">Disponible para retiro: S/ {{parsed_wallet.disponible}}</h2>
+			<div class="card card-box text-center border-0 bg-gradient text-white" style="border-radius: 20px; padding:1rem;">
+				<h3 style="line-height: 1.5;" class="title-2">Saldo Actual: S/ {{parsed_wallet.saldo}}</h3>
+				<h3 style="line-height: 1.5;" class="title-2">Disponible para retiro: S/ {{parsed_wallet.disponible}}</h3>
 			</div>
 		</div>
 <div class="col-md-12">
@@ -319,10 +325,10 @@ jQuery.extend(jQuery.expr[":"],
               </div>
             </div>
           </div>
-            <div class="card-blank" style="padding: 10px;">
-			<table class="table table-striped table-hover " id="tabla_">
+            <div class="card-blank" style="padding: 1rem;">
+			<table class="table dataTable tablesorter no-footer " id="tabla_">
 				<p class="text-center font-weight-bold h3" style="margin-bottom: 1.5rem;">Pagos</p>
-				<thead class="thead-dark">
+				<thead>
 					<tr>
 						<th class="text-xs-center">
 									Id Pago

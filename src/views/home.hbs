@@ -344,6 +344,63 @@ border-bottom: 2px solid #06cc60;
     bottom: -149px;
     left: 0;
 }
+#asistir{
+     background-image: url('../assets/img/cuadro-amarillo.png'); background-size: cover; margin-top: -5rem; min-width: 330px; min-height: 170px; display: flex; justify-content: center; align-items: center;
+}
+#buscar{
+margin-top: -3rem; background-image: url('../assets/img/cuadro-amarillo.png'); background-size: cover; min-width: 330px; min-height: 170px; display: flex; align-items: center;
+}
+#reservar{
+    background-image: url('../assets/img/cuadro-verde.png'); background-size: cover; margin-top: 7rem; min-width: 330px; min-height: 170px; display: flex; align-items: center;
+}
+@media (max-width:1200px){
+    #buscar{
+        min-width: 250px !important;
+        min-height: 140px !important;
+    }
+    .cont-servicios img{
+        height: 60px;
+    }
+    #reservar{
+        min-width: 200px;
+        min-height: 135px;
+    }
+    #asistir{
+        min-width: 200px;
+        min-height: 140px;
+    }
+}
+@media(max-width:1024px){
+    .grid-services{
+        display: block;
+    }
+    .grid-services > *:nth-child(2) .cont-servicios::before {
+        display: none;
+    }
+    .grid-services > *:nth-child(2) .cont-servicios::after {
+        display: none;
+    }
+    #buscar{
+        margin-top: 0px;
+        min-height: 140px;
+        background-size: 100% 100%;
+    }
+    #reservar{
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+                min-height: 140px;
+        background-size: 100% 100%;
+    }
+    #asistir{
+        margin-top: 0;
+        margin-bottom: 2rem;
+                min-height: 140px;
+        background-size: 100% 100%;
+    }
+    .categorias h1{
+        font-size: 3rem;
+    }
+}
   </style>
 
 
@@ -381,7 +438,7 @@ jQuery(".select_cat").on('click',function(e){
         <div class="container">
             <div class="grid-services">
                 <div>
-                    <div class="cont-servicios" style="margin-top: -3rem; background-image: url('../assets/img/cuadro-amarillo.png'); background-size: cover; min-width: 330px; min-height: 170px; display: flex; align-items: center;">
+                    <div class="cont-servicios" id="buscar">
                         <div class="contianer" style="margin-top: 10px; margin-left:-15px;">
                             <div class="row">
                                 <div class="col-4" style="padding: 0px !important;">
@@ -398,7 +455,7 @@ jQuery(".select_cat").on('click',function(e){
                     </div>
                 </div>
                 <div>
-                    <div class="cont-servicios" style="background-image: url('../assets/img/cuadro-verde.png'); background-size: cover; margin-top: 7rem; min-width: 330px; min-height: 170px; display: flex; align-items: center;">
+                    <div class="cont-servicios" id="reservar">
                         <div class="contianer" >
                             <div class="row">
                                 <div class="col-4" style="padding: 0px !important;">
@@ -415,7 +472,7 @@ jQuery(".select_cat").on('click',function(e){
                     </div>
                 </div>
                 <div>
-                    <div class="cont-servicios" style="    background-image: url('../assets/img/cuadro-amarillo.png'); background-size: cover; margin-top: -5rem; min-width: 330px; min-height: 170px; display: flex; justify-content: center; align-items: center;">
+                    <div class="cont-servicios" id="asistir">
                         <div class="contianer">
                             <div class="row">
                                 <div class="col-4" style="padding: 0px !important;">

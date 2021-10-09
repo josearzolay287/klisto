@@ -1,6 +1,11 @@
 {{> header }}
 	<!-- Dashboard Header -->
-
+	<style>
+		.dropdown-menu li{
+			padding-left: 8px;
+			padding-right: 8px;
+		}
+	</style>
 		<section>
 
 			{{{ body }}}
@@ -37,13 +42,13 @@
    <i class="fa fa-tasks"></i> Administrador
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenu2" style="padding-left: 5px;">
-	  <li {{#if terminos}}class="dropdown-item active"{{/if}}><a href="/terminos"> <i class="fa fa-tasks"></i>Términos y políticas</a></li>
-	  <li {{#if categorias}}class="dropdown-item active"{{/if}}><a href="/categorias"> <i class="fa fa-tasks"></i>Categorias</a></li>
-	  <li {{#if config}}class="dropdown-item active"{{/if}}><a href="/configuraciones"> <i class="fa fa-tasks"></i>Configuraciones</a></li>
-	  <li {{#if cupones}}class="dropdown-item active"{{/if}}><a href="/cupones"> <i class="fa fa-tasks"></i>Cupones</a></li>
-	  <li {{#if public}}class="dropdown-item active"{{/if}}><a href="/publicidad"> <i class="fa fa-tasks"></i>Publicidad</a></li>
+	  <li {{#if terminos}}class="dropdown-item active"{{/if}}><a href="/terminos"> <i class="fas fa-clipboard-list"></i>Términos y políticas</a></li>
+	  <li {{#if categorias}}class="dropdown-item active"{{/if}}><a href="/categorias"> <i class="fas fa-tags"></i>Categorias</a></li>
+	  <li {{#if config}}class="dropdown-item active"{{/if}}><a href="/configuraciones"> <i class="fas fa-user-cog"></i>Configuraciones</a></li>
+	  <li {{#if cupones}}class="dropdown-item active"{{/if}}><a href="/cupones"> <i class="fas fa-gift"></i>Cupones</a></li>
+	  <li {{#if public}}class="dropdown-item active"{{/if}}><a href="/publicidad"> <i class="fas fa-bullhorn"></i>Publicidad</a></li>
 	  
-	  <li {{#if usuariosA}}class="dropdown-item active"{{/if}}><a href="/usuarios_a"> <i class="fa fa-tasks"></i>Usuarios</a></li>
+	  <li {{#if usuariosA}}class="dropdown-item active"{{/if}}><a href="/usuarios_a"> <i class="fas fa-user"></i>Usuarios</a></li>
   </div>
 </ul>
 	{{/if}}					

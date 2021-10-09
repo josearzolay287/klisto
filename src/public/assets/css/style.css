@@ -67,6 +67,10 @@
 /*
 * Contexts
 */
+@media (min-width: 768px){
+    .row + .row{
+    margin-top: 0px !important;
+  }
 .context-dark, .bg-gray-700, .bg-gray-3, .bg-brown-1, .bg-primary,
 .context-dark h1,
 .bg-gray-700 h1,
@@ -19665,4 +19669,19 @@ table.dataTable>thead .sorting:after, table.dataTable>thead .sorting_asc:after, 
 	width: 20px;
 	height: 20px;
 	margin-right: 5px;
+}
+
+
+ul #dropdownMenu2{
+	margin-top: 10px;
+	margin-bottom: 5px;
+	display: block;
+    color: #555;
+    font-size: 16px;
+}
+ul #dropdownMenu2 i{
+	margin-right: 17px;
+}
+#reservar .btn-primary{
+	width: 100% !important;
 }

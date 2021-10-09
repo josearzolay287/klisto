@@ -230,7 +230,11 @@
         .bootstrap-datetimepicker-widget table td.active.today::before{
               border-bottom-color: #eaeaea;
         }
-
+@media (min-width: 768px){
+	.row + .row {
+    margin-top: 10px;
+	}
+}
     </style>
 <script>
   $(function () {
@@ -335,7 +339,7 @@ $('#duracion_total').text(tiempo+ ' min')
           <div class="col-md-12">
             <div class="card-blank">
               <div class="card-body">
-                <div class="float-right">
+                <div class="float-right" style="margin-bottom: 20px;">
                   <a href="/crear_publicacion">
                     Crear Publicación
                   </a>
