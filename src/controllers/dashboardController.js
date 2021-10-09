@@ -1468,3 +1468,143 @@ res.redirect('/pasarela_publicacion/'+id_publicacion+'/'+id_agenda+'/'+domi)
   });
  
  };
+
+ // CUPONES
+exports.getCupones = (req, res) => {
+  //////console.log(req.params.gates);
+ 
+  let msg = false;
+  if (req.params.msg) {
+    msg = req.params.msg;
+  }
+
+  Modulo_BD.totalcupones().then((resultado) => {
+    let cupones_act = JSON.parse(resultado);
+    let cont = cupones_act.length;
+    console.log(cupones_act);
+    res.render("cupones", {
+      pageName: "Cupones",
+      dashboardPage: true,   dashboard: true, admin:true,cupones: true,
+      cupones_act,
+      msg,
+    });
+  });
+};
+
+exports.addCupon = (req, res) => {
+  var photo = req.user.photo;
+  let notPhoto = true;
+  if (photo == "0") {
+    notPhoto = false;
+  }
+  let userID = req.user.id;
+  res.render("create_cupon", {
+    pageName: "Crear Cupón",
+    dashboardPage: true,
+    admin_dash1: true,
+    userID,
+    notPhoto,
+  });
+
+  //})
+};
+
+exports.save_cupon = async (req, res) => {
+  const {
+    id,
+    nombre_cupon,
+    valor_cupon,
+    cantidad,
+    tipo_cupon,
+    fecha_inicio,
+    fecha_final,
+  } = req.body;
+  var msg = "";
+  Modulo_BD.guardarCupon(
+    id,
+    nombre_cupon,
+    valor_cupon,
+    fecha_inicio,
+    fecha_final,
+    cantidad,
+    tipo_cupon
+  )
+    .then((result) => {
+      ////console.log(result);
+      if (result === "0") {
+        msg = "Ya existe el cupón, porfavor verifique";
+      } else {
+        msg = "Cupón guardado con exito";
+      }
+      res.redirect("/cupones/" + msg);
+    })
+    .catch((err) => {
+      return res.status(500).send("Error actualizando" + err);
+    });
+};
+
+exports.editCupon = (req, res) => {
+  let id_buscar = req.params.id;
+  //	var id_user = req.user.id;
+  let admin_dash1 = true;
+  var photo = req.user.photo;
+  let notPhoto = true;
+  if (photo == "0") {
+    notPhoto = false;
+  }
+  Modulo_BD.obtenerCuponforedit(id_buscar).then((resultado) => {
+    let parsed_cupon = JSON.parse(resultado)[0];
+    let cont = parsed_cupon.length;
+    ////console.log(parsed_cupon);
+
+    res.render("edit_cupon", {
+      pageName: "Editar Cupón",
+      dashboardPage: true,
+      parsed_cupon,
+      admin_dash1,
+      notPhoto,
+    });
+  });
+};
+
+exports.saveCuponEdited = async (req, res) => {
+  const {
+    id,
+    nombre_cupon,
+    valor_cupon,
+    cantidad,
+    tipo_cupon,
+    fecha_inicio,
+    fecha_final,
+  } = req.body;
+
+  Modulo_BD.saveEditedCupon(
+    id,
+    nombre_cupon,
+    valor_cupon,
+    fecha_inicio,
+    fecha_final,
+    cantidad,
+    tipo_cupon
+  )
+    .then((result) => {
+      ////console.log(result);
+    })
+    .catch((err) => {
+      return res.status(500).send("Error actualizando" + err);
+    });
+  let msg = "Cupón actualizado con exito";
+  res.redirect("/cupones/" + msg);
+};
+exports.deleteCupon = async (req, res) => {
+  let parametro_buscar = req.params.id;
+
+  Modulo_BD.deleteCupon(parametro_buscar).then((resultado) => {
+    //let parsed = JSON.parse(resultado);
+    //let cont= parsed.length
+    ////console.log(resultado);
+
+    let msg = "Cupón eliminado con exito";
+    res.redirect("/cupones/" + msg);
+  });
+};

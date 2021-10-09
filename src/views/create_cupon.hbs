@@ -1,0 +1,99 @@
+
+<div class="card-box shadow position-relative calculate-height">
+  <div class="row">
+    <div class="col-xl-7">
+      <div
+        class="card-box--icon card-box--mini-icon dashboard__card-box-header dashboard__card-box-header--mini align-items-center">
+        <div class="card-box__icon card-box__icon--celeste">
+          <i class="fa fa-money-check" style="transform: translateX(.1em);"></i>
+        </div>
+        <div class="card-box__body">
+          <h2 class="card-box__title m-0">{{pageName}}</h2>
+        </div>
+      </div><!-- .card-box -->
+    </div><!-- .col-xl-7 -->
+  </div><!-- .row -->
+
+  <form action="/save_cupon" method="post" class="p-to-btn" autocomplete="off" id="form-create-plan"
+    enctype="multipart/form-data">
+    <input type="text" class="form-control-steps" id="id" name="id" placeholder="id" value="{{userID}}" hidden />
+    <div class="form-update-account">
+      <div class="form-update-account__item">
+        <label class="form-steps__title" for="text">Nombre del cupón</label>
+        <div class="form-control-steps__container mb-3">
+          <div class="form-control-steps__placeholder">
+            <i class="fas fa-file-signature"></i>
+          </div>
+
+          <input type="text" class="form-control-steps" id="nombre_cupon" name="nombre_cupon" placeholder="Nombre cupón"
+            required />
+        </div>
+      </div><!-- .form-update-accound__item -->
+
+      <div class="form-update-account__item" style="grid-row-end: 1;">
+        <label class="form-steps__title" for="text">Valor del cupón</label>
+        <div class="form-control-steps__container">
+          <div class="form-control-steps__placeholder">
+            <i class="fas fa-certificate"></i>
+          </div>
+          <input type="text" class="form-control-steps" id="valor_cupon" name="valor_cupon"
+            placeholder="Valor del cupón" autocomplete="off" />
+        </div>
+
+      </div><!-- .form-update-accound__item -->
+      <div class="form-update-account__item">
+        <label class="form-steps__title" for="text">Cantidad</label>
+        <div class="form-control-steps__container">
+          <div class="form-control-steps__placeholder">
+            <i class="fas fa-list-ol"></i>
+          </div>
+          <input type="text" class="form-control-steps" id="cantidad" name="cantidad"
+            placeholder="Cantidad valida del mismo cupón" autocomplete="off" />
+        </div>
+
+      </div><!-- .form-update-accound__item -->
+
+      <div class="form-update-account__item">
+        <label class="form-steps__title" for="text">Tipo</label>
+        <div class="form-control-steps__container">
+          <div class="form-control-steps__placeholder">
+            <i class="fas fa-project-diagram"></i>
+          </div>
+          <select class="form-control-steps" id="tipo_cupon" name="tipo_cupon" required>
+            <option value="descuento">Descuento</option>
+            <option value="monetario">Monetario</option>
+
+          </select>
+        </div>
+
+      </div><!-- .form-update-accound__item -->
+      <div class="form-update-account__item">
+        <label class="form-steps__title" for="confirm-text">Fecha inicio</label>
+        <div class="form-control-steps__container">
+          <div class="form-control-steps__placeholder">
+            <i class="fas fa-calendar-alt"></i>
+          </div>
+          <input type="datetime-local" class="form-control-steps" id="fecha_inicio" name="fecha_inicio"
+            placeholder="Inicio de validez del cupon" autocomplete="off" />
+        </div>
+      </div><!-- .form-update-accound__item -->
+      <div class="form-update-account__item">
+        <label class="form-steps__title" for="text">Fecha final</label>
+        <div class="form-control-steps__container">
+          <div class="form-control-steps__placeholder">
+            <i class="fas fa-calendar-alt"></i>
+          </div>
+          <input type="datetime-local" class="form-control-steps" id="fecha_final" name="fecha_final"
+            placeholder="Fecha finalización" autocomplete="off" />
+        </div>
+      </div><!-- .form-update-accound__item -->
+
+    </div><!-- .form-update-account -->
+    <button type="submit" disabled class="btn btn-primary btn-x-lg form-steps__btn">Guardar <i
+        class="fa fa-angle-right"></i></button>
+  </form>
+
+  <a href="/admin_dash" class="before-page">
+    <i class="fa fa-arrow-left"></i>
+  </a>
+</div><!-- .card-box -->

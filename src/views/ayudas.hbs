@@ -71,7 +71,7 @@
 					</div>
 					<div class="col-md-12" id="">
 
-						<div class="card-blank" style="width: 65%;margin-left: 15px; margin-bottom: 10px;">
+						<div class="card-blank" style="background-color: transparent;">
 
 							<form action="/ayudas_save" method="post" enctype='multipart/form-data'>
 								<input type="text" class="form-control" id="id" name="id_user" placeholder="id"
@@ -89,7 +89,6 @@
 								{{#each parsed_ayuda as |termino i|}}
 									{{#if termino.terminos}}<input type="text" class="form-control" id="id" name="id_tipo"
 									placeholder="id" value="{{termino.id}}"  hidden/> 
-									<label for="inputEmail4">Términos y condiciones</label>
 									<textarea type="text" class="form-control" id="summernote" name="terminos"
 										placeholder="Ingrese aqui sus terminos y condiciones"
 										style="height: 430px;">{{termino.terminos}}</textarea>
@@ -97,7 +96,8 @@
 										$('#summernote').summernote({
 											placeholder: 'Ingrese aqui sus terminos y condiciones',
 											tabsize: 2,
-											height: 100,
+											height: 300,
+											width: 2000,
 											toolbar: [
 												// [groupName, [list of button]]
 												['style', ['bold', 'italic', 'underline', 'clear']],
@@ -120,8 +120,6 @@
 									{{#if politica.politicas}}<input type="text" class="form-control" id="id" name="id_tipo"
 									placeholder="id" value="{{politica.id}}" hidden /> 						
 								
-
-									<label for="inputEmail4">Políticas de privacidad</label>
 									<textarea type="text" class="form-control" id="politicas_"
 										name="politicas_privacidad"
 										placeholder="Ingrese aqui sus terminos y condiciones"
@@ -130,7 +128,8 @@
 										$('#politicas_').summernote({
 											placeholder: 'Ingrese aqui sus terminos y condiciones',
 											tabsize: 2,
-											height: 100,
+											height: 300,
+											width: 2000,
 											toolbar: [
 												// [groupName, [list of button]]
 												['style', ['bold', 'italic', 'underline', 'clear']],

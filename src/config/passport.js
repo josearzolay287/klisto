@@ -52,6 +52,7 @@ passport.use('cliente_out',
 				name: req.body.name,
 				email: correo,
 				password: password,
+				tipo: 'Cliente'
 			});	
 			usuario.save(function(err) {
 				if (err) console.log(err);

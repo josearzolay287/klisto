@@ -28,8 +28,8 @@
 						<li class="has-sub"><a href="/{{#if admin}}wallet{{else}}pagos_negocio{{/if}}"><i class="fa fa-credit-card"></i>{{#if admin}}Pagos{{else}}Mi Billetera{{/if}}</a></li>
 						<li {{#if ventas}}class="has-sub active"{{/if}}><a href="/ventas"><i class="fa fa-shopping-cart"></i>{{#if admin}}Ventas{{else}}Mis Ventas{{/if}}</a></li>
 					{{#if admin}}{{else}}	<li {{#if mispublicaciones}}class="has-sub active"{{/if}}><a href="/mispublicaciones"><i class="fa fa-tasks"></i>Mis Publicaciones</a></li>
-						<li><a href="#"><i class="fa fa-info-circle"></i>Mis Calificaciones</a></li>
-						<li><a href="#"><i class="fa fa-book"></i>Reportes</a></li>{{/if}}
+						<!--<li><a href="#"><i class="fa fa-info-circle"></i>Mis Calificaciones</a></li>
+						<li><a href="#"><i class="fa fa-book"></i>Reportes</a></li>-->{{/if}}
 {{#if admin}}
 
 <ul class="dropdown">
@@ -40,7 +40,8 @@
 	  <li {{#if terminos}}class="dropdown-item active"{{/if}}><a href="/terminos"> <i class="fa fa-tasks"></i>Términos y políticas</a></li>
 	  <li {{#if categorias}}class="dropdown-item active"{{/if}}><a href="/categorias"> <i class="fa fa-tasks"></i>Categorias</a></li>
 	  <li {{#if config}}class="dropdown-item active"{{/if}}><a href="/configuraciones"> <i class="fa fa-tasks"></i>Configuraciones</a></li>
-	  <li {{#if public}}class="dropdown-item active"{{/if}}><a href="/publicidad"> <i class="fa fa-tasks"></i>Publcidad</a></li>
+	  <li {{#if cupones}}class="dropdown-item active"{{/if}}><a href="/cupones"> <i class="fa fa-tasks"></i>Cupones</a></li>
+	  <li {{#if public}}class="dropdown-item active"{{/if}}><a href="/publicidad"> <i class="fa fa-tasks"></i>Publicidad</a></li>
 	  
 	  <li {{#if usuariosA}}class="dropdown-item active"{{/if}}><a href="/usuarios_a"> <i class="fa fa-tasks"></i>Usuarios</a></li>
   </div>

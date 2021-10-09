@@ -121,6 +121,12 @@ router.get('/editar_configuraciones/:id',authController.authenticatedUser, dashb
 router.post('/editar_configuraciones',authController.authenticatedUser, dashboardController.guardar_editar_configuraciones);
 
 
+router.get('/cupones',authController.authenticatedUser, dashboardController.getCupones);
+router.get('/cupones/:msg',authController.authenticatedUser, dashboardController.getCupones);
+router.get('/crear_cupones',authController.authenticatedUser, dashboardController.addCupon);
+router.post('/crear_cupones',authController.authenticatedUser, dashboardController.save_cupon);
+router.get('/editar_cupones/:id',authController.authenticatedUser, dashboardController.editCupon);
+router.post('/editar_cupones',authController.authenticatedUser, dashboardController.saveCuponEdited);
 
 router.get('/usuarios_a',authController.authenticatedUser, dashboardController.usuarios_a);
 router.get('/usuarios_a/:msg',authController.authenticatedUser, dashboardController.usuarios_a);
