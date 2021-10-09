@@ -16,6 +16,21 @@
   }
 </script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<style>
+  .btn-primary{
+    background-color: var(--color-verde);
+    border-color: var(--color-verde);
+  }
+  .btn-primary:hover{
+    background-color: var(--color-verde);
+    border-color: var(--color-verde);
+  }
+    .btn-primary:focus{
+    background-color: var(--color-verde);
+    border-color: var(--color-verde);
+    box-shadow: none;
+  }
+</style>
 <div class="page-container">
   <div class="main-content">
     <div class="section__content section__content--p30">
@@ -25,10 +40,7 @@
           <div class="row">
             <div class="col-xl-7">
               <div
-                class="card-box--icon card-box--mini-icon dashboard__card-box-header dashboard__card-box-header--mini align-items-center">
-                <div class="card-box__icon card-box__icon--celeste">
-                  <i class="fa fa-credit-card"></i>
-                </div>
+                class="card-box--icon card-box--mini-icon dashboard__card-box-header dashboard__card-box-header--mini align-items-center" style="padding: 1rem;">
                 <div class="card-box__body">
                   <h2 class="card-box__title m-0" id="pasarale_name">{{pageName}}</h2>
                 </div>
@@ -42,30 +54,31 @@
                   <!--<th class="text-xs-center">
 									Id
 								</th>-->
-                  <th class="text-xs-center">
+                  <th class="text-center">
                     Producto
                   </th>
-                  <th class="text-xs-center">
+                  <th class="text-center">
                     Cantidad
                   </th>
-                  <th class="text-xs-center">
+                  <th class="text-center">
                     Precio
                   </th>
-                  <th class="text-xs-center">
+                  <th class="text-center">
                     Metodo de Pago
                   </th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>{{product}}</td>
+                  <td class="text-center">{{product}}</td>
 
-                  <td>{{#if Backcoin}}{{amount}} {{else}}1{{/if}}</td>
-                  <td>S/{{monto_soles}}</td>
-                  <td>
-                    <input type="radio" onclick="showPago('MP','paypal')" name="metodo_pago"
-                      value="Mercado Pago">Mercado Pago
-
+                  <td class="text-center">{{#if Backcoin}}{{amount}} {{else}}1{{/if}}</td>
+                  <td class="text-center">S/{{monto_soles}}</td>
+                  <td class="text-center">
+                      <a  href="" onclick="showPago('MP','paypal')" name="metodo_pago" value="Mercado Pago" style="color: var(--verde-color);">
+                        <i class="fas fa-money-bill-wave"></i>
+                      </a>
+                      Mercado Pago
 
                     <!--  <input type="radio" id="tarjeta" name="metodo_pago" value="PayPal" onclick="showPago('paypal','MP')">PayPal
           {{#if Backcoin}}{{else}}{{#if backstore_sell}}<input type="radio" id="backcoins_pay" name="metodo_pago" value="backcoins_pay" onclick="backcoins_pay_back('backcoins')">Backcoins{{else}}<input type="radio" id="backcoins_pay" name="metodo_pago" value="backcoins_pay" onclick="backcoins_pay('backcoins')">Backcoins{{/if}}{{/if}}
