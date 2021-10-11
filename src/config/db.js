@@ -14,7 +14,8 @@ const db = new Sequelize(DB_NAME, DB_USER, DB_PASS,
 	{
 		host: DB_HOST,
 		port: DB_PORT,
-		dialect: 'mysql'
+		dialect: 'mysql',
+		timezone: 'America/Lima'
 	});
 
 module.exports = db;

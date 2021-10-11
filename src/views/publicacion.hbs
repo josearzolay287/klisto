@@ -3,495 +3,565 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.3/moment.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.min.css" />
+<link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.min.css" />
 <link href="https://cdn.jsdelivr.net/css-toggle-switch/latest/toggle-switch.css" rel="stylesheet" />
 
 
- <style>
-   thead .dow{
-     background: #f7c400;
-   }
-   .bootstrap-datetimepicker-widget table th{
-     color: white;
-   }
-    .bootstrap-datetimepicker-widget table .prev, .bootstrap-datetimepicker-widget table .picker-switch, .bootstrap-datetimepicker-widget table .next{
-     color: black;
-   }
-.bootstrap-datetimepicker-widget table td.day, .bootstrap-datetimepicker-widget table th{
-  padding: 15px;
-}
-   .bootstrap-datetimepicker-widget table th{
-     border-radius: 0px;
-   }
-   #datetimepicker12{
-     background: #eaeaea;
-     border-radius: 10px;
-   }
-.table td, .table th {
-   border-top: none;
-}
-   .table thead th{
-     border-bottom: none;
-   }
-   #content-wrapper{
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	align-items: center;
-}
+<style>
+  thead .dow {
+    background: #f7c400;
+  }
 
-.column{
-	width: 100%;
-  max-width: 600px;
-	padding: 10px;
+  .bootstrap-datetimepicker-widget table th {
+    color: white;
+  }
 
-}
+  .bootstrap-datetimepicker-widget table .prev,
+  .bootstrap-datetimepicker-widget table .picker-switch,
+  .bootstrap-datetimepicker-widget table .next {
+    color: black;
+  }
 
-#featured{
-width: 450px;
+  .bootstrap-datetimepicker-widget table td.day,
+  .bootstrap-datetimepicker-widget table th {
+    padding: 15px;
+  }
+
+  .bootstrap-datetimepicker-widget table th {
+    border-radius: 0px;
+  }
+
+  #datetimepicker12 {
+    background: #eaeaea;
+    border-radius: 10px;
+  }
+
+  .table td,
+  .table th {
+    border-top: none;
+  }
+
+  .table thead th {
+    border-bottom: none;
+  }
+
+  #content-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .column {
+    width: 100%;
+    max-width: 600px;
+    padding: 10px;
+
+  }
+
+  #featured {
+    width: 450px;
     height: 320px;
     cursor: pointer;
     border-radius: 20px;
-}
+  }
 
-.thumbnail{
-	object-fit: cover;
-  width: 80px;
-	height: 70px;
-	cursor: pointer;
-	opacity: 0.5;
-	margin: 5px;
-  border-radius: 10px;
-}
+  .thumbnail {
+    object-fit: cover;
+    width: 80px;
+    height: 70px;
+    cursor: pointer;
+    opacity: 0.5;
+    margin: 5px;
+    border-radius: 10px;
+  }
 
-.thumbnail:hover{
-	opacity:1;
-}
+  .thumbnail:hover {
+    opacity: 1;
+  }
 
-.active{
-	opacity: 1;
-}
+  .active {
+    opacity: 1;
+  }
 
-#slide-wrapper{
-	max-width: 500px;
-	display: flex;
-	min-height: 100px;
-	align-items: center;
-}
+  #slide-wrapper {
+    max-width: 500px;
+    display: flex;
+    min-height: 100px;
+    align-items: center;
+  }
 
-#slider{
-	width: 440px;
-	display: flex;
-	flex-wrap: nowrap;
-	overflow-x:hidden;
+  #slider {
+    width: 440px;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: hidden;
 
-}
+  }
 
-#slider::-webkit-scrollbar {
-		width: 8px;
+  #slider::-webkit-scrollbar {
+    width: 8px;
 
-}
+  }
 
-#slider::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  #slider::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 
-}
- 
-#slider::-webkit-scrollbar-thumb {
-  background-color: #dede2e;
-  outline: 1px solid slategrey;
-   border-radius: 100px;
+  }
 
-}
+  #slider::-webkit-scrollbar-thumb {
+    background-color: #dede2e;
+    outline: 1px solid slategrey;
+    border-radius: 100px;
 
-#slider::-webkit-scrollbar-thumb:hover{
+  }
+
+  #slider::-webkit-scrollbar-thumb:hover {
     background-color: #18b5ce;
-}
+  }
 
-.arrow{
-	width: 30px;
-	height: 30px;
-	cursor: pointer;
-	transition: .3s;
-}
+  .arrow {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: .3s;
+  }
 
-.arrow:hover{
-	opacity: .5;
-	width: 35px;
-	height: 35px;
-}
-        body{
-            background-color: #f5f6f8;
-        }
-        #gallery-presentation h2 span{
-            color: #06cc60;
-        }
-        #gallery-presentation .btn-primary{
-            background-color: #06cc60;
-            border: 1px solid #06cc60;
-            box-shadow: none;
-            width: 100%;
-            padding: 1rem;
-            border-radius: 10px;
-        }
-        #gallery-presentation .btn-primary:hover{
-            background-color: #06cc60;
-            border: 1px solid #06cc60;
-            box-shadow: none;
-        }
-        #gallery-presentation .btn-primary:focus{
-            background-color: #06cc60;
-            border: 1px solid #06cc60;
-            box-shadow: none;
-        }
+  .arrow:hover {
+    opacity: .5;
+    width: 35px;
+    height: 35px;
+  }
 
-        .cat-gallery-gallery-presentation span{
-            color: #f7c400;
-        }
-        #reservar .container{
-            background-color: #ffffff;
-            border-radius: 15px;
-            padding: 2rem;
-            margin-bottom: 3rem;
-        }
+  body {
+    background-color: #f5f6f8;
+  }
 
-        #reservar .form-control {
-            display: block;
-            width: 100%;
-            padding: .375rem .75rem;
-            font-size: 1rem;
-            font-weight: 400;
-            line-height: 1.5;
-            color: #495057;
-            background-color: #eaeaea;
-            background-clip: padding-box;
-            border: 1px solid #f5f6f8;
-            border-radius: 10px;
-            transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-        }
+  #gallery-presentation h2 span {
+    color: #06cc60;
+  }
 
-        #reservar .btn-primary{
-            background-color: white;
-            border:1px solid #06cc60;
-            color: #06cc60;
-            border-radius: 0px;
-            box-shadow: none;
-            margin-bottom: .7rem;
-        }
-        #reservar .btn-primary:hover{
-            background-color: #06cc60;
-            border:1px solid #06cc60;
-            color: white;
-            border-radius: 0px;
-            box-shadow: none;
-            margin-bottom: .7rem;
-        }
-        #reservar .btn-primary:focus{
-            background-color: #06cc60;
-            border:1px solid #06cc60;
-            color: white;
-            border-radius: 0px;
-            box-shadow: none;
-            margin-bottom: .7rem;
-        }
-        #reservar .active{
+  #gallery-presentation .btn-primary {
+    background-color: #06cc60;
+    border: 1px solid #06cc60;
+    box-shadow: none;
+    width: 100%;
+    padding: 1rem;
+    border-radius: 10px;
+  }
+
+  #gallery-presentation .btn-primary:hover {
+    background-color: #06cc60;
+    border: 1px solid #06cc60;
+    box-shadow: none;
+  }
+
+  #gallery-presentation .btn-primary:focus {
+    background-color: #06cc60;
+    border: 1px solid #06cc60;
+    box-shadow: none;
+  }
+
+  .cat-gallery-gallery-presentation span {
+    color: #f7c400;
+  }
+
+  #reservar .container {
+    background-color: #ffffff;
+    border-radius: 15px;
+    padding: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  #reservar .form-control {
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #eaeaea;
+    background-clip: padding-box;
+    border: 1px solid #f5f6f8;
+    border-radius: 10px;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  }
+
+  #reservar .btn-primary {
+    background-color: white;
+    border: 1px solid #06cc60;
+    color: #06cc60;
+    border-radius: 0px;
+    box-shadow: none;
+    margin-bottom: .7rem;
+  }
+
+  #reservar .btn-primary:hover {
+    background-color: #06cc60;
+    border: 1px solid #06cc60;
+    color: white;
+    border-radius: 0px;
+    box-shadow: none;
+    margin-bottom: .7rem;
+  }
+
+  #reservar .btn-primary:focus {
+    background-color: #06cc60;
+    border: 1px solid #06cc60;
+    color: white;
+    border-radius: 0px;
+    box-shadow: none;
+    margin-bottom: .7rem;
+  }
+
+  #reservar .active {
     color: #06cc60;
     border-radius: 0px;
     background: #eaeaea;
     box-shadow: none;
     margin-bottom: .7rem;
-        }
-        #reservar .btn-outline-success{
-            background-color: #06cc60;
-            position: absolute;
-            color: white;
-            border-color: #06cc60;
-            border-radius: 10px;
-            top: 0;
-            right: 0;
-            box-shadow: none;
-            padding: .33rem 1.5rem;
-        }
-        #reservar .btn-outline-success:hover{
-            background-color: #06cc60;
-            position: absolute;
-            color: white;
-            border-color: #06cc60;
-            border-radius: 10px;
-            top: 0;
-            right: 0;
-            box-shadow: none;
-        }
-        #reservar .btn-outline-success:focus{
-            background-color: #06cc60;
-            position: absolute;
-            color: white;
-            border-color: #06cc60;
-            border-radius: 10px;
-            top: 0;
-            right: 0;
-            box-shadow: none;
-        }
-        .bootstrap-datetimepicker-widget table td.active.today::before{
-              border-bottom-color: #eaeaea;
-        }
+  }
 
-    </style>
+  #reservar .btn-outline-success {
+    background-color: #06cc60;
+    position: absolute;
+    color: white;
+    border-color: #06cc60;
+    border-radius: 10px;
+    top: 0;
+    right: 0;
+    box-shadow: none;
+    padding: .33rem 1.5rem;
+  }
+
+  #reservar .btn-outline-success:hover {
+    background-color: #06cc60;
+    position: absolute;
+    color: white;
+    border-color: #06cc60;
+    border-radius: 10px;
+    top: 0;
+    right: 0;
+    box-shadow: none;
+  }
+
+  #reservar .btn-outline-success:focus {
+    background-color: #06cc60;
+    position: absolute;
+    color: white;
+    border-color: #06cc60;
+    border-radius: 10px;
+    top: 0;
+    right: 0;
+    box-shadow: none;
+  }
+
+  .bootstrap-datetimepicker-widget table td.active.today::before {
+    border-bottom-color: #eaeaea;
+  }
+</style>
 <style>
-      .header .menu-front .navbar-brand img{
-        height: 70px;
-      }
-    .menu-front .bg-light {
-        background-color: transparent !important;
-    }
-    .navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link{
-        color: #f7c400;
-        font-weight: bold;
-    }
+  .header .menu-front .navbar-brand img {
+    height: 70px;
+  }
 
-    .navbar-light .navbar-nav .nav-link{
-        color: black;
-        font-weight: bold;
-    }
-    .navbar-light .ingresar .nav-link{
-        color: white;
-        background-color: #f7c400;
-        border-radius: 25px;
-        padding: .2rem 2rem;
-        margin-top: .3rem;
-        margin-left: 1rem;
-    }
-    .contenido-header{
-        width: 100%;
-        height: 80%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .video-inicio{
-        width: 50%;
-    }
-    .img-yt{
-        width: 100%;
-        height: 300px;
-        border-radius: 20px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .img-yt i{
-        background-color: #f7c400;
-        padding: 20px;
-        font-size: 30px;
-        clip-path: circle(50% at 50% 50%);
-        color: white;
-    }
-    .titulo-inicio{
-        width: 50%;
-    }
-    .contenido-header h1{
-        font-weight: bold;
-        color: white;
-        text-align: right;
-    }
-    .contenido-header .container{
+  .menu-front .bg-light {
+    background-color: transparent !important;
+  }
+
+  .navbar-light .navbar-nav .active>.nav-link,
+  .navbar-light .navbar-nav .nav-link.active,
+  .navbar-light .navbar-nav .nav-link.show,
+  .navbar-light .navbar-nav .show>.nav-link {
+    color: #f7c400;
+    font-weight: bold;
+  }
+
+  .navbar-light .navbar-nav .nav-link {
+    color: black;
+    font-weight: bold;
+  }
+
+  .navbar-light .ingresar .nav-link {
+    color: white;
+    background-color: #f7c400;
+    border-radius: 25px;
+    padding: .2rem 2rem;
+    margin-top: .3rem;
+    margin-left: 1rem;
+  }
+
+  .contenido-header {
+    width: 100%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .video-inicio {
+    width: 50%;
+  }
+
+  .img-yt {
+    width: 100%;
+    height: 300px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .img-yt i {
+    background-color: #f7c400;
+    padding: 20px;
+    font-size: 30px;
+    clip-path: circle(50% at 50% 50%);
+    color: white;
+  }
+
+  .titulo-inicio {
+    width: 50%;
+  }
+
+  .contenido-header h1 {
+    font-weight: bold;
+    color: white;
+    text-align: right;
+  }
+
+  .contenido-header .container {
     width: 1000px;
-    }
-    .boton-titulo{
-        background-color: #f7c400;
-        padding: .2rem 2rem;
-        float: right;
-        border-radius: 20px;
-        text-decoration: none;
-        color: white;
-        font-weight: 600;
-    }
-    .boton-titulo:hover{
-        background-color: #f7c400;
-        padding: .2rem 2rem;
-        float: right;
-        border-radius: 20px;
-        text-decoration: none;
-        color: white;
-    }
-    .cont-servicios{
-        width: 100%;
-        border-radius: 20px;
-        padding: 1rem;
-        font-size: 13px;
-        color: white;
-    }
-    .cont-servicios img {
+  }
+
+  .boton-titulo {
+    background-color: #f7c400;
+    padding: .2rem 2rem;
+    float: right;
+    border-radius: 20px;
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+  }
+
+  .boton-titulo:hover {
+    background-color: #f7c400;
+    padding: .2rem 2rem;
+    float: right;
+    border-radius: 20px;
+    text-decoration: none;
+    color: white;
+  }
+
+  .cont-servicios {
+    width: 100%;
+    border-radius: 20px;
+    padding: 1rem;
+    font-size: 13px;
+    color: white;
+  }
+
+  .cont-servicios img {
     height: 80px;
+  }
+
+  .cont-servicios p {
+    font-size: 10px;
+    margin: 0;
+  }
+
+  .servicios {
+    background-color: #f2f2f2;
+  }
+
+  .cont-categorias {
+    width: 85%;
+    padding: 1.5rem;
+    background-color: #c1f2d7;
+    border-radius: 25px;
+    margin: auto;
+  }
+
+  .cont-categorias img {
+    width: 60%;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+  }
+
+  .cont-categorias h3 {
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+
+  .categorias h1 {
+    font-weight: bold;
+    font-size: 4rem;
+    margin-top: 8rem;
+  }
+
+  .contador {
+    background-color: #06cc60;
+    margin-top: 10rem;
+  }
+
+  .contador h1 {
+    text-align: center;
+    color: white;
+    font-size: 6rem;
+    font-weight: bold;
+  }
+
+  .contador p {
+    font-size: 2rem;
+    color: white;
+    text-align: center;
+    font-weight: 500;
+  }
+
+  .footer {
+    background-image: url("../assets/img/footer.jpg");
+    height: 500px;
+    border-radius: 50px 50px 0px 0px;
+    -moz-border-radius: 50px 50px 0px 0px;
+    -webkit-border-radius: 50px 50px 0px 0px;
+    border: 0px solid #000000;
+    position: relative;
+  }
+
+  @media (max-width: 1440px) {
+    .footer {
+      background-image: url("../assets/img/footer-2.jpg");
+      background-size: cover;
     }
-    .cont-servicios p{
-        font-size: 10px;
-        margin:0;
-    }
-    .servicios{
-        background-color: #f2f2f2;
-    }
-    .cont-categorias{
-        width: 85%;
-        padding: 1.5rem;
-        background-color: #c1f2d7;
-        border-radius: 25px;
-        margin: auto;
-    }
-    .cont-categorias img{
-        width: 60%;
-        margin-bottom: 2rem;
-        margin-top: 2rem;
-    }
-    .cont-categorias h3{
-        margin:0;
-        padding: 0;
-        font-weight: bold;
-        margin-bottom: 1rem;
-    }
-    .categorias h1{
-        font-weight: bold;
-        font-size: 4rem;
-        margin-top: 8rem;
-    }
-    .contador{
-        background-color: #06cc60;
-        margin-top: 10rem;
-    }
-    .contador h1{
-        text-align: center;
-        color: white;
-        font-size: 6rem;
-        font-weight: bold;
-    }
-    .contador p{
-        font-size: 2rem;
-        color: white;
-        text-align: center;
-        font-weight: 500;
-    }
-    .footer{
-        background-image: url("../assets/img/footer.jpg");
-        height: 500px;
-        border-radius: 50px 50px 0px 0px;
-        -moz-border-radius: 50px 50px 0px 0px;
-        -webkit-border-radius: 50px 50px 0px 0px;
-        border: 0px solid #000000;
-        position: relative;
-    }
-    @media (max-width: 1440px){
-        .footer{
-            background-image: url("../assets/img/footer-2.jpg");
-            background-size: cover;
-        }
-    }
-    .img-footer{
+  }
+
+  .img-footer {
     height: calc(500px - 75px);
     display: flex;
     align-items: center;
     justify-content: center;
-    }
-    .footer img{
-        width: 250px;
-        height: auto;
-    }
-    .footer .text-footer{
-        position: absolute;
-        bottom: 0;
-        background: rgb(0 0 0 / 25%);
-        padding: 2rem;
-        width: 100%;
-        text-align: center;
-    }
-    .footer a{
-        text-decoration: none;
-        color: white;
-        text-align: center;
-        font-weight: 700;
-        font-size: 1.6rem;
-    }
-    .mas-nuevo h1{
-        font-size: 4rem;
-        font-weight: bold;
-    }
-    .card-mas-nuevo{
-        width: 100%;
-        height: 295px;
-        background-color: #f7f7f7;
-        border-radius: 20px;
-    }
-    .img-card img{
-        width: 100%;
-        height: 175px;
-        border-radius: 15px 15px 0px 0px;
-        -moz-border-radius: 15px 15px 0px 0px;
-        -webkit-border-radius: 15px 15px 0px 0px;
-    }
-    .cont-card{
-        padding: 1rem;
-        position: relative;
-    }
-    .cont-card h5{
-        font-weight: bold;
-        padding-bottom: .7rem;
-    }
-    .cont-card span{
-        font-size: 14px;
-        font-weight: 600;
-    }
-    .precio-buscador span{
-        color: #06cc60;
-        float: left;
-        font-size: 18px;
-        font-weight: bold;
-    }
-    .buscador-vermas a{
-        text-decoration: none;
-        background: #f7c400;
-        float: right;
-        border-radius: 20px;
-        padding: .1rem 1rem;
-        color: white;
-        font-size: 14px;
-    }
+  }
 
-    .grid-services {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 3rem;
-    }
+  .footer img {
+    width: 250px;
+    height: auto;
+  }
 
-    .grid-services > *:nth-child(2) .cont-servicios {
-        position: relative;
-    }
+  .footer .text-footer {
+    position: absolute;
+    bottom: 0;
+    background: rgb(0 0 0 / 25%);
+    padding: 2rem;
+    width: 100%;
+    text-align: center;
+  }
 
-    .grid-services > *:nth-child(2) .cont-servicios::before,
-    .grid-services > *:nth-child(2) .cont-servicios::after {
-        content: "";
-        display: block;
-        width: 100px;
-        height: 100px;
-        background-image: url('../assets/img/flecha-spiral.svg');
-        background-size: 100px;
-        position: absolute;
-    }
-    .grid-services > *:nth-child(2) .cont-servicios::before {
-        transform: rotate(90deg);
-        bottom: 100%;
-        left: -2rem;
-        margin-bottom: 1rem;
-    }
-    .grid-services > *:nth-child(2) .cont-servicios::after {
-        top: 0;
-        left: calc(100% + 1rem);
-    }
-    .contador-up{
-        margin-top: -3rem;
-    }
-    .contador-up path{
-        fill: white;
-    }
-    .categorias::before {
+  .footer a {
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.6rem;
+  }
+
+  .mas-nuevo h1 {
+    font-size: 4rem;
+    font-weight: bold;
+  }
+
+  .card-mas-nuevo {
+    width: 100%;
+    height: 295px;
+    background-color: #f7f7f7;
+    border-radius: 20px;
+  }
+
+  .img-card img {
+    width: 100%;
+    height: 175px;
+    border-radius: 15px 15px 0px 0px;
+    -moz-border-radius: 15px 15px 0px 0px;
+    -webkit-border-radius: 15px 15px 0px 0px;
+  }
+
+  .cont-card {
+    padding: 1rem;
+    position: relative;
+  }
+
+  .cont-card h5 {
+    font-weight: bold;
+    padding-bottom: .7rem;
+  }
+
+  .cont-card span {
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .precio-buscador span {
+    color: #06cc60;
+    float: left;
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  .buscador-vermas a {
+    text-decoration: none;
+    background: #f7c400;
+    float: right;
+    border-radius: 20px;
+    padding: .1rem 1rem;
+    color: white;
+    font-size: 14px;
+  }
+
+  .grid-services {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+  }
+
+  .grid-services>*:nth-child(2) .cont-servicios {
+    position: relative;
+  }
+
+  .grid-services>*:nth-child(2) .cont-servicios::before,
+  .grid-services>*:nth-child(2) .cont-servicios::after {
+    content: "";
+    display: block;
+    width: 100px;
+    height: 100px;
+    background-image: url('../assets/img/flecha-spiral.svg');
+    background-size: 100px;
+    position: absolute;
+  }
+
+  .grid-services>*:nth-child(2) .cont-servicios::before {
+    transform: rotate(90deg);
+    bottom: 100%;
+    left: -2rem;
+    margin-bottom: 1rem;
+  }
+
+  .grid-services>*:nth-child(2) .cont-servicios::after {
+    top: 0;
+    left: calc(100% + 1rem);
+  }
+
+  .contador-up {
+    margin-top: -3rem;
+  }
+
+  .contador-up path {
+    fill: white;
+  }
+
+  .categorias::before {
     background-image: url("../assets/img/k.png");
     content: "";
     width: 50px;
@@ -502,8 +572,9 @@ width: 450px;
     top: 10%;
     transform: rotate(-10deg);
     opacity: .3;
-    }
-    .categorias::after {
+  }
+
+  .categorias::after {
     background-image: url("../assets/img/k.png");
     content: "";
     width: 50px;
@@ -514,34 +585,41 @@ width: 450px;
     bottom: -3%;
     transform: rotate(-10deg);
     opacity: .3;
-    }
-    .categorias{
-        position: relative;
-    }
-    .cont-servicios h3{
-        color: white;
+  }
+
+  .categorias {
+    position: relative;
+  }
+
+  .cont-servicios h3 {
+    color: white;
     font-weight: bold;
     margin: 0;
-    }
-    .nav-home{
-        font-size: 18px;
-    }
-    .nav-home li a{
+  }
+
+  .nav-home {
+    font-size: 18px;
+  }
+
+  .nav-home li a {
     border-bottom: 2px solid #d7d7d7;
     text-transform: uppercase;
     color: #d7d7d7;
     font-weight: 600;
-    }
-        .nav-home li a:hover{
-border-bottom: 2px solid #06cc60;
+  }
+
+  .nav-home li a:hover {
+    border-bottom: 2px solid #06cc60;
     text-transform: uppercase;
-            color: #06cc60;
-    }
-    .nav-home li >.active{
-        color: #06cc60;
-        border-bottom: 2px solid #06cc60;
-    }
-.servicios::before {
+    color: #06cc60;
+  }
+
+  .nav-home li>.active {
+    color: #06cc60;
+    border-bottom: 2px solid #06cc60;
+  }
+
+  .servicios::before {
     content: '';
     background-image: url(../assets/img/header-curve.png);
     background-size: cover;
@@ -551,77 +629,80 @@ border-bottom: 2px solid #06cc60;
     position: absolute;
     top: -149px;
     left: 0;
-}
-.contador:before{
+  }
+
+  .contador:before {
     content: '';
     background-image: url("../assets/img/counte-up.png");
-        background-size: cover;
+    background-size: cover;
     width: 100%;
     max-width: 1920px;
     height: 150px;
     position: absolute;
     top: -149px;
     left: 0;
-}
-.contador::after{
-        content: '';
+  }
+
+  .contador::after {
+    content: '';
     background-image: url("../assets/img/counte-bottom.png");
-        background-size: cover;
+    background-size: cover;
     width: 100%;
     max-width: 1920px;
     height: 150px;
     position: absolute;
     bottom: -149px;
     left: 0;
-}
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 200px;
-  height: 45px;
-}
+  }
 
-.switch input { 
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
-  border-radius:30px;
-}
-
-.slider:before {
-  position: absolute;
-  content: attr(data-content);
-  left: 4px;
-  bottom: 3px;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
-  border-radius:30px;
+  .switch {
+    position: relative;
     display: inline-block;
-  vertical-align: middle;
-  padding-top:8px;
-  padding-bottom:8px;
-  padding-left:10px;
-  padding-right:10px;
-  background-color: var(--color-verde);
-  color: white;
-}
+    width: 200px;
+    height: 45px;
+  }
 
-.switch-toggle {
-  width: 15em;
-  cursor: pointer;
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 30px;
+  }
+
+  .slider:before {
+    position: absolute;
+    content: attr(data-content);
+    left: 4px;
+    bottom: 3px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 30px;
+    display: inline-block;
+    vertical-align: middle;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: var(--color-verde);
+    color: white;
+  }
+
+  .switch-toggle {
+    width: 15em;
+    cursor: pointer;
     top: 0;
     left: 0;
     right: 0;
@@ -630,469 +711,541 @@ border-bottom: 2px solid #06cc60;
     -webkit-transition: .4s;
     transition: .4s;
     border-radius: 30px !important;
-}
+  }
 
-.switch-toggle label:not(.disabled) {
-  cursor: pointer;
-}
-.switch-candy a {
-    border-radius:30px !important;
+  .switch-toggle label:not(.disabled) {
+    cursor: pointer;
+  }
+
+  .switch-candy a {
+    border-radius: 30px !important;
     border: none !important;
     background-color: white;
     box-shadow: 0 1px 1px rgb(0 0 0 / 20%), inset 0 1px 1px rgb(255 255 255 / 45%);
     background-color: var(--color-verde);
     background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.2), transparent);
     background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.2), transparent);
-}
+  }
 
-input:checked + .slider:before {
-  -webkit-transform: translateX(105px);
-  -ms-transform: translateX(105px);
-  transform: translateX(105px);
-  content: attr(data-content);
-  padding-left:20px;
-  padding-right:20px;
-}
+  input:checked+.slider:before {
+    -webkit-transform: translateX(105px);
+    -ms-transform: translateX(105px);
+    transform: translateX(105px);
+    content: attr(data-content);
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 
-/* Rounded sliders */
-.slider.round {
-  border-radius: 34px;
-}
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
 
-.slider.round:before {
-  border-radius: 50%;
-}
-.switch-toggle input + label{
-  padding: .32em 0.5em;
-}
-.switch-light.switch-candy input ~ span span:first-child, .switch-light.switch-candy input:checked ~ span span:nth-child(2), .switch-candy input:checked + label{
-  color: white;
-}
-.select2-container--default .select2-selection--single .select2-selection__arrow b{
-  top: 100% !important;
-}
-#continuar_sesion{
-  background-color: var(--color-verde);
-  border-color: var(--color-verde);
-}
-  </style>
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+  .switch-toggle input+label {
+    padding: .32em 0.5em;
+  }
+
+  .switch-light.switch-candy input~span span:first-child,
+  .switch-light.switch-candy input:checked~span span:nth-child(2),
+  .switch-candy input:checked+label {
+    color: white;
+  }
+
+  .select2-container--default .select2-selection--single .select2-selection__arrow b {
+    top: 100% !important;
+  }
+
+  #continuar_sesion {
+    background-color: var(--color-verde);
+    border-color: var(--color-verde);
+  }
+</style>
 <script>
-  function select_hora(hora_desde, hora_hasta, id){
+  function select_hora(hora_desde, hora_hasta, id) {
     $(`.select_hora `).removeClass('active')
-    document.getElementById('h_desde').value= hora_desde; 
-    document.getElementById('h_hasta').value= hora_hasta; 
-     console.log(id)
+    document.getElementById('h_desde').value = hora_desde;
+    document.getElementById('h_hasta').value = hora_hasta;
+    console.log(id)
     $(`#${id}`).addClass('active')
     $('#button_finish_reserv').removeAttr('disabled')
   }
 
   $(function () {
-activar_reservar
- $('#activar_reservar').on('click',(e)=>{
-$('#reservar').removeAttr('style')
-  })
-  $('.fc-daygrid-day ').on('click',(e)=>{
+    activar_reservar
+    $('#activar_reservar').on('click', (e) => {
+      $('#reservar').removeAttr('style')
+    })
+    $('.fc-daygrid-day ').on('click', (e) => {
 
-console.log(e.target)
-  })
-$('.sucursales_check:checked').each(function() {
-  
-   var id_suc = $(this).val()
-        $('.sucur'+id_suc).show()
-        let suc_actual=$('#sucursales_p').text()
-        console.log($(this).text())
-        $('#sucursales_p').text($('#suc'+id_suc).text()+'/'+suc_actual+'' )
+      console.log(e.target)
+    })
+    $('.sucursales_check:checked').each(function () {
+
+      var id_suc = $(this).val()
+      $('.sucur' + id_suc).show()
+      let suc_actual = $('#sucursales_p').text()
+      console.log($(this).text())
+      $('#sucursales_p').text($('#suc' + id_suc).text() + '/' + suc_actual + '')
       console.log("hola")
     });
-    
+
 
     $('.sucursales_check').on('change', (e) => {
       var id_suc = e.target.classList.item(1)
-      if($('.sucur'+id_suc).is(':visible')){
-        $('.sucur'+id_suc).hide()
-      }else{
-        $('.sucur'+id_suc).show()
-        let suc_actual=$('#sucursales_p').text()
+      if ($('.sucur' + id_suc).is(':visible')) {
+        $('.sucur' + id_suc).hide()
+      } else {
+        $('.sucur' + id_suc).show()
+        let suc_actual = $('#sucursales_p').text()
         console.log(suc_actual)
-        $('#sucursales_p').text($('#suc'+id_suc).text()+'/'+suc_actual+'' )
+        $('#sucursales_p').text($('#suc' + id_suc).text() + '/' + suc_actual + '')
       }
 
     })
 
 
-$("#empleado").on('change',(e)=> {    
-        console.log("La edad seleccionada es: " + e.target.value);
+    $("#empleado").on('change', (e) => {
+      console.log("La edad seleccionada es: " + e.target.value);
       $('#id_encargado').val(e.target.value);
-        $('#dirigido_a').removeAttr('style')
+      $('#dirigido_a').removeAttr('style')
     });
-//verificar inicio de sesion
-$('#correo_tercero').on('change', (e)=>{
-///let fecha = $('#fecha_ag').val()
-let correo = e.target.value
-let pass = $('#pass').val()
-console.log(correo)
-console.log(pass)
-const data = new FormData();
-data.append("correo", correo);
-data.append('password', pass);
-$.ajax({
-      url: '/verificar_usuario',
-      type: 'POST',
-      data: data,
-      cache: false,
-      contentType: false,
-      processData: false,
-      /*xhr: function () {        
-          var xhr = $.ajaxSettings.xhr();
-          xhr.upload.onprogress = function (event) {
-              var perc = Math.round((event.loaded / event.total) * 100);
-             // $("#nombreArchivoCalendario1").text(inputFile.name);
-             
-              $("#progressBar1").text(perc + '%');
-              $("#progressBar1").css('width', perc + '%');
-          };
-          return xhr;
-      },
-      beforeSend: function (xhr) {
-        displayLoading()
-          $("#progressBar1").text('0%');
-          $("#progressBar1").css('width', '0%');
-      },*/
-      success: function (data, textStatus, jqXHR)
-      {  
-        console.log(data)
-if (data == 0 ){
-  $('.password_r').removeAttr('style')
-  $('#password_c').removeAttr('style')  
-console.log(data)
-$('#continuar_sesion').removeAttr('disabled') 
+    //verificar inicio de sesion
+    $('#correo_tercero').on('change', (e) => {
+      ///let fecha = $('#fecha_ag').val()
+      let correo = e.target.value
+      let pass = $('#pass').val()
+      console.log(correo)
+      console.log(pass)
+      const data = new FormData();
+      data.append("correo", correo);
+      data.append('password', pass);
+      $.ajax({
+        url: '/verificar_usuario',
+        type: 'POST',
+        data: data,
+        cache: false,
+        contentType: false,
+        processData: false,
+        /*xhr: function () {        
+            var xhr = $.ajaxSettings.xhr();
+            xhr.upload.onprogress = function (event) {
+                var perc = Math.round((event.loaded / event.total) * 100);
+               // $("#nombreArchivoCalendario1").text(inputFile.name);
+               
+                $("#progressBar1").text(perc + '%');
+                $("#progressBar1").css('width', perc + '%');
+            };
+            return xhr;
+        },
+        beforeSend: function (xhr) {
+          displayLoading()
+            $("#progressBar1").text('0%');
+            $("#progressBar1").css('width', '0%');
+        },*/
+        success: function (data, textStatus, jqXHR) {
+          console.log(data)
+          if (data == 0) {
+            $('.password_r').removeAttr('style')
+            $('#password_c').removeAttr('style')
+            console.log(data)
+            $('#continuar_sesion').removeAttr('disabled')
 
-}
-   $('.password_r').removeAttr('style') 
-   $('#continuar_sesion').removeAttr('disabled')  
-    },
-      error: function (jqXHR, textStatus) { 
-        console.log('error:'+ jqXHR)
-      }
-  });
-})
-
-$('#continuar_sesion').on('click', (e)=>{
-///let fecha = $('#fecha_ag').val()
-let correo = $('#correo_tercero').val()
-let pass = $('#pass').val()
-let confirm = $('#confirmpass').val()
-let name = $('#name_session').val()
-console.log(correo)
-console.log(pass)
-if ( pass ==""){
-Swal.fire("Campo contraseña vacio, verifique porfavor")
-return
-}
-if ($('#password_c').is(':visible')){
-  if ( pass != confirm){
-    Swal.fire('Password y confirmación no son iguales')
-return 
-}
-}
-
-const data = new FormData();
-data.append("correo", correo);
-data.append('password', pass);
-data.append('name', name);
-$.ajax({
-      url: '/inicia_sesion_modal',
-      type: 'POST',
-      data: data,
-      cache: false,
-      contentType: false,
-      processData: false,
-      /*xhr: function () {        
-          var xhr = $.ajaxSettings.xhr();
-          xhr.upload.onprogress = function (event) {
-              var perc = Math.round((event.loaded / event.total) * 100);
-             // $("#nombreArchivoCalendario1").text(inputFile.name);
-             
-              $("#progressBar1").text(perc + '%');
-              $("#progressBar1").css('width', perc + '%');
-          };
-          return xhr;
-      },
-      beforeSend: function (xhr) {
-        displayLoading()
-          $("#progressBar1").text('0%');
-          $("#progressBar1").css('width', '0%');
-      },*/
-      success: function (data, textStatus, jqXHR)
-      {  
-        console.log(data)
-        if (data =="Contraseña incorrecta"){
-          console.log('error')
-          Swal.fire(data)
-          return 'Error'
+          }
+          $('.password_r').removeAttr('style')
+          $('#continuar_sesion').removeAttr('disabled')
+        },
+        error: function (jqXHR, textStatus) {
+          console.log('error:' + jqXHR)
         }
-if (data != null){
-  console.log(data)
-$('#guardar_agenda').submit()
-}
-    },
-      error: function (jqXHR, textStatus) { 
-        console.log('error:'+ jqXHR)
+      });
+    })
+
+    $('#continuar_sesion').on('click', (e) => {
+      ///let fecha = $('#fecha_ag').val()
+      let correo = $('#correo_tercero').val()
+      let pass = $('#pass').val()
+      let confirm = $('#confirmpass').val()
+      let name = $('#name_session').val()
+      console.log(correo)
+      console.log(pass)
+      if (pass == "") {
+        Swal.fire("Campo contraseña vacio, verifique porfavor")
+        return
       }
-  });
-})
-
-// SCRIP BASE DE DATOS
-var fecha_agenda_ar =[]
-var empleado_oc =[]
-var hora_desde_arr =[]
-var hora_hasta_arr =[]
-$('#datetimepicker12').on('change.datetimepicker', (e)=>{
-  if($('#id_encargado').val() ==""){
- // alert ('Debe seleccionar un empleado para avanzar')
-  return
-}
-///let fecha = $('#fecha_ag').val()
-let fecha = e.date.format('YYYY-MM-DD')
-console.log(fecha)
-$('#fecha').val(fecha)
-const data = new FormData();
-data.append("fecha", fecha);
-$.ajax({
-      url: '/consulta_bd',
-      type: 'POST',
-      data: data,
-      cache: false,
-      contentType: false,
-      processData: false,
-      /*xhr: function () {        
-          var xhr = $.ajaxSettings.xhr();
-          xhr.upload.onprogress = function (event) {
-              var perc = Math.round((event.loaded / event.total) * 100);
-             // $("#nombreArchivoCalendario1").text(inputFile.name);
-             
-              $("#progressBar1").text(perc + '%');
-              $("#progressBar1").css('width', perc + '%');
-          };
-          return xhr;
-      },
-      beforeSend: function (xhr) {
-        displayLoading()
-          $("#progressBar1").text('0%');
-          $("#progressBar1").css('width', '0%');
-      },*/
-      success: function (data, textStatus, jqXHR)
-      {  
-        
-        fecha_agenda_ar.splice(0, fecha_agenda_ar.length);
-hora_desde_arr.splice(0, hora_desde_arr.length);
-hora_hasta_arr.splice(0, hora_hasta_arr.length);
-        let id_empleado = $('#id_encargado').val()
-       for (let i = 0; i < data.fechas.length; i++) {
-         if (data.fechas[i].encargadoId == id_empleado){
-           fecha_agenda_ar.push(data.fechas[i]);
-           hora_desde_arr.push(data.fechas[i].hora_cita_desde)
-           hora_hasta_arr.push(data.fechas[i].hora_cita_hasta)
-         }  
-  
-} 
-let desde = ($('#desde_preview').text()).split(':')
-let hasta = ($('#hasta_preview').text()).split(':')
-
-
-let preparacion_p = $('#preparacion_p').text()
-let ejecucion_p = $('#ejecucion_p').text()
-let tiempo = parseInt(preparacion_p)+parseInt(ejecucion_p)
-let diferencia = parseInt(hasta[0])-parseInt(desde[0])
-
-
-let hora_ = ($('#desde_preview').text()).replace(':', ''); 
-let hora_b_d = ($('#desde_break').text()); 
-let hora_b_h = ($('#hasta_break').text());
- let hora_E = moment(hora_b_d, "hh:mm")
- let hora_S = moment(hora_b_h, "hh:mm")
- let hora_inicio_break = (hora_b_d).replace(':', '');
-var duration = hora_S.diff(hora_E, 'minutes');
-console.log(hora_b_d)
-console.log(hora_b_h)
-console.log(hora_inicio_break)
-
-let sumah = "";
-var hora_d = "";
-var parent = document.getElementById("disponibles");
- document.getElementById('disponibles').innerHTML='';
-for (let i = 0; i < diferencia; i++) {
-if (i == 0){
-
- console.log(hora_)
-hora_d = moment(hora_, "hmm").format('hh:mm');
- sumah = (moment(hora_, "hmm").add(tiempo, 'm').format('hh:mm'))
- console.log("primera hora")
- 
-}else{
-  hora_ = (sumah).replace(':', '');
-let siguiente_minuto = (parseInt(hora_))
-hora_d = moment(siguiente_minuto, "hmm").format('hh:mm');
-sumah = (moment(siguiente_minuto, "hmm").add(tiempo, 'm').format('hh:mm'))
-
-var horaInicio = moment(hora_, `h:mma`);
-var horaFin = moment(sumah, `h:mma`);
-if(hora_ > hora_inicio_break){
- let sumah2 = (moment(hora_, "hmm").add(duration, 'm').format('hh:mm'))
-  
- let hora_2 = (sumah2).replace(':', '');
-let siguiente_minuto2 = (parseInt(hora_2))
-hora_d = moment(siguiente_minuto2, "hmm").format('hh:mm');
-sumah = (moment(siguiente_minuto2, "hmm").add(tiempo, 'm').format('hh:mm'))
- }
-
-}
-
-  var found = fecha_agenda_ar.find(element => element.hora_cita_desde == hora_d);
-   if (found == null ){
-var div = document.createElement("div");
-var button = document.createElement("a");
-button.innerHTML = hora_d + '-'+sumah;
-button.setAttribute('class', 'btn btn-primary select_hora');
-button.setAttribute('id', 'hora'+i);
-button.setAttribute('onclick', 'select_hora("'+hora_d+'","'+sumah+'","hora'+i+'")');
-div.setAttribute('class', 'col-4');
-div.appendChild(button);
-
-parent.appendChild(div);
-
-  }else{
-    console.log('hora ocupada')
-  }
-
-}
-      },
-      error: function (jqXHR, textStatus) { 
-        console.log('error:'+ jqXHR)
+      if ($('#password_c').is(':visible')) {
+        if (pass != confirm) {
+          Swal.fire('Password y confirmación no son iguales')
+          return
+        }
       }
-  });
-})
+
+      const data = new FormData();
+      data.append("correo", correo);
+      data.append('password', pass);
+      data.append('name', name);
+      $.ajax({
+        url: '/inicia_sesion_modal',
+        type: 'POST',
+        data: data,
+        cache: false,
+        contentType: false,
+        processData: false,
+        /*xhr: function () {        
+            var xhr = $.ajaxSettings.xhr();
+            xhr.upload.onprogress = function (event) {
+                var perc = Math.round((event.loaded / event.total) * 100);
+               // $("#nombreArchivoCalendario1").text(inputFile.name);
+               
+                $("#progressBar1").text(perc + '%');
+                $("#progressBar1").css('width', perc + '%');
+            };
+            return xhr;
+        },
+        beforeSend: function (xhr) {
+          displayLoading()
+            $("#progressBar1").text('0%');
+            $("#progressBar1").css('width', '0%');
+        },*/
+        success: function (data, textStatus, jqXHR) {
+          console.log(data)
+          if (data == "Contraseña incorrecta") {
+            console.log('error')
+            Swal.fire(data)
+            return 'Error'
+          }
+          if (data != null) {
+            console.log(data)
+            $('#guardar_agenda').submit()
+          }
+        },
+        error: function (jqXHR, textStatus) {
+          console.log('error:' + jqXHR)
+        }
+      });
+    })
+
+    // SCRIP BASE DE DATOS
+    var fecha_agenda_ar = []
+    var empleado_oc = []
+    var hora_desde_arr = []
+    var hora_hasta_arr = []
+    $('#datetimepicker12').on('change.datetimepicker', (e) => {
+      if ($('#id_encargado').val() == "") {
+        // alert ('Debe seleccionar un empleado para avanzar')
+        return
+      }
+      ///let fecha = $('#fecha_ag').val()
+      let fecha = e.date.format('YYYY-MM-DD')
+      console.log(fecha)
+      $('#fecha').val(fecha)
+      const data = new FormData();
+      data.append("fecha", fecha);
+      $.ajax({
+        url: '/consulta_bd',
+        type: 'POST',
+        data: data,
+        cache: false,
+        contentType: false,
+        processData: false,
+        /*xhr: function () {        
+            var xhr = $.ajaxSettings.xhr();
+            xhr.upload.onprogress = function (event) {
+                var perc = Math.round((event.loaded / event.total) * 100);
+               // $("#nombreArchivoCalendario1").text(inputFile.name);
+               
+                $("#progressBar1").text(perc + '%');
+                $("#progressBar1").css('width', perc + '%');
+            };
+            return xhr;
+        },
+        beforeSend: function (xhr) {
+          displayLoading()
+            $("#progressBar1").text('0%');
+            $("#progressBar1").css('width', '0%');
+        },*/
+        success: function (data, textStatus, jqXHR) {
+
+          fecha_agenda_ar.splice(0, fecha_agenda_ar.length);
+          hora_desde_arr.splice(0, hora_desde_arr.length);
+          hora_hasta_arr.splice(0, hora_hasta_arr.length);
+          let id_empleado = $('#id_encargado').val()
+          for (let i = 0; i < data.fechas.length; i++) {
+            if (data.fechas[i].encargadoId == id_empleado) {
+              fecha_agenda_ar.push(data.fechas[i]);
+              hora_desde_arr.push(data.fechas[i].hora_cita_desde)
+              hora_hasta_arr.push(data.fechas[i].hora_cita_hasta)
+            }
+
+          }
+          let desde = ($('#desde_preview').text()).split(':')
+          let hasta = ($('#hasta_preview').text()).split(':')
+
+
+          let preparacion_p = $('#preparacion_p').text()
+          let ejecucion_p = $('#ejecucion_p').text()
+          let tiempo = parseInt(preparacion_p) + parseInt(ejecucion_p)
+          let diferencia = parseInt(hasta[0]) - parseInt(desde[0])
+
+
+          let hora_ = ($('#desde_preview').text()).replace(':', '');
+          let hora_b_d = ($('#desde_break').text());
+          let hora_b_h = ($('#hasta_break').text());
+          let hora_E = moment(hora_b_d, "hh:mm")
+          let hora_S = moment(hora_b_h, "hh:mm")
+          let hora_inicio_break = (hora_b_d).replace(':', '');
+          var duration = hora_S.diff(hora_E, 'minutes');
+          console.log(hora_b_d)
+          console.log(hora_b_h)
+          console.log(hora_inicio_break)
+
+          let sumah = "";
+          var hora_d = "";
+          var parent = document.getElementById("disponibles");
+          document.getElementById('disponibles').innerHTML = '';
+          for (let i = 0; i < diferencia; i++) {
+            if (i == 0) {
+
+              console.log(hora_)
+              hora_d = moment(hora_, "hmm").format('hh:mm');
+              sumah = (moment(hora_, "hmm").add(tiempo, 'm').format('hh:mm'))
+              console.log("primera hora")
+
+            } else {
+              hora_ = (sumah).replace(':', '');
+              let siguiente_minuto = (parseInt(hora_))
+              hora_d = moment(siguiente_minuto, "hmm").format('hh:mm');
+              sumah = (moment(siguiente_minuto, "hmm").add(tiempo, 'm').format('hh:mm'))
+
+              var horaInicio = moment(hora_, `h:mma`);
+              var horaFin = moment(sumah, `h:mma`);
+              if (hora_ > hora_inicio_break) {
+                let sumah2 = (moment(hora_, "hmm").add(duration, 'm').format('hh:mm'))
+
+                let hora_2 = (sumah2).replace(':', '');
+                let siguiente_minuto2 = (parseInt(hora_2))
+                hora_d = moment(siguiente_minuto2, "hmm").format('hh:mm');
+                sumah = (moment(siguiente_minuto2, "hmm").add(tiempo, 'm').format('hh:mm'))
+              }
+
+            }
+
+            var found = fecha_agenda_ar.find(element => element.hora_cita_desde == hora_d);
+            if (found == null) {
+              var div = document.createElement("div");
+              var button = document.createElement("a");
+              button.innerHTML = hora_d + '-' + sumah;
+              button.setAttribute('class', 'btn btn-primary select_hora');
+              button.setAttribute('id', 'hora' + i);
+              button.setAttribute('onclick', 'select_hora("' + hora_d + '","' + sumah + '","hora' + i + '")');
+              div.setAttribute('class', 'col-4');
+              div.appendChild(button);
+
+              parent.appendChild(div);
+
+            } else {
+              console.log('hora ocupada')
+            }
+
+          }
+        },
+        error: function (jqXHR, textStatus) {
+          console.log('error:' + jqXHR)
+        }
+      });
+    })
 
 
 
   })
 </script>
 <script>
-   $(function () { 
-     $('.switch > .slider').attr('data-content', 'Domicilio');
-$('.switch > #on,.switch > #off').on('click', (e)=>{
-  console.log(e)
-  let modo = e.target.value
+  $(function () {
+    $('.add_cupon').on('click', (e) => {
 
-  console.log(modo)
-  if ( modo == "Local"){
- if ($('#distritos_habilitados').is(':visible')){
-         $('#distritos_habilitados').attr('style', 'display:none')
-         $('input[name="distrito"]').prop('checked', false);
-          $('#empleados_').attr('style', 'display:none')          
-         $('input[name="empleado"]').prop('checked', false);
-         $('#dirigido_a').attr('style', 'display:none')
-           $('#servicio_domicilio').attr('style', 'display:none')
-            $('#domicilio_').attr('style', 'display:none')
-            $('input[name="costo_domicilio"]').val('')
-      }
-      /*if ($('#servicio_propio').is(':visible')){
-         $('#servicio_propio').attr('style', 'display:none')
-        return $('#servicio_tercero').removeAttr('style')
-      }*/
-        $('#locales_habiles').removeAttr('style')
-         $('#costo_trans').text('0')
-         let suma = parseInt($('#costo_trans').text())+ parseInt($('#costo_serv').text())
-        $('#total_pga').text(suma)
-  }else{
-           if ($('#locales_habiles').is(':visible')){
-         $('#locales_habiles').attr('style', 'display:none')
-         $('#empleado').prop('selectedIndex',0);
-         $('#sucursales').prop('selectedIndex',0);
-         $('#servicio_para').prop('selectedIndex',0);
+      let cupon = $('#cupon').val()
+      console.log(cupon)
+      const data_C = new FormData();
+      data_C.append("cupon", cupon);
+      $.ajax({
+        url: '/usar_cupon',
+        type: 'POST',
+        data: data_C,
+        cache: false,
+        contentType: false,
+        processData: false,
+        /*xhr: function () {        
+            var xhr = $.ajaxSettings.xhr();
+            xhr.upload.onprogress = function (event) {
+                var perc = Math.round((event.loaded / event.total) * 100);
+               // $("#nombreArchivoCalendario1").text(inputFile.name);
+               
+                $("#progressBar1").text(perc + '%');
+                $("#progressBar1").css('width', perc + '%');
+            };
+            return xhr;
+        },
+        beforeSend: function (xhr) {
+          displayLoading()
+            $("#progressBar1").text('0%');
+            $("#progressBar1").css('width', '0%');
+        },*/
+        success: function (data, textStatus, jqXHR) {
+          switch (data.tipo) {
+            case "descuento":
+              console.log(data.valor)
+              let descuento = (parseInt(data.valor) * parseInt($('#costo_serv').text())) / 100;
+              console.log(descuento)
+              let descuento_final = parseInt($('#costo_serv').text()) - descuento
+              console.log(descuento_final)
+              $('#monto_pagar').val(descuento_final)
+              $('#costo_serv').text(descuento_final)
+              let suma = parseInt($('#costo_trans').text()) + parseInt($('#costo_serv').text())
+              $('#total_pga').text(suma)
+              $('#cupon_aplicado').val(cupon)
+              Swal.fire('Cupón aplicado correctamente')
+              break;
+
+            case "monetario":
+              console.log(data.valor)
+              let descuento_finalM = parseInt($('#costo_serv').text()) - data.valor
+              console.log(descuento_finalM)
+              $('#monto_pagar').val(descuento_finalM)
+              $('#costo_serv').text(descuento_finalM)
+              let suma2 = parseInt($('#costo_trans').text()) + parseInt($('#costo_serv').text())
+              $('#total_pga').text(suma2)
+              $('#cupon_aplicado').val(cupon)
+              Swal.fire('Cupón aplicado correctamente')
+              break;
+            default:
+              console.log(data)
+              Swal.fire(data)
+              break
+          }
+        },
+        error: function (jqXHR, textStatus) {
+          console.log('error:' + jqXHR)
+        }
+      });
+    })
+
+    $('.switch > .slider').attr('data-content', 'Domicilio');
+    $('.switch > #on,.switch > #off').on('click', (e) => {
+      console.log(e)
+      let modo = e.target.value
+
+      console.log(modo)
+      if (modo == "Local") {
+        if ($('#distritos_habilitados').is(':visible')) {
+          $('#distritos_habilitados').attr('style', 'display:none')
+          $('input[name="distrito"]').prop('checked', false);
           $('#empleados_').attr('style', 'display:none')
-           $('#dirigido_a').attr('style', 'display:none')
-            $('#servicio_domicilio').attr('style', 'display:none')
-            $('#domicilio_').attr('style', 'display:none')
-          
+          $('input[name="empleado"]').prop('checked', false);
+          $('#dirigido_a').attr('style', 'display:none')
+          $('#servicio_domicilio').attr('style', 'display:none')
+          $('#domicilio_').attr('style', 'display:none')
+          $('input[name="costo_domicilio"]').val('')
+        }
+        /*if ($('#servicio_propio').is(':visible')){
+           $('#servicio_propio').attr('style', 'display:none')
+          return $('#servicio_tercero').removeAttr('style')
+        }*/
+        $('#locales_habiles').removeAttr('style')
+        $('#costo_trans').text('0')
+        let suma = parseInt($('#costo_trans').text()) + parseInt($('#costo_serv').text())
+        $('#total_pga').text(suma)
+      } else {
+        if ($('#locales_habiles').is(':visible')) {
+          $('#locales_habiles').attr('style', 'display:none')
+          $('#empleado').prop('selectedIndex', 0);
+          $('#sucursales').prop('selectedIndex', 0);
+          $('#servicio_para').prop('selectedIndex', 0);
+          $('#empleados_').attr('style', 'display:none')
+          $('#dirigido_a').attr('style', 'display:none')
+          $('#servicio_domicilio').attr('style', 'display:none')
+          $('#domicilio_').attr('style', 'display:none')
 
-      }
-      $('input[name="costo_domicilio"]').val('{{publicacion.costo_domicilio}}')
-      $('input[name="distrito"]').prop('checked', false);
+
+        }
+        $('input[name="costo_domicilio"]').val('{{publicacion.costo_domicilio}}')
+        $('input[name="distrito"]').prop('checked', false);
         $('#distritos_habilitados').removeAttr('style')
         $('#costo_trans').text('{{publicacion.costo_domicilio}}')
-    let suma = parseInt($('#costo_trans').text())+ parseInt($('#costo_serv').text())
+        let suma = parseInt($('#costo_trans').text()) + parseInt($('#costo_serv').text())
         $('#total_pga').text(suma)
-  }
- 
- 
-})
+      }
 
 
-     let preparacion_p = $('#preparacion_p').text()
-let ejecucion_p = $('#ejecucion_p').text()
-let tiempo = parseInt(preparacion_p)+parseInt(ejecucion_p)
-$('#duracion_total').text(tiempo+ ' min')
-
-  $('#distritos_h').on('change', (e) => {
-    console.log($(this).find(':selected').attr('data-id'))
-         let id_suc = $(this).find(':selected').attr('data-id');    
-    $('#desde_preview').text($(`#horaD${id_suc}`).text())
-    $('#hasta_preview').text($(`#horaH${id_suc}`).text())
-  $('#desde_break').text($(`#horabreakD${id_suc}`).text())
-    $('#hasta_break').text($(`#horabreakH${id_suc}`).text())
-
-         $('#empleados_').removeAttr('style') 
-   })
-  $('#sucursales').on('change', (e) => {
-    console.log(e.target.value)
-    let id_suc = e.target.value;    
-    $('#desde_preview').text($(`#horaD${id_suc}`).text())
-    $('#hasta_preview').text($(`#horaH${id_suc}`).text())
- $('#desde_break').text($(`#horabreakD${id_suc}`).text())
-    $('#hasta_break').text($(`#horabreakH${id_suc}`).text())
-
-         $('#empleados_').removeAttr('style') 
-   })
+    })
 
 
-    $('#servicio_para').on('change', (e)=>{
+    let preparacion_p = $('#preparacion_p').text()
+    let ejecucion_p = $('#ejecucion_p').text()
+    let tiempo = parseInt(preparacion_p) + parseInt(ejecucion_p)
+    $('#duracion_total').text(tiempo + ' min')
+
+    $('#distritos_h').on('change', (e) => {
+      console.log($(this).find(':selected').attr('data-id'))
+      let id_suc = $(this).find(':selected').attr('data-id');
+      $('#desde_preview').text($(`#horaD${id_suc}`).text())
+      $('#hasta_preview').text($(`#horaH${id_suc}`).text())
+      $('#desde_break').text($(`#horabreakD${id_suc}`).text())
+      $('#hasta_break').text($(`#horabreakH${id_suc}`).text())
+
+      $('#empleados_').removeAttr('style')
+    })
+    $('#sucursales').on('change', (e) => {
+      console.log(e.target.value)
+      let id_suc = e.target.value;
+      $('#desde_preview').text($(`#horaD${id_suc}`).text())
+      $('#hasta_preview').text($(`#horaH${id_suc}`).text())
+      $('#desde_break').text($(`#horabreakD${id_suc}`).text())
+      $('#hasta_break').text($(`#horabreakH${id_suc}`).text())
+
+      $('#empleados_').removeAttr('style')
+    })
+
+
+    $('#servicio_para').on('change', (e) => {
       let valor = e.target.value
       console.log(valor)
-        if ($('#distritos_habilitados').is(':visible')){
-         if (valor =="Personal"){
-           $('input[name="nombre_del_tercero"]').val('{{user.name}}')
-           $('input[name="distrito_tercero"]').val('')
-           $('input[name="correo_tercero"]').val('')
-         }else{
-           $('input[name="nombre_del_tercero"]').val('')
-             $('input[name="distrito_tercero"]').val('')
-           $('input[name="correo_tercero"]').val('')
-         }
+      if ($('#distritos_habilitados').is(':visible')) {
+        if (valor == "Personal") {
+          $('input[name="nombre_del_tercero"]').val('{{user.name}}')
+          $('input[name="distrito_tercero"]').val('')
+          $('input[name="correo_tercero"]').val('')
+        } else {
+          $('input[name="nombre_del_tercero"]').val('')
+          $('input[name="distrito_tercero"]').val('')
+          $('input[name="correo_tercero"]').val('')
+        }
         $('#servicio_domicilio').removeAttr('style')
         $('#domicilio_').removeAttr('style')
-      }else{
-         if (valor =="Personal"){
-           $('input[name="nombre_del_tercero"]').val('{{user.name}}')
-           $('input[name="distrito_tercero"]').val('{{user.distrito}}')
-           $('input[name="correo_tercero"]').val('{{user.email}}')
-           
+      } else {
+        if (valor == "Personal") {
+          $('input[name="nombre_del_tercero"]').val('{{user.name}}')
+          $('input[name="distrito_tercero"]').val('{{user.distrito}}')
+          $('input[name="correo_tercero"]').val('{{user.email}}')
 
-         }else{
-           $('input[name="nombre_del_tercero"]').val('')
-           $('input[name="distrito_tercero"]').val('')
-           $('input[name="correo_tercero"]').val('')
-         }
+
+        } else {
+          $('input[name="nombre_del_tercero"]').val('')
+          $('input[name="distrito_tercero"]').val('')
+          $('input[name="correo_tercero"]').val('')
+        }
         $('#servicio_domicilio').removeAttr('style')
 
       }
-      
+
+
+    })
+
+
 
   })
-
-
-
-   })
 </script>
 {{#if msg}}
 <label id="msgs">{{msg}}</label>
@@ -1100,17 +1253,17 @@ $('#duracion_total').text(tiempo+ ' min')
 
 {{/if}}
 
- 
 
 
-<div class="page-container" {{#if publicaciones_landing}}style='padding-left: 0;'{{/if}}>
-  <div class="main-content" {{#if publicaciones_landing}}style='padding-top: 15px;'{{/if}}>
+
+<div class="page-container" {{#if publicaciones_landing}}style='padding-left: 0;' {{/if}}>
+  <div class="main-content" {{#if publicaciones_landing}}style='padding-top: 15px;' {{/if}}>
     <div class="section__content section__content--p30">
       <main>
         <div class="container-fluid">
-          <div class="row" {{#if publicaciones_landing}}style='display: none;'{{/if}}>
+          <div class="row" {{#if publicaciones_landing}}style='display: none;' {{/if}}>
             <div class="col-md-12">
-              <div class="overview-wrap" >
+              <div class="overview-wrap">
                 <h2 class="title-1">
                   <div class="float-right"><a href="/dash_cliente" id="volver_publicaciones"> Volver </a></div>
                 </h2>
@@ -1119,351 +1272,370 @@ $('#duracion_total').text(tiempo+ ' min')
           </div>
 
           {{#if publicacion_activa}}
-          <form method="post"  action="/guardar_agenda" id="guardar_agenda">
-<section class="pb-5 pt-5" id="gallery-presentation">
-<div style="display: none">
-  <p class="card-text" id="descripcion_preview" style="text-align: left;"><span id="preparacion_p">{{publicacion.preparacion}} min.</span> y Ejecución: <span id="ejecucion_p">{{publicacion.ejecucion}} min.</span> </p>
-   <span id="desde_preview"></span><span id="hasta_preview"></span>
-   <span id="desde_break"></span><span id="hasta_break"></span>
-</div>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                  <div id="content-wrapper">
-                    <div class="column">
-                      <img id="featured" src="../assets/img_up/{{#fotoPublicacion1 publicacion.fotos}}{{/fotoPublicacion1}}">
+          <form method="post" action="/guardar_agenda" id="guardar_agenda">
+            <section class="pb-5 pt-5" id="gallery-presentation">
+              <div style="display: none">
+                <p class="card-text" id="descripcion_preview" style="text-align: left;"><span
+                    id="preparacion_p">{{publicacion.preparacion}} min.</span> y Ejecución: <span
+                    id="ejecucion_p">{{publicacion.ejecucion}} min.</span> </p>
+                <span id="desde_preview"></span><span id="hasta_preview"></span>
+                <span id="desde_break"></span><span id="hasta_break"></span>
+              </div>
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div id="content-wrapper">
+                      <div class="column">
+                        <img id="featured"
+                          src="../assets/img_up/{{#fotoPublicacion1 publicacion.fotos}}{{/fotoPublicacion1}}">
 
-                        <div id="slide-wrapper" >
+                        <div id="slide-wrapper">
                           <img id="slideLeft" class="arrow" src="../assets/img/arrow-left.png">
 
                           <div id="slider">
-                            <img class="thumbnail active" src="../assets/img_up/{{#fotoPublicacion1 publicacion.fotos}}{{/fotoPublicacion1}}">
-                            <img class="thumbnail" src="../assets/img_up/{{#fotoPublicacion2 publicacion.fotos}}{{/fotoPublicacion2}}">
-                            <img class="thumbnail" src="../assets/img_up/{{#fotoPublicacion3 publicacion.fotos}}{{/fotoPublicacion3}}">
+                            <img class="thumbnail active"
+                              src="../assets/img_up/{{#fotoPublicacion1 publicacion.fotos}}{{/fotoPublicacion1}}">
+                            <img class="thumbnail"
+                              src="../assets/img_up/{{#fotoPublicacion2 publicacion.fotos}}{{/fotoPublicacion2}}">
+                            <img class="thumbnail"
+                              src="../assets/img_up/{{#fotoPublicacion3 publicacion.fotos}}{{/fotoPublicacion3}}">
 
-                            <img class="thumbnail" src="../assets/img_up/{{#fotoPublicacion4 publicacion.fotos}}{{/fotoPublicacion4}}">
-                            <img class="thumbnail" src="../assets/img_up/{{#fotoPublicacion5 publicacion.fotos}}{{/fotoPublicacion5}}">
+                            <img class="thumbnail"
+                              src="../assets/img_up/{{#fotoPublicacion4 publicacion.fotos}}{{/fotoPublicacion4}}">
+                            <img class="thumbnail"
+                              src="../assets/img_up/{{#fotoPublicacion5 publicacion.fotos}}{{/fotoPublicacion5}}">
                           </div>
 
-                          <img id="slideRight" class="arrow" src="../assets/img/arrow-right.png" style="margin-top: 1px;">
+                          <img id="slideRight" class="arrow" src="../assets/img/arrow-right.png"
+                            style="margin-top: 1px;">
                         </div>
-                    </div>
-                  <script type="text/javascript">
-                      let thumbnails = document.getElementsByClassName('thumbnail')
+                      </div>
+                      <script type="text/javascript">
+                        let thumbnails = document.getElementsByClassName('thumbnail')
 
-                      let activeImages = document.getElementsByClassName('active')
+                        let activeImages = document.getElementsByClassName('active')
 
-                      for (var i=0; i < thumbnails.length; i++){
+                        for (var i = 0; i < thumbnails.length; i++) {
 
-                        thumbnails[i].addEventListener('mouseover', function(){				
-                          if (activeImages.length > 0){
-                            activeImages[0].classList.remove('active')
-                          }
-                          
+                          thumbnails[i].addEventListener('mouseover', function () {
+                            if (activeImages.length > 0) {
+                              activeImages[0].classList.remove('active')
+                            }
 
-                          this.classList.add('active')
-                          document.getElementById('featured').src = this.src
+
+                            this.classList.add('active')
+                            document.getElementById('featured').src = this.src
+                          })
+                        }
+
+
+                        let buttonRight = document.getElementById('slideRight');
+                        let buttonLeft = document.getElementById('slideLeft');
+
+                        buttonLeft.addEventListener('click', function () {
+                          document.getElementById('slider').scrollLeft -= 180
                         })
-                      }
+
+                        buttonRight.addEventListener('click', function () {
+                          document.getElementById('slider').scrollLeft += 180
+                        })
 
 
-                      let buttonRight = document.getElementById('slideRight');
-                      let buttonLeft = document.getElementById('slideLeft');
+                      </script>
 
-                      buttonLeft.addEventListener('click', function(){
-                        document.getElementById('slider').scrollLeft -= 180
-                      })
-
-                      buttonRight.addEventListener('click', function(){
-                        document.getElementById('slider').scrollLeft += 180
-                      })
-
-
-                    </script>
-
+                    </div>
                   </div>
-                </div>
-                                <div class="col-md-6">
+                  <div class="col-md-6">
                     <h2 class="pb-3">
-                        <strong>
-                            {{publicacion.titulo}}
-                            <br>
-                            <span >
-                            S/ {{publicacion.precio}}
-                            </span>
-                        </strong>
+                      <strong>
+                        {{publicacion.titulo}}
+                        <br>
+                        <span>
+                          S/ {{publicacion.precio}}
+                        </span>
+                      </strong>
                     </h2>
 
                     <p>
-                        <strong>
-                            Atención: Lunes a Sábado (<span>{{publicacion.horario_desde}}</span> am - <span >{{publicacion.horario_hasta}}</span> pm)
-                            <br >
-                           Duración:  <span id="duracion_total">20 min. </span>
-                        </strong>
+                      <strong>
+                        Atención: Lunes a Sábado (<span>{{publicacion.horario_desde}}</span> am -
+                        <span>{{publicacion.horario_hasta}}</span> pm)
+                        <br>
+                        Duración: <span id="duracion_total">20 min. </span>
+                      </strong>
                     </p>
                     <p>
-                       {{publicacion.descripcion}}
+                      {{publicacion.descripcion}}
                     </p>
 
                     <div class="dom-loc pb-3 d-none">
-                      <input type="radio" class="lugar_serv_ " value="A Domicilio" name="lugar_serv_" id=""><label>A Domicilio <span></span></label>
-                        <input type="radio" class="lugar_serv_" value="En Local" name="lugar_serv_" id=""><label>En Local</label>
+                      <input type="radio" class="lugar_serv_ " value="A Domicilio" name="lugar_serv_" id=""><label>A
+                        Domicilio <span></span></label>
+                      <input type="radio" class="lugar_serv_" value="En Local" name="lugar_serv_" id=""><label>En
+                        Local</label>
                     </div>
                     <div class="dom-loc pb-3">
-                      <img src="../assets/img/cancel.svg" alt="" class="checkeds-img"><span style="margin-top: 3px;">Domicilio</span>
-                      <img src="../assets/img/checked.svg" alt="" class="checkeds-img" style="margin-top: 0;"><span class="checkeds-p">Local</span>
+                      <img src="../assets/img/cancel.svg" alt="" class="checkeds-img"><span
+                        style="margin-top: 3px;">Domicilio</span>
+                      <img src="../assets/img/checked.svg" alt="" class="checkeds-img" style="margin-top: 0;"><span
+                        class="checkeds-p">Local</span>
                     </div>
 
                     <button type="button" class="btn btn-primary" id="activar_reservar">
-                        Reservar
+                      Reservar
                     </button>
 
                     <div class="cat-gallery-gallery-presentation pt-3">
-                        <strong>Categorías:</strong> <span>{{publicacion.categoria}}</span>
+                      <strong>Categorías:</strong> <span>{{publicacion.categoria}}</span>
                     </div>
 
+                  </div>
                 </div>
-            </div>
-        </div>
-    </section>
-    <section id="reservar" style="display: none;">
-        <div class="container">
-          <div class="row">
-          
-            <div class="col d-flex justify-content-center">
-                <div class="switch-toggle switch-3 switch-candy switch">
-  <input id="on" name="state-d" type="radio" checked="" value="Domicilio"/>
-  <label for="on" onclick="" >Domicilio</label>
+              </div>
+            </section>
+            <section id="reservar" style="display: none;">
+              <div class="container">
+                <div class="row">
 
-  <input id="na" name="state-d" type="radio" disabled checked="checked" />
-  <label for="na" class="disabled" onclick="">&nbsp;</label>
+                  <div class="col d-flex justify-content-center">
+                    <div class="switch-toggle switch-3 switch-candy switch">
+                      <input id="on" name="state-d" type="radio" checked="" value="Domicilio" />
+                      <label for="on" onclick="">Domicilio</label>
 
-  <input id="off" name="state-d" type="radio" value="Local"/>
-  <label for="off" onclick="">Local</label>
+                      <input id="na" name="state-d" type="radio" disabled checked="checked" />
+                      <label for="na" class="disabled" onclick="">&nbsp;</label>
 
-  <a></a>
-</div>
-            </div>
-          </div>                   
-            <div class="row">
-                <div class="col-12">
+                      <input id="off" name="state-d" type="radio" value="Local" />
+                      <label for="off" onclick="">Local</label>
+
+                      <a></a>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12">
                     <h1>
-                        <strong>
+                      <strong>
                         Reservar
-                        </strong>
+                      </strong>
                     </h1>
-                </div>
-             
-
-                <div class="col-md-6 pt-5">
-
-                  <div class="form-group" id="distritos_habilitados" style="display: none;">
-                        <label for="formGroupExampleInput">Seleccione el distrito (local):</label>
-                        <select class="form-control" name="distrito" id="distritos_h">
-                           <option selected value="0">Seleccione un distrito</option>
-                    {{#distritos_habilitados sucursales publicacion.sucursales}}{{/distritos_habilitados}} 
+                  </div>
 
 
-                        
-                      </div>
-                  
-                     <div class="form-group" id="locales_habiles" style="display: none;">
-                            <label for="">Escoger local:</label> 
-                            <select id="sucursales" class="form-control" name="sucursal">
+                  <div class="col-md-6 pt-5">
+
+                    <div class="form-group" id="distritos_habilitados" style="display: none;">
+                      <label for="formGroupExampleInput">Seleccione el distrito (local):</label>
+                      <select class="form-control" name="distrito" id="distritos_h">
+                        <option selected value="0">Seleccione un distrito</option>
+                        {{#distritos_habilitados sucursales publicacion.sucursales}}{{/distritos_habilitados}}
+
+
+
+                    </div>
+
+                    <div class="form-group" id="locales_habiles" style="display: none;">
+                      <label for="">Escoger local:</label>
+                      <select id="sucursales" class="form-control" name="sucursal">
                         <option selected value="0">Seleccione un local</option>
                         {{#sucursalesdisponibles publicacion.sucursales sucursales}}{{/sucursalesdisponibles}}
-                    <span id="sucursales_p"></span></p>
-                        </div>
-                  <div class="form-group" id="empleados_" style="display: none;">
-                            <label for="">Escoger trabajador:</label> 
-                            <select id="empleado" class="form-control" name="empleado">
+                        <span id="sucursales_p"></span></p>
+                    </div>
+                    <div class="form-group" id="empleados_" style="display: none;">
+                      <label for="">Escoger trabajador:</label>
+                      <select id="empleado" class="form-control" name="empleado">
                         <option selected>Seleccione un trabajador</option>
-                            {{#empleados_disponibles publicacion.empleados encargados}}{{/empleados_disponibles}}                  
+                        {{#empleados_disponibles publicacion.empleados encargados}}{{/empleados_disponibles}}
                       </select>
-                            
-                    <span id="sucursales_p"></span></p>
-                        </div>
- <div class="form-group" id="dirigido_a" style="display: none;">
-                            <label for="">Indique para quien es el servicio:</label> 
-                            <select id="servicio_para" class="form-control servicio_para" name="lugar_serv_propio">
+
+                      <span id="sucursales_p"></span></p>
+                    </div>
+                    <div class="form-group" id="dirigido_a" style="display: none;">
+                      <label for="">Indique para quien es el servicio:</label>
+                      <select id="servicio_para" class="form-control servicio_para" name="lugar_serv_propio">
                         <option selected>Seleccione una opcion</option>
-                         <option >Personal</option>    
-                          <option >A Tercero</option>        
+                        <option>Personal</option>
+                        <option>A Tercero</option>
                       </select>
-                            
-                    <span id="sucursales_p"></span></p>
-                        </div>
-                        
-                        <div class="form-group">
-                          <label for="">Distrito:*</label>
-                          <input type="text" class="form-control" id="" name="distrito_tercero">
-                        </div>
-                        <div class="form-group">
-                          <label for="">Dirección:*</label>
-                          <input type="text" class="form-control" id="" name="direccion_tercero">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="">Nombre y apellido:*</label>
-                            <input type="text" class="form-control" id="" name="nombre_del_tercero">
+
+                      <span id="sucursales_p"></span></p>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="">Distrito:*</label>
+                      <input type="text" class="form-control" id="" name="distrito_tercero">
+                    </div>
+                    <div class="form-group">
+                      <label for="">Dirección:*</label>
+                      <input type="text" class="form-control" id="" name="direccion_tercero">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="">Nombre y apellido:*</label>
+                      <input type="text" class="form-control" id="" name="nombre_del_tercero">
 
 
-                        </div>
-                        <div class="form-group">
-                            <label for="">Celular:*</label>
-                            <input type="text" class="form-control" id="" name="telefono_tercero">
-                        </div>
-                        <div class="form-group">
-                            <label for="">Agregar comentario:</label>
-                            <textarea class="form-control" id="" rows="3" name="comentario_p"></textarea>
+                    </div>
+                    <div class="form-group">
+                      <label for="">Celular:*</label>
+                      <input type="text" class="form-control" id="" name="telefono_tercero">
+                    </div>
+                    <div class="form-group">
+                      <label for="">Agregar comentario:</label>
+                      <textarea class="form-control" id="" rows="3" name="comentario_p"></textarea>
+                    </div>
+                  </div>
+                  <div class="col-md-6 pt-5">
+                    <p>Escoger fecha: </p>
+                    <div style="overflow:hidden;">
+                      <input type="date" name="fecha" id="fecha" hidden>
+                      <div class="form-group">
+                        <div class="">
+                          <div class="">
+                            <div id="datetimepicker12"></div>
                           </div>
-                </div>
-                <div class="col-md-6 pt-5">
-                  <p>Escoger fecha: </p>
-                  <div style="overflow:hidden;">
-<input type="date" name="fecha" id="fecha" hidden>
- <div class="form-group">
-        <div class="">
-            <div class="">
-                <div id="datetimepicker12"></div>
-            </div>
-        </div>
-    </div>
-   <script type="text/javascript">
-      $(function () {
-          $('#datetimepicker12').datetimepicker({
-              inline: true,
-              sideBySide: true,
-              format: 'L',
-              
-          });
-    /*  $("#datetimepicker12").on("dp.change", function (e) {
-        console.log(e.date.format('YYYY-MM-DD'))
+                        </div>
+                      </div>
+                      <script type="text/javascript">
+                        $(function () {
+                          $('#datetimepicker12').datetimepicker({
+                            inline: true,
+                            sideBySide: true,
+                            format: 'L',
 
-});*/
-      });
-   </script>
-</div>
-                    
+                          });
+                          /*  $("#datetimepicker12").on("dp.change", function (e) {
+                              console.log(e.date.format('YYYY-MM-DD'))
+                      
+                      });*/
+                        });
+                      </script>
+                    </div>
+
                     <p>Escoger hora:*</p>
                     <div class="row" id="disponibles">
-                       
+
                     </div>
-                </div>
-                <div class="col-md-12">
+                  </div>
+                  <div class="col-md-12">
                     <div style="float: left; padding-top: .35rem;">Agregar cupón:</div>
                     <div style="float: right; width: calc(100% - 125px); position: relative;">
-                        <input type="text" class="form-control">
-                        <button class="btn btn-outline-success my-2 my-sm-0 añadir" type="submit">
-                            Añadir
-                        </button>
+                      <input type="text" class="form-control" id="cupon">
+                      <button class="btn btn-outline-success my-2 my-sm-0 add_cupon" type="button">
+                        Añadir
+                      </button>
                     </div>
+                  </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-12 pt-3">
+                <div class="row">
+                  <div class="col-12 pt-3">
                     <div style="float: left;">
-                        Precio de servicio:
-                    </div> 
+                      Precio de servicio:
+                    </div>
                     <div style="float: right;">
-                        S/<span id="costo_serv">{{publicacion.precio}}</span>
+                      S/<span id="costo_serv">{{publicacion.precio}}</span>
                     </div>
-                </div>
-                <div class="col-12 pt-3" style="border-bottom: 1px solid black;">
+                  </div>
+                  <div class="col-12 pt-3" style="border-bottom: 1px solid black;">
                     <div style="float: left;">
-                        Precio de transporte:
-                    </div> 
+                      Precio de transporte:
+                    </div>
                     <div style="float: right;" id="transporte">
-                        S/<span id="costo_trans">0</span>
+                      S/<span id="costo_trans">0</span>
                     </div>
-                    
+
+                  </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-12 pt-3">
+                <div class="row">
+                  <div class="col-12 pt-3">
                     <div style="float: left;">
-                        <h2>
-                            <strong>
-                                TOTAL A PAGAR:
-                            </strong>
-                        </h2>
+                      <h2>
+                        <strong>
+                          TOTAL A PAGAR:
+                        </strong>
+                      </h2>
                     </div>
                     <div style="float: right;">
-                        <h2>
-                            <strong>
-                                S/<span id="total_pga">{{publicacion.precio}}</span> 
-                            </strong>
-                        </h2>
+                      <h2>
+                        <strong>
+                          S/<span id="total_pga">{{publicacion.precio}}</span>
+                        </strong>
+                      </h2>
                     </div>
+                  </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-12 pt-3">
-                    <button type="button" class="btn btn-primary active" style="width: 100%;padding: 1.5rem; font-size: 25px; font-weight: 700; border-radius: 15px; background-color:var(--color-verde); color:white;" data-toggle="modal" data-target="#exampleModal" disabled id="button_finish_reserv">
-                        Realizar reserva
+                <div class="row">
+                  <div class="col-12 pt-3">
+                    <button type="button" class="btn btn-primary active"
+                      style="width: 100%;padding: 1.5rem; font-size: 25px; font-weight: 700; border-radius: 15px; background-color:var(--color-verde); color:white;"
+                      data-toggle="modal" data-target="#exampleModal" disabled id="button_finish_reserv">
+                      Realizar reserva
                     </button>
+                  </div>
                 </div>
-            </div>
-        </div>
-    </section>
+              </div>
+            </section>
 
             <input type="text" id="id_publicacion" class="" name='id_publicacion' hidden value="{{publicacion.id}}">
-               <input type="text" class="form-control" placeholder="Hasta" name="h_desde"  id= "h_desde" hidden><span class="validity"></span>
-                        <input type="text" class="form-control" placeholder="Hasta" name="h_hasta" id="h_hasta" hidden>
-                      <input type="text" class="form-control" name="id_encargado" id="id_encargado" hidden>
-                      <input type="text" class="form-control" name="costo_domicilio" id="id_encargado" hidden>
-                 
-              </form>
-             
-            </div>
-          </div>
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Sesión</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-       
-                        <div class="form-group">
-                            <label for="">Correo:*</label>
-                            <input type="text" class="form-control" id="correo_tercero" name="correo_tercero">
-                        </div>
-                        <div class="form-group password_r" id="password_r" style="display:none;">
-                            <label for="">Password:*</label>
-                            <input type="password" class="form-control" id="pass" name="password" >
-                        </div>
-                        <div id="password_c" style="display:none;">
-                          <div class="form-group password_r" >
-                            <label for="">Confirmar Password:*</label>
-                            <input type="password" class="form-control" id="confirmpass" name="confirm_password" >
-                            <span class="no_iguales" style="display: none;">Contraseñas no coinciden</span>
-                        </div>
-                             <div class="form-group password_r"  >
-                            <label for="">Nombre:</label>
-                            <input type="text" class="form-control" id="name_session" name="nombre" >
-                        </div>
-                        </div>
-                        
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary" id="continuar_sesion" disabled>Continuar</button>
-      </div>
-    </div>
-  </div>
-</div>
+            <input type="text" class="form-control" placeholder="Hasta" name="h_desde" id="h_desde" hidden><span
+              class="validity"></span>
+            <input type="text" class="form-control" placeholder="Hasta" name="h_hasta" id="h_hasta" hidden>
+            <input type="text" class="form-control" name="id_encargado" id="id_encargado" hidden>
+            <input type="text" class="form-control" name="costo_domicilio" id="id_encargado" hidden>
+            <input type="text" class="form-control" name="monto_pagar" id="monto_pagar" hidden>
+            <input type="text" class="form-control" name="cupon_aplicado" id="cupon_aplicado" hidden>
 
-          {{/if}}
-
+          </form>
 
         </div>
-      </main>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Sesión</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+
+            <div class="form-group">
+              <label for="">Correo:*</label>
+              <input type="text" class="form-control" id="correo_tercero" name="correo_tercero">
+            </div>
+            <div class="form-group password_r" id="password_r" style="display:none;">
+              <label for="">Password:*</label>
+              <input type="password" class="form-control" id="pass" name="password">
+            </div>
+            <div id="password_c" style="display:none;">
+              <div class="form-group password_r">
+                <label for="">Confirmar Password:*</label>
+                <input type="password" class="form-control" id="confirmpass" name="confirm_password">
+                <span class="no_iguales" style="display: none;">Contraseñas no coinciden</span>
+              </div>
+              <div class="form-group password_r">
+                <label for="">Nombre:</label>
+                <input type="text" class="form-control" id="name_session" name="nombre">
+              </div>
+            </div>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-primary" id="continuar_sesion" disabled>Continuar</button>
+          </div>
+        </div>
+      </div>
     </div>
 
+    {{/if}}
+
+
   </div>
+  </main>
+</div>
+
+</div>
 </div>

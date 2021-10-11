@@ -3,7 +3,7 @@ const scdl = require("soundcloud-downloader").default;
 const fs = require("fs");
 const path = require("path");
 const Swal = require("sweetalert2");
-//const {getStreamUrls} = require('mixcloud-audio')
+var moment = require('moment-timezone');
 
 exports.dashboard = (req, res) => {
  const user = res.locals.user;
@@ -616,11 +616,7 @@ if (user.tipo == "Administrador") {
   //MIS VENTAS
   exports.misventas = (req, res) => {
     const user = res.locals.user;
-    var photo = req.user.photo;
-    let notPhoto = true;
-    if (photo == "0") {
-      notPhoto = false;
-    }
+  
     let msg = false;
     if (req.params.msg) {
       msg = req.params.msg;
@@ -631,7 +627,6 @@ if (user.tipo == "Administrador") {
   
     Modulo_BD.VentasAll().then((resultado_ventas) => { 
     let parsed_ventas = JSON.parse(resultado_ventas);
-    console.log(parsed_ventas);
     
     res.render("ventas", {
       pageName: "Ventas",
@@ -646,46 +641,30 @@ if (user.tipo == "Administrador") {
  }else{
   Modulo_BD.WalletbyIduser(user.id).then((resultado) => {
     let parsed_wallet = JSON.parse(resultado)[0];
-    console.log(parsed_wallet);
     let cont = parsed_wallet.length;
     Modulo_BD.VentasbyIduser(user.id).then((resultado_ventas) => { 
     let parsed_ventas = JSON.parse(resultado_ventas);
-    console.log(parsed_ventas);
-    
-    Hoy = new Date(); //Fecha actual del sistema
-    var AnyoHoy = Hoy.getFullYear();
-    var MesHoy = ('0' + (Hoy.getMonth()+1)).slice(-2)
-    var DiaHoy = Hoy.getDate();
-    var hora_actual = Hoy.getHours()+':'+ Hoy.getMinutes()
-
-    console.log(hora_actual)
-    console.log(AnyoHoy)
-    console.log(MesHoy)
-    console.log(DiaHoy)
-
+    let Hoy = moment(); //Fecha actual del sistema
+    console.log(Hoy)
+    let hora = moment().format('HH:mm')
+    console.log(hora)
     for (let i = 0; i < parsed_ventas.length; i++) {
-      console.log(parsed_ventas[i])
-      console.log(parsed_ventas[i].Agenda.fecha_agenda)
       var fecha_agendada = parsed_ventas[i].Agenda.fecha_agenda
-      var Fecha_aux = fecha_agendada.split("-");
-        console.log(Fecha_aux[0]),
-        console.log(Fecha_aux[1]),
-        console.log(Fecha_aux[2])
       
-     
-        if (AnyoHoy == Fecha_aux[0] && Fecha_aux[1] == MesHoy && Fecha_aux[2] == DiaHoy) {
-          console.log("es hoy");
-          if (hora_actual  > parsed_ventas[i].Agenda.hora_cita_hasta) {
-            if (parsed_ventas[i].Agenda.estado == "Confirmada") {
-              console.log("es hora de realizar");
-             return res.redirect('/confirmar_venta/'+parsed_ventas[i].id+'/'+parsed_ventas[i].estado+'/'+parsed_ventas[i].publicacione.billetera+'/'+parsed_ventas[i].AgendaId)
-            }
-            
-          }
-        } else {
-          console.log("hay fecha");
+      let fecha_final= moment(Hoy).isSameOrAfter(fecha_agendada); // true
+      let hora_final= moment(hora).isAfter(parsed_ventas[i].Agenda.hora_cita_hasta); // true
+      if (fecha_final == true && hora_final == true) {
+        if (parsed_ventas[i].Agenda.estado == "Confirmada") {
+          console.log("es hora de realizar");
+         return res.redirect('/confirmar_venta/'+parsed_ventas[i].id+'/'+parsed_ventas[i].estado+'/'+parsed_ventas[i].publicacione.billetera+'/'+parsed_ventas[i].AgendaId)
         }
+      } else {
+console.log("no se cumple");
+      }
+     
     }
+    Modulo_BD.SucursalesAll().then((resultado_sucursales) => { 
+      let sucursales = JSON.parse(resultado_sucursales);
     res.render("ventas", {
       pageName: "Mis Ventas",
       ventas: true,
@@ -693,9 +672,10 @@ if (user.tipo == "Administrador") {
       msg,            
       parsed_wallet,
       parsed_ventas,
-      user,
+      user,sucursales
     });
   })
+});
 });
  }
        
@@ -1398,7 +1378,7 @@ console.log(sucursales)
  exports.guardar_agenda = (req, res) => {
    console.log(req.body)
    
-  const {fecha, id_publicacion,h_desde, h_hasta,id_encargado, lugar_servicio, nombre_del_tercero, telefono_tercero, direccion_tercero,lugar_serv_propio,costo_domicilio, comentario_p} = req.body;
+  const {fecha, id_publicacion,h_desde, h_hasta,id_encargado, distrito,  sucursal, nombre_del_tercero, telefono_tercero, direccion_tercero,lugar_serv_propio,costo_domicilio, comentario_p,monto_pagar, cupon_aplicado} = req.body;
   const user = res.locals.user;
   const f = new Date(fecha);
 						f.toLocaleString()
@@ -1407,16 +1387,44 @@ console.log(sucursales)
 						var Mes = ('0' + (f.getMonth()+1)).slice(-2)
 						var Dia = f.getDate();
 							var fecha_ = Anyo+ '-'+Mes+ '-'+Dia
-  Modulo_BD.guardar_Agenda(fecha,id_publicacion, h_desde,h_hasta,id_encargado, lugar_servicio, nombre_del_tercero, telefono_tercero, direccion_tercero,lugar_serv_propio, comentario_p).then((data) =>{
+              let tipo_servicio = ""
+              if (distrito != 0) {
+                tipo_servicio = 'Domicilio'
+              }
+              if (sucursal != 0) {
+                tipo_servicio = 'Local'
+              }
+              let lugar_servicio =""
+              let distrito_domicilio =""
+              switch (tipo_servicio) {
+                case 'Local':
+                  lugar_servicio = sucursal
+                  break;
+                  case 'Domicilio':
+                    distrito_domicilio = distrito
+                    lugar_servicio = direccion_tercero
+                    break;
+                default:
+                  break;
+              }
+
+
+  Modulo_BD.guardar_Agenda(fecha,id_publicacion, h_desde,h_hasta,id_encargado, tipo_servicio, nombre_del_tercero, telefono_tercero, lugar_servicio,lugar_serv_propio, comentario_p,distrito_domicilio).then((data) =>{
     let agenda = JSON.parse(data)
     let id_agenda = agenda.id
 
 let domi = costo_domicilio
+let valor = monto_pagar
 if (domi == "") {
   domi = 0
 }
+if (valor == "") {
+  valor = 0
+}
 console.log(domi)
-res.redirect('/pasarela_publicacion/'+id_publicacion+'/'+id_agenda+'/'+domi)
+let compra = {'id': id_publicacion, 'id_agenda': id_agenda, 'costo_domicilio':domi,'valor':valor, 'cupon_aplicado':cupon_aplicado}
+res.cookie('compra' , compra, {expire: 560000});
+res.redirect('/pasarela_publicacion/comprar')
 })
  };
 
@@ -1488,6 +1496,8 @@ exports.getCupones = (req, res) => {
       cupones_act,
       msg,
     });
+  }).catch((err) => {
+    console.log(err);
   });
 };
 
@@ -1498,12 +1508,9 @@ exports.addCupon = (req, res) => {
     notPhoto = false;
   }
   let userID = req.user.id;
-  res.render("create_cupon", {
+  res.render("cupones", {
     pageName: "Crear Cupón",
-    dashboardPage: true,
-    admin_dash1: true,
-    userID,
-    notPhoto,
+    dashboardPage: true,   dashboard: true, admin:true,crear_cupones: true,
   });
 
   //})
@@ -1511,7 +1518,7 @@ exports.addCupon = (req, res) => {
 
 exports.save_cupon = async (req, res) => {
   const {
-    id,
+    userid,
     nombre_cupon,
     valor_cupon,
     cantidad,
@@ -1521,7 +1528,7 @@ exports.save_cupon = async (req, res) => {
   } = req.body;
   var msg = "";
   Modulo_BD.guardarCupon(
-    id,
+    userid,
     nombre_cupon,
     valor_cupon,
     fecha_inicio,
@@ -1557,12 +1564,10 @@ exports.editCupon = (req, res) => {
     let cont = parsed_cupon.length;
     ////console.log(parsed_cupon);
 
-    res.render("edit_cupon", {
+    res.render("cupones", {
       pageName: "Editar Cupón",
-      dashboardPage: true,
-      parsed_cupon,
-      admin_dash1,
-      notPhoto,
+      dashboardPage: true,   dashboard: true, admin:true,editar_cupones: true,
+      parsed_cupon
     });
   });
 };
@@ -1607,4 +1612,62 @@ exports.deleteCupon = async (req, res) => {
     let msg = "Cupón eliminado con exito";
     res.redirect("/cupones/" + msg);
   });
+};
+
+exports.usar_cupon = async (req, res) => {
+  const { cupon } = req.body;
+console.log(cupon);
+  Modulo_BD.consultarCupon(cupon).then((resultado) => {
+    let parsed = JSON.parse(resultado)[0];
+    console.log(parsed);
+
+    if (typeof parsed === "undefined") {
+      return res.send("El cupón no existe favor verificar");
+    } else { 
+      if (parsed.cantidad_actual == 0) {
+        return res.send("Cupon agotado");
+      } else {
+        Hoy = moment(); 
+        console.log(Hoy)
+            let fecha_final= moment(Hoy).isAfter(parsed.fecha_final); // true
+                console.log(fecha_final)
+                if (fecha_final == true) {
+                  return res.send("Cupon vencido");
+                  return;
+                } else {
+          console.log("Has introducido la fecha de Hoy");
+          var cantidad_act = parsed.cantidad_actual - 1;
+          var id_cupon = parsed.id;
+          var valor = parsed.valor;
+          var nombre_cupon = parsed.nombre_cupon;
+          var tipo = parsed.tipo;
+          var fecha_uso = Hoy.toISOString();
+          Modulo_BD.UpdateUsedCupon(id_cupon, cantidad_act).then(
+            (resultado) => {
+              let parsed = JSON.parse(resultado)[0];
+              Modulo_BD.CuponUsado(
+                '1',
+                nombre_cupon,
+                valor,
+                fecha_uso,
+                "Servicio",
+                tipo
+              ).then((resultadoaqui) => {
+                let cupon_ap= {'valor':valor,'tipo':tipo }
+                return res.send(cupon_ap);
+              })
+          .catch((err) => {
+            return res.status(500).send("Error actualizando" + err);
+          })
+          })
+        .catch((err) => {
+          return res.status(500).send("Error actualizando" + err);
+        });
+        }
+      }
+    }
+      })
+      .catch((err) => {
+        return res.status(500).send("Error actualizando" + err);
+      });
 };

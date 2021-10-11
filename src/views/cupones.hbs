@@ -4,57 +4,10 @@
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
-  $(function () {
-  
-		///----TABLA Ventas
-const tabla_configuraciones = document.getElementById('tabla_configuraciones')
-
-if(tabla_configuraciones){
-var nombre = document.getElementById('nombre_config').innerHTML
-console.log(nombre)
-if (nombre == "Comisión"){
-	$('.Comisión').attr('style','pointer-events: none;')
-	$('.fa-check-circle>Comisión').removeAttr('style')
-	$('.fa-ban>Comisión').removeAttr('style')
-}
-  $('.confirmar').on('click', (e)=>{
-    let id = e.target.classList.item(2)
-	//let nombre = e.target.classList.item(3)
-    let billetera = e.target.classList.item(4)
-	console.log(nombre)
-	if (nombre == "Confirmada"){
-		var titulo="Realizada";
-		var texto="Seguro desea confirmar la venta indicada como 'Realizada'?";
-
-	}else{
-		var titulo="Confirmar";
-		var texto="Seguro desea confirmar la venta indicada?";
-	}
-    Swal.fire({
-  title: titulo,
-  text: texto,
-  icon: 'warning',
-  showCancelButton: true,
-  confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
-  cancelButtonText: 'Cancelar',
-  confirmButtonText: titulo
-}).then((result) => {
-  if (result.isConfirmed) {
-    window.location.href = `/confirmar_venta/${id}/${nombre}/${billetera}`;
-  }
-})
-  })
-
-  $('.cancelar').on('click', (e)=>{
-    if (nombre == "Comisión"){
-   Swal.fire('No es posible eliminar la comisión, solo puede editarla')
-}
-    let id = e.target.classList.item(2)
-    let tipo = e.target.classList.item(3)
-    Swal.fire({
-  title: 'Cancelar',
-  text: "Seguro desea cancelar la venta indicada!",
+  function Askdelete(id, tipo, link){
+	Swal.fire({
+  title: 'Eliminar',
+  text: "Seguro desea eliminar el "+ tipo +" indicado!",
   icon: 'warning',
   showCancelButton: true,
   confirmButtonColor: '#3085d6',
@@ -63,12 +16,16 @@ if (nombre == "Comisión"){
   confirmButtonText: 'Eliminar'
 }).then((result) => {
   if (result.isConfirmed) {
-    window.location.href = `/cancelar_venta/${id}/${tipo}`;
+	  window.location.href = '/'+ link +'/'+id;
+    Swal.fire(
+      'Eliminado!',
+      '',
+      'success'
+    )
   }
 })
-  })
 }
-
+  $(function () {
 
   })
 </script>
@@ -106,18 +63,27 @@ if (nombre == "Comisión"){
                 <table class="table dataTable" id="tabla_">
                   <thead>
                     <tr>
-                      <th>
-                        Id
-                      </th>
-                      <th>
-                        Nombre
-                      </th>
-                      <th>
-                        Estado
-                      </th>
-                      <th>
-                        Valor
-                      </th>
+                      <th class="text-xs-center">
+									Tipo Cupon
+								</th>
+								<th class="text-xs-center">
+									Valor
+								</th> 
+								<th class="text-xs-center">
+									Nombre Cupon
+								</th>
+								<th class="text-xs-center">
+									Fecha creacion
+								</th>
+								<th class="text-xs-center">
+									Fecha final
+								</th> 
+								<th class="text-xs-center">
+									Cantidad Actual
+								</th>								
+								<th class="text-xs-center">
+									Estado
+								</th> 
                       <th align="center">
                         Opciones
                       </th>
@@ -126,32 +92,22 @@ if (nombre == "Comisión"){
                   <tbody>
                     {{#each cupones_act as |cupon i|}}
                     <tr>
-                      <td>
-                        {{id}}
-                      </td>
-                      <td id="nombre_config">{{nombre}}</td>
-                      <td>
-                        <span>
-                          <strong style="color: {{#ColorSucursal estado}}{{/ColorSucursal}};">
-                            {{estado}}
-                          </strong>
-                        </span>
-                      </td>
-                      <td>
-                        {{valor}}
-                      </td>
-                      <td align="center">
-                        <div class="table-data-feature">
-                          <a class="item" href="/editar_s/{{id}}" data-toggle="tooltip"
-                            data-placement="top" title="Editar" id="">
-                            <i class="fas fa-edit"></i>
-                          </a>
-                          <a class="item delete {{id}} {{nombre}}" href="#"
-                            id="delete_" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
-                            <i class="fas fa-trash-alt {{id}} {{nombre}}"></i>
-                          </a>
-                        </div>
-                      </td>
+                     <td>{{cupon.tipo}}</td>
+				<td>{{cupon.valor}}</td>
+				<td>{{cupon.nombre_cupon}}</td>
+				<td>{{#formatoFecha2 cupon.fecha_inicio}}{{/formatoFecha2}}</td>
+				<td>{{#formatoFecha2 cupon.fecha_final}}{{/formatoFecha2}}</td>
+				<td>{{cupon.cantidad_actual}} / {{cupon.cantidad}}</td>				
+				<td class="{{#estadoCupon cupon.fecha_final cupon.cantidad_actual}}{{/estadoCupon}}">{{#estadoCupon cupon.fecha_final cupon.cantidad_actual}}{{/estadoCupon}}</td>
+				<td><div class="table-data-feature">
+					<a class="item" onclick="Askdelete('{{cupon.id}}','cupón','borrar_cupon')" style="cursor: pointer;">
+						<i class="fa fa-trash-alt"></i>
+					</a>
+					<a href="/edit_cupon/{{cupon.id}}" class="item">
+						<i class="fa fa-pen"></i>
+					</a>
+					
+				</div></td>
                     </tr>
                     {{/each}}
 
@@ -162,124 +118,110 @@ if (nombre == "Comisión"){
           </div>
           {{/if}}
 
-          {{#if crear_config}}
+          {{#if crear_cupones}}
           <div class="row" id="crear_configuracion">
 
             <div class="card-blank" style="width: 65%;margin-left: 15px; margin-bottom: 10px;">
               <div class="overview-wrap">
-                <h2 class="title-1">Crear configuracion</h2>
-                <div class="float-right"><a href="/crear_configuraciones" id="volver_configuracion"> Volver </a></div>
+                <div class="float-right"><a href="/cupones" id="volver_configuracion"> Volver </a></div>
               </div>
-              <form action="/crear_configuraciones" method="post" id="form_miconfig">
+              <form action="/crear_cupones" method="post" id="form_miconfig">
 
                 <div class="card-body">
                   <input type="text" class="form-control" name="userid" hidden value="{{user.id}}" />
 
                   <div class="form-row">
                     <div class="form-group col-md-6 mb-1">
-                      <label for="inputEmail4">Nombre</label>
-                        <select id="inputState" class="form-control" name="configuracion">
-                        <option value="Comisión" selected>Comisión </option>
-                      </select>
+                      <label for="text">Nombre del cupón</label>
+                <input type="text" class="form-control" id="nombre_cupon" name="nombre_cupon" placeholder="Nombre cupón"
+            required />
                     </div>
                       <div class="form-group col-md-6">
-                      <label for="inputState">Estado</label>
-                      <select id="inputState" class="form-control" name="estado">
-                        <option selected value="Activa">Activa </option>
-                        <option value="Inactiva">Inactiva</option>
-                      </select>
-                    </div>
-                    <div class="form-group col-md-6 mb-1">
-                      <label for="inputEmail4">Valor</label>
-                      <input type="text" class="form-control" id="titulo" placeholder="Valor" name="valor" required>
-                    </div>
-                  </div>
-                  <button type="submit" class="btn btn-primary btn_submit">Guardar Cambios</button>
-                </div>
-              </form>
-
-                <form action="/save_cupon" method="post" autocomplete="off" id="form-create-plan"
-    enctype="multipart/form-data">
-    <input type="text" class="form-control" id="id" name="id" placeholder="id" value="{{userID}}" hidden />
-    <div class="form-row">
-      <div class="form-group">
-        <label for="text">Nombre del cupón</label>
-           <input type="text" class="form-control" id="nombre_cupon" name="nombre_cupon" placeholder="Nombre cupón"
-            required />
-      </div><!-- .form-update-accound__item -->
-
-      <div class="form-group" >
-        <label for="text">Valor del cupón</label>
+                      <label for="text">Valor del cupón</label>
           <input type="text" class="form-control" id="valor_cupon" name="valor_cupon"
             placeholder="Valor del cupón" autocomplete="off" />
-
-      </div><!-- .form-update-accound__item -->
-      <div class="form-group">
-        <label for="text">Cantidad</label>
+                    </div>
+                    <div class="form-group col-md-6">
+                       <label for="text">Cantidad</label>
           <input type="text" class="form-control" id="cantidad" name="cantidad"
             placeholder="Cantidad valida del mismo cupón" autocomplete="off" />
-
-      </div><!-- .form-update-accound__item -->
-
-      <div class="form-group">
-        <label for="text">Tipo</label>
+                    </div>
+                      <div class="form-group col-md-6">
+                      <label for="text">Tipo</label>
           <select class="form-control" id="tipo_cupon" name="tipo_cupon" required>
             <option value="descuento">Descuento</option>
             <option value="monetario">Monetario</option>
 
           </select>
-        </div>
-      <div class="form-group">
-        <label for="confirm-text">Fecha inicio</label>
+                    </div>
+                    <div class="form-group col-md-6 mb-1">
+                       <label for="confirm-text">Fecha inicio</label>
           <input type="datetime-local" class="form-control" id="fecha_inicio" name="fecha_inicio"
             placeholder="Inicio de validez del cupon" autocomplete="off" />
-      </div><!-- .form-update-accound__item -->
-      <div class="form-group">
-        <label for="text">Fecha final</label>
+                    </div>
+                    <div class="form-group col-md-6 mb-1">
+                     <label for="text">Fecha final</label>
           <input type="datetime-local" class="form-control" id="fecha_final" name="fecha_final"
             placeholder="Fecha finalización" autocomplete="off" />
-      </div><!-- .form-update-accound__item -->
-
-    </div><!-- .form-update-account -->
-    <button type="submit" disabled class="btn btn-primary btn-x-lg form-steps__btn">Guardar <i
-        class="fa fa-angle-right"></i></button>
+                    </div>
+                  </div>
+                  
+                </div>
+              
+    <button type="submit" class="btn btn-primary btn_submit">Guardar Cambios</button>
   </form>
             </div>
 
           </div>
           {{/if}}
-           {{#if editar_config}}
+           {{#if editar_cupones}}
         <div class="row" id="editar_configuracion">
 
             <div class="card-blank" style="width: 65%;margin-left: 15px; margin-bottom: 10px;">
               <div class="overview-wrap">
-                <h2 class="title-1">Editar configuracion</h2>
-                <div class="float-right"><a href="/configuraciones" id="volver_configuracions"> Volver </a></div>
+                <div class="float-right"><a href="/cupones" id="volver_configuracions"> Volver </a></div>
               </div>
-              <form action="/editar_configuraciones" method="post" id="form_mis_configuracions">
+              <form action="/editar_cupones" method="post" id="form_mis_configuracions">
 
                 <div class="card-body">
-                  <input type="text" class="form-control" name="id_configuracion" hidden value="{{configuracion_edit.id}}" />
+                  <input type="text" class="form-control" name="id" hidden value="{{parsed_cupon.id}}" />
 
                   <div class="form-row">
                     <div class="form-group col-md-6 mb-1">
-                      <label for="inputEmail4">Nombre</label>
-                      <select id="inputState" class="form-control" name="configuracion">
-                        <option selected value="{{configuracion_edit.nombre}}">{{configuracion_edit.nombre}} </option>
-                        <option value="Comisión">Comisión </option>
-                      </select>
+                      <label for="text">Nombre del cupón</label>
+                <input type="text" class="form-control" id="nombre_cupon" name="nombre_cupon" placeholder="Nombre cupón"
+            required  value="{{parsed_cupon.nombre_cupon}}"/>
                     </div>
                       <div class="form-group col-md-6">
-                      <label for="inputState">Estado</label>
-                      <select id="inputState" class="form-control" name="estado">
-                        <option selected value="{{configuracion_edit.estado}}">{{configuracion_edit.estado}} </option>
-                        <option selected value="Activa">Activa </option>
-                        <option value="Inactiva">Inactiva</option>
-                      </select>
+                      <label for="text">Valor del cupón</label>
+          <input type="text" class="form-control" id="valor_cupon" name="valor_cupon"
+            placeholder="Valor del cupón" autocomplete="off" value="{{parsed_cupon.valor}}" />
+                    </div>
+                    <div class="form-group col-md-6">
+                       <label for="text">Cantidad</label>
+          <input type="text" class="form-control" id="cantidad" name="cantidad"
+            placeholder="Cantidad valida del mismo cupón" autocomplete="off" value="{{parsed_cupon.cantidad}}"/>
+                    </div>
+                      <div class="form-group col-md-6">
+                      <label for="text">Tipo</label>
+          <select class="form-control" id="tipo_cupon" name="tipo_cupon" required>
+           
+            <option  value="{{parsed_cupon.tipo}}" selected>{{parsed_cupon.tipo}}</option>
+            <option disabled>Seleccione un tipo</option>
+            <option value="descuento">Descuento</option>
+            <option value="monetario">Monetario</option>
+
+          </select>
                     </div>
                     <div class="form-group col-md-6 mb-1">
-                      <label for="inputEmail4">Valor</label>
-                      <input type="text" class="form-control" id="titulo" placeholder="Nombre" name="valor" required value="{{configuracion_edit.valor}}">
+                       <label for="confirm-text">Fecha inicio</label>
+          <input type="datetime-local" class="form-control" id="fecha_inicio" name="fecha_inicio"
+            placeholder="Inicio de validez del cupon" autocomplete="off" value="{{parsed_cupon.fecha_inicio}}"/>
+                    </div>
+                    <div class="form-group col-md-6 mb-1">
+                     <label for="text">Fecha final</label>
+          <input type="datetime-local" class="form-control" id="fecha_final" name="fecha_final"
+            placeholder="Fecha finalización" autocomplete="off" value="{{parsed_cupon.fecha_final}}"/>
                     </div>
                   </div>
                   <button type="submit" class="btn btn-primary btn_submit">Guardar Cambios</button>

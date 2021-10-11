@@ -1,3 +1,5 @@
+
+var moment = require('moment-timezone');
 module.exports = {
 	showAlerts: (message = {}, alerts) => {
 		const categoria = Object.keys(message);
@@ -46,7 +48,6 @@ module.exports = {
 			for (let i = 0; i < id_suc.length; i++) {
 				 
 				if (id_suc[i].id ==  aux[i]) {
-					console.log(sucursales[i]);
 						out +=`<span style="display:none" ><span id="horaD${id_suc[i].id}">${id_suc[i].desde}</span> <span id="horaH${id_suc[i].id}">${id_suc[i].hasta}</span></span>`
 						out +=`<span style="display:none" ><span id="horabreakD${id_suc[i].id}">${id_suc[i].hora_break_desde}</span> <span id="horabreakH${id_suc[i].id}">${id_suc[i].hora_break_hasta}</span></span>`
 				}
@@ -108,6 +109,34 @@ module.exports = {
 				 if (id_empleado[i].id ==  aux[i]) {
 					out	+=`<option value="${id_empleado[i].id}" class="empleado_check${id_empleado[i].id}" > ${id_empleado[i].nombre}</option>` 
 				 }
+			
+			}
+		 return out;
+	},
+	empleados_agenda: (sucursales, id_empleado) => {
+	
+		var out = "";
+			 for (let i = 0; i < sucursales.length; i++) {				 
+				 for (let j = 0; j < sucursales[i].encargados.length; j++) {					 
+					if (sucursales[i].encargados[j].id ==  id_empleado) {
+						
+						out	+=`${sucursales[i].encargados[j].nombre} ${sucursales[i].encargados[j].apellido}` 
+					 }					 
+				 }			
+			
+			}
+		 return out;
+	},
+	direccion_agenda: (sucursales, id_sucursal) => {
+			var out = "";
+			if (isNaN(id_sucursal)) {
+				return out = id_sucursal
+			}
+			 for (let i = 0; i < sucursales.length; i++) {				 					 
+					if (sucursales[i].id ==  id_sucursal) {
+						
+						out	+=`Sucursal: ${sucursales[i].nombre}` 					 
+				 }			
 			
 			}
 		 return out;
@@ -243,15 +272,12 @@ module.exports = {
 					 return fecha_;
 					},
 					formatoFecha: (fecha, user) => {
-						const f = new Date(fecha);
-						f.toLocaleString()
-						 
-						var Anyo = f.getFullYear();
-						var Mes = ('0' + (f.getMonth()+1)).slice(-2)
-						var Dia = ('0' +f.getDate()).slice(-2);
-							var fecha_ = Anyo+ '/'+Mes+ '/'+Dia
+						console.log(fecha)
+						var f = new Date(fecha);
+						console.log(f)
+							var fecha_ = moment.tz(fecha, 'America/Lima').format('YYYY/MM/DD')
 							
-							//console.log(fecha_)
+							console.log(fecha_)
 						 return fecha_;
 						},
 			estadoCupon: (fecha, cantidad) => {

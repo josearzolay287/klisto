@@ -125,8 +125,10 @@ router.get('/cupones',authController.authenticatedUser, dashboardController.getC
 router.get('/cupones/:msg',authController.authenticatedUser, dashboardController.getCupones);
 router.get('/crear_cupones',authController.authenticatedUser, dashboardController.addCupon);
 router.post('/crear_cupones',authController.authenticatedUser, dashboardController.save_cupon);
-router.get('/editar_cupones/:id',authController.authenticatedUser, dashboardController.editCupon);
+router.get('/edit_cupon/:id',authController.authenticatedUser, dashboardController.editCupon);
 router.post('/editar_cupones',authController.authenticatedUser, dashboardController.saveCuponEdited);
+router.get('/borrar_cupon/:id', authController.authenticatedUser, dashboardController.deleteCupon);
+router.post('/usar_cupon', dashboardController.usar_cupon);
 
 router.get('/usuarios_a',authController.authenticatedUser, dashboardController.usuarios_a);
 router.get('/usuarios_a/:msg',authController.authenticatedUser, dashboardController.usuarios_a);
@@ -167,7 +169,7 @@ router.post('/consulta_bd', AgendaCtrl.revisar_fecha_agenda);
 
 // Paserela
 router.post('/pasarela_publicacion', authController.authenticatedUser, mercadopago.pasarela2);
-router.get('/pasarela_publicacion/:id/:id_agenda/:costo_domicilio', authController.authenticatedUser, mercadopago.pasarela2);
+router.get('/pasarela_publicacion/comprar', authController.authenticatedUser, mercadopago.pasarela2);
 router.post('/process_payment', mercadopago.procesar);
 router.get('/process_payment', mercadopago.procesar);
 router.get('/visa/respuesta/success',  mercadopago.pagar);

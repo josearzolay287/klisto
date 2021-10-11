@@ -35,6 +35,10 @@ const Ventas = db.define('ventas', {
 		type: DataTypes.TEXT,
 		allowNull: true,
 	},
+	observacion: {
+		type: DataTypes.TEXT,
+		allowNull: true,
+	},
 	
 });
 Ventas.Usuarios= Ventas.belongsTo(Usuarios);

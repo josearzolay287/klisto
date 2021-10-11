@@ -255,18 +255,36 @@ module.exports = {
                 tipo: 'Principal',
                 usuarioId: userid,
               },
-            }
-          )
+            })
             .then((data_suc) => {
               let data_set = JSON.stringify(data);
-              
-              resolve('Se actualizo todo bien');
+              Sucursales.update(
+                {
+                  link:nombre
+                },
+                {
+                  where: {
+                    usuarioId: userid,
+                  },
+                })
+                .then((data_suc) => {
+                  let data_set = JSON.stringify(data);
+                  
+                  resolve('Se actualizo todo bien');
+                  //console.log(planes);
+                }).catch((err) => {
+                  //console.log(err);
+                  reject(err)
+                });
               //console.log(planes);
-            })
-          //console.log(planes);
+            }).catch((err) => {
+              //console.log(err);
+              reject(err)
+            });
         })
         .catch((err) => {
           //console.log(err);
+          reject(err)
         });
     });
   },
@@ -372,6 +390,7 @@ module.exports = {
         });
     });
   },
+
 
   guardar_encargardo(id_sucursal,nombre,apellido, correo,telefono, tipo){
     return new Promise((resolve, reject) => {
@@ -594,10 +613,10 @@ AgendaAll(){
       });
   });
 },
-guardar_Agenda(fecha,id_publicacion, h_desde,h_hasta,id_encargado, lugar_servicio, nombre_del_tercero, telefono_tercero, direccion_tercero,lugar_serv_propio,comentario){
+guardar_Agenda(fecha,id_publicacion, h_desde,h_hasta,id_encargado, lugar_servicio, nombre_del_tercero, telefono_tercero, direccion_tercero,lugar_serv_propio,comentario, distrito_domicilio){
   return new Promise((resolve, reject) => {
     Agenda.create({
-      fecha_agenda:fecha,hora_cita_desde:h_desde, hora_cita_hasta:h_hasta,lugar_servicio: lugar_servicio, nombre_del_tercero: nombre_del_tercero, telefono_tercero: telefono_tercero, direccion_tercero: direccion_tercero,lugar_serv_propio: lugar_serv_propio,comentario:comentario, encargadoId:id_encargado, publicacioneId:id_publicacion
+      fecha_agenda:fecha,hora_cita_desde:h_desde, hora_cita_hasta:h_hasta,lugar_servicio: lugar_servicio, nombre_del_tercero: nombre_del_tercero, telefono_tercero: telefono_tercero, direccion_tercero: direccion_tercero,lugar_serv_propio: lugar_serv_propio,comentario:comentario, encargadoId:id_encargado, publicacioneId:id_publicacion, direccion_propio_otra: distrito_domicilio
     }).then((data_) =>{
       let datas = JSON.stringify(data_);
       resolve(datas);
@@ -605,6 +624,7 @@ guardar_Agenda(fecha,id_publicacion, h_desde,h_hasta,id_encargado, lugar_servici
     })
       .catch((err) => {
         console.log(err);
+        reject(err)
       });
   });
 },
@@ -790,10 +810,10 @@ WalletbyIduser(usuarioId){
       });
   });
 },
-guardar_wallet_ventas(monto,estado,comprobante,publicacionId,usuarioId, monto_wallet, id_comprador,id_agenda,costo_domicilio){
+guardar_wallet_ventas(monto,estado,comprobante,publicacionId,usuarioId, monto_wallet, id_comprador,id_agenda,costo_domicilio, cupon){
   return new Promise((resolve, reject) => {
     Ventas.create({
-      monto:monto, estado: "Por confirmar", comprobante:comprobante,id_comprador:id_comprador,publicacioneId: publicacionId,costo_domicilio:costo_domicilio, usuarioId: usuarioId, AgendaId: id_agenda
+      monto:monto, estado: "Por confirmar", comprobante:comprobante,id_comprador:id_comprador,publicacioneId: publicacionId,costo_domicilio:costo_domicilio, usuarioId: usuarioId, AgendaId: id_agenda, observacion: cupon
     }).then((data_venta) =>{
       console.log(data_venta)
       Agenda.update({estado:"Por confirmar"},{where:{
@@ -1621,7 +1641,7 @@ eliminar_publicidad(parametro_buscar) {
         });
       });
     },
-    consultarCuponMembership(consultar) {
+    consultarCupon(consultar) {
       return new Promise((resolve, reject) => {
         Cupones.findAll({
           where: {

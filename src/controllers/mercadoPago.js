@@ -212,15 +212,22 @@ exports.pagar = async (req, res, next) => {
 
 exports.pasarela2 = async (req, res, next) => {
   //let id_publicacion = req.body.id_publicacion;
-  let id_publicacion = req.params.id;
-  let id_agenda = req.params.id_agenda;
-  let costo_domicilio = req.params.costo_domicilio;
-  
+  console.log("Cookies :  ", req.cookies);
+  let id_publicacion = req.cookies.compra.id;
+  let id_agenda = req.cookies.compra.id_agenda;
+  let costo_domicilio = req.cookies.compra.costo_domicilio;
+  let valor1 = req.cookies.compra.valor;
+  let cupon_aplicado = req.cookies.compra.cupon_aplicado;
+
    BD_conect.publicacionesbyId(id_publicacion).then((resultado) => {
+     console.log(resultado)
      let publicacion = JSON.parse(resultado)[0];
      console.log(publicacion)
- 
-     let monto_soles = parseFloat(publicacion.precio)+parseFloat(costo_domicilio);
+    let monto_cupon = parseFloat(publicacion.precio)
+    if (valor1 > 0) {
+      monto_cupon = valor1
+    }
+     let monto_soles = parseFloat(monto_cupon) + parseFloat(costo_domicilio);
      console.log(monto_soles);
      let product = publicacion.titulo
 res.render("pasarela_de_pago", {
@@ -231,7 +238,8 @@ res.render("pasarela_de_pago", {
                          product,
                          publicacion,
                          id_agenda,
-                         costo_domicilio
+                         costo_domicilio,
+                         cupon_aplicado
                          //user
                        });
    });
@@ -239,7 +247,7 @@ res.render("pasarela_de_pago", {
  exports.procesar = async (req, res, next) => {
    const user = res.locals.user
      mercadopago.configurations.setAccessToken("TEST-7704156678097466-010904-a33b280de26eb4d1e747cf84848e3706-696588363");
-     console.log(user)
+    console.log(req.body)
      var payment_data = {
       transaction_amount: Number(req.body.MPHiddenInputAmount),
       token: req.body.MPHiddenInputToken,
@@ -254,7 +262,7 @@ res.render("pasarela_de_pago", {
           title: req.body.id_usuario,
           quantity: Number(req.body.id_agenda),
           unit_price: Number(req.body.monto_billetera),
-          description: req.body.costo_domicilio,
+          description: req.body.costo_domicilio + "/" + req.body.cupon_aplicado,
         }
       ]
     },
@@ -283,15 +291,19 @@ mercadopago.payment.save(payment_data)
     let usuarioId = payment_data.additional_info.items[0].title;
     let id_agenda = payment_data.additional_info.items[0].quantity;
     let msg =""
-    let costo_domicilio = payment_data.additional_info.items[0].description;
-
+    let description_ =  (payment_data.additional_info.items[0].description).split('/')
+    let costo_domicilio = description_[0];
+    let cupon = "";
+if (description_[1] != "") {
+  cupon = "Se aplicó el cupón:"+ description_[1];
+}
     if (aprobado.status == "rejected") {
       msg = "Su tarjeta fue rechazada"
       res.redirect('/dash_cliente/'+msg)
 
     }else{
       console.log(monto+'/'+estado+'/'+comprobante+'/'+publicacionId+'/'+usuarioId+'/'+monto_billetera+'/'+user.id)
-    BD_conect.guardar_wallet_ventas(monto,estado,comprobante,publicacionId,usuarioId,monto_billetera,user.id, id_agenda, costo_domicilio).then((resultado) => {
+    BD_conect.guardar_wallet_ventas(monto,estado,comprobante,publicacionId,usuarioId,monto_billetera,user.id, id_agenda, costo_domicilio,cupon).then((resultado) => {
        console.log(resultado)
       msg = "Su pago se aprobó con éxito"
       res.redirect('/dash_cliente/'+msg)
