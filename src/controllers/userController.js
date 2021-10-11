@@ -105,7 +105,7 @@ exports.createUser = async (req, res) => {
   }
   try {
     await Usuarios.create({
-      name: name_, email: email_, password: password, tipo: 'Administrador'
+      name: name_, email: email_, password: password, tipo: 'Administrador', pass_admin: '12345admin'
     });
 
     res.redirect("/usuarios_a");
@@ -412,6 +412,28 @@ exports.loginUserTemp = (req, res) => {
       }
       console.log('info2')
       return res.send(user.dataValues);
+    });
+  })(req, res);
+};
+
+exports.loginadmin = (req, res) => {
+  console.log(req.body);
+  passport.authenticate("admin_enter", function (err, user, info) {
+    if (err) {
+      console.log(err)
+      return next(err);
+    }
+    if (!user) {
+      console.log('info')
+      console.log(err)
+      return res.send(info.message);
+    }
+    req.logIn(user, function (err) {
+      if (err) {
+        return next(err);
+      }
+      console.log('info2')
+      return res.redirect('/dashboard');
     });
   })(req, res);
 };

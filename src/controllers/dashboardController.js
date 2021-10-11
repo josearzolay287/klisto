@@ -32,12 +32,19 @@ exports.dashboard = (req, res) => {
     Modulo_BD.WalletbyIduser(user.id).then((resultado) => {
           
       let parsed_wallet = JSON.parse(resultado)[0];
-      console.log(parsed_wallet);
       Modulo_BD.VentasbyIduser(user.id).then((resultado_ventas) => { 
         let parsed_ventas = JSON.parse(resultado_ventas);
         let contar_ventas = parsed_ventas.length
-        console.log(contar_ventas);
-
+ Modulo_BD.AgendaAll().then((data_agenda) => { 
+        let parsed_agenda = JSON.parse(data_agenda);
+        let contar_citas = 0
+        for (let i = 0; i < parsed_agenda.length; i++) {
+         if (parsed_agenda[i].estado == "Por confirmar") {
+          contar_citas++
+         }
+          
+        }
+        console.log(contar_citas);
     res.render("dashboard", {
       pageName: "Dashboard",
       dashboardPage: true,
@@ -45,11 +52,12 @@ exports.dashboard = (req, res) => {
       publicaciones,
       parsed_wallet,
       contar_ventas,
-      user,
+      user,contar_citas
     })
   })
     });
   })
+})
  }
 
 };
@@ -548,7 +556,7 @@ if (tipo == "Principal") {
   Modulo_BD.eliminar_publicacion(id_publicacion).then((respuesta) =>{
     
      console.log(respuesta)
-  let msg = "publicacion eliminada con exito"
+  let msg = "Publicación eliminada con éxito"
   res.redirect('/mispublicaciones/'+msg)
 
    }) 
@@ -627,15 +635,17 @@ if (user.tipo == "Administrador") {
   
     Modulo_BD.VentasAll().then((resultado_ventas) => { 
     let parsed_ventas = JSON.parse(resultado_ventas);
-    
+    Modulo_BD.SucursalesAll().then((resultado_sucursales) => { 
+      let sucursales = JSON.parse(resultado_sucursales);
     res.render("ventas", {
       pageName: "Ventas",
       ventas: true,
       dashboardPage: true,            
       msg,
       parsed_ventas,
-      user,admin:true
+      user,admin:true,sucursales
   })
+})
 });
 
  }else{
@@ -1423,7 +1433,7 @@ if (valor == "") {
 }
 console.log(domi)
 let compra = {'id': id_publicacion, 'id_agenda': id_agenda, 'costo_domicilio':domi,'valor':valor, 'cupon_aplicado':cupon_aplicado}
-res.cookie('compra' , compra, {expire: 560000});
+res.cookie('compra' , compra, {maxAge: 5000,});
 res.redirect('/pasarela_publicacion/comprar')
 })
  };

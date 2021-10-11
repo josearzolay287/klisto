@@ -233,7 +233,7 @@
                             <br>
                             y sencilla
                         </h1>
-                        <a href="#" class="boton-titulo">
+                        <a href="#verservicios" class="boton-titulo">
                                 Ver Servicios
                         </a>
                     </div>
@@ -276,6 +276,7 @@
             </form>
           </div>
           <div class="header-button">
+            {{#if dash_cliente}}{{else}}
             <div class="noti-wrap">
               <div class="noti__item js-item-menu">
                 <span>
@@ -311,6 +312,7 @@
                 </div>
               </div>
             </div>
+            {{/if}}
             <div class="account-wrap">
               <div class="account-item clearfix js-item-menu">
                 {{#if dash_cliente}}{{else}}

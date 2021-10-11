@@ -272,12 +272,9 @@ module.exports = {
 					 return fecha_;
 					},
 					formatoFecha: (fecha, user) => {
-						console.log(fecha)
 						var f = new Date(fecha);
-						console.log(f)
 							var fecha_ = moment.tz(fecha, 'America/Lima').format('YYYY/MM/DD')
 							
-							console.log(fecha_)
 						 return fecha_;
 						},
 			estadoCupon: (fecha, cantidad) => {

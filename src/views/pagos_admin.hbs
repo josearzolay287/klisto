@@ -1,203 +1,220 @@
-<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="/assets/js/jquery.tablesorter.min.js"></script>
 <script>
-	$( document ).ready(function() {
+  $(document).ready(function () {
 
-$( ".onlynum" ).keypress(function(evt) {
-   
-    // code is the decimal ASCII representation of the pressed key.
-    var code = (evt.which) ? evt.which : evt.keyCode;
-    
-    if(code==8) { // backspace.
-      return true;
-    } else if(code>=48 && code<=57) { // is a number.
-      return true;
-    } else{ // other keys.
-      return false;
-    }
-});	
-});
+    $(".onlynum").keypress(function (evt) {
+
+      // code is the decimal ASCII representation of the pressed key.
+      var code = (evt.which) ? evt.which : evt.keyCode;
+
+      if (code == 8) { // backspace.
+        return true;
+      } else if (code >= 48 && code <= 57) { // is a number.
+        return true;
+      } else { // other keys.
+        return false;
+      }
+    });
+  });
 </script>
 {{#if msg}}
 <label id="msgs">{{msg}}</label>
 {{/if}}
 <style>
-	table>thead>tr{font-weight: bolder;}
-.linea-oculta{display: none;}
-.ingreso{
-	color: green;
-}
-.egreso{
-	color:red;
-}
-.card-title{
-	    font-size: 1em;
-}
-th.headerSortUp { 
-  background-image: url('assets/img/asc.gif') !important; 
-      background-repeat: no-repeat;
-  background-position: center right;
-  cursor: pointer;
- /* background-color: #3399FF; */
-} 
- 
-table.tablesorter thead tr .header {
-  background-image: url('assets/img/bg.gif');
-  background-repeat: no-repeat;
-  background-position: center right;
-  cursor: pointer;
+  table>thead>tr {
+    font-weight: bolder;
   }
-  th.headerSortDown { 
-  background-image: url('assets/img/desc.gif') !important;
-      background-repeat: no-repeat;
-  background-position: center right;
-  cursor: pointer; 
-/* background-color: #3399FF; */
-}
-.btn-primary{
+
+  .linea-oculta {
+    display: none;
+  }
+
+  .ingreso {
+    color: green;
+  }
+
+  .egreso {
+    color: red;
+  }
+
+  .card-title {
+    font-size: 1em;
+  }
+
+  th.headerSortUp {
+    background-image: url('assets/img/asc.gif') !important;
+    background-repeat: no-repeat;
+    background-position: center right;
+    cursor: pointer;
+    /* background-color: #3399FF; */
+  }
+
+  table.tablesorter thead tr .header {
+    background-image: url('assets/img/bg.gif');
+    background-repeat: no-repeat;
+    background-position: center right;
+    cursor: pointer;
+  }
+
+  th.headerSortDown {
+    background-image: url('assets/img/desc.gif') !important;
+    background-repeat: no-repeat;
+    background-position: center right;
+    cursor: pointer;
+    /* background-color: #3399FF; */
+  }
+
+  .btn-primary {
     background-color: var(--color-verde);
     border: var(--color-verde);
-}
-.btn-primary:hover{
+  }
+
+  .btn-primary:hover {
     background-color: #09a550;
     border: #09a550;
-}
-.btn-primary:focus{
+  }
+
+  .btn-primary:focus {
     background-color: #09a550;
     border: #09a550;
     box-shadow: none;
-}
-.card-blank{
-  padding:1rem;
-}
-.card-blank #tabla__wrapper .col-sm-12{
-  overflow: auto;
-}
- #tabla__wrapper{
-   overflow: hidden;
- }
+  }
+
+  .card-blank {
+    padding: 1rem;
+  }
+
+  .card-blank #tabla__wrapper .col-sm-12 {
+    overflow: auto;
+  }
+
+  #tabla__wrapper {
+    overflow: hidden;
+  }
 </style>
 <script>
-var resultados_por_pagina = 10;
-var pagina_actual = 1;
-var pagina_ultima = 0;
-	$( document ).ready(function() {
-  
+  var resultados_por_pagina = 10;
+  var pagina_actual = 1;
+  var pagina_ultima = 0;
+  $(document).ready(function () {
 
 
 
-  const subirImagen_recibo = (event) => {
-    const archivos = event.target.files;
-    const data = new FormData();
-    let imagenX = event.target.id;
-    data.append("archivo", archivos[0]);
 
-    fetch("/update-profile/archivo", {
-      method: "POST",
-      body: data,
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("El archivo " + archivos[0].name + " se ha subido correctamente.")
-			document.getElementById("imagen1").value = archivos[0].name;
-            const outputImg1 = document.getElementById("imageSelected");
-            outputImg1.setAttribute("src", "assets/img_up/" + archivos[0].name);
+    const subirImagen_recibo = (event) => {
+      const archivos = event.target.files;
+      const data = new FormData();
+      let imagenX = event.target.id;
+      data.append("archivo", archivos[0]);
+
+      fetch("/update-profile/archivo", {
+        method: "POST",
+        body: data,
       })
-      .catch((error) => {
-        console.error(error);
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("El archivo " + archivos[0].name + " se ha subido correctamente.")
+          document.getElementById("imagen1").value = archivos[0].name;
+          const outputImg1 = document.getElementById("imageSelected");
+          outputImg1.setAttribute("src", "assets/img_up/" + archivos[0].name);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    };
+    const profileImg1 = $('#img_comprobante')//document.getElementById("img_comprobante1");
+
+    if (profileImg1) {
+      profileImg1.on("change", (event) => {
+        console.log(event.target.files[0]);
+        const file = event.target.files[0];
+
+        if (
+          file.type !== "image/jpeg" &&
+          file.type !== "image/png" &&
+          file.type !== "image/jpg"
+        ) {
+          alert("Elige un archivo válido (.png, .jpg, .jpeg)");
+          return;
+        }
+
+
+        // reader.addEventListener("load", displayFileInfo);
+        //reader.readAsDataURL(file);
+        console.log(event.target.id);
+        subirImagen_recibo(event);
       });
-  };
-  const profileImg1 = $('#img_comprobante')//document.getElementById("img_comprobante1");
 
-  if (profileImg1) {
-    profileImg1.on("change", (event) => {
-      console.log(event.target.files[0]);
-      const file = event.target.files[0];
-
-      if (
-        file.type !== "image/jpeg" &&
-        file.type !== "image/png" &&
-        file.type !== "image/jpg"
-      ) {
-        alert("Elige un archivo válido (.png, .jpg, .jpeg)");
-        return;
-      }
+    }
 
 
-      // reader.addEventListener("load", displayFileInfo);
-      //reader.readAsDataURL(file);
-      console.log(event.target.id);
-      subirImagen_recibo(event);
+
+
+
+    $('#seleccionar-todos').change(function () {
+      console.log("h")
+      $('input[type=checkbox]').prop('checked', $(this).is(':checked'));
     });
 
+    jQuery("#buscador").keyup(function () {
+      console.log("hola mundo")
+      if (jQuery(this).val() != "") {
+        jQuery("#tabla_pagos_admin tbody>tr").hide();
+        jQuery("#tabla_pagos_admin td:contiene-palabra('" + jQuery(this).val() + "')").parent("tr").show();
+      }
+      else {
+        jQuery("#tabla_pagos_admin tbody>tr").show();
+      }
+    });
+
+    jQuery.extend(jQuery.expr[":"],
+      {
+        "contiene-palabra": function (elem, i, match, array) {
+          return (elem.textContent || elem.innerText || jQuery(elem).text() || "").toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
+        }
+      });
+    //contar todos los registros que tenemos
+    var total_registros = $("#tabla_pagos_admin>tbody>tr").length;
+    //saber cuantas paginas vamos a mostrar
+    pagina_ultima = Math.round(total_registros / resultados_por_pagina);
+    //cargar la primera pagina
+    cargarPagina(pagina_actual);
+    //eventos para los botones
+    $("#cargar_primera_pagina").click(function () {
+      cargarPagina(1);
+    });
+    $("#cargar_anterior_pagina").click(function () {
+      cargarPagina(pagina_actual - 1);
+    });
+    $("#cargar_siguiente_pagina").click(function () {
+      cargarPagina(pagina_actual + 1);
+    });
+    $("#cargar_ultima_pagina").click(function () {
+      cargarPagina(pagina_ultima);
+    });
+  });
+  var cargarPagina = function (intPaginaP) {
+    //evaluar si la pagina a cargar es mayor que el numero de paginas o es menor que 1
+    if (intPaginaP < 1) { intPaginaP = 1; }
+    if (intPaginaP > pagina_ultima) { intPaginaP = pagina_ultima; }
+    //ocultar todas las lineas
+    $("#tabla_pagos_admin>tbody>tr").addClass("linea-oculta");
+    var primer_registro = (intPaginaP - 1) * resultados_por_pagina;
+    for (var i = primer_registro; i < (primer_registro + resultados_por_pagina); i++) {
+      $("#tabla_pagos_admin>tbody>tr").eq(i).removeClass("linea-oculta");
+    }
+    //indicar en qué pagina estamos
+    pagina_actual = intPaginaP;
+    $("#indicador_paginas").html("Página: " + pagina_actual + " / " + pagina_ultima);
   }
 
 
-
-
-
-$('#seleccionar-todos').change(function() {
-			console.log("h")
-          $('input[type=checkbox]').prop('checked', $(this).is(':checked'));
-        });
-
-jQuery("#buscador").keyup(function(){
-	console.log("hola mundo")
-    if( jQuery(this).val() != ""){
-        jQuery("#tabla_pagos_admin tbody>tr").hide();
-        jQuery("#tabla_pagos_admin td:contiene-palabra('" + jQuery(this).val() + "')").parent("tr").show();
-    }
-    else{
-        jQuery("#tabla_pagos_admin tbody>tr").show();
-    }
-});
- 
-jQuery.extend(jQuery.expr[":"], 
-{
-    "contiene-palabra": function(elem, i, match, array) {
-        return (elem.textContent || elem.innerText || jQuery(elem).text() || "").toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
-    }
-});
-//contar todos los registros que tenemos
-	var total_registros = $("#tabla_pagos_admin>tbody>tr").length;
-	//saber cuantas paginas vamos a mostrar
-	pagina_ultima = Math.round(total_registros / resultados_por_pagina);
-	//cargar la primera pagina
-	cargarPagina(pagina_actual);
-	//eventos para los botones
-	$("#cargar_primera_pagina").click(function(){
-		cargarPagina(1);
-	});
-	$("#cargar_anterior_pagina").click(function(){
-		cargarPagina(pagina_actual - 1);
-	});
-	$("#cargar_siguiente_pagina").click(function(){
-		cargarPagina(pagina_actual + 1);
-	});
-	$("#cargar_ultima_pagina").click(function(){
-		cargarPagina(pagina_ultima);
-	});
-});
-var cargarPagina = function(intPaginaP){
-	//evaluar si la pagina a cargar es mayor que el numero de paginas o es menor que 1
-	if(intPaginaP < 1){intPaginaP = 1;}
-	if(intPaginaP > pagina_ultima){intPaginaP = pagina_ultima;}
-	//ocultar todas las lineas
-	$("#tabla_pagos_admin>tbody>tr").addClass("linea-oculta");
-	var primer_registro = (intPaginaP - 1) * resultados_por_pagina;
-	for (var i = primer_registro; i < (primer_registro + resultados_por_pagina); i++){
-		$("#tabla_pagos_admin>tbody>tr").eq(i).removeClass("linea-oculta");
-	}
-	//indicar en qué pagina estamos
-	pagina_actual = intPaginaP;
-	$("#indicador_paginas").html("Página: " + pagina_actual + " / " + pagina_ultima);
-}
-
-
 //Cuando la página se cargue convertimos la tabla con id "myTable" en una tabla ordenable
-     
+
 </script>
 <div class="page-container">
   <div class="main-content">
@@ -215,112 +232,105 @@ var cargarPagina = function(intPaginaP){
           </div>
 
 
-	<div class="row" style="margin-top: 5px;">
-	{{#if movimientos}}	<div class="col-lg-6 mb-3 mb-lg-0">
-			<div class="card card-box bg-gradient text-white pl-4 pt-3 pb-2" style="border-radius: 30px !important; ">
-				<h2 style="line-height: 1.5;" class="title-1">Saldo Actual: S/ {{saldo_actual}}</h2>
-				<h2 style="line-height: 1.5;" class="title-1">Para retiro: S/ {{para_retiro}}</h2>
-			</div>
-		</div>
-		<div class="col-lg-6 d-lg-flex flex-column justify-content-center" style="font-size: 14px;">
-			<a class="btn btn-primary btn-block mb-3 mb-lg-0 btn_pay" style="color: white;">Pagar</a>
-		<a href="/pagos" class="btn btn-primary btn-block mb-3 mb-lg-0">Ver Pagos</a>
-		<!--		<a href="/mis_pago" class="btn btn-primary btn-block mb-3 mb-lg-0">Mis retiros</a>-->
-		</div>
-		<div class="col-12" style="margin-top: 1.5rem;">
-			<div class="col-md-12">
-            <div class="card-blank">
-
-              <div class="container">
-  <div class="row pt-4" style="padding-left: .25rem;">
-    <div class="col-sm">
-                      <label for="inputState">Status</label>
-                      <select id="status_filter_pago" class="form-control" name="status_filter_pago">
-                        <option value="" selected>Todos</option>
-						<option value="Confirmada" >Confirmada</option>
-						<option value="Realizada" >Realizada</option>
-						<option value="Por confirmar" >Por confirmar</option>                         
-                      </select>
-
-                    </div>
-    	<div class="col-sm">
-                      <label for="inputState">Status del Pago</label>
-                      <select id="status_filter_pago2" class="form-control" name="status_filter_pago">
-                        <option value="" selected>Todos</option>
-						<option value="Pendiente" >Pendiente</option>
-						<option value="Pagado" >Pagado</option>                      
-                      </select>
-
-                    </div>
-    <div class="col-sm">
-                      <label for="inputState">Fecha</label>
-                      <input type="date" id="meeting-time"  name="meeting-time">
-                      <button id="reset_fecha">Reset</button>
-                    </div>
-  </div>
-</div>
-              
-                    
-              <div class="card-body">
-				  <form action="/pagar_admin" method="post" id="form_pay">				 
-                <table class="table dataTable tabla_pagos_admin" id="tabla_">
-                  <thead>
-                    <tr>
-                      <th>
-						            Usuario
-                      </th>
-                      <th>
-                        Fecha
-                      </th>
-                      <th>
-                        Concepto
-                      </th>
-                      <th>
-                        Status
-                      </th>
-                      <th>
-                        Monto
-                      </th>
-					  <th>
-                        Status del Pago
-                      </th>
-					   <th>
-                        Billetera
-                      </th>
-                      <th align="center">
-                        Opciones
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {{#each parsed_ventas as |venta i|}}
-                    <tr>
-                      <td>
-                        {{venta.usuario.name}}
-                      </td>
-					   <td>
-                      {{#formatoFecha2 venta.createdAt}}  {{/formatoFecha2}}
-                      <span style="display: none;">{{#formatoFecha venta.createdAt}}  {{/formatoFecha}} </span>
-                      </td>
-                      <td>
-                        {{venta.publicacione.titulo}}
-                      </td>
-                      <td>
-                        <span>
-                          <strong style="color: {{#ColorSucursal venta.estado}}{{/ColorSucursal}};" id="estado">{{venta.estado}}</strong>
-                        </span>
-                      </td>
-                      <td>
-                        S/ {{venta.monto}}
-                      </td>
-                      <td class="estado_pago">{{#if venta.wallet}}{{venta.wallet}}{{else}}Pendiente{{/if}}</td>
-					  <td>
-                      S/ {{venta.publicacione.billetera}}
-                      </td>
-                      <td align="center">
-                        <div class="table-data-feature">
-							<input type="checkbox" value="{{venta.id}}" name="select_venta[]" class="form-check-input select_venta {{venta.estado}} {{venta.usuario.id}} {{venta.wallet}}" style="appearance: auto;"/>
-                          <!--<a class="item confirmar {{venta.id}} {{venta.estado}} {{venta.publicacione.billetera}}"  data-toggle="tooltip"
+          <div class="row" style="margin-top: 5px;">
+            {{#if movimientos}} <div class="col-lg-6 mb-3 mb-lg-0">
+              <div class="card card-box bg-gradient text-white pl-4 pt-3 pb-2" style="border-radius: 30px !important; ">
+                <h2 style="line-height: 1.5;" class="title-1">Saldo Actual: S/ {{saldo_actual}}</h2>
+                <h2 style="line-height: 1.5;" class="title-1">Para retiro: S/ {{para_retiro}}</h2>
+              </div>
+            </div>
+            <div class="col-lg-6 d-lg-flex flex-column justify-content-center" style="font-size: 14px;">
+              <a class="btn btn-primary btn-block mb-3 mb-lg-0 btn_pay" style="color: white;">Pagar</a>
+              <a href="/pagos" class="btn btn-primary btn-block mb-3 mb-lg-0">Ver Pagos</a>
+              <!--		<a href="/mis_pago" class="btn btn-primary btn-block mb-3 mb-lg-0">Mis retiros</a>-->
+            </div>
+            <div class="col-12" style="margin-top: 1.5rem;">
+              <div class="col-md-12">
+                <div class="card-blank">
+                    										<div class="card-body">
+                                          <table border="0" cellspacing="5" cellpadding="5">
+											<tbody>
+												<tr>
+													<td>
+														<label for="inputState">Status</label>
+													</td>
+													<td>
+														<select id="status_filter" class="form-control"
+															name="status_filter">
+															<option value="" selected>Todos</option>
+															<option value="Confirmada">Confirmada</option>
+															<option value="Realizada">Realizada</option>
+															<option value="Por confirmar">Por confirmar</option>
+														</select>
+													</td>
+													<td>Fecha inicio:</td>
+													<td><input type="text" id="min" name="min"></td>
+													<td>Fecha final:</td>
+													<td><input type="text" id="max" name="max"></td>
+												</tr>
+											</tbody>
+										</table> 
+                    <form action="/pagar_admin" method="post" id="form_pay">
+                      <table class="table dataTable tabla_pagos_admin" id="tabla_">
+                        <thead>
+                          <tr>
+                            <th>
+                              Usuario
+                            </th>
+                            <th>
+                              Fecha
+                            </th>
+                            <th>
+                              Concepto
+                            </th>
+                            <th>
+                              Status
+                            </th>
+                            <th>
+                              Monto
+                            </th>
+                            <th>
+                              Status del Pago
+                            </th>
+                            <th>
+                              Billetera
+                            </th>
+                            <th align="center">
+                              Opciones
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {{#each parsed_ventas as |venta i|}}
+                          <tr>
+                            <td>
+                              {{venta.usuario.name}}
+                            </td>
+                            <td>
+                              {{#formatoFecha venta.createdAt}} {{/formatoFecha}}
+                            </td>
+                            <td>
+                              {{venta.publicacione.titulo}}
+                            </td>
+                            <td>
+                              <span>
+                                <strong style="color: {{#ColorSucursal venta.estado}}{{/ColorSucursal}};"
+                                  id="estado">{{venta.estado}}</strong>
+                              </span>
+                            </td>
+                            <td>
+                              S/ {{venta.monto}}
+                            </td>
+                            <td class="estado_pago">{{#if venta.wallet}}{{venta.wallet}}{{else}}Pendiente{{/if}}</td>
+                            <td>
+                              S/ {{venta.publicacione.billetera}}
+                            </td>
+                            <td align="center">
+                              <div class="table-data-feature">
+                                <input type="checkbox" value="{{venta.id}}" name="select_venta[]"
+                                  class="form-check-input select_venta {{venta.estado}} {{venta.usuario.id}} {{venta.wallet}}"
+                                  style="appearance: auto;" />
+                                <!--<a class="item confirmar {{venta.id}} {{venta.estado}} {{venta.publicacione.billetera}}"  data-toggle="tooltip"
                             data-placement="top" title="Confirmar" id="">
                             <i class="fas fa-check-circle {{venta.id}} {{venta.estado}} {{venta.publicacione.billetera}}" style="color: green;"></i>
                           </a>
@@ -328,253 +338,269 @@ var cargarPagina = function(intPaginaP){
                             id="delete_venta" data-toggle="tooltip" data-placement="top" title="Cancelar">
                             <i class="fas fa-ban {{venta.id}} {{venta.estado}} negocio" style="color: red;"></i>
                           </a>-->
+                              </div>
+                            </td>
+                          </tr>
+                          {{/each}}
+                        </tbody>
+                    </form>
+
+                    </table>
+                  </div>
+                </div>
+              </div>
+              {{/if}}
+              {{#if pagar_admin}} <div class="col-12" style="margin-top: 1.5rem;">
+                <div class="col-md-12">
+                  <div class="card-blank">
+                    <div class="card-body">
+                      <h3><label for="inputEmail4">S/{{monto_total}}</label> - Pagar a: <span
+                          style="color: green">{{usuario_.0.name}}</span></h3>
+                      <form action="/guardar_datos_pago_wallet" method="post" class="p-to-btn" autocomplete="off"
+                        id="form_datos_wallet" enctype='multipart/form-data'>
+                        <div class="row">
+                          <div class="col">
+                            <label for="inputEmail4">Banco</label>
+                            <input type="text" class="form-control" value="{{usuario_.0.banco}}" readonly>
+                          </div>
+                          <div class="col">
+                            <label for="inputEmail4">Cuenta</label>
+                            <input type="text" class="form-control" value="{{usuario_.0.cuenta}}" readonly>
+                          </div>
                         </div>
-                      </td>
-                    </tr>
-                    {{/each}}            
-				</tbody>
-				 </form>
 
-			</table>  
-      </div>
-            </div>
-          </div>
-		  {{/if}}
-		{{#if pagar_admin}}	<div class="col-12" style="margin-top: 1.5rem;">
-				<div class="col-md-12">
-            <div class="card-blank">
-              <div class="card-body">
-<h3><label for="inputEmail4">S/{{monto_total}}</label> - Pagar a: <span style="color: green">{{usuario_.0.name}}</span></h3>
-			<form action="/guardar_datos_pago_wallet" method="post" class="p-to-btn" autocomplete="off" id="form_datos_wallet" enctype='multipart/form-data'>
-      <div class="row">
-    <div class="col">
-      <label for="inputEmail4">Banco</label>
-      <input type="text" class="form-control" value="{{usuario_.0.banco}}"  readonly>
-    </div>
-    <div class="col">
-      <label for="inputEmail4">Cuenta</label>
-      <input type="text" class="form-control" value="{{usuario_.0.cuenta}}"  readonly>
-    </div>
-  </div>
-  
-    
-			<input type="text" class="form-control" name="userid" hidden value="{{userId}}" />
-			<input type="text" class="form-control" name="id_ventas" hidden value="{{select_venta}}" />
-			<input type="text" class="form-control" id="titulo" hidden name="id_publicaciones" value="{{publicacion_id}}">      
-                       <input type="text" class="form-control" name="monto"  value="{{monto_total}}" readonly hidden/>
 
-                  <div class="form-row">
-                    <div class="form-group col-md-6 mb-1">
-                      
-                    </div>
-                      <div class="form-group col-md-6">
-                      
-                    </div>
-                    <div class="form-group col-md-6 mb-1">
-                      <label for="inputEmail4">Observaciones</label>
-                      <input type="text" class="form-control" id="titulo" placeholder="Observaciones" name="observaciones" >
-					  <label for="inputEmail4">Fecha de Pago</label>
-                      <input type="date" class="form-control" id="titulo" placeholder="Observaciones" name="fecha_pago" >
-                      <label for="inputState">Estado</label>
-                      <select id="inputState" class="form-control" name="estado">
-                        <option selected value="Pagado">Pagado </option>
-                        <option value="En proceso">En proceso</option>
-						            <option value="Error">Error</option>
-                      </select>
-                    </div>
-					<div class="form-group col-md-6">
-                      <label for="inputState">Vacucher de Pago</label>
-                      <center>
-                      <img id="imageSelected" class="shadow mb-5"
-                        src="https://javierg.mosquedacordova.com/klizto/images/ico-image.png" width="200" height="200"
-                        onclick="document.getElementById('img_comprobante').click();" />
-                      <input
-                        class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
-                        id="img_comprobante" type="file" accept=".png" name="image" style="display: none;" />
-						<input type="text" id="imagen1" class="" name='photo' hidden>
-                      <p>
-                        Recomendado: Imagen de mismas
-                        dimensiones. Ejm: 300x300<br>
-                        <span id="resultado"></span>
-                      </p>
-                    </center>
+                        <input type="text" class="form-control" name="userid" hidden value="{{userId}}" />
+                        <input type="text" class="form-control" name="id_ventas" hidden value="{{select_venta}}" />
+                        <input type="text" class="form-control" id="titulo" hidden name="id_publicaciones"
+                          value="{{publicacion_id}}">
+                        <input type="text" class="form-control" name="monto" value="{{monto_total}}" readonly hidden />
+
+                        <div class="form-row">
+                          <div class="form-group col-md-6 mb-1">
+
+                          </div>
+                          <div class="form-group col-md-6">
+
+                          </div>
+                          <div class="form-group col-md-6 mb-1">
+                            <label for="inputEmail4">Observaciones</label>
+                            <input type="text" class="form-control" id="titulo" placeholder="Observaciones"
+                              name="observaciones">
+                            <label for="inputEmail4">Fecha de Pago</label>
+                            <input type="date" class="form-control" id="titulo" placeholder="Observaciones"
+                              name="fecha_pago">
+                            <label for="inputState">Estado</label>
+                            <select id="inputState" class="form-control" name="estado">
+                              <option selected value="Pagado">Pagado </option>
+                              <option value="En proceso">En proceso</option>
+                              <option value="Error">Error</option>
+                            </select>
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label for="inputState">Vacucher de Pago</label>
+                            <center>
+                              <img id="imageSelected" class="shadow mb-5"
+                                src="https://javierg.mosquedacordova.com/klizto/images/ico-image.png" width="200"
+                                height="200" onclick="document.getElementById('img_comprobante').click();" />
+                              <input
+                                class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+                                id="img_comprobante" type="file" accept=".png" name="image" style="display: none;" />
+                              <input type="text" id="imagen1" class="" name='photo' hidden>
+                              <p>
+                                Recomendado: Imagen de mismas
+                                dimensiones. Ejm: 300x300<br>
+                                <span id="resultado"></span>
+                              </p>
+                            </center>
+                          </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-x-lg form-steps__btn"
+                          id="create-gate-btn">Guardar datos <i class="fa fa-check"></i></button>
+                      </form>
                     </div>
                   </div>
-		<button type="submit" class="btn btn-primary btn-x-lg form-steps__btn" id="create-gate-btn">Guardar datos <i class="fa fa-check"></i></button>
-		</form>
-		</div>
-		</div>
-		</div>	
-		</div>{{/if}}
+                </div>
+              </div>{{/if}}
 
 
 
-		{{#if movimientos_pagos}}<div class="col-12" style="margin-top: 1.5rem;">
-<div class="col-md-12">
-  <div class="row" >
-            <div class="col-md-12">
-              <div class="overview-wrap" >
-                <h2 class="title-1">
-                  <div class="float-right"><a href="/wallet" id="volver_publicaciones"> Volver </a></div>
-                </h2>
-              </div>
-            </div>
-          </div>
-            <div class="card-blank">
-			<table class="table table-striped table-hover" id="tabla_">
-				<p class="text-center font-weight-bold h3" style="margin-bottom: 1.5rem;">Pagos</p>
-				<thead >
-					<tr>
-						<th class="text-xs-center">
-									Id Pago
-								</th>
-                <th class="text-xs-center">
-									Usuario
-								</th>
-								<th class="text-xs-center">
-									Monto
-								</th>
-								<th class="text-xs-center">
-									Fecha de Pago
-								</th>
-                <th class="text-xs-center">
-									F. Registro pago
-								</th>
-								<th class="text-xs-center">
-									Estado
-								</th>
-								<th class="text-xs-center">
-									Comprobante
-								</th>
-                <th class="text-xs-center">
-									Id Ventas
-								</th>
-                <th class="text-xs-center">
-									Id Publicación
-								</th>
-								<th class="text-xs-center">
-									Observación
-								</th>
-                <th class="text-xs-center">
-									Opciones
-								</th>
-					</tr>
-				</thead>
-				<tbody>
-	{{#each parsed_ as |pago i|}}	 
-			<tr class="pagedemo ">
-				<td>{{pago.id}}</td>
-        <td>{{pago.usuario.name}}</td>
-				<td>S/{{pago.monto}}</td>
-				<td>{{#formatoFecha pago.fecha_de_pago}}{{/formatoFecha}}</td>
-				<td>{{#formatoFecha2 pago.createdAt}}{{/formatoFecha2}}</td>
-        <td>{{pago.estado}}</td>
-        <td>
-          
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
- Click Para ver
-</button>
-  <style>
-    .modal-backdrop{
-      position: relative;
-    }
-  </style>
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <img src="{{#if pago.comprobante}}/assets/img_up/{{pago.comprobante}}{{/if}}">
-      </div>
-    </div>
-  </div>
-</div>
-					</td>
-				<td>{{pago.id_ventas}}</td>
-				<td>{{pago.id_publicaciones}}</td>
-				<td>{{pago.observaciones}}</td>
-        <td><div class="table-data-feature">
-                          <a class="item" href="/editar_pago/{{pago.id}}" data-toggle="tooltip"
-                            data-placement="top" title="Editar" id="empleados_button">
-                            <i class="fas fa-edit"></i>
-                          </a>
-                          <!--<a class="item delete {{publicacion.id}} {{publicacion.tipo}}" href="#"
+              {{#if movimientos_pagos}}<div class="col-12" style="margin-top: 1.5rem;">
+                <div class="col-md-12">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="overview-wrap">
+                        <h2 class="title-1">
+                          <div class="float-right"><a href="/wallet" id="volver_publicaciones"> Volver </a></div>
+                        </h2>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-blank">
+                    <table class="table table-striped table-hover" id="tabla_">
+                      <p class="text-center font-weight-bold h3" style="margin-bottom: 1.5rem;">Pagos</p>
+                      <thead>
+                        <tr>
+                          <th class="text-xs-center">
+                            Id Pago
+                          </th>
+                          <th class="text-xs-center">
+                            Usuario
+                          </th>
+                          <th class="text-xs-center">
+                            Monto
+                          </th>
+                          <th class="text-xs-center">
+                            Fecha de Pago
+                          </th>
+                          <th class="text-xs-center">
+                            F. Registro pago
+                          </th>
+                          <th class="text-xs-center">
+                            Estado
+                          </th>
+                          <th class="text-xs-center">
+                            Comprobante
+                          </th>
+                          <th class="text-xs-center">
+                            Id Ventas
+                          </th>
+                          <th class="text-xs-center">
+                            Id Publicación
+                          </th>
+                          <th class="text-xs-center">
+                            Observación
+                          </th>
+                          <th class="text-xs-center">
+                            Opciones
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {{#each parsed_ as |pago i|}}
+                        <tr class="pagedemo ">
+                          <td>{{pago.id}}</td>
+                          <td>{{pago.usuario.name}}</td>
+                          <td>S/{{pago.monto}}</td>
+                          <td>{{#formatoFecha pago.fecha_de_pago}}{{/formatoFecha}}</td>
+                          <td>{{#formatoFecha2 pago.createdAt}}{{/formatoFecha2}}</td>
+                          <td>{{pago.estado}}</td>
+                          <td>
+
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                              data-target="#exampleModalCenter">
+                              Click Para ver
+                            </button>
+                            <style>
+                              .modal-backdrop {
+                                position: relative;
+                              }
+                            </style>
+                            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                              aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <div class="modal-body">
+                                    <img src="{{#if pago.comprobante}}/assets/img_up/{{pago.comprobante}}{{/if}}">
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </td>
+                          <td>{{pago.id_ventas}}</td>
+                          <td>{{pago.id_publicaciones}}</td>
+                          <td>{{pago.observaciones}}</td>
+                          <td>
+                            <div class="table-data-feature">
+                              <a class="item" href="/editar_pago/{{pago.id}}" data-toggle="tooltip" data-placement="top"
+                                title="Editar" id="empleados_button">
+                                <i class="fas fa-edit"></i>
+                              </a>
+                              <!--<a class="item delete {{publicacion.id}} {{publicacion.tipo}}" href="#"
                             id="delete_publicacion" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
                             <i class="fas fa-trash-alt {{publicacion.id}} {{publicacion.tipo}}"></i>
                           </a>-->
-                        </div></td>
-				</tr>		
-	{{/each}}
-					
-				</tbody>
-			</table>
-</div>
-</div>
-		</div>
-    {{/if}}
-    {{#if editar_pago}}	<div class="col-12" style="margin-top: 1.5rem;">
-				<div class="col-md-12">
-            <div class="card-blank">
-              <div class="card-body">
+                            </div>
+                          </td>
+                        </tr>
+                        {{/each}}
 
-			<form action="/editar_pago" method="post" class="p-to-btn" autocomplete="off" id="form_datos_wallet" enctype='multipart/form-data'>
-			<input type="text" class="form-control" name="id_pago" hidden value="{{parsed_.id}}" />
-        <input type="text" class="form-control" name="userid" hidden value="{{parsed_.usuarioId}}" />
-        <input type="text" class="form-control" name="id_ventas" hidden value="{{parsed_.id_ventas}}" />
-                  <div class="form-row">
-                    <div class="form-group col-md-6 mb-1">
-                      <label for="inputEmail4">Monto</label>
-                        <input type="text" class="form-control" name="monto"  value="{{parsed_.monto}}" readonly/>
-                    </div>
-                      <div class="form-group col-md-6">
-                      <label for="inputState">Estado</label>
-                      <select id="inputState" class="form-control" name="estado">
-                      <option value="{{parsed_.estado}}">{{parsed_.estado}} </option>
-                        <option value="Pagado">Pagado </option>
-                        <option value="En proceso">En proceso</option>
-						<option value="Error">Error</option>
-                      </select>
-                    </div>
-                    <div class="form-group col-md-6 mb-1">
-                      <label for="inputEmail4">Observaciones</label>
-                      <input type="text" class="form-control" id="titulo" placeholder="Observaciones" name="observaciones" value="{{parsed_.observaciones}}">
-					  <label for="inputEmail4">Fecha de Pago</label>
-                      <input type="date" class="form-control" id="titulo" placeholder="Observaciones" name="fecha_pago" value="{{parsed_.fecha_pago}}">
-                    </div>
-					<div class="form-group col-md-6">
-                      <label for="inputState">Vacucher de Pago</label>
-                      <center>
-                      <img id="imageSelected" class="shadow mb-5"
-                        src="{{#if parsed_.comprobante}}/assets/img_up/{{parsed_.comprobante}}{{else}}https://javierg.mosquedacordova.com/klizto/images/ico-image.png{{/if}}" width="200" height="200"
-                        onclick="document.getElementById('img_comprobante').click();" />
-                      <input
-                        class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
-                        id="img_comprobante" type="file" accept=".png" name="image" style="display: none;" />
-						<input type="text" id="imagen1" class="" name='photo' hidden value="{{parsed_.comprobante}}">
-                      <p>
-                        Recomendado: Imagen de mismas
-                        dimensiones. Ejm: 300x300<br>
-                        <span id="resultado"></span>
-                      </p>
-                    </center>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              {{/if}}
+              {{#if editar_pago}} <div class="col-12" style="margin-top: 1.5rem;">
+                <div class="col-md-12">
+                  <div class="card-blank">
+                    <div class="card-body">
+
+                      <form action="/editar_pago" method="post" class="p-to-btn" autocomplete="off"
+                        id="form_datos_wallet" enctype='multipart/form-data'>
+                        <input type="text" class="form-control" name="id_pago" hidden value="{{parsed_.id}}" />
+                        <input type="text" class="form-control" name="userid" hidden value="{{parsed_.usuarioId}}" />
+                        <input type="text" class="form-control" name="id_ventas" hidden value="{{parsed_.id_ventas}}" />
+                        <div class="form-row">
+                          <div class="form-group col-md-6 mb-1">
+                            <label for="inputEmail4">Monto</label>
+                            <input type="text" class="form-control" name="monto" value="{{parsed_.monto}}" readonly />
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label for="inputState">Estado</label>
+                            <select id="inputState" class="form-control" name="estado">
+                              <option value="{{parsed_.estado}}">{{parsed_.estado}} </option>
+                              <option value="Pagado">Pagado </option>
+                              <option value="En proceso">En proceso</option>
+                              <option value="Error">Error</option>
+                            </select>
+                          </div>
+                          <div class="form-group col-md-6 mb-1">
+                            <label for="inputEmail4">Observaciones</label>
+                            <input type="text" class="form-control" id="titulo" placeholder="Observaciones"
+                              name="observaciones" value="{{parsed_.observaciones}}">
+                            <label for="inputEmail4">Fecha de Pago</label>
+                            <input type="date" class="form-control" id="titulo" placeholder="Observaciones"
+                              name="fecha_pago" value="{{parsed_.fecha_pago}}">
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label for="inputState">Vacucher de Pago</label>
+                            <center>
+                              <img id="imageSelected" class="shadow mb-5"
+                                src="{{#if parsed_.comprobante}}/assets/img_up/{{parsed_.comprobante}}{{else}}https://javierg.mosquedacordova.com/klizto/images/ico-image.png{{/if}}"
+                                width="200" height="200"
+                                onclick="document.getElementById('img_comprobante').click();" />
+                              <input
+                                class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+                                id="img_comprobante" type="file" accept=".png" name="image" style="display: none;" />
+                              <input type="text" id="imagen1" class="" name='photo' hidden
+                                value="{{parsed_.comprobante}}">
+                              <p>
+                                Recomendado: Imagen de mismas
+                                dimensiones. Ejm: 300x300<br>
+                                <span id="resultado"></span>
+                              </p>
+                            </center>
+                          </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-x-lg form-steps__btn"
+                          id="create-gate-btn">Guardar datos <i class="fa fa-check"></i></button>
+                      </form>
                     </div>
                   </div>
-		<button type="submit" class="btn btn-primary btn-x-lg form-steps__btn" id="create-gate-btn">Guardar datos <i class="fa fa-check"></i></button>
-		</form>
-		</div>
-		</div>
-		</div>	
-		</div>{{/if}}
+                </div>
+              </div>{{/if}}
 
-	</div>
+            </div>
 
 
+          </div>
+      </main>
+    </div>
   </div>
-		  </main>
-		  </div>
-		  </div>
-		  </div>
+</div>

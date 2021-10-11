@@ -305,6 +305,7 @@ if (description_[1] != "") {
       console.log(monto+'/'+estado+'/'+comprobante+'/'+publicacionId+'/'+usuarioId+'/'+monto_billetera+'/'+user.id)
     BD_conect.guardar_wallet_ventas(monto,estado,comprobante,publicacionId,usuarioId,monto_billetera,user.id, id_agenda, costo_domicilio,cupon).then((resultado) => {
        console.log(resultado)
+       res.clearCookie()
       msg = "Su pago se aprobó con éxito"
       res.redirect('/dash_cliente/'+msg)
      });

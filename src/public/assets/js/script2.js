@@ -91,7 +91,7 @@ if ( $("#msgs").length ) {
     let billetera = parseFloat($('#precio').val()) - parseFloat(comision)
     $('#billetera').val(billetera)
   })
-  const tabla_mispublicaciones = document.getElementById('tabla_mis_publicaciones')
+  const tabla_mispublicaciones = document.getElementById('tabla_')
 
   if (tabla_mispublicaciones) {
     $('.delete').on('click', (e) => {
@@ -113,6 +113,8 @@ if ( $("#msgs").length ) {
       })
     })
   }
+
+  
 
 
 
@@ -238,7 +240,7 @@ jQuery("#categorias").change(function(){
 });
 
 ///----USUARIOS ADMIN
-const tabla_usuarios_admin = document.getElementById('tabla_usuarios_admin')
+const tabla_usuarios_admin = document.getElementsByClassName('tabla_usuarios_admin')
 
 if(tabla_usuarios_admin){
   $('.delete').on('click', (e)=>{
@@ -246,7 +248,7 @@ if(tabla_usuarios_admin){
     let tipo = e.target.classList.item(3)
     Swal.fire({
   title: 'Eliminar',
-  text: "Seguro desea eliminar el negocio indicado!",
+  text: "Seguro desea eliminar el usuario indicado!",
   icon: 'warning',
   showCancelButton: true,
   confirmButtonColor: '#3085d6',
@@ -291,6 +293,7 @@ jQuery("#status_filter").change(function(){
   if( jQuery(this).val() != ""){
       jQuery("#tabla_ tbody>tr").hide();
       jQuery("#tabla_ td:contiene-palabra('" + jQuery(this).val() + "')").parent("tr").show();
+     
   }else if(jQuery(this).val() == 'todas'){
 jQuery("#tabla_ tbody>tr").show();
 }  else{
@@ -318,12 +321,14 @@ jQuery("#reset_fecha").click(function(){
 //POR STATUS PAGO_ADMIN
 jQuery("#status_filter_pago").change(function(){
   if( jQuery(this).val() != ""){
-      jQuery("#tabla_pagos_admin tbody>tr").hide();
-      jQuery("#tabla_pagos_admin td:contiene-palabra('" + jQuery(this).val() + "')").parent("tr").show();
+      jQuery("#tabla_ tbody>tr").hide();
+      jQuery("#tabla_ td:contiene-palabra('" + jQuery(this).val() + "')").parent("tr").show();
+      console.log('aquie')
   }else if(jQuery(this).val() == 'todas'){
-jQuery("#tabla_pagos_admin tbody>tr").show();
+jQuery("#tabla_ tbody>tr").show();
+console.log('aquie2')
 }  else{
-      jQuery("#tabla_pagos_admin tbody>tr").show();
+      jQuery("#tabla_ tbody>tr").show();
   }
 });
 

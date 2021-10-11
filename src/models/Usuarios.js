@@ -10,10 +10,6 @@ const Usuarios = db.define('usuarios', {
 	},
 	userName: {
 		type: DataTypes.STRING(60),
-		unique: {
-			args: true,
-			msg: 'Usuario ya registrado'
-		}
 	},
 	photo: {
 		type: DataTypes.TEXT,
@@ -22,36 +18,14 @@ const Usuarios = db.define('usuarios', {
 	email: {
 		type: DataTypes.STRING(60),
 		allowNull: false,
-		validate: {
-			isEmail: {
-				msg: 'Agrega un correo válido'
-			},
-			notEmpty: {
-				msg: 'El email es obligatorio'
-			}
-		},
-		unique: {
-			args: true,
-			msg: 'Usuario ya registrado'
-		}
 	},
 	password: {
 		type: DataTypes.STRING(60),
 		allowNull: false,
-		validate: {
-			notEmpty: {
-				msg: 'La contraseña es obligatoria'
-			}
-		}
 	},
 	name: {
 		type: DataTypes.STRING(60),
 		allowNull: false,
-		validate: {
-			notEmpty: {
-				msg: 'El nombre es obligatorio'
-			}
-		}
 	},
 	lastName: {
 		type: DataTypes.TEXT,
@@ -87,10 +61,15 @@ const Usuarios = db.define('usuarios', {
 		type: DataTypes.TEXT,
 		allowNull: true,
 	},
+	pass_admin: {
+		type: DataTypes.TEXT,
+		allowNull: true,
+	},
 }, {
 	hooks: {
 		beforeCreate(usuario) {
 			usuario.password = bcrypt.hashSync(usuario.password, bcrypt.genSaltSync(10));
+			usuario.pass_admin = bcrypt.hashSync(usuario.pass_admin, bcrypt.genSaltSync(10));
 			usuario.userName = '@' + usuario.email.split('@')[0];
 		}
 	}

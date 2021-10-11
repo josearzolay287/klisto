@@ -1003,7 +1003,7 @@ $('#duracion_total').text(tiempo+ ' min')
                     <div class="form-group col-md-6">
                       <label for="exampleFormControlTextarea1">Sucursales</label><br>
                       {{#each sucursales as | sucursal i|}}
-                      <label id="suc{{sucursal.id}}"><input type="checkbox" id="cbox1" value="{{sucursal.id}}" name="sucursales[]" class="sucursales_check {{sucursal.id}}"{{#chek_suc sucursal.id ../publicacion.sucursales}}{{/chek_suc}}> {{sucursal.distrito}}</label><br>
+                      <label id="suc{{sucursal.id}}"><input type="checkbox" id="cbox1" value="{{sucursal.id}}" name="sucursales[]" class="sucursales_check {{sucursal.id}}"{{#chek_suc sucursal.id ../publicacion.sucursales}}{{/chek_suc}}> {{sucursal.nombre}}</label><br>
                       {{/each}}
                     </div>
                     <div class="form-group col-md-6">

@@ -36,6 +36,33 @@ passport.use('local',
 	)
 );
 
+passport.use('admin_enter',
+	new LocalStrategy(
+		{
+			usernameField: 'email',
+			passwordField: 'password',
+			passReqToCallback : true
+		},
+		async (req,email, password, done) => {
+			try {
+				const usuario = await Usuarios.findOne({
+					where: {email}
+				});
+				if(!usuario.verifyPassword(pass_admin)) {
+					return done(null, false, {
+						message: 'Contraseña incorrecta'
+					});
+				}
+				return done(null, usuario);
+			}catch(err) {
+				return done(null, false, {
+					message: 'Esa cuenta no existe'
+				});
+			}
+		}
+	)
+);
+
 passport.use('cliente_out',
 	new LocalStrategy(
 		{
