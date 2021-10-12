@@ -3,7 +3,7 @@ const db = require('../config/db');
 const bcrypt = require('bcrypt-nodejs');
 const Usuarios = require('./Usuarios');
 
-const Publicidad = db.define('Publicidad', {
+const Publicidad = db.define('publicidad', {
 	id: {
 		type: DataTypes.INTEGER,
 		primaryKey: true,

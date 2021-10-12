@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt-nodejs');
 const Usuarios = require('./Usuarios');
 const Publicaciones = require('./Publicaciones');
 
-const Pagos = db.define('Pagos', {
+const Pagos = db.define('pagos', {
 	id: {
 		type: DataTypes.INTEGER,
 		primaryKey: true,
