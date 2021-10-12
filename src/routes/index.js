@@ -180,7 +180,7 @@ router.get('/visa/respuesta/pending',  mercadopago.pagar);
 router.get('/ventas', authController.authenticatedUser, dashboardController.misventas);
 router.get('/ventas/:msg', authController.authenticatedUser, dashboardController.misventas);
 router.get('/confirmar_venta/:id/:estado/:billetera/:id_agenda', authController.authenticatedUser, dashboardController.confirmar_venta);
-
+router.get('/cancelar_venta/:id/:tipo/:id_agenda', authController.authenticatedUser, dashboardController.cancelar_venta);
 
 // Compras
 router.get('/miscompras', authController.authenticatedUser, dashboardController.miscompras);

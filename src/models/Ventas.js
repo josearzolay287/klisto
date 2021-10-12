@@ -39,6 +39,10 @@ const Ventas = db.define('ventas', {
 		type: DataTypes.TEXT,
 		allowNull: true,
 	},
+	cancelado: {
+		type: DataTypes.TEXT,
+		allowNull: true,
+	},
 	
 });
 Ventas.Usuarios= Ventas.belongsTo(Usuarios);

@@ -313,6 +313,9 @@ module.exports = {
 				}if(sucursal == "Inactiva" ){
 					color = "orange"
 				}
+				if(sucursal == "Cancelada" ){
+					color = "red"
+				}
 				else{
 					color = "#06cc60"
 				}

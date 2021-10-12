@@ -103,7 +103,7 @@ exports.publi_landing = (req, res) => {
 
       Modulo_BD.UsuariobyId(id_user).then((datauser) =>{
         let usuario = JSON.parse(datauser)[0]
-        Modulo_BD.AgendaAll().then((data_agenda) =>{
+        Modulo_BD.AgendaAll().then(async (data_agenda) =>{
           let data_agenda_p = JSON.parse(data_agenda)
 
           let fechas_agenda = []
@@ -111,13 +111,17 @@ for (let i = 0; i < data_agenda_p.length; i++) {
   fechas_agenda.push(data_agenda_p[i].fecha_agenda);
   
 }
+
+const horas_reserva = JSON.parse(await Modulo_BD.conf_horas_reserva())
+console.log(horas_reserva.valor)
+
    res.render("publicacion", {
-     pageName: "Mi cuenta",
+     pageName: publicacion.titulo,
      landingPage: true,
      publicaciones_landing:true,
      publicacion_activa:true,
      publicacion,usuario,
-     sucursales,fechas_agenda,encargados
+     sucursales,fechas_agenda,encargados,horas_reserva
    });
   }).catch((err) => {
     console.log(err);

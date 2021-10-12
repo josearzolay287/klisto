@@ -102,9 +102,6 @@
   var pagina_ultima = 0;
   $(document).ready(function () {
 
-
-
-
     const subirImagen_recibo = (event) => {
       const archivos = event.target.files;
       const data = new FormData();
@@ -177,40 +174,7 @@
           return (elem.textContent || elem.innerText || jQuery(elem).text() || "").toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
         }
       });
-    //contar todos los registros que tenemos
-    var total_registros = $("#tabla_pagos_admin>tbody>tr").length;
-    //saber cuantas paginas vamos a mostrar
-    pagina_ultima = Math.round(total_registros / resultados_por_pagina);
-    //cargar la primera pagina
-    cargarPagina(pagina_actual);
-    //eventos para los botones
-    $("#cargar_primera_pagina").click(function () {
-      cargarPagina(1);
-    });
-    $("#cargar_anterior_pagina").click(function () {
-      cargarPagina(pagina_actual - 1);
-    });
-    $("#cargar_siguiente_pagina").click(function () {
-      cargarPagina(pagina_actual + 1);
-    });
-    $("#cargar_ultima_pagina").click(function () {
-      cargarPagina(pagina_ultima);
-    });
   });
-  var cargarPagina = function (intPaginaP) {
-    //evaluar si la pagina a cargar es mayor que el numero de paginas o es menor que 1
-    if (intPaginaP < 1) { intPaginaP = 1; }
-    if (intPaginaP > pagina_ultima) { intPaginaP = pagina_ultima; }
-    //ocultar todas las lineas
-    $("#tabla_pagos_admin>tbody>tr").addClass("linea-oculta");
-    var primer_registro = (intPaginaP - 1) * resultados_por_pagina;
-    for (var i = primer_registro; i < (primer_registro + resultados_por_pagina); i++) {
-      $("#tabla_pagos_admin>tbody>tr").eq(i).removeClass("linea-oculta");
-    }
-    //indicar en qué pagina estamos
-    pagina_actual = intPaginaP;
-    $("#indicador_paginas").html("Página: " + pagina_actual + " / " + pagina_ultima);
-  }
 
 
 //Cuando la página se cargue convertimos la tabla con id "myTable" en una tabla ordenable
@@ -327,7 +291,7 @@
                             </td>
                             <td align="center">
                               <div class="table-data-feature">
-                                <input type="checkbox" value="{{venta.id}}" name="select_venta[]"
+                                <input type="checkbox" value="{{venta.id}},{{venta.estado}}, {{venta.cancelado}}" name="select_venta[]"
                                   class="form-check-input select_venta {{venta.estado}} {{venta.usuario.id}} {{venta.wallet}}"
                                   style="appearance: auto;" />
                                 <!--<a class="item confirmar {{venta.id}} {{venta.estado}} {{venta.publicacione.billetera}}"  data-toggle="tooltip"
@@ -355,7 +319,7 @@
                   <div class="card-blank">
                     <div class="card-body">
                       <h3><label for="inputEmail4">S/{{monto_total}}</label> - Pagar a: <span
-                          style="color: green">{{usuario_.0.name}}</span></h3>
+                          style="color: green">{{#if cliente}}{{cliente.0.name}}{{else}}{{usuario_.0.name}}{{/if}}</span></h3>
                       <form action="/guardar_datos_pago_wallet" method="post" class="p-to-btn" autocomplete="off"
                         id="form_datos_wallet" enctype='multipart/form-data'>
                         <div class="row">

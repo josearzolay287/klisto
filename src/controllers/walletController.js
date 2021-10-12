@@ -82,7 +82,10 @@ exports.confirmar_venta = (req, res) => {
   });
 };
 
-exports.pagar_admin = (req, res) => {
+exports.pagar_admin = async(req, res) => {
+  let conf = JSON.parse(await Modulo_BD.configuracionDev())
+  let devolucion = conf.valor
+
   const user = res.locals.user;
   // console.log(req.body);
   let msg = false;
@@ -92,14 +95,21 @@ exports.pagar_admin = (req, res) => {
   const {
     select_venta
   } = req.body;
-  Modulo_BD.VentasAll().then((resultado_ventas) => { 
+  
+  Modulo_BD.VentasAll().then(async (resultado_ventas) => { 
     let parsed_ventas = JSON.parse(resultado_ventas);
   console.log(parsed_ventas)
   let ventas =[]
-  
+  let tipo ="", C_por= ""
   for (let i = 0; i < parsed_ventas.length; i++) {
-    for (let j = 0; j < select_venta.length; j++) {        
-     if (parsed_ventas[i].id == select_venta[j]) {
+    for (let j = 0; j < select_venta.length; j++) {  
+      let vent = select_venta[j].split(',')  
+      console.log(vent)    
+      if (vent[1] == "Cancelada") {
+        tipo ="Cancelada"
+        C_por= vent[2]
+      }
+     if (parsed_ventas[i].id == vent[0]) {
        ventas.push(parsed_ventas[i])
      }      
     }    
@@ -108,13 +118,33 @@ exports.pagar_admin = (req, res) => {
   let publicacion_id =[]
   let userId ="";
   let usuario_ = []
-  for (let i = 0; i < ventas.length; i++) {
-    monto_total = parseFloat(monto_total) + parseFloat(ventas[i].publicacione.billetera)
+  let cliente = ""
+   for (let i = 0; i < ventas.length; i++) {
+      if (tipo == 'Cancelada') {
+        if (C_por="cliente") {
+          monto_total = parseFloat(ventas[i].publicacione.precio)
+          publicacion_id.push(ventas[i].publicacioneId)
+          userId =ventas[i].id_comprador
+         const  nombre_cliente = JSON.parse( await Modulo_BD.UsuariobyId(userId))
+         cliente = nombre_cliente
+        }else{
+          monto_total = ((parseFloat(ventas[i].publicacione.precio) * devolucion)/100)-parseFloat(ventas[i].publicacione.precio)
+        publicacion_id.push(ventas[i].publicacioneId)
+        userId =ventas[i].usuarioId
+        usuario_.push(ventas[i].id_comprador)
+        }
+        
+
+      }else{
+        monto_total = parseFloat(monto_total) + parseFloat(ventas[i].publicacione.billetera)
     publicacion_id.push(ventas[i].publicacioneId)
     userId =ventas[i].usuarioId
     usuario_.push(ventas[i].usuario)
+      }
+    
+
   }
-  console.log(usuario_)
+  console.log(cliente)
   res.render("pagos_admin", {
     pageName: "Pagos",
     pagar_admin: true,
@@ -124,7 +154,7 @@ exports.pagar_admin = (req, res) => {
     publicacion_id,        
     msg,
     userId,usuario_,
-    user,admin:true
+    user,admin:true, cliente
 })
   })
 };

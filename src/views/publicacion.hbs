@@ -777,6 +777,7 @@
   $(function () {
     activar_reservar
     $('#activar_reservar').on('click', (e) => {
+      $('#off').click()
       $('#reservar').removeAttr('style')
     })
     $('.fc-daygrid-day ').on('click', (e) => {
@@ -938,9 +939,23 @@
         // alert ('Debe seleccionar un empleado para avanzar')
         return
       }
+console.log($('#horas_reserva').text())
+
+
       ///let fecha = $('#fecha_ag').val()
       let fecha = e.date.format('YYYY-MM-DD')
-      console.log(fecha)
+      let fecha_2 = e.date
+      console.log(fecha_2)
+      fecha_2 = moment(fecha_2)
+      let hoy_r = moment()
+      hoy_r = moment(hoy_r)
+      console.log(hoy_r)
+      console.log(fecha_2.diff(hoy_r, 'hours')) // 745
+
+if ((fecha_2.diff(hoy_r, 'hours')) < $('#horas_reserva').text()){
+  Swal.fire('La reserva debe ser mayor a '+ $('#horas_reserva').text() + ' horas')
+  return
+}
       $('#fecha').val(fecha)
       const data = new FormData();
       data.append("fecha", fecha);
@@ -1194,7 +1209,7 @@
       $('#hasta_preview').text($(`#horaH${id_suc}`).text())
       $('#desde_break').text($(`#horabreakD${id_suc}`).text())
       $('#hasta_break').text($(`#horabreakH${id_suc}`).text())
-
+      $('input[name=distrito_tercero]').val($(`#distritos_h option:selected`).text())
       $('#empleados_').removeAttr('style')
     })
     $('#sucursales').on('change', (e) => {
@@ -1275,11 +1290,13 @@
           <form method="post" action="/guardar_agenda" id="guardar_agenda">
             <section class="pb-5 pt-5" id="gallery-presentation">
               <div style="display: none">
-                <p class="card-text" id="descripcion_preview" style="text-align: left;"><span
-                    id="preparacion_p">{{publicacion.preparacion}} min.</span> y Ejecución: <span
-                    id="ejecucion_p">{{publicacion.ejecucion}} min.</span> </p>
+                <p class="card-text" id="descripcion_preview" style="text-align: left;">
+                  <span id="preparacion_p">{{publicacion.preparacion}}</span>
+                  <span id="ejecucion_p">{{publicacion.ejecucion}}</span> </p>
                 <span id="desde_preview"></span><span id="hasta_preview"></span>
                 <span id="desde_break"></span><span id="hasta_break"></span>
+                <span id="horas_reserva">{{horas_reserva.valor}} </span>
+
               </div>
               <div class="container">
                 <div class="row">
@@ -1375,7 +1392,7 @@
                         Local</label>
                     </div>
                     <div class="dom-loc pb-3">
-                      <img src="../assets/img/cancel.svg" alt="" class="checkeds-img"><span
+                      <img src="../assets/img/{{#if publicacion.domicilio}}checked.svg{{else}}cancel.svg{{/if}}" alt="" class="checkeds-img"><span
                         style="margin-top: 3px;">Domicilio</span>
                       <img src="../assets/img/checked.svg" alt="" class="checkeds-img" style="margin-top: 0;"><span
                         class="checkeds-p">Local</span>
@@ -1399,14 +1416,11 @@
 
                   <div class="col d-flex justify-content-center">
                     <div class="switch-toggle switch-3 switch-candy switch">
-                      <input id="on" name="state-d" type="radio" checked="" value="Domicilio" />
-                      <label for="on" onclick="">Domicilio</label>
+                      <input id="on" name="state-d" type="radio"  value="Domicilio" {{#if publicacion.domicilio}}{{else}}disabled{{/if}}/>
+                      <label for="on" >Domicilio</label>
 
-                      <input id="na" name="state-d" type="radio" disabled checked="checked" />
-                      <label for="na" class="disabled" onclick="">&nbsp;</label>
-
-                      <input id="off" name="state-d" type="radio" value="Local" />
-                      <label for="off" onclick="">Local</label>
+                      <input id="off" name="state-d" type="radio" value="Local"/>
+                      <label for="off">Local</label>
 
                       <a></a>
                     </div>
@@ -1440,6 +1454,7 @@
                         <option selected value="0">Seleccione un local</option>
                         {{#sucursalesdisponibles publicacion.sucursales sucursales}}{{/sucursalesdisponibles}}
                         <span id="sucursales_p"></span></p>
+                        <!--<button type="button" id="ver_ubicacion"> Ver Ubicación</button>-->
                     </div>
                     <div class="form-group" id="empleados_" style="display: none;">
                       <label for="">Escoger trabajador:</label>

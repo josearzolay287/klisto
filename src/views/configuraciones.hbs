@@ -146,10 +146,10 @@ if (nombre == "Comisión"){
                             data-placement="top" title="Editar" id="">
                             <i class="fas fa-edit"></i>
                           </a>
-                          <a class="item delete {{configuracion.id}} {{configuracion.nombre}}" href="#"
+                         <!-- <a class="item delete {{configuracion.id}} {{configuracion.nombre}}" href="#"
                             id="delete_configuracion" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
                             <i class="fas fa-trash-alt {{configuracion.id}} {{configuracion.nombre}}"></i>
-                          </a>
+                          </a>-->
                         </div>
                       </td>
                     </tr>
@@ -217,13 +217,12 @@ if (nombre == "Comisión"){
                   <div class="form-row">
                     <div class="form-group col-md-6 mb-1">
                       <label for="inputEmail4">Nombre</label>
-                      <select id="inputState" class="form-control" name="configuracion">
-                        <option selected value="{{configuracion_edit.nombre}}">{{configuracion_edit.nombre}} </option>
-                        <option value="Comisión">Comisión </option>
-                      </select>
+                      <input type="text" class="form-control" name="configuracion"value="{{configuracion_edit.nombre}}" readonly>
+                      
                     </div>
                       <div class="form-group col-md-6">
                       <label for="inputState">Estado</label>
+                      
                       <select id="inputState" class="form-control" name="estado">
                         <option selected value="{{configuracion_edit.estado}}">{{configuracion_edit.estado}} </option>
                         <option selected value="Activa">Activa </option>

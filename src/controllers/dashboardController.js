@@ -164,6 +164,7 @@ exports.dashboard = (req, res) => {
       let sucursales = JSON.parse(respuesta)
       console.log(sucursales)
       console.log(sucursales[0].encargados);
+      
        res.render("minegocio", {
       pageName: "Mi cuenta",
       dashboardPage: true,
@@ -533,10 +534,13 @@ if (user.tipo == "Administrador") {
 
  exports.guardar_publicacion = (req, res) => {
   const user = res.locals.user;
-  const {userid, photo,  desde,hasta, titulo, precio,billetera, categoria, estado,  descripcion, condiciones,preparacion, ejecucion,sucursales,empleados,costo_domicilio } = req.body;
+  const {userid, photo,  desde,hasta, titulo, precio,billetera, categoria, estado,  descripcion, condiciones,preparacion, ejecucion,sucursales,empleados,costo_domicilio,domicilio } = req.body;
   console.log(sucursales + 'Empleados:'+empleados)
-
-   Modulo_BD.guardar_publicacion(userid, photo,  desde,hasta, titulo, precio,billetera, categoria, estado,  descripcion, condiciones,preparacion, ejecucion,sucursales,empleados,costo_domicilio).then((respuesta) =>{
+  var dom = "SI"
+  if (typeof domicilio == "undefined") {
+    dom = ""
+  }
+   Modulo_BD.guardar_publicacion(userid, photo,  desde,hasta, titulo, precio,billetera, categoria, estado,  descripcion, condiciones,preparacion, ejecucion,sucursales,empleados,costo_domicilio,dom).then((respuesta) =>{
     
      console.log(respuesta)
      let msg="Se creó con exito la publicación"
@@ -607,13 +611,16 @@ if (user.tipo == "Administrador") {
 
  exports.guardar_editar_publicacion = (req, res) => {
   const user = res.locals.user;
-  const {id_publicacion,userid, photo,  desde,hasta, titulo, precio,billetera, categoria, estado,  descripcion, condiciones,preparacion, ejecucion,sucursales,empleados,costo_domicilio } = req.body;
+  const {id_publicacion,userid, photo,  desde,hasta, titulo, precio,billetera, categoria, estado,  descripcion, condiciones,preparacion, ejecucion,sucursales,empleados,costo_domicilio,domicilio } = req.body;
   console.log(sucursales + 'Empleados:'+empleados)
-
-   Modulo_BD.guardaredit_publicacion(id_publicacion,userid, photo,  desde,hasta, titulo, precio,billetera, categoria, estado,  descripcion, condiciones,preparacion, ejecucion,sucursales,empleados,costo_domicilio).then((respuesta) =>{
+var dom = "SI"
+if (typeof domicilio == "undefined") {
+  dom = ""
+}
+   Modulo_BD.guardaredit_publicacion(id_publicacion,userid, photo,  desde,hasta, titulo, precio,billetera, categoria, estado,  descripcion, condiciones,preparacion, ejecucion,sucursales,empleados,costo_domicilio,dom).then((respuesta) =>{
     
-     console.log(respuesta)
-     let msg="Se actualizó con exito la publicación"
+     console.log(dom)
+     let msg="Se actualizó con exito la publicación"+dom
       res.redirect('/mispublicaciones/'+msg)
 
    })   
@@ -716,6 +723,28 @@ console.log("no se cumple");
     
   };
 
+  exports.cancelar_venta = (req, res) => {
+    const user = res.locals.user;
+    var venta_id = req.params.id;
+    var tipo = req.params.tipo
+var id_agenda = req.params.id_agenda
+    console.log('tipo:'+tipo)
+   
+    if (tipo == "cliente") {
+      Modulo_BD.CancelarVenta(venta_id, tipo, id_agenda).then(() => {
+      
+        let msg = "Se ha cancelado su venta, pronto realizaremos la devolucion de su dinero"
+        res.redirect('/miscompras/'+msg)
+      });
+    }else{
+      Modulo_BD.VentabyId_confirmar(venta_id, tipo, id_agenda).then(() => {
+      
+      let msg = "Se confirmó la venta con éxito"
+      res.redirect('/ventas/'+msg)
+    });
+    }
+    
+  };
 
    //MIS COMPRAS
    exports.miscompras = (req, res) => {
@@ -735,7 +764,8 @@ console.log("no se cumple");
     Modulo_BD.VentasbyIdComprador(user.id).then((resultado_ventas) => { 
     let parsed_ventas = JSON.parse(resultado_ventas);
     console.log(parsed_ventas);
-
+    Modulo_BD.SucursalesAll().then((resultado_sucursales) => { 
+      let sucursales = JSON.parse(resultado_sucursales);
     res.render("compras", {
       pageName: "Mis compras",
       miscompras: true,
@@ -743,10 +773,10 @@ console.log("no se cumple");
       dash_cliente: true,            
       msg,     
       parsed_ventas,
-      user,
+      user,sucursales
   })
 });
-       
+});       
   };
   
   exports.confirmar_miscompras = (req, res) => {
@@ -772,11 +802,6 @@ console.log("no se cumple");
     }
     
   };
-
-
-
-
-
 
 
 //CATEGORIAS
@@ -1363,7 +1388,7 @@ for (let i = 0; i < data_agenda_p.length; i++) {
 console.log(publicacion)
 console.log(sucursales)
    res.render("publicacion", {
-     pageName: "Mi cuenta",
+     pageName: "Publicación",
      dashboardPage: true,
      dash_cliente: true,
      user,publicacion_activa:true,

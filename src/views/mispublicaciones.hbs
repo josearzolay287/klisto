@@ -238,7 +238,14 @@
     </style>
 <script>
   $(function () {
-  
+  $('#domicilio_check').on('change',function() {
+    if ($('#domicilio_check').is(":checked")== true){
+      $('#domicilio_check').val('SI')
+    }else{
+      console.log('no')
+      $('#domicilio_check').val('0')
+    }
+  })
 $('.sucursales_check:checked').each(function() {
    var id_suc = $(this).val()
         $('.sucur'+id_suc).show()
@@ -534,7 +541,7 @@ $('#duracion_total').text(tiempo+ ' min')
                     </div>
                   </div>
                   <div class="form-row">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-4">
                       <label for="inputState">Categoría</label>
                       <select id="categorias" class="form-control" name="categoria">
                        <option value="todas" selected>Todas</option>
@@ -544,12 +551,16 @@ $('#duracion_total').text(tiempo+ ' min')
                       </select>
 
                     </div>
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-3">
                       <label for="inputState">Estado</label>
                       <select id="inputState" class="form-control" name="estado">
                         <option selected value="Activa">Activa </option>
                         <option value="Inactiva">Inactiva</option>
                       </select>
+                    </div>
+                    <div class="form-group col-md-5">
+                      <label for="inputState">Servicio a Domicilio</label><br>
+                      <label id=""><input type="checkbox" id="domicilio_check" name="domicilio"> Tiene servicio a Domicilio</label>
                     </div>
                   </div>
 
@@ -969,7 +980,7 @@ $('#duracion_total').text(tiempo+ ' min')
                     </div>
                   </div>
                   <div class="form-row">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-4">
                       <label for="inputState">Categoria</label>
                       <select id="categorias" class="form-control" name="categoria">
                         <option selected value="{{publicacion.categoria}}">{{publicacion.categoria}} </option>
@@ -979,13 +990,17 @@ $('#duracion_total').text(tiempo+ ' min')
                       </select>
 
                     </div>
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-3">
                       <label for="inputState">Estado</label>
                       <select id="inputState" class="form-control" name="estado">
                         <option selected value="{{publicacion.estado}}">{{publicacion.estado}} </option>
                         <option selected value="Activa">Activa </option>
                         <option value="Inactiva">Inactiva</option>
                       </select>
+                    </div>
+                    <div class="form-group col-md-5">
+                      <label for="inputState">Servicio a Domicilio</label><br>
+                      <label id=""><input type="checkbox" id="domicilio_check" name="domicilio" {{#if publicacion.domicilio}}checked{{/if}}> Tiene servicio a Domicilio</label>
                     </div>
                   </div>
 

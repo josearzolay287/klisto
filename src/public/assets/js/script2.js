@@ -457,7 +457,7 @@ console.log(estado)
 	//let estado = e.target.classList.item(3)
     //let billetera = e.target.classList.item(4)
 	console.log(estado2)
-	if (estado2 == "Realizada"){
+	if (estado2 == "Realizada" || estado2 == "Cancelada"){
 		let valor = e.target.value
 		var texto="Bien";
 		console.log(valor)
@@ -465,7 +465,7 @@ console.log(estado)
 	}else{
 
 		var titulo="Error";
-		var texto="No puede pagar una venta que no tenga estado Realizada";
+		var texto="No puede pagar una venta que no tenga estado Realizada ó Cancelada";
 	if($('input[type=checkbox]').is(':checked')) {
     $('.'+estado2).prop('checked',false).removeAttr('checked');
 } 

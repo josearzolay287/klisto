@@ -542,13 +542,13 @@ login(email, password) {
         });
     });
   },
-  guardar_publicacion(userid, photo, desde, hasta, titulo, precio, billetera, categoria, estado, descripcion, condiciones, preparacion, ejecucion, sucursales, empleados, costo_domicilio) {
+  guardar_publicacion(userid, photo, desde, hasta, titulo, precio, billetera, categoria, estado, descripcion, condiciones, preparacion, ejecucion, sucursales, empleados, costo_domicilio,domicilio) {
     let fotos = photo.toString()
     let sucursalesS = sucursales.toString()
     let empleadosS = empleados.toString()
     return new Promise((resolve, reject) => {
       Publicaciones.create({
-        titulo: titulo, precio: precio, billetera: billetera, categoria: categoria, fotos: fotos, horario_desde: desde, horario_hasta: hasta, descripcion: descripcion, condiciones: condiciones, estado: estado, preparacion: preparacion, ejecucion: ejecucion, sucursales: sucursalesS, empleados: empleadosS, costo_domicilio: costo_domicilio, usuarioId: userid
+        titulo: titulo, precio: precio, billetera: billetera, categoria: categoria, fotos: fotos, horario_desde: desde, horario_hasta: hasta, descripcion: descripcion, condiciones: condiciones, estado: estado, preparacion: preparacion, ejecucion: ejecucion, sucursales: sucursalesS, empleados: empleadosS, costo_domicilio: costo_domicilio, usuarioId: userid, domicilio: domicilio
       }).then((data_encargado) => {
         let datas = JSON.stringify(data_encargado);
         resolve(datas);
@@ -572,13 +572,13 @@ login(email, password) {
       });
     });
   },
-  guardaredit_publicacion(id_publicacion, userid, photo, desde, hasta, titulo, precio, billetera, categoria, estado, descripcion, condiciones, preparacion, ejecucion, sucursales, empleados, costo_domicilio) {
+  guardaredit_publicacion(id_publicacion, userid, photo, desde, hasta, titulo, precio, billetera, categoria, estado, descripcion, condiciones, preparacion, ejecucion, sucursales, empleados, costo_domicilio,domicilio) {
     let fotos = photo.toString()
     let sucursalesS = sucursales.toString()
     let empleadosS = empleados.toString()
     return new Promise((resolve, reject) => {
       Publicaciones.update({
-        titulo: titulo, precio: precio, billetera: billetera, categoria: categoria, fotos: fotos, horario_desde: desde, horario_hasta: hasta, descripcion: descripcion, condiciones: condiciones, estado: estado, preparacion: preparacion, ejecucion: ejecucion, sucursales: sucursalesS, empleados: empleadosS, costo_domicilio: costo_domicilio, usuarioId: userid
+        titulo: titulo, precio: precio, billetera: billetera, categoria: categoria, fotos: fotos, horario_desde: desde, horario_hasta: hasta, descripcion: descripcion, condiciones: condiciones, estado: estado, preparacion: preparacion, ejecucion: ejecucion, sucursales: sucursalesS, empleados: empleadosS, costo_domicilio: costo_domicilio, usuarioId: userid, domicilio: domicilio,
       }, {
         where: {
           id: id_publicacion
@@ -590,6 +590,7 @@ login(email, password) {
       })
         .catch((err) => {
           console.log(err);
+          reject(err)
         });
     });
   },
@@ -1007,6 +1008,36 @@ login(email, password) {
         });
     });
   },
+  CancelarVenta(venta_id, tipo, id_agenda) {
+    return new Promise((resolve, reject) => {
+      Ventas.update({
+        estado: 'Cancelada', cancelado: tipo,
+      }, {
+        where: {
+          id: venta_id
+        }
+      })
+        .then((data_venta) => {
+          console.log(data_venta)
+                Agenda.update({
+                  estado: 'Cancelada'
+                }, {
+                  where: {
+                    id: id_agenda
+                  }
+                })
+                  .then((data_agenda) => {
+                    let datas = JSON.stringify(data_agenda);
+                    resolve(datas);
+                  }).catch((err) => {
+                   reject(err)
+                  });             
+        })
+        .catch((err) => {
+          reject(err)
+        });
+    });
+  },
 
   //Compras
   VentasbyIdComprador(usuarioId) {
@@ -1296,6 +1327,24 @@ login(email, password) {
         });
     });
   },
+  configuracionDev() {
+    return new Promise((resolve, reject) => {
+      Configuraciones.findOne({attributes: ['valor'],
+        where: {
+          estado: 'Activa',
+          nombre: 'Devolución'
+        }
+      })
+        .then((data) => {
+          let datas = JSON.stringify(data);
+          resolve(datas);
+          ////console.log(id_usuario);
+        })
+        .catch((err) => {
+          ////console.log(err);
+        });
+    });
+  },
   configuracionesbyId(id_ct) {
     return new Promise((resolve, reject) => {
       Configuraciones.findAll({
@@ -1342,6 +1391,25 @@ login(email, password) {
       })
         .catch((err) => {
           console.log(err);
+        });
+    });
+  },
+  conf_horas_reserva() {
+    return new Promise((resolve, reject) => {
+      Configuraciones.findOne({
+        attributes: ['valor'],
+        where: {
+          estado: 'Activa',
+          nombre: 'Horas_Reserva'
+        }
+      })
+        .then((data) => {
+          let datas = JSON.stringify(data);
+          resolve(datas);
+          ////console.log(id_usuario);
+        })
+        .catch((err) => {
+          ////console.log(err);
         });
     });
   },
