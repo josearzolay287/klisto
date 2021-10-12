@@ -5,7 +5,7 @@ const Usuarios = require('./Usuarios');
 const Publicaciones = require('./Publicaciones');
 const Encargados = require('./Encargados');
 
-const Agenda = db.define('Agenda', {
+const Agenda = db.define('agenda', {
 	id: {
 		type: DataTypes.INTEGER,
 		primaryKey: true,
