@@ -1413,6 +1413,25 @@ login(email, password) {
         });
     });
   },
+  conf_horas_cancelar() {
+    return new Promise((resolve, reject) => {
+      Configuraciones.findOne({
+        attributes: ['valor'],
+        where: {
+          estado: 'Activa',
+          nombre: 'Horas_Cancelar'
+        }
+      })
+        .then((data) => {
+          let datas = JSON.stringify(data);
+          resolve(datas);
+          ////console.log(id_usuario);
+        })
+        .catch((err) => {
+          ////console.log(err);
+        });
+    });
+  },
 
   //PUBLICIDAD
   Publicidad() {
@@ -1625,15 +1644,7 @@ login(email, password) {
         });
     });
   },
-  guardarCupon(
-    id_usuario,
-    nombre_cupon,
-    valor,
-    fecha_inicio,
-    fecha_final,
-    cantidad,
-    tipo
-  ) {
+  guardarCupon(id_usuario,nombre_cupon,valor,fecha_inicio, fecha_final,cantidad,  tipo, especial) {
     let now = new Date();
     fecha = now.toString();
     return new Promise((resolve, reject) => {
@@ -1653,7 +1664,7 @@ login(email, password) {
             fecha_final: fecha_final,
             cantidad: cantidad,
             cantidad_actual: cantidad,
-            tipo: tipo,
+            tipo: tipo,especial:especial
           })
             .then((res) => {
               let about = JSON.stringify(res);
@@ -1699,7 +1710,7 @@ login(email, password) {
     fecha_inicio,
     fecha_final,
     cantidad,
-    tipo
+    tipo,especial
   ) {
     let now = new Date();
     fecha = now.toString();
@@ -1714,7 +1725,7 @@ login(email, password) {
           fecha_final: fecha_final,
           cantidad: cantidad,
           cantidad_actual: cantidad,
-          tipo: tipo,
+          tipo: tipo,especial:especial
         },
         {
           where: {

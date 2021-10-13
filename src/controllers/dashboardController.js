@@ -659,24 +659,35 @@ if (typeof domicilio == "undefined") {
   Modulo_BD.WalletbyIduser(user.id).then((resultado) => {
     let parsed_wallet = JSON.parse(resultado)[0];
     let cont = parsed_wallet.length;
-    Modulo_BD.VentasbyIduser(user.id).then((resultado_ventas) => { 
+    Modulo_BD.VentasbyIduser(user.id).then(async (resultado_ventas) => { 
     let parsed_ventas = JSON.parse(resultado_ventas);
     let Hoy = moment(); //Fecha actual del sistema
     console.log(Hoy)
     let hora = moment().format('HH:mm')
-    console.log(hora)
+    let Horas_Cancelar= JSON.parse(await Modulo_BD.conf_horas_cancelar())
     for (let i = 0; i < parsed_ventas.length; i++) {
-      var fecha_agendada = parsed_ventas[i].Agenda.fecha_agenda
-      
-      let fecha_final= moment(Hoy).isSameOrAfter(fecha_agendada); // true
-      let hora_final= moment(hora).isAfter(parsed_ventas[i].Agenda.hora_cita_hasta); // true
-      if (fecha_final == true && hora_final == true) {
-        if (parsed_ventas[i].Agenda.estado == "Confirmada") {
+      var fecha_agendada = parsed_ventas[i].agenda.fecha_agenda
+      let fecha_ag = parsed_ventas[i].agenda.fecha_agenda + " " +parsed_ventas[i].agenda.hora_cita_hasta
+      console.log(fecha_ag)
+      let fecha_final= moment(Hoy).isAfter(fecha_ag); // true
+      fecha_ag = moment(fecha_ag)
+      let diferencia =fecha_ag.diff(Hoy, 'hours')
+      console.log(diferencia)
+      if (fecha_final == true) {
+        if (parsed_ventas[i].agenda.estado == "Confirmada") {
           console.log("es hora de realizar");
-         return res.redirect('/confirmar_venta/'+parsed_ventas[i].id+'/'+parsed_ventas[i].estado+'/'+parsed_ventas[i].publicacione.billetera+'/'+parsed_ventas[i].AgendaId)
+         return res.redirect('/confirmar_venta/'+parsed_ventas[i].id+'/'+parsed_ventas[i].estado+'/'+parsed_ventas[i].publicacione.billetera+'/'+parsed_ventas[i].agendaId)
         }
       } else {
 console.log("no se cumple");
+if (parsed_ventas[i].agenda.estado == "Por confirmar" && diferencia < Horas_Cancelar.valor) {
+  console.log("cancelar ");
+return res.redirect(`/cancelar_venta/${parsed_ventas[i].id}/negocio/${parsed_ventas[i].agendaId}`)       
+}
+if (parsed_ventas[i].agenda.estado == "Por confirmar" && (diferencia >=Horas_Cancelar.valor && diferencia  < 15)) {
+  console.log("Hay al menos 1 venta con " + diferencia+ " horas para confirmar o cancelar");
+  msg="Hay al menos 1 venta, en la que faltan " + diferencia+ " horas para confirmar o cancelar"
+}
       }
      
     }
@@ -733,15 +744,15 @@ var id_agenda = req.params.id_agenda
     if (tipo == "cliente") {
       Modulo_BD.CancelarVenta(venta_id, tipo, id_agenda).then(() => {
       
-        let msg = "Se ha cancelado su venta, pronto realizaremos la devolucion de su dinero"
+        let msg = "Se ha cancelado su venta, pronto realizaremos la devolución de su dinero"
         res.redirect('/miscompras/'+msg)
       });
     }else{
-      Modulo_BD.VentabyId_confirmar(venta_id, tipo, id_agenda).then(() => {
+      Modulo_BD.CancelarVenta(venta_id, tipo, id_agenda).then(() => {
       
-      let msg = "Se confirmó la venta con éxito"
-      res.redirect('/ventas/'+msg)
-    });
+        let msg = `Se ha cancelado la venta #${venta_id}`
+        res.redirect('/ventas/'+msg)
+      });
     }
     
   };
@@ -1559,9 +1570,13 @@ exports.save_cupon = async (req, res) => {
     cantidad,
     tipo_cupon,
     fecha_inicio,
-    fecha_final,
+    fecha_final,cupon_especial
   } = req.body;
   var msg = "";
+  let especial ="SI"
+  if (cupon_especial == 0) {
+    especial =""
+  }
   Modulo_BD.guardarCupon(
     userid,
     nombre_cupon,
@@ -1569,7 +1584,7 @@ exports.save_cupon = async (req, res) => {
     fecha_inicio,
     fecha_final,
     cantidad,
-    tipo_cupon
+    tipo_cupon, especial
   )
     .then((result) => {
       ////console.log(result);
@@ -1678,8 +1693,8 @@ console.log(cupon);
           var tipo = parsed.tipo;
           var fecha_uso = Hoy.toISOString();
           Modulo_BD.UpdateUsedCupon(id_cupon, cantidad_act).then(
-            (resultado) => {
-              let parsed = JSON.parse(resultado)[0];
+            (resultado_used) => {
+              let parsed_used = JSON.parse(resultado_used)[0];
               Modulo_BD.CuponUsado(
                 '1',
                 nombre_cupon,
@@ -1688,7 +1703,7 @@ console.log(cupon);
                 "Servicio",
                 tipo
               ).then((resultadoaqui) => {
-                let cupon_ap= {'valor':valor,'tipo':tipo }
+                let cupon_ap= {'valor':valor,'tipo':tipo, 'especial': parsed.especial}
                 return res.send(cupon_ap);
               })
           .catch((err) => {

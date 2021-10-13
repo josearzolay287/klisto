@@ -58,7 +58,11 @@ const Cupones = db.define('cupones', {
 		allowNull: true,
 		defaultValue: ""
 	},
-	
+	especial: {
+		type: DataTypes.TEXT,
+		allowNull: true,
+		defaultValue: ""
+	},
 	
 	
 });

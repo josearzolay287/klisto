@@ -238,7 +238,7 @@
     </style>
 <script>
   $(function () {
-  $('#domicilio_check').on('change',function() {
+$('#domicilio_check').on('change',function() {
     if ($('#domicilio_check').is(":checked")== true){
       $('#domicilio_check').val('SI')
     }else{
@@ -255,14 +255,13 @@ $('.sucursales_check:checked').each(function() {
       console.log("hola")
     }
 );
-      $('.btn_submit_preview').on('click',()=>{
+$('.btn_submit_preview').on('click',()=>{
         if($('#preview_publicacion').is(':visible')){
         $('#crear_publicacion').show()
         $('#preview_publicacion').hide()
       }
         $('.btn_submit').click()})
-
-    $('.preview').on('click', () => {
+$('.preview').on('click', () => {
         if($('#preview_publicacion').is(':visible')){
         $('#preview_publicacion').hide()
         $('#crear_publicacion').show()
@@ -302,7 +301,7 @@ $('#duracion_total').text(tiempo+ ' min')
 
 
     })
-    $('.sucursales_check').on('change', (e) => {
+$('.sucursales_check').on('change', (e) => {
       var id_suc = e.target.classList.item(1)
       if($('.sucur'+id_suc).is(':visible')){
         $('.sucur'+id_suc).hide()
@@ -311,13 +310,7 @@ $('#duracion_total').text(tiempo+ ' min')
         let suc_actual=$('#sucursales_p').text()
         console.log(suc_actual)
         $('#sucursales_p').text($('#suc'+id_suc).text()+'/'+suc_actual+'' )
-      }
-
-
-      
-
-
-    })
+      }})
 
   })
 </script>

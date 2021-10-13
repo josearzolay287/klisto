@@ -1082,6 +1082,10 @@ if ((fecha_2.diff(hoy_r, 'hours')) < $('#horas_reserva').text()){
     $('.add_cupon').on('click', (e) => {
 
       let cupon = $('#cupon').val()
+     if($('#cupon_aplicado').val() == cupon){
+ Swal.fire('Acaba de usar el cupón <'+ cupon+ "> ingrese un nuevo cupón")
+ return
+     } 
       console.log(cupon)
       const data_C = new FormData();
       data_C.append("cupon", cupon);
@@ -1109,6 +1113,14 @@ if ((fecha_2.diff(hoy_r, 'hours')) < $('#horas_reserva').text()){
             $("#progressBar1").css('width', '0%');
         },*/
         success: function (data, textStatus, jqXHR) {
+console.log(data)
+if (data.especial == 'SI'){
+  if ($('#loggeado').length){
+    Swal.fire('Intenta usar un cupón de uso único, debe estar loggeado para aplicarlo')
+  return
+  }
+  
+}
           switch (data.tipo) {
             case "descuento":
               console.log(data.valor)
@@ -1140,6 +1152,7 @@ if ((fecha_2.diff(hoy_r, 'hours')) < $('#horas_reserva').text()){
               Swal.fire(data)
               break
           }
+
         },
         error: function (jqXHR, textStatus) {
           console.log('error:' + jqXHR)
@@ -1580,6 +1593,7 @@ if ((fecha_2.diff(hoy_r, 'hours')) < $('#horas_reserva').text()){
                   </div>
                 </div>
                 <div class="row">
+                  {{#if user.name}}<span id="loggeado"></span>{{/if}}
                   <div class="col-12 pt-3">
                     <button type="button" class="btn btn-primary active"
                       style="width: 100%;padding: 1.5rem; font-size: 25px; font-weight: 700; border-radius: 15px; background-color:var(--color-verde); color:white;"

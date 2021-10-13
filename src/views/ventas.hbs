@@ -129,7 +129,6 @@
 				let estado2 = e.target.classList.item(4)
 				let billetera = e.target.classList.item(5)
 				let id_agenda = e.target.classList.item(3)
-				console.log(estado2)
 				if (estado2 == "Confirmada") {
 					var titulo = "Realizada";
 					var texto = "Seguro desea confirmar la venta indicada como 'Realizada'?";
@@ -157,6 +156,9 @@
 			$('.cancelar').on('click', (e) => {
 				let id = e.target.classList.item(2)
 				let tipo = e.target.classList.item(3)
+				let id_agenda = e.target.classList.item(4)
+				console.log(id_agenda)
+				console.log(tipo)
 				Swal.fire({
 					title: 'Cancelar',
 					text: "Seguro desea cancelar la venta indicada!",
@@ -164,11 +166,11 @@
 					showCancelButton: true,
 					confirmButtonColor: '#3085d6',
 					cancelButtonColor: '#d33',
-					cancelButtonText: 'Cancelar',
-					confirmButtonText: 'Eliminar'
+					cancelButtonText: 'Volver',
+					confirmButtonText: 'Cancelar'
 				}).then((result) => {
 					if (result.isConfirmed) {
-						window.location.href = `/cancelar_venta/${id}/${tipo}`;
+						window.location.href = `/cancelar_venta/${id}/${tipo}/${id_agenda}`;
 					}
 				})
 			})
@@ -301,22 +303,22 @@
 																			</div>
 																			<div class="row" style="margin-top: 5px;">
 																				<div class="col-sm">
-																					{{venta.Agenda.id}}
+																					{{venta.agenda.id}}
 																				</div>
 																				<div class="col-sm">
-																					{{venta.Agenda.fecha_agenda}}
+																					{{venta.agenda.fecha_agenda}}
 																				</div>
 																				<div class="col-sm">
-																					{{venta.Agenda.estado}}
+																					{{venta.agenda.estado}}
 																				</div>
 																				<div class="col-sm">
-																					{{venta.Agenda.hora_cita_desde}}
+																					{{venta.agenda.hora_cita_desde}}
 																				</div>
 																				<div class="col-sm">
-																					{{venta.Agenda.hora_cita_hasta}}
+																					{{venta.agenda.hora_cita_hasta}}
 																				</div>
 																				<div class="col-sm">
-																					{{#empleados_agenda ../sucursales venta.Agenda.encargadoId}}{{/empleados_agenda}}
+																					{{#empleados_agenda ../sucursales venta.agenda.encargadoId}}{{/empleados_agenda}}
 																				</div>
 																			</div>
 																			<div class="row align-items-start"
@@ -332,19 +334,19 @@
 																			</div>
 																			<div class="row" style="margin-top: 5px;">
 																				<div class="col-sm">
-																					{{venta.Agenda.nombre_del_tercero}}
+																					{{venta.agenda.nombre_del_tercero}}
 																				</div>
 																				<div class="col-sm">
-																					{{venta.Agenda.telefono_tercero}}
+																					{{venta.agenda.telefono_tercero}}
 																				</div>
 																				<div class="col-sm">
-																					{{#direccion_agenda ../sucursales venta.Agenda.direccion_tercero}}{{/direccion_agenda}}
+																					{{#direccion_agenda ../sucursales venta.agenda.direccion_tercero}}{{/direccion_agenda}}
 																				</div>
 																				<div class="col-sm">
-																					{{venta.Agenda.lugar_serv_propio}}
+																					{{venta.agenda.lugar_serv_propio}}
 																				</div>
 																				<div class="col-sm">
-																					{{venta.Agenda.comentario}}
+																					{{venta.agenda.comentario}}
 																				</div>
 																				<div class="col-sm">
 																					
@@ -375,17 +377,17 @@
 																<i class="fas fa-calendar-alt  {{venta.id}}"
 																	style="color: green;"></i>
 															</a>
-															<a class="item confirmar {{venta.id}} {{venta.AgendaId}} {{venta.estado}} {{venta.publicacione.billetera}} "
+															<a class="item confirmar {{venta.id}} {{venta.agendaId}} {{venta.estado}} {{venta.publicacione.billetera}} "
 																data-toggle="tooltip" data-placement="top"
 																title="Confirmar" id="">
-																<i class="fas fa-check-circle  {{venta.id}} {{venta.AgendaId}} {{venta.estado}} {{venta.publicacione.billetera}} "
+																<i class="fas fa-check-circle  {{venta.id}} {{venta.agendaId}} {{venta.estado}} {{venta.publicacione.billetera}} "
 																	style="color: green;"></i>
 															</a>
 
-															<a class="item cancelar {{venta.id}} {{venta.estado}} negocio {{venta.AgendaId}}"
+															<a class="item cancelar {{venta.id}} negocio {{venta.agendaId}} {{venta.estado}}"
 																href="#" id="delete_venta" data-toggle="tooltip"
 																data-placement="top" title="Cancelar">
-																<i class="fas fa-ban {{venta.id}} {{venta.estado}} negocio {{venta.AgendaId}}"
+																<i class="fas fa-ban {{venta.id}} negocio {{venta.agendaId}} {{venta.estado}}"
 																	style="color: red;"></i>
 															</a>
 														</div>

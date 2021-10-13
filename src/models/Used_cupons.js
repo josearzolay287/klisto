@@ -41,6 +41,11 @@ const Used_cupons = db.define('used_cupons', {
 		allowNull: true,
 		defaultValue: ""
 	},
+	especial: {
+		type: DataTypes.TEXT,
+		allowNull: true,
+		defaultValue: ""
+	},
 });
 
 

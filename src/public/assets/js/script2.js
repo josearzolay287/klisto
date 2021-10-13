@@ -98,14 +98,14 @@ if ( $("#msgs").length ) {
       let id = e.target.classList.item(2)
       let tipo = e.target.classList.item(3)
       Swal.fire({
-        title: 'Eliminar',
-        text: "Seguro desea eliminar la publicacion indicada!",
+        title: 'Cancelar',
+        text: "Seguro desea cancelar la publicación indicada!",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        cancelButtonText: 'Cancelar',
-        confirmButtonText: 'Eliminar'
+        cancelButtonText: 'Volver',
+        confirmButtonText: 'Cancelar'
       }).then((result) => {
         if (result.isConfirmed) {
           window.location.href = `/delete_publicacion/${id}/${tipo}`;
