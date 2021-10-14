@@ -57,25 +57,27 @@
     width: 100%;
     max-width: 600px;
     padding: 10px;
-
-  }
+    display: grid;
+    justify-content: center;
+    align-items: start;  
+}
 
   #featured {
     width: 400px;
     height: 400px;
     cursor: pointer;
-    border-radius: 20px;
+    border-radius: 15px;
   }
 
   .thumbnail {
     object-fit: cover;
-    width: 65px;
-    height: 65px;
+    width: 90px;
+    height: 90px;
     cursor: pointer;
     opacity: 0.5;
-    margin-left: 23px;
+    margin-left: 9px;
     margin-top: 10px;
-    margin-right: 23px;
+    margin-right: 9px;
     border-radius: 10px;
   }
 
@@ -95,12 +97,11 @@
   }
 
   #slider {
-width: 440px;
+width: 400px;
     display: flex;
     flex-wrap: nowrap;
     overflow-x: hidden;
-    margin-left: -.75rem;
-
+margin-left: -5px;
   }
 
   #slider::-webkit-scrollbar {
