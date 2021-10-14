@@ -235,6 +235,15 @@
     margin-top: 10px;
 	}
 }
+
+[type=checkbox], [type=radio] {
+  color:var(--color-verde);
+}
+[type=checkbox]:focus, [type=radio]:focus{
+  --tw-ring-color:color:var(--color-verde);
+  --tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--color-verde);
+}
+
     </style>
 <script>
   $(function () {
@@ -328,7 +337,7 @@ $('.sucursales_check').on('change', (e) => {
           <div class="row">
             <div class="col-md-12">
               <div class="overview-wrap">
-                <h2 class="title-1">
+                <h2 class="title-1 pb-3">
                   Mis Publicaciones
                 </h2>
               </div>
@@ -419,7 +428,7 @@ $('.sucursales_check').on('change', (e) => {
           <div class="row reservar" id="crear_publicacion">
 
             <div class="card-blank" style="width: 65%;margin-left: 15px; margin-bottom: 10px;">
-              <div class="overview-wrap">
+              <div class="overview-wrap pt-4 pl-4 pr-4">
                 <h2 class="title-1">Crear Publicación</h2>
                 <div class="float-right"><a href="/mispublicaciones" id="volver_publicaciones"> Volver </a></div>
               </div>
@@ -855,7 +864,7 @@ $('.sucursales_check').on('change', (e) => {
           <div class="row editar_public reservar" id="crear_publicacion">
 
             <div class="card-blank" style="width: 65%;margin-left: 15px; margin-bottom: 10px;">
-              <div class="overview-wrap">
+              <div class="overview-wrap pt-4 pl-4 pr-4">
                 <h2 class="title-1">Editar Publicación</h2>
                 <div class="float-right"><a href="/mispublicaciones" id="volver_publicaciones"> Volver </a></div>
               </div>

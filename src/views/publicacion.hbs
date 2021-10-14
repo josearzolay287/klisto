@@ -61,19 +61,21 @@
   }
 
   #featured {
-    width: 450px;
-    height: 320px;
+    width: 400px;
+    height: 400px;
     cursor: pointer;
     border-radius: 20px;
   }
 
   .thumbnail {
     object-fit: cover;
-    width: 80px;
-    height: 70px;
+    width: 65px;
+    height: 65px;
     cursor: pointer;
     opacity: 0.5;
-    margin: 5px;
+    margin-left: 23px;
+    margin-top: 10px;
+    margin-right: 23px;
     border-radius: 10px;
   }
 
@@ -93,10 +95,11 @@
   }
 
   #slider {
-    width: 440px;
+width: 440px;
     display: flex;
     flex-wrap: nowrap;
     overflow-x: hidden;
+    margin-left: -.75rem;
 
   }
 
@@ -1320,7 +1323,6 @@ if (data.especial == 'SI'){
                           src="../assets/img_up/{{#fotoPublicacion1 publicacion.fotos}}{{/fotoPublicacion1}}">
 
                         <div id="slide-wrapper">
-                          <img id="slideLeft" class="arrow" src="../assets/img/arrow-left.png">
 
                           <div id="slider">
                             <img class="thumbnail active"
@@ -1336,8 +1338,6 @@ if (data.especial == 'SI'){
                               src="../assets/img_up/{{#fotoPublicacion5 publicacion.fotos}}{{/fotoPublicacion5}}">
                           </div>
 
-                          <img id="slideRight" class="arrow" src="../assets/img/arrow-right.png"
-                            style="margin-top: 1px;">
                         </div>
                       </div>
                       <script type="text/javascript">

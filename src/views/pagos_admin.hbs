@@ -25,6 +25,9 @@
 <label id="msgs">{{msg}}</label>
 {{/if}}
 <style>
+  .card-body input{
+    height: 30px;
+  }
   table>thead>tr {
     font-weight: bolder;
   }
@@ -212,15 +215,15 @@
               <div class="col-md-12">
                 <div class="card-blank">
                     										<div class="card-body">
-                                          <table border="0" cellspacing="5" cellpadding="5">
+                                          <table border="0" cellspacing="5" cellpadding="5" style="margin-bottom: 1rem;">
 											<tbody>
 												<tr>
 													<td>
 														<label for="inputState">Status</label>
 													</td>
-													<td>
+													<td style="padding-right: 10px;">
 														<select id="status_filter" class="form-control"
-															name="status_filter">
+															name="status_filter" style="height: 30px; font-size:.7rem; margin-rigth:10px;">
 															<option value="" selected>Todos</option>
 															<option value="Confirmada">Confirmada</option>
 															<option value="Realizada">Realizada</option>
@@ -228,7 +231,7 @@
 														</select>
 													</td>
 													<td>Fecha inicio:</td>
-													<td><input type="text" id="min" name="min"></td>
+													<td style="padding-right: 10px;"><input type="text" id="min" name="min"></td>
 													<td>Fecha final:</td>
 													<td><input type="text" id="max" name="max"></td>
 												</tr>
