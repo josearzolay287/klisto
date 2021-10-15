@@ -14702,6 +14702,7 @@ section {
 }
 .card-mas-nuevo{
     margin-bottom: 2rem;
+    background-color: #e0e0e0 !important;
 }
 .cont-card h5{
     overflow:hidden;
