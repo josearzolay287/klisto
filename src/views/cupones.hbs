@@ -41,7 +41,15 @@ $('#cupon_especial').on('change',function() {
 
 
 {{/if}}
-
+<style>
+  [type=checkbox], [type=radio]{
+    color: var(--color-verde);
+  }
+  [type=checkbox]:focus, [type=radio]:focus{
+        --tw-ring-color:     color: var(--color-verde);
+        --tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--color-verde);
+  }
+</style>
 <div class="page-container">
   <div class="main-content">
     <div class="section__content section__content--p30">
@@ -129,7 +137,7 @@ $('#cupon_especial').on('change',function() {
           <div class="row" id="crear_configuracion">
 
             <div class="card-blank" style="width: 65%;margin-left: 15px; margin-bottom: 10px;">
-              <div class="overview-wrap">
+              <div class="overview-wrap p-4">
                 <div class="float-right"><a href="/cupones" id="volver_configuracion"> Volver </a></div>
               </div>
               <form action="/crear_cupones" method="post" id="form_miconfig">
@@ -173,13 +181,13 @@ $('#cupon_especial').on('change',function() {
                     </div>
                     <div class="form-group col-md-6 mb-1">
                      <label for="text">Cupón de uso unico
-          <input type="checkbox" class="form-control" id="cupon_especial" name="cupon_especial" autocomplete="off" value="0"/></label>
+          <input type="checkbox" id="cupon_especial" name="cupon_especial" autocomplete="off" value="0"/></label>
                     </div>
                   </div>
                   
                 </div>
               
-    <button type="submit" class="btn btn-primary btn_submit">Guardar Cambios</button>
+    <button type="submit" class="btn btn-primary btn_submit m-4">Guardar Cambios</button>
   </form>
             </div>
 
@@ -189,7 +197,7 @@ $('#cupon_especial').on('change',function() {
         <div class="row" id="editar_configuracion">
 
             <div class="card-blank" style="width: 65%;margin-left: 15px; margin-bottom: 10px;">
-              <div class="overview-wrap">
+              <div class="overview-wrap m-4">
                 <div class="float-right"><a href="/cupones" id="volver_configuracions"> Volver </a></div>
               </div>
               <form action="/editar_cupones" method="post" id="form_mis_configuracions">
@@ -236,7 +244,7 @@ $('#cupon_especial').on('change',function() {
                     </div>
                     <div class="form-group col-md-6 mb-1">
                      <label for="text">Cupón de uso unico
-          <input type="checkbox" class="form-control" id="cupon_especial" name="cupon_especial" autocomplete="off" value="0"/></label>
+          <input type="checkbox"  id="cupon_especial" name="cupon_especial" autocomplete="off" value="0"/></label>
                     </div>
                   </div>
                   <button type="submit" class="btn btn-primary btn_submit">Guardar Cambios</button>
