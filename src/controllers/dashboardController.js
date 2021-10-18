@@ -1667,7 +1667,7 @@ exports.deleteCupon = async (req, res) => {
 exports.usar_cupon = async (req, res) => {
   const { cupon } = req.body;
 console.log(cupon);
-  Modulo_BD.consultarCupon(cupon).then((resultado) => {
+  Modulo_BD.consultarCupon(cupon).then(async (resultado) => {
     let parsed = JSON.parse(resultado)[0];
     console.log(parsed);
 
@@ -1691,26 +1691,53 @@ console.log(cupon);
           var valor = parsed.valor;
           var nombre_cupon = parsed.nombre_cupon;
           var tipo = parsed.tipo;
-          var fecha_uso = Hoy.toISOString();
+          var fecha_uso = Hoy.toISOString()
+          var especial =parsed.especial
+          let usuario_id =0
+          if (typeof res.locals.user.id != "undefined") {
+            usuario_id = res.locals.user.id
+            
+          }
+          if (especial == "SI") {
+            let cupon_s= {'valor':valor,'tipo':tipo, 'especial': parsed.especial}
+            console.log(res.locals.user.id)
+            if (typeof res.locals.user.id == "undefined") {
+              console.log('no ha iniciado sesion para aplicar cupon')
+              return res.send(cupon_s);
+            }
+            const usado = JSON.parse( await Modulo_BD.consultarCuponesUsados(usuario_id, nombre_cupon))
+            console.log(usado)
+            if (usado != null) {
+              let cupun_sU = {'mensaje':'USADO'}
+              console.log('usado')
+              return res.send(cupun_sU);
+            }
+          }
+
+          
+
           Modulo_BD.UpdateUsedCupon(id_cupon, cantidad_act).then(
             (resultado_used) => {
+              console.log(especial)
               let parsed_used = JSON.parse(resultado_used)[0];
               Modulo_BD.CuponUsado(
-                '1',
+                usuario_id,
                 nombre_cupon,
                 valor,
                 fecha_uso,
                 "Servicio",
-                tipo
+                tipo,especial
               ).then((resultadoaqui) => {
                 let cupon_ap= {'valor':valor,'tipo':tipo, 'especial': parsed.especial}
                 return res.send(cupon_ap);
               })
           .catch((err) => {
+            console.log(err)
             return res.status(500).send("Error actualizando" + err);
           })
           })
         .catch((err) => {
+          console.log(err)
           return res.status(500).send("Error actualizando" + err);
         });
         }
@@ -1718,6 +1745,7 @@ console.log(cupon);
     }
       })
       .catch((err) => {
+        console.log(err)
         return res.status(500).send("Error actualizando" + err);
       });
 };

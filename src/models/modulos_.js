@@ -1800,7 +1800,7 @@ login(email, password) {
         });
     });
   },
-  CuponUsado(id_usuario, nombre_cupon, valor, fecha_uso, usado_en, tipo) {
+  CuponUsado(id_usuario, nombre_cupon, valor, fecha_uso, usado_en, tipo, especial) {
     return new Promise((resolve, reject) => {
       Used_cupons.create({
         id_usuario: id_usuario,
@@ -1809,6 +1809,7 @@ login(email, password) {
         fecha_uso: fecha_uso,
         usado_en: usado_en,
         tipo: tipo,
+        especial: especial
       })
         .then((about) => {
           let aboutes = JSON.stringify(about);
@@ -1826,6 +1827,30 @@ login(email, password) {
       Used_cupons.findAll({
         where: {
           id_usuario: id_usuario,
+        },
+        order: [
+          // Will escape title and validate DESC against a list of valid direction parameters
+          ["updatedAt", "DESC"],
+        ],
+      })
+        .then((res) => {
+          let ress = JSON.stringify(res);
+          resolve(ress);
+          ////console.log(id);
+        })
+        .catch((err) => {
+          //console.log(err);
+          reject(err)
+        });
+    });
+  },
+  consultarCuponesUsados(usuario_id, nombre_cupon) {
+    return new Promise((resolve, reject) => {
+      Used_cupons.findOne({
+        where: {
+          id_usuario: usuario_id,
+          nombre_cupon: nombre_cupon,
+          especial:'SI'
         },
         order: [
           // Will escape title and validate DESC against a list of valid direction parameters
