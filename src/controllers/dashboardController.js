@@ -1749,3 +1749,20 @@ console.log(cupon);
         return res.status(500).send("Error actualizando" + err);
       });
 };
+
+exports.save_calificacion = async (req, res) => {
+  const {id_sucursal,estrellas,comentarios, } = req.body;
+  const user = res.locals.user
+  console.log(user.id)
+  console.log(req.body)
+
+  Modulo_BD.guardarCalificacion(user.id,estrellas,comentarios,id_sucursal)
+    .then((result) => {
+      console.log(result);
+      
+    })
+    .catch((err) => {
+      console.log(err)
+      return res.status(500).send("Error actualizando" + err);
+    });
+};

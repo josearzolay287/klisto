@@ -16,6 +16,7 @@ const Publicidad = require("./Publicidad");
 const Clientes = require("./Clientes");
 const Cupones = require("../models/Cupones");
 const Used_cupons = require("./Used_cupons");
+const Calificaciones = require("./Calificaciones");
 
 module.exports = {
   //USUARIOS
@@ -1868,5 +1869,27 @@ login(email, password) {
         });
     });
   },
+
+  //Calificaciones
+  guardarCalificacion(id_usuario,valor, comentario, id_sucursal) {
+        return new Promise((resolve, reject) => {      
+          Calificaciones.create({
+            valor: valor,
+            comentario: comentario,
+            usuarioId: id_usuario,
+            sucursaleId: id_sucursal
+          })
+            .then((resp) => {
+              let cal = JSON.stringify(resp);
+              resolve(cal);
+              //console.log(about);
+            })
+            .catch((err) => {
+              console.log(err);
+              reject(err)
+            });
+          });
+  },
+
 
 };

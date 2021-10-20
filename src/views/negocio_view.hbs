@@ -1,86 +1,101 @@
+<style>
+    body {
+        background-color: #ffffff;
+    }
 
- <style>
-        body{
-            background-color: #ffffff;
+    .photo-negocio-perfil {
+        width: 200px;
+        height: 200px;
+        clip-path: circle(50% at 50% 50%);
+    }
+
+    #perfil-foto-negocio .btn-primary {
+        background-color: #06cc60;
+        border-color: #06cc60;
+        color: white;
+        box-shadow: none;
+    }
+
+    #perfil-foto-negocio .btn-primary:hover {
+        background-color: #06cc60;
+        border-color: #06cc60;
+        color: white;
+        box-shadow: none;
+    }
+
+    #perfil-foto-negocio .btn-primary:focus {
+        background-color: #06cc60;
+        border-color: #06cc60;
+        color: white;
+        box-shadow: none;
+    }
+
+    @media (min-width: 1200px) {
+        #perfil-foto-negocio .container {
+            width: 1400px;
         }
-        .photo-negocio-perfil{
-            width: 200px;
-            height: 200px;
-            clip-path: circle(50% at 50% 50%);
-        }
-        #perfil-foto-negocio .btn-primary{
-            background-color: #06cc60;
-            border-color: #06cc60;
-            color: white;
-            box-shadow: none;
-        }
-        #perfil-foto-negocio .btn-primary:hover{
-            background-color: #06cc60;
-            border-color: #06cc60;
-            color: white;
-            box-shadow: none;
-        }
-        #perfil-foto-negocio .btn-primary:focus{
-            background-color: #06cc60;
-            border-color: #06cc60;
-            color: white;
-            box-shadow: none;
-        }
-        @media (min-width: 1200px){
-            #perfil-foto-negocio .container{
-                width: 1400px;
-            }
-        }
-        .popup{
-            position: absolute;
-            width: 100%;
-            height: 100vh;
-            top: 0;
-            left: 0;
-        }
-        .contenido-popup{
-          /*  position: relative;
+    }
+
+    .popup {
+        position: absolute;
+        width: 100%;
+        height: 100vh;
+        top: 0;
+        left: 0;
+    }
+
+    .contenido-popup {
+        /*  position: relative;
             width: 50%;
             height: 60vh;*/
-            background-color: white;
-            top: 20%;
-            left: 25%;
-            /*border-radius: 20px;*/
-            padding: 2rem;
-          /*  -webkit-box-shadow: 0px 0px 11px 0px rgba(0,0,0,0.72); 
+        background-color: white;
+        top: 20%;
+        left: 25%;
+        /*border-radius: 20px;*/
+        padding: 2rem;
+        /*  -webkit-box-shadow: 0px 0px 11px 0px rgba(0,0,0,0.72); 
             box-shadow: 0px 0px 11px 0px rgba(0,0,0,0.72);*/
-        }
-        .contenido-popup h3{
-            color: #06cc60;
-        }
-        .contenido-popup a{
-            color: #f7c400;
-        }
-        .contenido-popup span{
-            color: white;
-            background-color: #06cc60;
-            border-radius: 5px;
-            padding: .1rem .5rem;
-            margin-right: 5px;
-        }
-    </style>
-    <style>
-      .header .menu-front .navbar-brand img{
+    }
+
+    .contenido-popup h3 {
+        color: #06cc60;
+    }
+
+    .contenido-popup a {
+        color: #f7c400;
+    }
+
+    .contenido-popup span {
+        color: white;
+        background-color: #06cc60;
+        border-radius: 5px;
+        padding: .1rem .5rem;
+        margin-right: 5px;
+    }
+</style>
+<style>
+    .header .menu-front .navbar-brand img {
         height: 70px;
-      }
+    }
+
     .menu-front .bg-light {
         background-color: transparent !important;
     }
-    .navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link{
+
+    .navbar-light .navbar-nav .active>.nav-link,
+    .navbar-light .navbar-nav .nav-link.active,
+    .navbar-light .navbar-nav .nav-link.show,
+    .navbar-light .navbar-nav .show>.nav-link {
         color: #f7c400;
         font-weight: bold;
     }
 
-    .navbar-light .navbar-nav .nav-link{
+    .navbar-light .navbar-nav .nav-link {
         color: black;
         font-weight: bold;
     }
-    .navbar-light .ingresar .nav-link{
+
+    .navbar-light .ingresar .nav-link {
         color: white;
         background-color: #f7c400;
         border-radius: 25px;
@@ -88,17 +103,20 @@
         margin-top: .3rem;
         margin-left: 1rem;
     }
-    .contenido-header{
+
+    .contenido-header {
         width: 100%;
         height: 80%;
         display: flex;
         justify-content: center;
         align-items: center;
     }
-    .video-inicio{
+
+    .video-inicio {
         width: 50%;
     }
-    .img-yt{
+
+    .img-yt {
         width: 100%;
         height: 300px;
         border-radius: 20px;
@@ -106,25 +124,30 @@
         justify-content: center;
         align-items: center;
     }
-    .img-yt i{
+
+    .img-yt i {
         background-color: #f7c400;
         padding: 20px;
         font-size: 30px;
         clip-path: circle(50% at 50% 50%);
         color: white;
     }
-    .titulo-inicio{
+
+    .titulo-inicio {
         width: 50%;
     }
-    .contenido-header h1{
+
+    .contenido-header h1 {
         font-weight: bold;
         color: white;
         text-align: right;
     }
-    .contenido-header .container{
-    width: 1000px;
+
+    .contenido-header .container {
+        width: 1000px;
     }
-    .boton-titulo{
+
+    .boton-titulo {
         background-color: #f7c400;
         padding: .2rem 2rem;
         float: right;
@@ -133,7 +156,8 @@
         color: white;
         font-weight: 600;
     }
-    .boton-titulo:hover{
+
+    .boton-titulo:hover {
         background-color: #f7c400;
         padding: .2rem 2rem;
         float: right;
@@ -141,63 +165,75 @@
         text-decoration: none;
         color: white;
     }
-    .cont-servicios{
+
+    .cont-servicios {
         width: 100%;
         border-radius: 20px;
         padding: 1rem;
         font-size: 13px;
         color: white;
     }
+
     .cont-servicios img {
-    height: 80px;
+        height: 80px;
     }
-    .cont-servicios p{
+
+    .cont-servicios p {
         font-size: 10px;
-        margin:0;
+        margin: 0;
     }
-    .servicios{
+
+    .servicios {
         background-color: #f2f2f2;
     }
-    .cont-categorias{
+
+    .cont-categorias {
         width: 85%;
         padding: 1.5rem;
         background-color: #c1f2d7;
         border-radius: 25px;
         margin: auto;
     }
-    .cont-categorias img{
+
+    .cont-categorias img {
         width: 60%;
         margin-bottom: 2rem;
         margin-top: 2rem;
     }
-    .cont-categorias h3{
-        margin:0;
+
+    .cont-categorias h3 {
+        margin: 0;
         padding: 0;
         font-weight: bold;
         margin-bottom: 1rem;
     }
-    .categorias h1{
+
+    .categorias h1 {
         font-weight: bold;
         font-size: 4rem;
         margin-top: 8rem;
     }
-    .contador{
+
+    .contador {
         background-color: #06cc60;
         margin-top: 10rem;
     }
-    .contador h1{
+
+    .contador h1 {
         text-align: center;
         color: white;
         font-size: 6rem;
         font-weight: bold;
     }
-    .contador p{
+
+    .contador p {
         font-size: 2rem;
         color: white;
         text-align: center;
         font-weight: 500;
     }
-    .footer{
+
+    .footer {
         background-image: url("../assets/img/footer.jpg");
         height: 500px;
         border-radius: 50px 50px 0px 0px;
@@ -206,23 +242,27 @@
         border: 0px solid #000000;
         position: relative;
     }
-    @media (max-width: 1440px){
-        .footer{
+
+    @media (max-width: 1440px) {
+        .footer {
             background-image: url("../assets/img/footer-2.jpg");
             background-size: cover;
         }
     }
-    .img-footer{
-    height: calc(500px - 75px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+
+    .img-footer {
+        height: calc(500px - 75px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
-    .footer img{
+
+    .footer img {
         width: 250px;
         height: auto;
     }
-    .footer .text-footer{
+
+    .footer .text-footer {
         position: absolute;
         bottom: 0;
         background: rgb(0 0 0 / 25%);
@@ -230,49 +270,58 @@
         width: 100%;
         text-align: center;
     }
-    .footer a{
+
+    .footer a {
         text-decoration: none;
         color: white;
         text-align: center;
         font-weight: 700;
         font-size: 1.6rem;
     }
-    .mas-nuevo h1{
+
+    .mas-nuevo h1 {
         font-size: 4rem;
         font-weight: bold;
     }
-    .card-mas-nuevo{
+
+    .card-mas-nuevo {
         width: 100%;
         height: 295px;
         background-color: #f7f7f7;
         border-radius: 20px;
     }
-    .img-card img{
+
+    .img-card img {
         width: 100%;
         height: 175px;
         border-radius: 15px 15px 0px 0px;
         -moz-border-radius: 15px 15px 0px 0px;
         -webkit-border-radius: 15px 15px 0px 0px;
     }
-    .cont-card{
+
+    .cont-card {
         padding: 1rem;
         position: relative;
     }
-    .cont-card h5{
+
+    .cont-card h5 {
         font-weight: bold;
         padding-bottom: .7rem;
     }
-    .cont-card span{
+
+    .cont-card span {
         font-size: 14px;
         font-weight: 600;
     }
-    .precio-buscador span{
+
+    .precio-buscador span {
         color: #06cc60;
         float: left;
         font-size: 18px;
         font-weight: bold;
     }
-    .buscador-vermas a{
+
+    .buscador-vermas a {
         text-decoration: none;
         background: #f7c400;
         float: right;
@@ -288,12 +337,12 @@
         gap: 3rem;
     }
 
-    .grid-services > *:nth-child(2) .cont-servicios {
+    .grid-services>*:nth-child(2) .cont-servicios {
         position: relative;
     }
 
-    .grid-services > *:nth-child(2) .cont-servicios::before,
-    .grid-services > *:nth-child(2) .cont-servicios::after {
+    .grid-services>*:nth-child(2) .cont-servicios::before,
+    .grid-services>*:nth-child(2) .cont-servicios::after {
         content: "";
         display: block;
         width: 100px;
@@ -302,306 +351,582 @@
         background-size: 100px;
         position: absolute;
     }
-    .grid-services > *:nth-child(2) .cont-servicios::before {
+
+    .grid-services>*:nth-child(2) .cont-servicios::before {
         transform: rotate(90deg);
         bottom: 100%;
         left: -2rem;
         margin-bottom: 1rem;
     }
-    .grid-services > *:nth-child(2) .cont-servicios::after {
+
+    .grid-services>*:nth-child(2) .cont-servicios::after {
         top: 0;
         left: calc(100% + 1rem);
     }
-    .contador-up{
+
+    .contador-up {
         margin-top: -3rem;
     }
-    .contador-up path{
+
+    .contador-up path {
         fill: white;
     }
+
     .categorias::before {
-    background-image: url("../assets/img/k.png");
-    content: "";
-    width: 50px;
-    height: 62px;
-    position: absolute;
-    background-size: cover;
-    left: 10%;
-    top: 10%;
-    transform: rotate(-10deg);
-    opacity: .3;
+        background-image: url("../assets/img/k.png");
+        content: "";
+        width: 50px;
+        height: 62px;
+        position: absolute;
+        background-size: cover;
+        left: 10%;
+        top: 10%;
+        transform: rotate(-10deg);
+        opacity: .3;
     }
+
     .categorias::after {
-    background-image: url("../assets/img/k.png");
-    content: "";
-    width: 50px;
-    height: 62px;
-    position: absolute;
-    background-size: cover;
-    right: 10%;
-    bottom: -3%;
-    transform: rotate(-10deg);
-    opacity: .3;
+        background-image: url("../assets/img/k.png");
+        content: "";
+        width: 50px;
+        height: 62px;
+        position: absolute;
+        background-size: cover;
+        right: 10%;
+        bottom: -3%;
+        transform: rotate(-10deg);
+        opacity: .3;
     }
-    .categorias{
+
+    .categorias {
         position: relative;
     }
-    .cont-servicios h3{
+
+    .cont-servicios h3 {
         color: white;
-    font-weight: bold;
-    margin: 0;
+        font-weight: bold;
+        margin: 0;
     }
-    .nav-home{
+
+    .nav-home {
         font-size: 18px;
     }
-    .nav-home li a{
-    border-bottom: 2px solid #d7d7d7;
-    text-transform: uppercase;
-    color: #d7d7d7;
-    font-weight: 600;
+
+    .nav-home li a {
+        border-bottom: 2px solid #d7d7d7;
+        text-transform: uppercase;
+        color: #d7d7d7;
+        font-weight: 600;
     }
-        .nav-home li a:hover{
-border-bottom: 2px solid #06cc60;
-    text-transform: uppercase;
-            color: #06cc60;
+
+    .nav-home li a:hover {
+        border-bottom: 2px solid #06cc60;
+        text-transform: uppercase;
+        color: #06cc60;
     }
-    .nav-home li >.active{
+
+    .nav-home li>.active {
         color: #06cc60;
         border-bottom: 2px solid #06cc60;
     }
-.servicios::before {
-    content: '';
-    background-image: url(../assets/img/header-curve.png);
-    background-size: cover;
-    width: 100%;
-    max-width: 1920px;
-    height: 150px;
-    position: absolute;
-    top: -149px;
-    left: 0;
-}
-.contador:before{
-    content: '';
-    background-image: url("../assets/img/counte-up.png");
-        background-size: cover;
-    width: 100%;
-    max-width: 1920px;
-    height: 150px;
-    position: absolute;
-    top: -149px;
-    left: 0;
-}
-.contador::after{
+
+    .servicios::before {
         content: '';
-    background-image: url("../assets/img/counte-bottom.png");
+        background-image: url(../assets/img/header-curve.png);
         background-size: cover;
-    width: 100%;
-    max-width: 1920px;
-    height: 150px;
-    position: absolute;
-    bottom: -149px;
-    left: 0;
-}
-  </style>
-  <div>{{#if messages}}
+        width: 100%;
+        max-width: 1920px;
+        height: 150px;
+        position: absolute;
+        top: -149px;
+        left: 0;
+    }
+
+    .contador:before {
+        content: '';
+        background-image: url("../assets/img/counte-up.png");
+        background-size: cover;
+        width: 100%;
+        max-width: 1920px;
+        height: 150px;
+        position: absolute;
+        top: -149px;
+        left: 0;
+    }
+
+    .contador::after {
+        content: '';
+        background-image: url("../assets/img/counte-bottom.png");
+        background-size: cover;
+        width: 100%;
+        max-width: 1920px;
+        height: 150px;
+        position: absolute;
+        bottom: -149px;
+        left: 0;
+    }
+</style>
+<link rel="stylesheet" type="text/css" href="/assets/css/font-awesome.css">
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+<script src="/assets/js/jquery.rating.pack.js"></script>
+<style>
+    form {
+        width: 250px;
+        margin: 0 auto;
+        padding: 10px;
+        border: 1px solid #d9d9d9;
+    }
+
+    form p,
+    form input[type="submit"] {
+        text-align: center;
+        font-size: 20px;
+    }
+
+
+    input[type="radio"] {
+        display: none;
+        /*position: absolute;top: -1000em;*/
+    }
+
+    label {
+        color: grey;
+        font-size: 2rem;
+    }
+
+    .clasificacion {
+        direction: rtl;
+        unicode-bidi: bidi-override;
+    }
+
+    label:hover,
+    label:hover~label {
+        color: orange;
+    }
+
+    input[type="radio"]:checked~label {
+        color: orange;
+    }
+</style>
+<div>{{#if messages}}
     {{#showAlerts messages}}
     {{/showAlerts}}
     {{/if}}</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('button#submit_calificacion').on('click', function () {
+          /*  $.ajax({
+                type: "POST",
+                url: "process.php",
+                data: { rate: $('input[name="rate"]').val() },
+                success: function (response) {
+                    $('.alert-success').fadeIn(2000);
+                    $('#rate').text(response);
+                }
+            });*/
+                //verificar inicio de sesion
+  
+         //   
+        });
+          $('#correo_tercero').on('change', (e) => {
+      ///let fecha = $('#fecha_ag').val()
+      let correo = e.target.value
+      let pass = $('#pass').val()
+      console.log(correo)
+      console.log(pass)
+      const data = new FormData();
+      data.append("correo", correo);
+      data.append('password', pass);
+      $.ajax({
+        url: '/verificar_usuario',
+        type: 'POST',
+        data: data,
+        cache: false,
+        contentType: false,
+        processData: false,
+        /*xhr: function () {        
+            var xhr = $.ajaxSettings.xhr();
+            xhr.upload.onprogress = function (event) {
+                var perc = Math.round((event.loaded / event.total) * 100);
+               // $("#nombreArchivoCalendario1").text(inputFile.name);
+               
+                $("#progressBar1").text(perc + '%');
+                $("#progressBar1").css('width', perc + '%');
+            };
+            return xhr;
+        },
+        beforeSend: function (xhr) {
+          displayLoading()
+            $("#progressBar1").text('0%');
+            $("#progressBar1").css('width', '0%');
+        },*/
+        success: function (data, textStatus, jqXHR) {
+          console.log(data)
+          if (data == 0) {
+            $('.password_r').removeAttr('style')
+            $('#password_c').removeAttr('style')
+            console.log(data)
+            $('#continuar_sesion').removeAttr('disabled')
 
-  <section id="perfil-foto-negocio" class="pt-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3">
-                    <img src="/assets/img_up/{{principal.0.usuario.photo}}" alt="" class="photo-negocio-perfil">
-                </div>
-                <div class="col-md-9">
-                    <h2>
-                        <strong>{{principal.0.nombre}}</strong>
-                    </h2>
-                    <p>
-                        <strong>Atención:</strong> Lunes a Sábado (8:00 am - 9:00 pm)
-                        <br>
-                        {{principal.0.usuario.email}}
-                        <br>
-                        +51 {{principal.0.usuario.telefono}}
-                    </p>
-                    <button class="btn btn-primary" data-toggle="modal" data-target="#shareProject">
-                        Ver locales y trabajadores
-                    </button>
-                </div>
+          }
+          $('.password_r').removeAttr('style')
+          $('#continuar_sesion').removeAttr('disabled')
+        },
+        error: function (jqXHR, textStatus) {
+          console.log('error:' + jqXHR)
+        }
+      });
+    })
+
+  
+          $('#continuar_sesion').on('click', (e) => {
+      ///let fecha = $('#fecha_ag').val()
+      let correo = $('#correo_tercero').val()
+      let pass = $('#pass').val()
+      let confirm = $('#confirmpass').val()
+      let name = $('#name_session').val()
+      console.log(correo)
+      console.log(pass)
+      if (pass == "") {
+        Swal.fire("Campo contraseña vacio, verifique porfavor")
+        return
+      }
+      if ($('#password_c').is(':visible')) {
+        if (pass != confirm) {
+          Swal.fire('Password y confirmación no son iguales')
+          return
+        }
+      }
+
+      const data = new FormData();
+      data.append("correo", correo);
+      data.append('password', pass);
+      data.append('name', name);
+      $.ajax({
+        url: '/inicia_sesion_modal',
+        type: 'POST',
+        data: data,
+        cache: false,
+        contentType: false,
+        processData: false,
+        /*xhr: function () {        
+            var xhr = $.ajaxSettings.xhr();
+            xhr.upload.onprogress = function (event) {
+                var perc = Math.round((event.loaded / event.total) * 100);
+               // $("#nombreArchivoCalendario1").text(inputFile.name);
+               
+                $("#progressBar1").text(perc + '%');
+                $("#progressBar1").css('width', perc + '%');
+            };
+            return xhr;
+        },
+        beforeSend: function (xhr) {
+          displayLoading()
+            $("#progressBar1").text('0%');
+            $("#progressBar1").css('width', '0%');
+        },*/
+        success: function (data, textStatus, jqXHR) {
+          console.log(data)
+          if (data == "Contraseña incorrecta") {
+            console.log('error')
+            Swal.fire(data)
+            return 'Error'
+          }
+          if (data != null) {
+            console.log(data)
+            $('#calificacion_form').submit()
+          }
+        },
+        error: function (jqXHR, textStatus) {
+          console.log('error:' + jqXHR)
+        }
+      });
+    })
+
+
+    });
+</script>
+<section id="perfil-foto-negocio" class="pt-5">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-3">
+                <img src="/assets/img_up/{{principal.0.usuario.photo}}" alt="" class="photo-negocio-perfil">
             </div>
-            <div class="row pt-5">
-                <div class="col-12">
-                    <h2 class="mb-5">
-                        <strong>Servicios</strong>
-                    </h2>
-                </div>
-                      {{#each parse_publi as |publicacion i |}}
-                <div class="col-md-3">
-                    <div class="card-mas-nuevo">
-                        <div class="img-card">
-                            <img src="../assets/img_up/{{#fotoPrincipalPublicacion publicacion.fotos}}{{/fotoPrincipalPublicacion}}" alt="">
-                        </div>
-                        <div class="cont-card">
-                            <span>{{categoria}}</span>
-                            <h5>{{#Titulo titulo}}{{/Titulo}}</h5>
-                            <div class="precio-buscador">
-                                <span>
-                                    S/ {{precio}}
-                                </span>
-                                <div class="buscador-vermas">
-                                    <a href="/publicacion/{{id}}">
-                                        Ver más
-                                    </a>
-                                </div>
+            <div class="col-md-9">
+                <h2>
+                    <strong>{{principal.0.nombre}}</strong>
+                </h2>
+                <p>
+                    <strong>Atención:</strong> Lunes a Sábado (8:00 am - 9:00 pm)
+                    <br>
+                    {{principal.0.usuario.email}}
+                    <br>
+                    +51 {{principal.0.usuario.telefono}}
+                </p>
+                <button class="btn btn-primary" data-toggle="modal" data-target="#shareProject">
+                    Ver locales y trabajadores
+                </button>
+                <button class="btn btn-primary" data-toggle="modal" data-target="#calificar_modal">
+                    Calificar
+                </button>
+            </div>
+        </div>
+        <div class="row pt-5">
+            <div class="col-12">
+                <h2 class="mb-5">
+                    <strong>Servicios</strong>
+                </h2>
+            </div>
+            {{#each parse_publi as |publicacion i |}}
+            <div class="col-md-3">
+                <div class="card-mas-nuevo">
+                    <div class="img-card">
+                        <img src="../assets/img_up/{{#fotoPrincipalPublicacion publicacion.fotos}}{{/fotoPrincipalPublicacion}}"
+                            alt="">
+                    </div>
+                    <div class="cont-card">
+                        <span>{{categoria}}</span>
+                        <h5>{{#Titulo titulo}}{{/Titulo}}</h5>
+                        <div class="precio-buscador">
+                            <span>
+                                S/ {{precio}}
+                            </span>
+                            <div class="buscador-vermas">
+                                <a href="/publicacion/{{id}}">
+                                    Ver más
+                                </a>
                             </div>
+
                         </div>
                     </div>
                 </div>
-          {{/each}}
-               
             </div>
+            {{/each}}
+
         </div>
-    </section>
+    </div>
+</section>
 
 <div class="modal fade popup" id="shareProject" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel"><h3>
-                <strong>
-                    LOCALES
-                </strong>
-            </h3></h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="contenido-popup">
-       {{#each sucursales as |sucursal i|}}
-            <p>
-                <b>
-                    Local de {{nombre}}:
-                </b>
-                <br>
-                {{direccion}}. {{distrito}} <!--<a href="">(Ver ubicación en mapa)</a>-->
-                <br>
-                <b>
-                    Trabajadores del local:
-                </b>
-                <br>
-                {{#each encargados as |trabajadores j|}}
-                <span>
-                    {{nombre}} {{apellido}}
-                </span>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                    <h3>
+                        <strong>
+                            LOCALES
+                        </strong>
+                    </h3>
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="contenido-popup">
+                {{#each sucursales as |sucursal i|}}
+                <p>
+                    <b>
+                        Local de {{nombre}}:
+                    </b>
+                    <br>
+                    {{direccion}}. {{distrito}}
+                    <!--<a href="">(Ver ubicación en mapa)</a>-->
+                    <br>
+                    <b>
+                        Trabajadores del local:
+                    </b>
+                    <br>
+                    {{#each encargados as |trabajadores j|}}
+                    <span>
+                        {{nombre}} {{apellido}}
+                    </span>
+                    {{/each}}
+                </p>
                 {{/each}}
-            </p>
-            {{/each}}
-      </div>
-    </div>
-  </div>
-</div>
-
-    <div class="popup modal" id="">
-        <div class="contenido-popup">
-            <h3>
-                <strong>
-                    LOCALES
-                </strong>
-            </h3>
-            {{#each sucursales as |sucursal i|}}
-            <p>
-                <b>
-                    Local de {{distrito}}:
-                </b>
-                <br>
-                {{direccion}}. {{distrito}} <!--<a href="">(Ver ubicación en mapa)</a>-->
-                <br>
-                <b>
-                    Trabajadores del local:
-                </b>
-                <br>
-                {{#each encargados as |trabajadores j|}}
-                <span>
-                    {{nombre}} {{apellido}}
-                </span>
-                {{/each}}
-            </p>
-            {{/each}}
-            
+            </div>
         </div>
     </div>
+</div>
+<div class="modal fade popup" id="calificar_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                    <h3>
+                        <strong>
+                            LOCALES
+                        </strong>
+                    </h3>
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="contenido-popup">
+                <div class="alert alert-success" style="display: none;">Rating recibido: <span id="rate"></span></div>
+                <form action="/calificar_suc" method="post" id="calificacion_form">
+                    <input type="text" name="id_sucursal" id="" value="{{principal.0.id}}">
+                    <p class="clasificacion">
+                        <input id="radio1" type="radio" name="estrellas" value="5"><label for="radio1">★</label>
+                        <input id="radio2" type="radio" name="estrellas" value="4"><label for="radio2">★</label>
+                        <input id="radio3" type="radio" name="estrellas" value="3"><label for="radio3">★</label>
+                        <input id="radio4" type="radio" name="estrellas" value="2"><label for="radio4">★</label>
+                        <input id="radio5" type="radio" name="estrellas" value="1"><label for="radio5">★</label>
+                    </p>
+                    <p class="clasificacion">
+                        <label for="">Agregue un comentario si lo desea</label>
+                        <textarea id="comentario" name="comentarios"> </textarea>
+                    </p>
+
+                    <p><button type="button" value="Enviar" data-toggle="modal" data-target="#login_modal">Enviar</button></p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+  <div class="modal fade" id="login_modal" tabindex="-1" aria-labelledby="login_modalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="login_modalLabel">Sesión</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+
+            <div class="form-group">
+              <label for="">Correo:*</label>
+              <input type="text" class="form-control" id="correo_tercero" name="correo_tercero">
+            </div>
+            <div class="form-group password_r" id="password_r" style="display:none;">
+              <label for="">Password:*</label>
+              <input type="password" class="form-control" id="pass" name="password">
+            </div>
+            <div id="password_c" style="display:none;">
+              <div class="form-group password_r">
+                <label for="">Confirmar Password:*</label>
+                <input type="password" class="form-control" id="confirmpass" name="confirm_password">
+                <span class="no_iguales" style="display: none;">Contraseñas no coinciden</span>
+              </div>
+              <div class="form-group password_r">
+                <label for="">Nombre:</label>
+                <input type="text" class="form-control" id="name_session" name="nombre">
+              </div>
+            </div>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-primary" id="continuar_sesion" disabled>Continuar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+<div class="popup modal" id="">
+    <div class="contenido-popup">
+        <h3>
+            <strong>
+                LOCALES
+            </strong>
+        </h3>
+        {{#each sucursales as |sucursal i|}}
+        <p>
+            <b>
+                Local de {{distrito}}:
+            </b>
+            <br>
+            {{direccion}}. {{distrito}}
+            <!--<a href="">(Ver ubicación en mapa)</a>-->
+            <br>
+            <b>
+                Trabajadores del local:
+            </b>
+            <br>
+            {{#each encargados as |trabajadores j|}}
+            <span>
+                {{nombre}} {{apellido}}
+            </span>
+            {{/each}}
+        </p>
+        {{/each}}
+
+    </div>
+</div>
 
 <script>
-  var currentTab = 0; // Current tab is set to be the first tab (0)
-  showTab(currentTab); // Display the current tab
-  
-  function showTab(n) {
-    // This function will display the specified tab of the form...
-    var x = document.getElementsByClassName("tab");
-    x[n].style.display = "block";
-    //... and fix the Previous/Next buttons:
-    if (n == 0) {
-      document.getElementById("prevBtn").style.display = "none";
-    } else {
-      document.getElementById("prevBtn").style.display = "inline";
+    var currentTab = 0; // Current tab is set to be the first tab (0)
+    showTab(currentTab); // Display the current tab
+
+    function showTab(n) {
+        // This function will display the specified tab of the form...
+        var x = document.getElementsByClassName("tab");
+        x[n].style.display = "block";
+        //... and fix the Previous/Next buttons:
+        if (n == 0) {
+            document.getElementById("prevBtn").style.display = "none";
+        } else {
+            document.getElementById("prevBtn").style.display = "inline";
+        }
+        if (n == (x.length - 1)) {
+            document.getElementById("nextBtn").innerHTML = "Siguiente";
+        } else {
+            document.getElementById("nextBtn").innerHTML = "Siguiente";
+        }
+        //... and run a function that will display the correct step indicator:
+        fixStepIndicator(n)
     }
-    if (n == (x.length - 1)) {
-      document.getElementById("nextBtn").innerHTML = "Siguiente";
-    } else {
-      document.getElementById("nextBtn").innerHTML = "Siguiente";
+
+    function nextPrev(n) {
+        // This function will figure out which tab to display
+        var x = document.getElementsByClassName("tab");
+        // Exit the function if any field in the current tab is invalid:
+        if (n == 1 && !validateForm()) return false;
+        // Hide the current tab:
+        x[currentTab].style.display = "none";
+        // Increase or decrease the current tab by 1:
+        currentTab = currentTab + n;
+        // if you have reached the end of the form...
+        if (currentTab >= x.length) {
+            // ... the form gets submitted:
+            document.getElementById("regForm").submit();
+            return false;
+        }
+        // Otherwise, display the correct tab:
+        showTab(currentTab);
     }
-    //... and run a function that will display the correct step indicator:
-    fixStepIndicator(n)
-  }
-  
-  function nextPrev(n) {
-    // This function will figure out which tab to display
-    var x = document.getElementsByClassName("tab");
-    // Exit the function if any field in the current tab is invalid:
-    if (n == 1 && !validateForm()) return false;
-    // Hide the current tab:
-    x[currentTab].style.display = "none";
-    // Increase or decrease the current tab by 1:
-    currentTab = currentTab + n;
-    // if you have reached the end of the form...
-    if (currentTab >= x.length) {
-      // ... the form gets submitted:
-      document.getElementById("regForm").submit();
-      return false;
+
+    function validateForm() {
+        // This function deals with validation of the form fields
+        var x, y, i, valid = true;
+        x = document.getElementsByClassName("tab");
+        y = x[currentTab].getElementsByTagName("input");
+        // A loop that checks every input field in the current tab:
+        for (i = 0; i < y.length; i++) {
+            // If a field is empty...
+            if (y[i].value == "") {
+                // add an "invalid" class to the field:
+                y[i].className += " invalid";
+                // and set the current valid status to false
+                valid = false;
+            }
+        }
+        // If the valid status is true, mark the step as finished and valid:
+        if (valid) {
+            document.getElementsByClassName("step")[currentTab].className += " finish";
+        }
+        return valid; // return the valid status
     }
-    // Otherwise, display the correct tab:
-    showTab(currentTab);
-  }
-  
-  function validateForm() {
-    // This function deals with validation of the form fields
-    var x, y, i, valid = true;
-    x = document.getElementsByClassName("tab");
-    y = x[currentTab].getElementsByTagName("input");
-    // A loop that checks every input field in the current tab:
-    for (i = 0; i < y.length; i++) {
-      // If a field is empty...
-      if (y[i].value == "") {
-        // add an "invalid" class to the field:
-        y[i].className += " invalid";
-        // and set the current valid status to false
-        valid = false;
-      }
+
+    function fixStepIndicator(n) {
+        // This function removes the "active" class of all steps...
+        var i, x = document.getElementsByClassName("step");
+        for (i = 0; i < x.length; i++) {
+            x[i].className = x[i].className.replace(" active", "");
+        }
+        //... and adds the "active" class on the current step:
+        x[n].className += " active";
     }
-    // If the valid status is true, mark the step as finished and valid:
-    if (valid) {
-      document.getElementsByClassName("step")[currentTab].className += " finish";
-    }
-    return valid; // return the valid status
-  }
-  
-  function fixStepIndicator(n) {
-    // This function removes the "active" class of all steps...
-    var i, x = document.getElementsByClassName("step");
-    for (i = 0; i < x.length; i++) {
-      x[i].className = x[i].className.replace(" active", "");
-    }
-    //... and adds the "active" class on the current step:
-    x[n].className += " active";
-  }
 </script>

@@ -163,6 +163,8 @@ router.get('/ver_publicacion/:id', authController.authenticatedUser, dashboardCo
 router.get('/publicaciones', landingController.publi_landing);
 router.get('/publicacion/:id', landingController.ver_publicacion);
 
+//Calificaciones
+router.post('/calificar_suc', dashboardController.save_calificacion)
 //AGENDAR
 router.post('/guardar_agenda', dashboardController.guardar_agenda);
 router.post('/consulta_bd', AgendaCtrl.revisar_fecha_agenda);

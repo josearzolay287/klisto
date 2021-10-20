@@ -3,7 +3,7 @@ const db = require('../config/db');
 const bcrypt = require('bcrypt-nodejs');
 const Usuarios = require('./Usuarios');
 const Encargados = require('./Encargados');
-
+const Calificaciones = require ('./Calificaciones')
 const Sucursales = db.define('sucursales', {
 	id: {
 		type: DataTypes.INTEGER,
@@ -71,6 +71,7 @@ const Sucursales = db.define('sucursales', {
 // El trabajador pertenece a una oficina
 Sucursales.Usuarios= Sucursales.belongsTo(Usuarios);
 Sucursales.Encargados = Sucursales.hasMany(Encargados);
+Sucursales.Calificaciones = Sucursales.hasMany(Calificaciones)
 // Métodos personalizados
 module.exports = Sucursales;
 
