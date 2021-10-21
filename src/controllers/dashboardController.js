@@ -658,7 +658,6 @@ if (typeof domicilio == "undefined") {
  }else{
   Modulo_BD.WalletbyIduser(user.id).then((resultado) => {
     let parsed_wallet = JSON.parse(resultado)[0];
-    let cont = parsed_wallet.length;
     Modulo_BD.VentasbyIduser(user.id).then(async (resultado_ventas) => { 
     let parsed_ventas = JSON.parse(resultado_ventas);
     let Hoy = moment(); //Fecha actual del sistema
@@ -1497,13 +1496,20 @@ res.redirect('/pasarela_publicacion/comprar')
         
         
       }
-      console.log(sucursales)
-      console.log(sucursales[0].usuarioId)
+      
       Modulo_BD.publicaciones(sucursales[0].usuarioId).then((respuesta) =>{
         let parse_publi = JSON.parse(respuesta)
+       let promedio = 0 
+   Modulo_BD.obtenerCalificacion(principal[0].id).then((cal)=>{
+    let parse_cal = JSON.parse(cal)
+    console.log(parse_cal)
     
-         console.log(parse_publi)
-        //console.log(req);
+    for (let i = 0; i < parse_cal.length; i++) {
+      promedio += parseInt(parse_cal[i].valor)/5
+      
+    }
+    promedio = Math.round(promedio)
+
        res.render("negocio_view", {
         landingPage:true,
         publicaciones_landing:true,
@@ -1511,7 +1517,9 @@ res.redirect('/pasarela_publicacion/comprar')
       sucursales, 
       principal,
       parse_publi,
+      promedio,
       layout: "page-form",
+      id_negocio
       //user,
     });
     }).catch((err) => {
@@ -1520,9 +1528,27 @@ res.redirect('/pasarela_publicacion/comprar')
   }).catch((err) => {
     console.log(err);
   });
+  }).catch((err) => {
+    console.log(err);
+  });
  
  };
+ exports.save_calificacion = async (req, res) => {
+  const {id_sucursal,estrellas,comentarios,nombre_negocio } = req.body;
+  const user = res.locals.user
+  console.log(user.id)
+  console.log(req.body)
 
+  Modulo_BD.guardarCalificacion(user.id,estrellas,comentarios,id_sucursal)
+    .then((result) => {
+      console.log(result);
+     res.redirect(`/negocios/${nombre_negocio}`)
+    })
+    .catch((err) => {
+      console.log(err)
+      return res.status(500).send("Error actualizando" + err);
+    });
+};
  // CUPONES
 exports.getCupones = (req, res) => {
   //////console.log(req.params.gates);
@@ -1750,19 +1776,3 @@ console.log(cupon);
       });
 };
 
-exports.save_calificacion = async (req, res) => {
-  const {id_sucursal,estrellas,comentarios, } = req.body;
-  const user = res.locals.user
-  console.log(user.id)
-  console.log(req.body)
-
-  Modulo_BD.guardarCalificacion(user.id,estrellas,comentarios,id_sucursal)
-    .then((result) => {
-      console.log(result);
-      
-    })
-    .catch((err) => {
-      console.log(err)
-      return res.status(500).send("Error actualizando" + err);
-    });
-};

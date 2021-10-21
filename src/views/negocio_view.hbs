@@ -643,14 +643,39 @@
         }
       });
     })
+switch ($('#calificacion_result').val()){
+    case '1':
+$('#radio51').attr('checked', true)
+    break;
+    case '2':
+$('#radio41').attr('checked', true)
+    break;
+    case '3':
+$('#radio31').attr('checked', true)
+    break;
+    case '4':
+$('#radio21').attr('checked', true)
+    break;
+    case '5':
+    $('#radio11').attr('checked', true)
+    break;
 
+}
 
     });
 </script>
 <section id="perfil-foto-negocio" class="pt-5">
+<input id="calificacion_result" value="{{promedio}}" class="d-none">
     <div class="container">
-
+ <p class="clasificacion">
+                        <input id="radio11" type="radio" ><label  class="label">★</label>
+                        <input id="radio21" type="radio" ><label  class="label">★</label>
+                        <input id="radio31" type="radio" ><label  class="label">★</label>
+                        <input id="radio41" type="radio" ><label class="label">★</label>
+                        <input id="radio51" type="radio" ><label  class="label">★</label>
+                    </p>
         <div class="row">
+                    
             <div class="col-md-3">
                 <img src="/assets/img_up/{{principal.0.usuario.photo}}" alt="" class="photo-negocio-perfil">
             </div>
@@ -767,7 +792,8 @@
             <div class="contenido-popup">
                 <div class="alert alert-success" style="display: none;">Rating recibido: <span id="rate"></span></div>
                 <form action="/calificar_suc" method="post" id="calificacion_form">
-                    <input type="text" name="id_sucursal" id="" value="{{principal.0.id}}">
+                    <input type="text" name="id_sucursal" id="" value="{{principal.0.id}}" class="d-none">
+                    <input type="text" name="nombre_negocio" id="" value="{{id_negocio}}" class="d-none">
                     <p class="clasificacion">
                         <input id="radio1" type="radio" name="estrellas" value="5"><label for="radio1">★</label>
                         <input id="radio2" type="radio" name="estrellas" value="4"><label for="radio2">★</label>

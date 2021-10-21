@@ -1890,6 +1890,24 @@ login(email, password) {
             });
           });
   },
+  obtenerCalificacion(id_sucursal) {
+    return new Promise((resolve, reject) => {      
+      Calificaciones.findAll({where:{
+        sucursaleId: id_sucursal
+      }
+        
+      })
+        .then((resp) => {
+          let cal = JSON.stringify(resp);
+          resolve(cal);
+          //console.log(about);
+        })
+        .catch((err) => {
+          console.log(err);
+          reject(err)
+        });
+      });
+},
 
 
 };
