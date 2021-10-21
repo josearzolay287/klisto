@@ -71,7 +71,7 @@ module.exports = {
 			}
 			for (let j = 0; j < aux2.length; j++) {
 				
-				out	+=`<option value="${aux2[j]}" data-id="${sucursales[i].id}" class="distrito${sucursales.id}" >${aux2[j]}</option>`
+				out	+=`<option value="${aux2[j]}" data-id="${sucursales.id}" class="distrito${sucursales.id}" >${aux2[j]}</option>`
 			}
 			out	+=`</optgroup>`
 			out +=`</select>`
