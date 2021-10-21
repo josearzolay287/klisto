@@ -471,19 +471,6 @@
     crossorigin="anonymous"></script>
 <script src="/assets/js/jquery.rating.pack.js"></script>
 <style>
-    form {
-        width: 250px;
-        margin: 0 auto;
-        padding: 10px;
-        border: 1px solid #d9d9d9;
-    }
-
-    form p,
-    form input[type="submit"] {
-        text-align: center;
-        font-size: 20px;
-    }
-
 
     input[type="radio"] {
         display: none;
@@ -508,6 +495,12 @@
     input[type="radio"]:checked~label {
         color: orange;
     }
+    #calificar_modal .btn-primary {
+    background-color: #06cc60;
+    border-color: #06cc60;
+    color: white;
+    box-shadow: none;
+}
 </style>
 <div>{{#if messages}}
     {{#showAlerts messages}}
@@ -662,17 +655,21 @@ $('#radio21').attr('checked', true)
 
 }
 
+$('.modal_clas').on('click',()=>{
+    $('#calificar_modal').modal('show')
+})
+
     });
 </script>
 <section id="perfil-foto-negocio" class="pt-5">
 <input id="calificacion_result" value="{{promedio}}" class="d-none">
     <div class="container">
  <p class="clasificacion">
-                        <input id="radio11" type="radio" ><label  class="label">★</label>
-                        <input id="radio21" type="radio" ><label  class="label">★</label>
-                        <input id="radio31" type="radio" ><label  class="label">★</label>
-                        <input id="radio41" type="radio" ><label class="label">★</label>
-                        <input id="radio51" type="radio" ><label  class="label">★</label>
+                        <input id="radio11" type="radio" class="modal_clas"><label  class="label modal_clas">★</label>
+                        <input id="radio21" type="radio" class="modal_clas"><label  class="label modal_clas">★</label>
+                        <input id="radio31" type="radio" class="modal_clas"><label  class="label modal_clas">★</label>
+                        <input id="radio41" type="radio" class="modal_clas"><label class="label modal_clas">★</label>
+                        <input id="radio51" type="radio" class="modal_clas"><label  class="label modal_clas">★</label>
                     </p>
         <div class="row">
                     
@@ -693,9 +690,9 @@ $('#radio21').attr('checked', true)
                 <button class="btn btn-primary" data-toggle="modal" data-target="#shareProject">
                     Ver locales y trabajadores
                 </button>
-                <button class="btn btn-primary" data-toggle="modal" data-target="#calificar_modal">
+                <!--<button class="btn btn-primary" data-toggle="modal" data-target="#calificar_modal">
                     Calificar
-                </button>
+                </button>-->
             </div>
         </div>
         <div class="row pt-5">
@@ -781,7 +778,7 @@ $('#radio21').attr('checked', true)
                 <h5 class="modal-title" id="exampleModalLabel">
                     <h3>
                         <strong>
-                            LOCALES
+                            CALIFICAR NEGOCIO
                         </strong>
                     </h3>
                 </h5>
@@ -801,12 +798,11 @@ $('#radio21').attr('checked', true)
                         <input id="radio4" type="radio" name="estrellas" value="2"><label for="radio4">★</label>
                         <input id="radio5" type="radio" name="estrellas" value="1"><label for="radio5">★</label>
                     </p>
-                    <p class="clasificacion">
+                    <p class="">
                         <label for="">Agregue un comentario si lo desea</label>
                         <textarea id="comentario" name="comentarios"> </textarea>
                     </p>
-
-                    <p><button type="button" value="Enviar" data-toggle="modal" data-target="#login_modal">Enviar</button></p>
+<button type="button" class="btn btn-primary" value="Enviar" data-toggle="modal" data-target="#login_modal">Enviar</button>
                 </form>
             </div>
         </div>
