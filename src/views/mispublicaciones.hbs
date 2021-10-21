@@ -2,7 +2,7 @@
   crossorigin="anonymous"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+<link href="https://cdn.jsdelivr.net/css-toggle-switch/latest/toggle-switch.css" rel="stylesheet" />
  <style>
    thead .dow{
      background: #f7c400;
@@ -245,6 +245,401 @@
 }
 
     </style>
+    <style>
+  thead .dow {
+    background: #f7c400;
+  }
+
+  .bootstrap-datetimepicker-widget table th {
+    color: white;
+  }
+
+  .bootstrap-datetimepicker-widget table .prev,
+  .bootstrap-datetimepicker-widget table .picker-switch,
+  .bootstrap-datetimepicker-widget table .next {
+    color: black;
+  }
+
+  .bootstrap-datetimepicker-widget table td.day,
+  .bootstrap-datetimepicker-widget table th {
+    padding: 15px;
+  }
+
+  .bootstrap-datetimepicker-widget table th {
+    border-radius: 0px;
+  }
+
+  #datetimepicker12 {
+    background: #eaeaea;
+    border-radius: 10px;
+  }
+
+  .table td,
+  .table th {
+    border-top: none;
+  }
+
+  .table thead th {
+    border-bottom: none;
+  }
+
+  #content-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .column {
+    width: 100%;
+    max-width: 600px;
+    padding: 10px; 
+}
+
+  #featured {
+    width: 500px;
+    height: 400px;
+    cursor: pointer;
+    border-radius: 15px;
+  }
+
+  .thumbnail {
+object-fit: cover;
+    width: 150px;
+    height: 70px;
+    cursor: pointer;
+    opacity: 0.5;
+    margin-left: 9px;
+    margin-top: 10px;
+    margin-right: 9px;
+    border-radius: 10px;
+  }
+
+  .thumbnail:hover {
+    opacity: 1;
+  }
+
+  .active {
+    opacity: 1;
+  }
+
+  #slide-wrapper {
+    max-width: 500px;
+    display: flex;
+    min-height: 100px;
+    align-items: center;
+  }
+
+  #slider {
+width: 500px;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: hidden;
+margin-left: -5px;
+  }
+
+  #slider::-webkit-scrollbar {
+    width: 8px;
+
+  }
+
+  #slider::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+
+  }
+
+  #slider::-webkit-scrollbar-thumb {
+    background-color: #dede2e;
+    outline: 1px solid slategrey;
+    border-radius: 100px;
+
+  }
+
+  #slider::-webkit-scrollbar-thumb:hover {
+    background-color: #18b5ce;
+  }
+
+  .arrow {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: .3s;
+  }
+
+  .arrow:hover {
+    opacity: .5;
+    width: 35px;
+    height: 35px;
+  }
+
+  body {
+    background-color: #f5f6f8;
+  }
+
+  #gallery-presentation h2 span {
+    color: #06cc60;
+  }
+
+  #gallery-presentation .btn-primary {
+    background-color: #06cc60;
+    border: 1px solid #06cc60;
+    box-shadow: none;
+    width: 100%;
+    padding: 1rem;
+    border-radius: 10px;
+  }
+
+  #gallery-presentation .btn-primary:hover {
+    background-color: #06cc60;
+    border: 1px solid #06cc60;
+    box-shadow: none;
+  }
+
+  #gallery-presentation .btn-primary:focus {
+    background-color: #06cc60;
+    border: 1px solid #06cc60;
+    box-shadow: none;
+  }
+
+  .cat-gallery-gallery-presentation span {
+    color: #f7c400;
+  }
+
+  #reservar .container {
+    background-color: #ffffff;
+    border-radius: 15px;
+    padding: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  #reservar .form-control {
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #eaeaea;
+    background-clip: padding-box;
+    border: 1px solid #f5f6f8;
+    border-radius: 10px;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  }
+
+  #reservar .btn-primary {
+    background-color: white;
+    border: 1px solid #06cc60;
+    color: #06cc60;
+    border-radius: 0px;
+    box-shadow: none;
+    margin-bottom: .7rem;
+  }
+
+  #reservar .btn-primary:hover {
+    background-color: #06cc60;
+    border: 1px solid #06cc60;
+    color: white;
+    border-radius: 0px;
+    box-shadow: none;
+    margin-bottom: .7rem;
+  }
+
+  #reservar .btn-primary:focus {
+    background-color: #06cc60;
+    border: 1px solid #06cc60;
+    color: white;
+    border-radius: 0px;
+    box-shadow: none;
+    margin-bottom: .7rem;
+  }
+
+  #reservar .active {
+    color: #06cc60;
+    border-radius: 0px;
+    background: #eaeaea;
+    box-shadow: none;
+    margin-bottom: .7rem;
+  }
+
+  #reservar .btn-outline-success {
+    background-color: #06cc60;
+    position: absolute;
+    color: white;
+    border-color: #06cc60;
+    border-radius: 10px;
+    top: 0;
+    right: 0;
+    box-shadow: none;
+    padding: .33rem 1.5rem;
+  }
+
+  #reservar .btn-outline-success:hover {
+    background-color: #06cc60;
+    position: absolute;
+    color: white;
+    border-color: #06cc60;
+    border-radius: 10px;
+    top: 0;
+    right: 0;
+    box-shadow: none;
+  }
+
+  #reservar .btn-outline-success:focus {
+    background-color: #06cc60;
+    position: absolute;
+    color: white;
+    border-color: #06cc60;
+    border-radius: 10px;
+    top: 0;
+    right: 0;
+    box-shadow: none;
+  }
+
+  .bootstrap-datetimepicker-widget table td.active.today::before {
+    border-bottom-color: #eaeaea;
+  }
+.servicios::before {
+    content: '';
+    background-image: url(../assets/img/header-curve.png);
+    background-size: cover;
+    width: 100%;
+    max-width: 1920px;
+    height: 150px;
+    position: absolute;
+    top: -149px;
+    left: 0;
+  }
+
+  .contador:before {
+    content: '';
+    background-image: url("../assets/img/counte-up.png");
+    background-size: cover;
+    width: 100%;
+    max-width: 1920px;
+    height: 150px;
+    position: absolute;
+    top: -149px;
+    left: 0;
+  }
+
+  .contador::after {
+    content: '';
+    background-image: url("../assets/img/counte-bottom.png");
+    background-size: cover;
+    width: 100%;
+    max-width: 1920px;
+    height: 150px;
+    position: absolute;
+    bottom: -149px;
+    left: 0;
+  }
+
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 200px;
+    height: 45px;
+  }
+
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 30px;
+  }
+
+  .slider:before {
+    position: absolute;
+    content: attr(data-content);
+    left: 4px;
+    bottom: 3px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 30px;
+    display: inline-block;
+    vertical-align: middle;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: var(--color-verde);
+    color: white;
+  }
+
+  .switch-toggle {
+    width: 15em;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc !important;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 30px !important;
+  }
+
+  .switch-toggle label:not(.disabled) {
+    cursor: pointer;
+  }
+
+  .switch-candy a {
+    border-radius: 30px !important;
+    border: none !important;
+    background-color: white;
+    box-shadow: 0 1px 1px rgb(0 0 0 / 20%), inset 0 1px 1px rgb(255 255 255 / 45%);
+    background-color: var(--color-verde);
+    background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.2), transparent);
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.2), transparent);
+  }
+
+  input:checked+.slider:before {
+    -webkit-transform: translateX(105px);
+    -ms-transform: translateX(105px);
+    transform: translateX(105px);
+    content: attr(data-content);
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+  .switch-toggle input+label {
+    padding: .32em 0.5em;
+  }
+
+  .switch-light.switch-candy input~span span:first-child,
+  .switch-light.switch-candy input:checked~span span:nth-child(2),
+  .switch-candy input:checked+label {
+    color: white;
+  }
+
+  .select2-container--default .select2-selection--single .select2-selection__arrow b {
+    top: 100% !important;
+  }
+
+</style>
 <script>
   $(function () {
 $('#domicilio_check').on('change',function() {
@@ -436,59 +831,59 @@ $('.sucursales_check').on('change', (e) => {
                 <div class="row">
                   <div class="col">
                     <center>
-                      <img id="imageSelected1" class="img-fluid"
+                      <span id="span1"><img id="imageSelected1" class="img-fluid"
                         src="../assets/img_up/foto_camara.png"
-                        onclick="document.getElementById('profile-img1').click();" width="50px" />
+                        onclick="document.getElementById('profile-img1').click();" width="50px" /></span>
                       <input
                         class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm img_publicacion"
-                        id="profile-img1" type="file" accept=".png" name="image" hidden />
+                        id="profile-img1" type="file" accept=".png, .jpg, .jpeg, .mp4, .webm, .ogg" name="image" hidden />
                       <input type="text" id="imagen1" class="" name='photo' hidden required>
                     </center>
                   </div>
                   <div class="col">
                     <center>
-                      <img id="imageSelected2" class="img-fluid"
+                      <span id="span2"><img id="imageSelected2" class="img-fluid"
                         src="../assets/img_up/foto_camara.png"
-                        onclick="document.getElementById('profile-img2').click();" width="50px" />
+                        onclick="document.getElementById('profile-img2').click();" width="50px" /></span>
                       <input
                         class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm img_publicacion"
-                        id="profile-img2" type="file" accept=".png" name="image" hidden />
+                        id="profile-img2" type="file" accept=".png, .jpg, .jpeg, .mp4, .webm, .ogg" name="image" hidden />
                       <input type="text" id="imagen2" class="" name='photo' hidden>
 
                     </center>
                   </div>
                   <div class="col">
                     <center>
-                      <img id="imageSelected3" class="img-fluid"
+                     <span id="span3"> <img id="imageSelected3" class="img-fluid"
                         src="../assets/img_up/foto_camara.png"
-                        onclick="document.getElementById('profile-img3').click();" width="50px" />
+                        onclick="document.getElementById('profile-img3').click();" width="50px" /></span>
                       <input
                         class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm img_publicacion"
-                        id="profile-img3" type="file" accept=".png" name="image" hidden />
+                        id="profile-img3" type="file" accept=".png, .jpg, .jpeg, .mp4, .webm, .ogg" name="image" hidden />
                       <input type="text" id="imagen3" class="" name='photo' hidden>
 
                     </center>
                   </div>
                   <div class="col">
                     <center>
-                      <img id="imageSelected4" class="img-fluid"
+                      <span id="span4"><img id="imageSelected4" class="img-fluid"
                         src="../assets/img_up/foto_camara.png"
-                        onclick="document.getElementById('profile-img4').click();" width="50px" />
+                        onclick="document.getElementById('profile-img4').click();" width="50px" /></span>
                       <input
                         class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm img_publicacion"
-                        id="profile-img4" type="file" accept=".png" name="image" hidden />
+                        id="profile-img4" type="file" accept=".png, .jpg, .jpeg, .mp4, .webm, .ogg" name="image" hidden />
                       <input type="text" id="imagen4" class="" name='photo' hidden>
 
                     </center>
                   </div>
                   <div class="col">
                     <center>
-                      <img id="imageSelected5" class="img-fluid"
+                     <span id="span5"> <img id="imageSelected5" class="img-fluid"
                         src="../assets/img_up/foto_camara.png"
-                        onclick="document.getElementById('profile-img5').click();" width="50px" />
+                        onclick="document.getElementById('profile-img5').click();" width="50px" /></span>
                       <input
                         class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm img_publicacion"
-                        id="profile-img5" type="file" accept=".png" name="image" hidden />
+                        id="profile-img5" type="file" accept=".png, .jpg, .jpeg, .mp4, .webm, .ogg" name="image" hidden />
                       <input type="text" id="imagen5" class="" name='photo' hidden>
 
                     </center>
@@ -606,26 +1001,22 @@ $('.sucursales_check').on('change', (e) => {
 <div style="display:none">
   <p class="card-text"  style="text-align: left;"><span id="preparacion_p"></span> y Ejecución: <span id="ejecucion_p"></span> </p>
 </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-<div id="content-wrapper">
+        <div class="container" style="max-width: 1200px !important;">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div id="content-wrapper">
   <div class="column">
-		<img id="featured" src="../assets/img_up/">
+		<span id="spanP1_P"><img id="featured" src="../assets/img_up/foto_camara.png" id="img_previewP"></span>
 
 			<div id="slide-wrapper" >
-				<img id="slideLeft" class="arrow" src="../assets/img/arrow-left.png"  id="img_preview">
-
 				<div id="slider">
-					<img class="thumbnail active" src="../assets/img_up/" id="img_preview">
-					<img class="thumbnail" src="../assets/img_up/" id="img1">
-					<img class="thumbnail" src="../assets/img_up/" id="img2">
+				<span id="spanP1"> 	<img class="thumbnail active" src="../assets/img_up/foto_camara.png" id="img_preview"></span>
+					<span id="spanP1"> <img class="thumbnail" src="../assets/img_up/foto_camara.png" id="img1"></span>
+					<span id="spanP1"> <img class="thumbnail" src="../assets/img_up/foto_camara.png" id="img2"></span>
 
-					<img class="thumbnail" src="../assets/img_up/"   id="img3">
-					<img class="thumbnail" src="../assets/img_up/" id="img4">
+				<span id="spanP1"> 	<img class="thumbnail" src="../assets/img_up/foto_camara.png"   id="img3"></span>
+				<span id="spanP1"> 	<img class="thumbnail" src="../assets/img_up/foto_camara.png" id="img4"></span>
 				</div>
-
-				<img id="slideRight" class="arrow" src="../assets/img/arrow-right.png">
 			</div>
 </div>
 <script type="text/javascript">
@@ -633,18 +1024,25 @@ $('.sucursales_check').on('change', (e) => {
 
 		let activeImages = document.getElementsByClassName('active')
 
-		for (var i=0; i < thumbnails.length; i++){
+ for (var i = 0; i < thumbnails.length; i++) {
 
-			thumbnails[i].addEventListener('mouseover', function(){				
-				if (activeImages.length > 0){
-					activeImages[0].classList.remove('active')
-				}
-				
-
-				this.classList.add('active')
-				document.getElementById('featured').src = this.src
-			})
-		}
+                          thumbnails[i].addEventListener('mouseover', function () {
+                            if (activeImages.length > 0) {
+                              activeImages[0].classList.remove('active')
+                            }                  
+                      
+                            this.classList.add('active')
+                            var elementType = $(this).prop('tagName');;
+                            console.log(elementType)
+                            if (elementType == "IMG"){
+                              $('#spanP1_P').html(`<img id="featured"
+                          src="${this.src}">`)
+                            }else{
+                              $('#replace').html(`<video src="${this.src}" controls width="550" height="400"></video>`)
+                            }
+                            
+                          })
+                        }
 
 
 		let buttonRight = document.getElementById('slideRight');
@@ -663,12 +1061,10 @@ $('.sucursales_check').on('change', (e) => {
                 
             </div>
         </div>
-        <div class="col-md-6">
-                    <h2 class="pb-3" >
-
+  <div class="col-md-6">
+                    <h2 class="pb-3">
                         <strong id="">
                           <span id="titulo_preview" style="color: black;">
-
                             </span>
                             <br>
                             <span id="precio_preview" >
@@ -688,9 +1084,17 @@ $('.sucursales_check').on('change', (e) => {
                       
                     </p>
 
+                    <div class="dom-loc pb-3 d-none">
+                      <input type="radio" class="lugar_serv_ " value="A Domicilio" name="lugar_serv_" id=""><label>A
+                        Domicilio <span></span></label>
+                      <input type="radio" class="lugar_serv_" value="En Local" name="lugar_serv_" id=""><label>En
+                        Local</label>
+                    </div>
                     <div class="dom-loc pb-3">
-                      <input type="radio" class="lugar_serv_ " value="A Domicilio" name="lugar_serv_" id=""><label>A Domicilio <span></span></label>
-                        <input type="radio" class="lugar_serv_" value="En Local" name="lugar_serv_" id=""><label>En Local</label>
+                      <img src="../assets/img/{{#if publicacion.domicilio}}checked.svg{{else}}cancel.svg{{/if}}" alt="" class="checkeds-img"><span
+                        style="margin-top: 3px;">Domicilio</span>
+                      <img src="../assets/img/checked.svg" alt="" class="checkeds-img" style="margin-top: 0;"><span
+                        class="checkeds-p">Local</span>
                     </div>
 
                     <button class="btn btn-primary">
@@ -698,7 +1102,7 @@ $('.sucursales_check').on('change', (e) => {
                     </button>
 
                     <div class="cat-gallery-gallery-presentation pt-3">
-                        <strong>Categorías:</strong> <span></span>
+                        <strong>Categorías:</strong> <span id="categoria_previ"></span>
                     </div>
 
                 </div>
@@ -706,25 +1110,20 @@ $('.sucursales_check').on('change', (e) => {
     </section>
     <section id="reservar" class="reservar">
         <div class="container">
-          <input type="radio" class="lugar_serv_" value="A Domicilio" name="lugar_serv_" id=""><label>A Domicilio <span></span></label>
-                        <input type="radio" class="lugar_serv_" value="En Local" name="lugar_serv_" id=""><label>En Local</label>
-                           <div class="col" id="distritos_habilitados" style="display: none;">
-                        <label for="formGroupExampleInput">Seleccione el distrito (local):</label>
-                        
-                      </div>
+          <div class="row">
 
-                        <div class="col" id="locales_habiles" style="display: none;">
-                        <label for="formGroupExampleInput">Seleccione el local:</label>
-                          <p class="card-text"  style="text-align: left;">
-                     
-                    <span id="sucursales_p"></span></p>
-                      </div>
+                  <div class="col d-flex justify-content-center">
+                    <div class="switch-toggle switch-3 switch-candy switch">
+                      <input id="on" name="state-d" type="radio"  value="Domicilio"/>
+                      <label for="on" >Domicilio</label>
 
-                      <div class="col" id="dirigido_a" style="display: none;">
-                        <label for="formGroupExampleInput">Indique para quien es el servicio:</label><br>
-                        <input type="radio" class="servicio_para" value="Personal" name="lugar_serv_propio" id=""><label>Personal</label>
-                        <input type="radio" class="servicio_para" value="A Tercero" name="lugar_serv_propio" id=""><label>Tercero</label>
-                      </div>
+                      <input id="off" name="state-d" type="radio" value="Local" checked/>
+                      <label for="off">Local</label>
+
+                      <a></a>
+                    </div>
+                  </div>
+                </div>
             <div class="row">
                 <div class="col-12">
                     <h1>
@@ -735,81 +1134,108 @@ $('.sucursales_check').on('change', (e) => {
                 </div>
              
 
-                <div class="col-md-6 pt-5">
-                  <div class="form-group" id="empleados_" style="display: none;">
-                            <label for="">Escoger trabajador:*</label>
-                            
-                    <span id="sucursales_p"></span></p>
-                        </div>
-                        <div class="form-group">
-                          <label for="">Distrito:*</label>
-                          <input type="text" class="form-control" id="" name="distrito_tercero">
-                        </div>
-                        <div class="form-group">
-                          <label for="">Dirección:*</label>
-                          <input type="text" class="form-control" id="" name="direccion_tercero">
-                        </div>
+                  <div class="col-md-6 pt-5">
+
+                    <div class="form-group" id="distritos_habilitados" style="display: none;">
+                      <label for="formGroupExampleInput">Seleccione el distrito (local):</label>
+                      <select class="form-control" name="distrito" id="distritos_h">
+                        <option selected value="0">Seleccione un distrito</option>
                         
-                        <div class="form-group">
-                            <label for="">Nombre y apellido:*</label>
-                            <input type="text" class="form-control" id="" name="nombre_del_tercero">
+                        </div>
+
+                    <div class="form-group" id="locales_habiles" style="display: none;">
+                      <label for="">Escoger local:</label>
+                      <select id="sucursales" class="form-control" name="sucursal">
+                        <option selected value="0">Seleccione un local</option>
+                        
+                        <span id="sucursales_p"></span></p>
+                       <button type="button" id="ver_ubicacion"> Ver Ubicación</button>
+                    </div>
+                    <div class="form-group" id="empleados_" style="display: none;">
+                      <label for="">Escoger trabajador:</label>
+                      <select id="empleado" class="form-control" name="empleado">
+                        <option selected>Seleccione un trabajador</option>
+                       
+                      </select>
+
+                      <span id="sucursales_p"></span></p>
+                    </div>
+                    <div class="form-group" id="dirigido_a" style="display: none;">
+                      <label for="">Indique para quien es el servicio:</label>
+                      <select id="servicio_para" class="form-control servicio_para" name="lugar_serv_propio">
+                        <option selected>Seleccione una opcion</option>
+                        <option>Personal</option>
+                        <option>A Tercero</option>
+                      </select>
+
+                      <span id="sucursales_p"></span></p>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="">Distrito:*</label>
+                      <input type="text" class="form-control" id="" name="distrito_tercero">
+                    </div>
+                    <div class="form-group">
+                      <label for="">Dirección:*</label>
+                      <input type="text" class="form-control" id="" name="direccion_tercero">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="">Nombre y apellido:*</label>
+                      <input type="text" class="form-control" id="" name="nombre_del_tercero">
 
 
-                        </div>
-                        <div class="form-group">
-                            <label for="">Correo:*</label>
-                            <input type="text" class="form-control" id="" name="correo_tercero">
-                        </div>
-                        <div class="form-group">
-                            <label for="">Celular:*</label>
-                            <input type="text" class="form-control" id="" name="telefono_tercero">
-                        </div>
-                        <div class="form-group">
-                            <label for="">Agregar comentario:</label>
-                            <textarea class="form-control" id="" rows="3" name="comentario_p"></textarea>
+                    </div>
+                    <div class="form-group">
+                      <label for="">Celular:*</label>
+                      <input type="text" class="form-control" id="" name="telefono_tercero">
+                    </div>
+                    <div class="form-group">
+                      <label for="">Agregar comentario:</label>
+                      <textarea class="form-control" id="" rows="3" name="comentario_p"></textarea>
+                    </div>
+                  </div>
+                  <div class="col-md-6 pt-5">
+                    <p>Escoger fecha: </p>
+                    <div style="overflow:hidden;">
+                      <input type="date" name="fecha" id="fecha" hidden>
+                      <div class="form-group">
+                        <div class="">
+                          <div class="">
+                            <div id="datetimepicker12"></div>
                           </div>
-                </div>
-                <div class="col-md-6 pt-5">
-                  <p>Escoger fecha: </p>
-                  <div style="overflow:hidden;">
+                        </div>
+                      </div>
+                      <script type="text/javascript">
+                        $(function () {
+                          $('#datetimepicker12').datetimepicker({
+                            inline: true,
+                            sideBySide: true,
+                            format: 'L',
 
- <div class="form-group">
-        <div class="">
-            <div class="">
-                <div id="datetimepicker12"></div>
-            </div>
-        </div>
-    </div>
-   <script type="text/javascript">
-      $(function () {
-          $('#datetimepicker12').datetimepicker({
-              inline: true,
-              sideBySide: true,
-              format: 'L',
-              
-          });
-    /*  $("#datetimepicker12").on("dp.change", function (e) {
-        console.log(e.date.format('YYYY-MM-DD'))
+                          });
+                          /*  $("#datetimepicker12").on("dp.change", function (e) {
+                              console.log(e.date.format('YYYY-MM-DD'))
+                      
+                      });*/
+                        });
+                      </script>
+                    </div>
 
-});*/
-      });
-   </script>
-</div>
-                    
                     <p>Escoger hora:*</p>
                     <div class="row" id="disponibles">
-                       
+
                     </div>
-                </div>
-                <div class="col-md-12">
+                  </div>
+                  <div class="col-md-12">
                     <div style="float: left; padding-top: .35rem;">Agregar cupón:</div>
-                    <div style="float: right; width: calc(100% - 110px); position: relative;">
-                        <input type="text" class="form-control">
-                        <button class="btn btn-outline-success my-2 my-sm-0 añadir" type="submit">
-                            Añadir
-                        </button>
+                    <div style="float: right; width: calc(100% - 125px); position: relative;">
+                      <input type="text" class="form-control" id="cupon">
+                      <button class="btn btn-outline-success my-2 my-sm-0 add_cupon" type="button">
+                        Añadir
+                      </button>
                     </div>
-                </div>
+                  </div>
             </div>
             <div class="row">
                 <div class="col-12 pt-3">
@@ -873,60 +1299,53 @@ $('.sucursales_check').on('change', (e) => {
                 <div class="row">
                   <div class="col">
                     <center>
-                      <img id="imageSelected1" class="img-fluid"
-                        src="../assets/img_up/{{#fotoPublicacion1 publicacion.fotos}}{{/fotoPublicacion1}}"
-                        onclick="document.getElementById('profile-img1').click();" width="50px" />
+                      {{#fotoVPublicacionCreat publicacion.fotos 0 1}}{{/fotoVPublicacionCreat}}
+                      <!--<img id="imageSelected1" class="img-fluid"
+                        src="../assets/img_up/"
+                        onclick="document.getElementById('profile-img1').click();" width="50px" />-->
                       <input
                         class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm img_publicacion"
-                        id="profile-img1" type="file" accept=".png" name="image" hidden />
-                      <input type="text" id="imagen1" class="" name='photo' hidden required value="{{#fotoPublicacion1 publicacion.fotos}}{{/fotoPublicacion1}}">
+                        id="profile-img1" type="file" accept=".png, .mp4, .webm, .ogg, .jpg, .jpeg" name="image" hidden />
+                      <input type="text" id="imagen1" class="" name='photo' hidden required value="{{#fotoPublicacion1Pri publicacion.fotos 0}}{{/fotoPublicacion1Pri}}">
                     </center>
                   </div>
                   <div class="col">
                     <center>
-                      <img id="imageSelected2" class="img-fluid"
-                        src="../assets/img_up/{{#fotoPublicacion2 publicacion.fotos}}{{/fotoPublicacion2}}"
-                        onclick="document.getElementById('profile-img2').click();" width="50px" />
+                      {{#fotoVPublicacionCreat publicacion.fotos 1 2}}{{/fotoVPublicacionCreat}}
                       <input
                         class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm img_publicacion"
-                        id="profile-img2" type="file" accept=".png" name="image" hidden />
-                      <input type="text" id="imagen2" class="" name='photo' hidden value="{{#fotoPublicacion2 publicacion.fotos}}{{/fotoPublicacion2}}">
+                        id="profile-img2" type="file" accept=".png, .mp4, .webm, .ogg, .jpg, .jpeg" name="image" hidden />
+                      <input type="text" id="imagen2" class="" name='photo' hidden value="{{#fotoPublicacion1Pri publicacion.fotos 1}}{{/fotoPublicacion1Pri}}">
 
                     </center>
                   </div>
                   <div class="col">
                     <center>
-                      <img id="imageSelected3" class="img-fluid"
-                        src="../assets/img_up/{{#fotoPublicacion3 publicacion.fotos}}{{/fotoPublicacion3}}"
-                        onclick="document.getElementById('profile-img3').click();" width="50px" />
+                      {{#fotoVPublicacionCreat publicacion.fotos 2 3}}{{/fotoVPublicacionCreat}}
                       <input
                         class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm img_publicacion"
-                        id="profile-img3" type="file" accept=".png" name="image" hidden />
-                      <input type="text" id="imagen3" class="" name='photo' hidden value="{{#fotoPublicacion3 publicacion.fotos}}{{/fotoPublicacion3}}">
+                        id="profile-img3" type="file" accept=".png, .mp4, .webm, .ogg, .jpg, .jpeg" name="image" hidden />
+                      <input type="text" id="imagen3" class="" name='photo' hidden value="{{#fotoPublicacion1Pri publicacion.fotos 2}}{{/fotoPublicacion1Pri}}">
 
                     </center>
                   </div>
                   <div class="col">
                     <center>
-                      <img id="imageSelected4" class="img-fluid"
-                        src="../assets/img_up/{{#fotoPublicacion4 publicacion.fotos}}{{/fotoPublicacion4}}"
-                        onclick="document.getElementById('profile-img4').click();" width="50px" />
+                      {{#fotoVPublicacionCreat publicacion.fotos 3 4}}{{/fotoVPublicacionCreat}}
                       <input
                         class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm img_publicacion"
-                        id="profile-img4" type="file" accept=".png" name="image" hidden />
-                      <input type="text" id="imagen4" class="" name='photo' hidden value="{{#fotoPublicacion4 publicacion.fotos}}{{/fotoPublicacion4}}">
+                        id="profile-img4" type="file" accept=".png, .mp4, .webm, .ogg, .jpg, .jpeg" name="image" hidden />
+                      <input type="text" id="imagen4" class="" name='photo' hidden value="{{#fotoPublicacion1Pri publicacion.fotos 3}}{{/fotoPublicacion1Pri}}">
 
                     </center>
                   </div>
                   <div class="col">
                     <center>
-                      <img id="imageSelected5" class="img-fluid"
-                        src="../assets/img_up/{{#fotoPublicacion5 publicacion.fotos}}{{/fotoPublicacion5}}"
-                        onclick="document.getElementById('profile-img5').click();" width="50px" />
+                      {{#fotoVPublicacionCreat publicacion.fotos 4 5}}{{/fotoVPublicacionCreat}}
                       <input
                         class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm img_publicacion"
-                        id="profile-img5" type="file" accept=".png" name="image" hidden />
-                      <input type="text" id="imagen5" class="" name='photo' hidden value="{{#fotoPublicacion5 publicacion.fotos}}{{/fotoPublicacion5}}">
+                        id="profile-img5" type="file" accept=".png, .mp4, .webm, .ogg, .jpg, .jpeg" name="image" hidden />
+                      <input type="text" id="imagen5" class="" name='photo' hidden value="{{#fotoPublicacion1Pri publicacion.fotos 4}}{{/fotoPublicacion1Pri}}">
 
                     </center>
                   </div>
@@ -1043,31 +1462,28 @@ $('.sucursales_check').on('change', (e) => {
 
           </div>
 
-          <div class="container" id="preview_publicacion" style="display: none;">
-                    <section class="pb-5 pt-5 gallery-presentation" id="gallery-presentation">
+         <div class="container" id="preview_publicacion" style="display: none;">
+
+            <section class="pb-5 pt-5 gallery-presentation" id="gallery-presentation">
 <div style="display:none">
   <p class="card-text"  style="text-align: left;"><span id="preparacion_p"></span> y Ejecución: <span id="ejecucion_p"></span> </p>
 </div>
-        <div class="container">
-                     <div class="row">
-                <div class="col-md-6">
-<div id="content-wrapper">
+        <div class="container" style="max-width: 1200px !important;">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div id="content-wrapper">
   <div class="column">
-		<img id="featured" src="../assets/img_up/">
+		<span id="spanP1_P"><img id="featured" src="../assets/img_up/foto_camara.png" id="img_previewP"></span>
 
 			<div id="slide-wrapper" >
-				<img id="slideLeft" class="arrow" src="../assets/img/arrow-left.png"  id="img_preview">
-
 				<div id="slider">
-					<img class="thumbnail active" src="../assets/img_up/" id="img_preview">
-					<img class="thumbnail" src="../assets/img_up/" id="img1">
-					<img class="thumbnail" src="../assets/img_up/" id="img2">
+				<span id="spanP1"> 	<img class="thumbnail active" src="../assets/img_up/foto_camara.png" id="img_preview"></span>
+					<span id="spanP1"> <img class="thumbnail" src="../assets/img_up/foto_camara.png" id="img1"></span>
+					<span id="spanP1"> <img class="thumbnail" src="../assets/img_up/foto_camara.png" id="img2"></span>
 
-					<img class="thumbnail" src="../assets/img_up/"   id="img3">
-					<img class="thumbnail" src="../assets/img_up/" id="img4">
+				<span id="spanP1"> 	<img class="thumbnail" src="../assets/img_up/foto_camara.png"   id="img3"></span>
+				<span id="spanP1"> 	<img class="thumbnail" src="../assets/img_up/foto_camara.png" id="img4"></span>
 				</div>
-
-				<img id="slideRight" class="arrow" src="../assets/img/arrow-right.png">
 			</div>
 </div>
 <script type="text/javascript">
@@ -1075,18 +1491,25 @@ $('.sucursales_check').on('change', (e) => {
 
 		let activeImages = document.getElementsByClassName('active')
 
-		for (var i=0; i < thumbnails.length; i++){
+ for (var i = 0; i < thumbnails.length; i++) {
 
-			thumbnails[i].addEventListener('mouseover', function(){				
-				if (activeImages.length > 0){
-					activeImages[0].classList.remove('active')
-				}
-				
-
-				this.classList.add('active')
-				document.getElementById('featured').src = this.src
-			})
-		}
+                          thumbnails[i].addEventListener('mouseover', function () {
+                            if (activeImages.length > 0) {
+                              activeImages[0].classList.remove('active')
+                            }                  
+                      
+                            this.classList.add('active')
+                            var elementType = $(this).prop('tagName');;
+                            console.log(elementType)
+                            if (elementType == "IMG"){
+                              $('#spanP1_P').html(`<img id="featured"
+                          src="${this.src}">`)
+                            }else{
+                              $('#replace').html(`<video src="${this.src}" controls width="550" height="400"></video>`)
+                            }
+                            
+                          })
+                        }
 
 
 		let buttonRight = document.getElementById('slideRight');
@@ -1105,12 +1528,10 @@ $('.sucursales_check').on('change', (e) => {
                 
             </div>
         </div>
-        <div class="col-md-6">
-                    <h2 class="pb-3" >
-
+  <div class="col-md-6">
+                    <h2 class="pb-3">
                         <strong id="">
                           <span id="titulo_preview" style="color: black;">
-
                             </span>
                             <br>
                             <span id="precio_preview" >
@@ -1130,9 +1551,17 @@ $('.sucursales_check').on('change', (e) => {
                       
                     </p>
 
+                    <div class="dom-loc pb-3 d-none">
+                      <input type="radio" class="lugar_serv_ " value="A Domicilio" name="lugar_serv_" id=""><label>A
+                        Domicilio <span></span></label>
+                      <input type="radio" class="lugar_serv_" value="En Local" name="lugar_serv_" id=""><label>En
+                        Local</label>
+                    </div>
                     <div class="dom-loc pb-3">
-                      <input type="radio" class="lugar_serv_ " value="A Domicilio" name="lugar_serv_" id=""><label>A Domicilio <span></span></label>
-                        <input type="radio" class="lugar_serv_" value="En Local" name="lugar_serv_" id=""><label>En Local</label>
+                      <img src="../assets/img/cancel.svg" alt="" class="checkeds-img"><span
+                        style="margin-top: 3px;">Domicilio</span>
+                      <img src="../assets/img/checked.svg" alt="" class="checkeds-img" style="margin-top: 0;"><span
+                        class="checkeds-p">Local</span>
                     </div>
 
                     <button class="btn btn-primary">
@@ -1140,32 +1569,28 @@ $('.sucursales_check').on('change', (e) => {
                     </button>
 
                     <div class="cat-gallery-gallery-presentation pt-3">
-                        <strong>Categorías:</strong> <span></span>
+                        <strong>Categorías:</strong> <span id="categoria_previ"></span>
                     </div>
 
                 </div>
+
     </section>
     <section id="reservar" class="reservar">
         <div class="container">
-          <input type="radio" class="lugar_serv_" value="A Domicilio" name="lugar_serv_" id=""><label>A Domicilio <span></span></label>
-                        <input type="radio" class="lugar_serv_" value="En Local" name="lugar_serv_" id=""><label>En Local</label>
-                           <div class="col" id="distritos_habilitados" style="display: none;">
-                        <label for="formGroupExampleInput">Seleccione el distrito (local):</label>
-                        
-                      </div>
+          <div class="row">
 
-                        <div class="col" id="locales_habiles" style="display: none;">
-                        <label for="formGroupExampleInput">Seleccione el local:</label>
-                          <p class="card-text"  style="text-align: left;">
-                     
-                    <span id="sucursales_p"></span></p>
-                      </div>
+                  <div class="col d-flex justify-content-center">
+                    <div class="switch-toggle switch-3 switch-candy switch">
+                      <input id="on" name="state-d" type="radio"  value="Domicilio"/>
+                      <label for="on" >Domicilio</label>
 
-                      <div class="col" id="dirigido_a" style="display: none;">
-                        <label for="formGroupExampleInput">Indique para quien es el servicio:</label><br>
-                        <input type="radio" class="servicio_para" value="Personal" name="lugar_serv_propio" id=""><label>Personal</label>
-                        <input type="radio" class="servicio_para" value="A Tercero" name="lugar_serv_propio" id=""><label>Tercero</label>
-                      </div>
+                      <input id="off" name="state-d" type="radio" value="Local" checked/>
+                      <label for="off">Local</label>
+
+                      <a></a>
+                    </div>
+                  </div>
+                </div>
             <div class="row">
                 <div class="col-12">
                     <h1>
@@ -1176,81 +1601,108 @@ $('.sucursales_check').on('change', (e) => {
                 </div>
              
 
-                <div class="col-md-6 pt-5">
-                  <div class="form-group" id="empleados_" style="display: none;">
-                            <label for="">Escoger trabajador:*</label>
-                            
-                    <span id="sucursales_p"></span></p>
-                        </div>
-                        <div class="form-group">
-                          <label for="">Distrito:*</label>
-                          <input type="text" class="form-control" id="" name="distrito_tercero">
-                        </div>
-                        <div class="form-group">
-                          <label for="">Dirección:*</label>
-                          <input type="text" class="form-control" id="" name="direccion_tercero">
-                        </div>
+                  <div class="col-md-6 pt-5">
+
+                    <div class="form-group" id="distritos_habilitados" style="display: none;">
+                      <label for="formGroupExampleInput">Seleccione el distrito (local):</label>
+                      <select class="form-control" name="distrito" id="distritos_h">
+                        <option selected value="0">Seleccione un distrito</option>
                         
-                        <div class="form-group">
-                            <label for="">Nombre y apellido:*</label>
-                            <input type="text" class="form-control" id="" name="nombre_del_tercero">
+                        </div>
+
+                    <div class="form-group" id="locales_habiles" style="display: none;">
+                      <label for="">Escoger local:</label>
+                      <select id="sucursales" class="form-control" name="sucursal">
+                        <option selected value="0">Seleccione un local</option>
+                        
+                        <span id="sucursales_p"></span></p>
+                       <button type="button" id="ver_ubicacion"> Ver Ubicación</button>
+                    </div>
+                    <div class="form-group" id="empleados_" style="display: none;">
+                      <label for="">Escoger trabajador:</label>
+                      <select id="empleado" class="form-control" name="empleado">
+                        <option selected>Seleccione un trabajador</option>
+                       
+                      </select>
+
+                      <span id="sucursales_p"></span></p>
+                    </div>
+                    <div class="form-group" id="dirigido_a" style="display: none;">
+                      <label for="">Indique para quien es el servicio:</label>
+                      <select id="servicio_para" class="form-control servicio_para" name="lugar_serv_propio">
+                        <option selected>Seleccione una opcion</option>
+                        <option>Personal</option>
+                        <option>A Tercero</option>
+                      </select>
+
+                      <span id="sucursales_p"></span></p>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="">Distrito:*</label>
+                      <input type="text" class="form-control" id="" name="distrito_tercero">
+                    </div>
+                    <div class="form-group">
+                      <label for="">Dirección:*</label>
+                      <input type="text" class="form-control" id="" name="direccion_tercero">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="">Nombre y apellido:*</label>
+                      <input type="text" class="form-control" id="" name="nombre_del_tercero">
 
 
-                        </div>
-                        <div class="form-group">
-                            <label for="">Correo:*</label>
-                            <input type="text" class="form-control" id="" name="correo_tercero">
-                        </div>
-                        <div class="form-group">
-                            <label for="">Celular:*</label>
-                            <input type="text" class="form-control" id="" name="telefono_tercero">
-                        </div>
-                        <div class="form-group">
-                            <label for="">Agregar comentario:</label>
-                            <textarea class="form-control" id="" rows="3" name="comentario_p"></textarea>
+                    </div>
+                    <div class="form-group">
+                      <label for="">Celular:*</label>
+                      <input type="text" class="form-control" id="" name="telefono_tercero">
+                    </div>
+                    <div class="form-group">
+                      <label for="">Agregar comentario:</label>
+                      <textarea class="form-control" id="" rows="3" name="comentario_p"></textarea>
+                    </div>
+                  </div>
+                  <div class="col-md-6 pt-5">
+                    <p>Escoger fecha: </p>
+                    <div style="overflow:hidden;">
+                      <input type="date" name="fecha" id="fecha" hidden>
+                      <div class="form-group">
+                        <div class="">
+                          <div class="">
+                            <div id="datetimepicker12"></div>
                           </div>
-                </div>
-                <div class="col-md-6 pt-5">
-                  <p>Escoger fecha: </p>
-                  <div style="overflow:hidden;">
+                        </div>
+                      </div>
+                      <script type="text/javascript">
+                        $(function () {
+                          $('#datetimepicker12').datetimepicker({
+                            inline: true,
+                            sideBySide: true,
+                            format: 'L',
 
- <div class="form-group">
-        <div class="">
-            <div class="">
-                <div id="datetimepicker12"></div>
-            </div>
-        </div>
-    </div>
-   <script type="text/javascript">
-      $(function () {
-          $('#datetimepicker12').datetimepicker({
-              inline: true,
-              sideBySide: true,
-              format: 'L',
-              
-          });
-    /*  $("#datetimepicker12").on("dp.change", function (e) {
-        console.log(e.date.format('YYYY-MM-DD'))
+                          });
+                          /*  $("#datetimepicker12").on("dp.change", function (e) {
+                              console.log(e.date.format('YYYY-MM-DD'))
+                      
+                      });*/
+                        });
+                      </script>
+                    </div>
 
-});*/
-      });
-   </script>
-</div>
-                    
                     <p>Escoger hora:*</p>
                     <div class="row" id="disponibles">
-                       
+
                     </div>
-                </div>
-                <div class="col-md-12">
+                  </div>
+                  <div class="col-md-12">
                     <div style="float: left; padding-top: .35rem;">Agregar cupón:</div>
-                    <div style="float: right; width: calc(100% - 110px); position: relative;">
-                        <input type="text" class="form-control">
-                        <button class="btn btn-outline-success my-2 my-sm-0 añadir" type="submit">
-                            Añadir
-                        </button>
+                    <div style="float: right; width: calc(100% - 125px); position: relative;">
+                      <input type="text" class="form-control" id="cupon">
+                      <button class="btn btn-outline-success my-2 my-sm-0 add_cupon" type="button">
+                        Añadir
+                      </button>
                     </div>
-                </div>
+                  </div>
             </div>
             <div class="row">
                 <div class="col-12 pt-3">
@@ -1299,8 +1751,8 @@ $('.sucursales_check').on('change', (e) => {
         </div>
     </section>
 
+          </div>
           {{/if}}
-        </div>
       </main>
     </div>
 

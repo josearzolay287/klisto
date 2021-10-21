@@ -262,6 +262,7 @@ margin-left: -5px;
   .bootstrap-datetimepicker-widget table td.active.today::before {
     border-bottom-color: #eaeaea;
   }
+
 </style>
 <style>
   .header .menu-front .navbar-brand img {
@@ -1322,23 +1323,19 @@ if (data.mensaje == 'USADO'){
                   <div class="col-md-6">
                     <div id="content-wrapper">
                       <div class="column">
-                        <img id="featured"
-                          src="../assets/img_up/{{#fotoPublicacion1 publicacion.fotos}}{{/fotoPublicacion1}}">
+                        <span id="replace">
+                          <img id="featured"
+                          src="../assets/img_up/{{#fotoPublicacion1Pri publicacion.fotos 0}}{{/fotoPublicacion1Pri}}">
+                        </span>                       
 
                         <div id="slide-wrapper">
 
                           <div id="slider">
-                            <img class="thumbnail active"
-                              src="../assets/img_up/{{#fotoPublicacion1 publicacion.fotos}}{{/fotoPublicacion1}}">
-                            <img class="thumbnail"
-                              src="../assets/img_up/{{#fotoPublicacion2 publicacion.fotos}}{{/fotoPublicacion2}}">
-                            <img class="thumbnail"
-                              src="../assets/img_up/{{#fotoPublicacion3 publicacion.fotos}}{{/fotoPublicacion3}}">
-
-                            <img class="thumbnail"
-                              src="../assets/img_up/{{#fotoPublicacion4 publicacion.fotos}}{{/fotoPublicacion4}}">
-                            <img class="thumbnail"
-                              src="../assets/img_up/{{#fotoPublicacion5 publicacion.fotos}}{{/fotoPublicacion5}}">
+                            {{#fotoPublicacion1 publicacion.fotos 0}}{{/fotoPublicacion1}}
+                            {{#fotoPublicacion1 publicacion.fotos 1}}{{/fotoPublicacion1}}
+                            {{#fotoPublicacion1 publicacion.fotos 2}}{{/fotoPublicacion1}}
+                            {{#fotoPublicacion1 publicacion.fotos 3}}{{/fotoPublicacion1}}
+                            {{#fotoPublicacion1 publicacion.fotos 4}}{{/fotoPublicacion1}}
                           </div>
 
                         </div>
@@ -1353,11 +1350,18 @@ if (data.mensaje == 'USADO'){
                           thumbnails[i].addEventListener('mouseover', function () {
                             if (activeImages.length > 0) {
                               activeImages[0].classList.remove('active')
-                            }
-
-
+                            }                  
+                      
                             this.classList.add('active')
-                            document.getElementById('featured').src = this.src
+                            var elementType = $(this).prop('tagName');;
+                            console.log(elementType)
+                            if (elementType == "IMG"){
+                              $('#replace').html(`<img id="featured"
+                          src="${this.src}">`)
+                            }else{
+                              $('#replace').html(`<video src="${this.src}" controls width="550" height="400"></video>`)
+                            }
+                            
                           })
                         }
 

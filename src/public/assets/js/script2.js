@@ -137,29 +137,66 @@ if ( $("#msgs").length ) {
 
         switch (imagenX) {
           case 'profile-img1':
+            console.log(archivos[0].type)
             document.getElementById("imagen1").value = archivos[0].name;
-            const outputImg1 = document.getElementById("imageSelected1");
-            outputImg1.setAttribute("src", "assets/img_up/" + archivos[0].name);
+            if (archivos[0].type == "video/webm" || archivos[0].type == "video/mp4"|| archivos[0].type == "video/ogg") {
+              $('#span1').html(`<video title="Video" class="img-fluid" src="../assets/uploads/${archivos[0].name}" width="50" onclick="document.getElementById('profile-img1').click();">
+              </video>`)
+            }else{
+              $('#span1').html(`<img id="imageSelected1" class="img-fluid"
+              src="/assets/img_up/${archivos[0].name}"
+              onclick="document.getElementById('profile-img1').click();" width="50px" />`)
+            }                          
+            /*const outputImg1 = document.getElementById("imageSelected1");
+            outputImg1.setAttribute("src", "assets/img_up/" + archivos[0].name);*/
             break;
           case 'profile-img2':
             document.getElementById("imagen2").value = archivos[0].name;
             const outputImg2 = document.getElementById("imageSelected2");
-            outputImg2.setAttribute("src", "assets/img_up/" + archivos[0].name);
+            if (archivos[0].type == "video/webm" || archivos[0].type == "video/mp4"|| archivos[0].type == "video/ogg") {
+              $('#span2').html(`<video title="Video" class="img-fluid" src="../assets/uploads/${archivos[0].name}" width="50" onclick="document.getElementById('profile-img2').click();">
+              </video>`)
+            }else{
+              $('#span2').html(`<img id="imageSelected2" class="img-fluid"
+              src="/assets/img_up/${archivos[0].name}"
+              onclick="document.getElementById('profile-img2').click();" width="50px" />`)
+            } 
             break;
           case 'profile-img3':
             document.getElementById("imagen3").value = archivos[0].name;
             const outputImg3 = document.getElementById("imageSelected3");
-            outputImg3.setAttribute("src", "assets/img_up/" + archivos[0].name);
+            if (archivos[0].type == "video/webm" || archivos[0].type == "video/mp4"|| archivos[0].type == "video/ogg") {
+              $('#span3').html(`<video title="Video" class="img-fluid" src="../assets/uploads/${archivos[0].name}" width="50" onclick="document.getElementById('profile-img3').click();">
+              </video>`)
+            }else{
+              $('#span3').html(`<img id="imageSelected2" class="img-fluid"
+              src="/assets/img_up/${archivos[0].name}"
+              onclick="document.getElementById('profile-img3').click();" width="50px" />`)
+            } 
             break;
           case 'profile-img4':
             document.getElementById("imagen4").value = archivos[0].name;
             const outputImg4 = document.getElementById("imageSelected4");
-            outputImg4.setAttribute("src", "assets/img_up/" + archivos[0].name);
+            if (archivos[0].type == "video/webm" || archivos[0].type == "video/mp4"|| archivos[0].type == "video/ogg") {
+              $('#span4').html(`<video title="Video" class="img-fluid" src="../assets/uploads/${archivos[0].name}" width="50" onclick="document.getElementById('profile-img4').click();">
+              </video>`)
+            }else{
+              $('#span4').html(`<img id="imageSelected2" class="img-fluid"
+              src="/assets/img_up/${archivos[0].name}"
+              onclick="document.getElementById('profile-img4').click();" width="50px" />`)
+            } 
             break;
           case 'profile-img5':
             document.getElementById("imagen5").value = archivos[0].name;
             const outputImg5 = document.getElementById("imageSelected5");
-            outputImg5.setAttribute("src", "assets/img_up/" + archivos[0].name);
+            if (archivos[0].type == "video/webm" || archivos[0].type == "video/mp4"|| archivos[0].type == "video/ogg") {
+              $('#span5').html(`<video title="Video" class="img-fluid" src="../assets/uploads/${archivos[0].name}" width="50" onclick="document.getElementById('profile-img5').click();">
+              </video>`)
+            }else{
+              $('#span5').html(`<img id="imageSelected2" class="img-fluid"
+              src="/assets/img_up/${archivos[0].name}"
+              onclick="document.getElementById('profile-img5').click();" width="50px" />`)
+            } 
             break;
           default:
             console.log('Lo lamentamos, por el momento no disponemos de ' + expr + '.');
@@ -180,11 +217,15 @@ if ( $("#msgs").length ) {
       console.log(event.target.files[0]);
       let imagenX = event.target.id;
       const file = event.target.files[0];
-
+console.log(file.type)
       if (
         file.type !== "image/jpeg" &&
         file.type !== "image/png" &&
-        file.type !== "image/jpg"
+        file.type !== "image/jpg"&&
+        file.type !== "video/mp4" &&
+        file.type !== "video/webm"&&
+        file.type !== "video/3gp" &&
+        file.type !== "video/x-matroska"
       ) {
         alert("Elige un archivo válido (.png, .jpg, .jpeg)");
         return;

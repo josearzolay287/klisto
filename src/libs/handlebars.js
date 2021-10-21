@@ -167,61 +167,59 @@ module.exports = {
 	// console.log(aux[0])
 	 return out;
 	},
-	fotoPublicacion1: (fotos) => {
+	fotoPublicacion1Pri: (fotos,posit) => {
 		var aux = fotos.split(",");
 		 var out = "";
-			 if (aux[0]=="") {
+			 if (aux[posit]=="") {
 				out+=	 `foto_camara.png`
 			 }else{
-				out+=	`${aux[0]}`
+				out+=	`${aux[posit]}`
 			 }
 		// console.log(aux[0])
 		 return out;
 		},
-		fotoPublicacion2: (fotos) => {
+	fotoPublicacion1: (fotos, posit) => {
+		var aux = fotos.split(",");
+		 var out = "";
+			 if (aux[posit]=="") {
+				out+=	 `foto_camara.png`
+			 }else{
+				formato= (aux[posit]).split('.')
+				console.log(formato)
+				if (formato[1] == "mp4" || formato[1] == "ogg" || formato[1] == "webm") {
+					out+=	`<video class="thumbnail" src="../assets/uploads/${aux[posit]}" controls width="320" height="240">
+					Tu navegador no admite el elemento <code>video</code>.
+				  </video> `
+				}else{
+				   out+=	`<img class="thumbnail"
+			   src="../assets/img_up/${aux[posit]}">` 
+				}
+			 }
+		// console.log(aux[0])
+		 return out;
+		},
+		fotoVPublicacionCreat: (fotos, posit,img) => {
 			var aux = fotos.split(",");
 			 var out = "";
-				 if (aux[1]=="") {
-					out+=	 `foto_camara.png`
+				 if (aux[posit]=="") {
+					out+=	 `<img id="imageSelected1" class="img-fluid"
+					src="../assets/img_up/foto_camara.png"
+					onclick="document.getElementById('profile-img${img}').click();" width="50px" title="Imagen"/>`
 				 }else{
-					out+=	`${aux[1]}`
+					formato= (aux[posit]).split('.')
+					console.log(formato)
+					if (formato[1] == "mp4" || formato[1] == "ogg" || formato[1] == "webm") {
+						out+=	`<video title="Video" class="img-fluid" src="../assets/uploads/${aux[posit]}" width="50" onclick="document.getElementById('profile-img${img}').click();">
+					  </video> `
+					}else{
+					   out+=	`<img id="imageSelected1" class="img-fluid"
+					   src="../assets/img_up/${aux[posit]}"
+					   onclick="document.getElementById('profile-img${img}').click();" width="50px" title="Imagen"/>` 
+					}
 				 }
 			// console.log(aux[0])
 			 return out;
 			},
-			fotoPublicacion3: (fotos) => {
-				var aux = fotos.split(",");
-				 var out = "";
-					 if (aux[2]=="") {
-						out+=	 `foto_camara.png`
-					 }else{
-						out+=	`${aux[2]}`
-					 }
-				// console.log(aux[0])
-				 return out;
-				},
-				fotoPublicacion4: (fotos) => {
-					var aux = fotos.split(",");
-					 var out = "";
-						 if (aux[3]=="") {
-							out+=	 `foto_camara.png`
-						 }else{
-							out+=	`${aux[3]}`
-						 }
-					// console.log(aux[0])
-					 return out;
-					},
-					fotoPublicacion5: (fotos) => {
-						var aux = fotos.split(",");
-						 var out = "";
-							 if (aux[4]=="") {
-								out+=	 `foto_camara.png`
-							 }else{
-								out+=	`${aux[4]}`
-							 }
-						// console.log(aux[0])
-						 return out;
-						},
 
 		empleados_publicacion: (sucursal, id_suc) => {
 			let cont =	sucursal.length;
