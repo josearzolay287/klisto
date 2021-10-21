@@ -182,7 +182,8 @@ module.exports = {
 		var aux = fotos.split(",");
 		 var out = "";
 			 if (aux[posit]=="") {
-				out+=	 `foto_camara.png`
+				out+=	 `<img class="thumbnail"
+				src="../assets/img_up/foto_camara.png">`
 			 }else{
 				formato= (aux[posit]).split('.')
 				console.log(formato)
