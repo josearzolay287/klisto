@@ -77,13 +77,15 @@ exports.formCreateUser = (req, res) => {
 exports.formCreateUser_client = (req, res) => {
   res.render("reg_cliente", {
     pageName: "Registrate",
-    layout: "page-form",
+    layout: "page-form",    
+    reg_: true
   });
 };
 exports.formCreateUser_empres = (req, res) => {
   res.render("reg_empresa", {
     pageName: "Registrate",
-    layout: "page-form",
+    layout: "page-form",    
+    reg_: true
   });
 };
 

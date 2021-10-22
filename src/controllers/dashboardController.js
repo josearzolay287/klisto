@@ -1260,6 +1260,7 @@ exports.usuarios_a = (req, res) => {
      msg,
      user,
      admin:true,
+     
    });  
   })   
    

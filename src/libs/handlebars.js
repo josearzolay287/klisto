@@ -179,14 +179,18 @@ module.exports = {
 		 return out;
 		},
 	fotoPublicacion1: (fotos, posit) => {
+
 		var aux = fotos.split(",");
 		 var out = "";
 			 if (aux[posit]=="") {
-				out+=	 `<img class="thumbnail"
-				src="../assets/img_up/foto_camara.png">`
+				return out+=	 ``
 			 }else{
+				 console.log(aux[posit])
+				 if (typeof aux[posit] == "undefined") {
+					return out+=	 ``
+				 }
 				formato= (aux[posit]).split('.')
-				console.log(formato)
+				
 				if (formato[1] == "mp4" || formato[1] == "ogg" || formato[1] == "webm") {
 					out+=	`<video class="thumbnail" src="../assets/uploads/${aux[posit]}" controls width="320" height="240">
 					Tu navegador no admite el elemento <code>video</code>.
