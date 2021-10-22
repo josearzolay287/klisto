@@ -1,4 +1,11 @@
 <style>
+    .NegocioLabelTitle label{
+        font-size: 20px;
+    }
+    .NegocioLabelTitle textarea{
+        width: 100%;
+        border: 1px solid grey;
+    }
     body {
         background-color: #ffffff;
     }
@@ -664,19 +671,19 @@ $('.modal_clas').on('click',()=>{
 <section id="perfil-foto-negocio" class="pt-5">
 <input id="calificacion_result" value="{{promedio}}" class="d-none">
     <div class="container">
- <p class="clasificacion">
+        <div class="row">
+
+            <div class="col-md-3">
+                <img src="/assets/img_up/{{principal.0.usuario.photo}}" alt="" class="photo-negocio-perfil">
+            </div>
+            <div class="col-md-9">
+                 <p class="clasificacion">
                         <input id="radio11" type="radio" class="modal_clas"><label  class="label modal_clas">★</label>
                         <input id="radio21" type="radio" class="modal_clas"><label  class="label modal_clas">★</label>
                         <input id="radio31" type="radio" class="modal_clas"><label  class="label modal_clas">★</label>
                         <input id="radio41" type="radio" class="modal_clas"><label class="label modal_clas">★</label>
                         <input id="radio51" type="radio" class="modal_clas"><label  class="label modal_clas">★</label>
                     </p>
-        <div class="row">
-                    
-            <div class="col-md-3">
-                <img src="/assets/img_up/{{principal.0.usuario.photo}}" alt="" class="photo-negocio-perfil">
-            </div>
-            <div class="col-md-9">
                 <h2>
                     <strong>{{principal.0.nombre}}</strong>
                 </h2>
@@ -791,18 +798,20 @@ $('.modal_clas').on('click',()=>{
                 <form action="/calificar_suc" method="post" id="calificacion_form">
                     <input type="text" name="id_sucursal" id="" value="{{principal.0.id}}" class="d-none">
                     <input type="text" name="nombre_negocio" id="" value="{{id_negocio}}" class="d-none">
-                    <p class="clasificacion">
+                    <p class="clasificacion text-center">
                         <input id="radio1" type="radio" name="estrellas" value="5"><label for="radio1">★</label>
                         <input id="radio2" type="radio" name="estrellas" value="4"><label for="radio2">★</label>
                         <input id="radio3" type="radio" name="estrellas" value="3"><label for="radio3">★</label>
                         <input id="radio4" type="radio" name="estrellas" value="2"><label for="radio4">★</label>
                         <input id="radio5" type="radio" name="estrellas" value="1"><label for="radio5">★</label>
                     </p>
-                    <p class="">
+                    <p class="NegocioLabelTitle text-center">
                         <label for="">Agregue un comentario si lo desea</label>
                         <textarea id="comentario" name="comentarios"> </textarea>
                     </p>
-<button type="button" class="btn btn-primary" value="Enviar" data-toggle="modal" data-target="#login_modal">Enviar</button>
+                    <center>
+                        <button type="button" class="btn btn-primary" value="Enviar" data-toggle="modal" data-target="#login_modal">Enviar</button>
+                    </center>
                 </form>
             </div>
         </div>
