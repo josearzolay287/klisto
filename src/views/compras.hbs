@@ -451,89 +451,6 @@
 									</form>
 								</div>{{/if}}
 
-								{{#if recargar_backcoin}} <div class="col-12" style="margin-top: 1.5rem;">
-									<form action="/recargar_mi_saldo" method="post" class="p-to-btn" autocomplete="off"
-										id="form_datos_wallet" enctype='multipart/form-data'>
-										<input type="text" class="form-control-steps" id="id" name="id" placeholder="id"
-											value="{{user.id}}" hidden />
-
-										<div class="form-update-account">
-											<div class="form-update-account__item">
-												<label class="form-steps__title" for="text">Introduzca cantidad de
-													backcoins</label>
-												<div class="form-control-steps__container mb-3">
-													<div class="form-control-steps__placeholder">
-														<i class="fas fa-file-signature"></i>
-													</div>
-													<input type="hidden" class="" id="back_re" name="product"
-														value="Backcoin">
-													<input type="hidden" class="" id="modo" name="modo" value="Recarga">
-													<input type="text" class="form-control-steps onlynum" id="back_re"
-														name="amount" placeholder="1$ = 1 Backcoin">
-												</div>
-											</div><!-- .form-update-accound__item -->
-											<button type="submit" class="btn btn-primary btn-x-lg form-steps__btn"
-												id="create-gate-btn"
-												style="position: relative;height: 3rem; bottom: -1.5rem;"> Procesar <i
-													class="fa fa-check"></i></button>
-										</div>
-
-									</form>
-								</div>{{/if}}
-
-								{{#if retirar_fondos}} <div class="col-12" style="margin-top: 1.5rem;">
-									<form action="/retirar_fondos" method="post" class="p-to-btn" autocomplete="off"
-										id="form_datos_wallet" enctype='multipart/form-data'>
-										<input type="text" class="form-control-steps" id="id" name="id" placeholder="id"
-											value="{{parsed.id}}" hidden />
-										<div class="form-update-account">
-											<div class="form-update-account__item">
-												<label class="form-steps__title" for="text">Monto a Retirar</label>
-												<div class="form-control-steps__container mb-3">
-													<div class="form-control-steps__placeholder">
-														<i class="fas fa-file-signature"></i>
-													</div>
-
-													<input type="text" class="form-control-steps onlynum"
-														id="monto_retiro" name="monto_retiro"
-														placeholder="Monto a retirar" required>
-												</div>
-											</div><!-- .form-update-accound__item -->
-											<div class="form-update-account__item" style="grid-row-end: 1;">
-
-												<div class="form-control-steps__container mb-3">
-													<div class="form-control-steps__placeholder">
-														<i class="fas fa-project-diagram"></i>
-													</div>
-													<div class="card bg-light mb-3">
-														<div class="card-header" style="font-size: 1.3em;">Datos del
-															retiro</div>
-														<div class="card-body" style="font-size: 1.3em;">
-															<h5 class="card-title">Nombre y Apellido</h5>
-															<p class="card-text">{{parsed.nombre_apellido}}</p>
-															<h5 class="card-title">Documento</h5>
-															<p class="card-text">{{parsed.tipo_documento}} :
-																{{parsed.n_documento}}</p>
-															<h5 class="card-title">Correo</h5>
-															<p class="card-text">{{parsed.correo}}</p>
-															<h5 class="card-title">País</h5>
-															<p class="card-text">{{parsed.pais}}</p>
-															<h5 class="card-title">Banco</h5>
-															<p class="card-text">{{parsed.banco}}</p>
-															<h5 class="card-title">Cuenta</h5>
-															<p class="card-text">{{parsed.cuenta}}</p>
-															<h5 class="card-title">Monto a Retirar</h5>
-															<p class="card-text" id="monto_recarga"> </p>
-														</div>
-													</div>
-												</div>
-
-											</div><!-- .form-update-accound__item -->
-
-											<button type="submit" class="btn btn-primary btn-x-lg form-steps__btn"
-												id="create-gate-btn">Guardar datos <i class="fa fa-check"></i></button>
-									</form>
-								</div>{{/if}}
 
 								{{#if movimientos_retiros}}<div class="col-12" style="margin-top: 1.5rem;">
 									<table class="table table-striped table-hover" id="tabla_">
@@ -575,7 +492,7 @@
 													retiros.fecha_pago}}{{/formatoFecha2}}{{/if}}</td>
 												<td><a
 														href="{{#if retiros.comprobante_pago}}/assets/uploads/{{retiros.comprobante_pago}}{{/if}}">{{#if
-														retiros.comprobante_pago}}Click Para ver{{/if}}</a>
+														retiros.comprobante_pago}}Click para ver{{/if}}</a>
 												</td>
 												<td>{{retiros.observacion}}</td>
 											</tr>

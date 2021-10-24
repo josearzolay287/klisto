@@ -44,6 +44,8 @@ passport.use('admin_enter',
 			passReqToCallback : true
 		},
 		async (req,email, password, done) => {
+			console.log(req.body)
+			console.log(email)
 			try {
 				const usuario = await Usuarios.findOne({
 					where: {email}
@@ -55,6 +57,7 @@ passport.use('admin_enter',
 				}
 				return done(null, usuario);
 			}catch(err) {
+				console.log(err)
 				return done(null, false, {
 					message: 'Esa cuenta no existe'
 				});

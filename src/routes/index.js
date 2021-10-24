@@ -166,7 +166,7 @@ router.get('/publicacion/:id', landingController.ver_publicacion);
 //Calificaciones
 router.post('/calificar_suc', dashboardController.save_calificacion)
 //AGENDAR
-router.post('/guardar_agenda', dashboardController.guardar_agenda);
+router.post('/guardar_agenda',dashboardController.guardar_agenda);
 router.post('/consulta_bd', AgendaCtrl.revisar_fecha_agenda);
 
 // Paserela

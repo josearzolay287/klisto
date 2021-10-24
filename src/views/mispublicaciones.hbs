@@ -1,5 +1,14 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-  crossorigin="anonymous"></script>
+	crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+	integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+	crossorigin="anonymous"></script>
+
+
+
+<script src="/assets/js/jquery-ui.js"></script>
+<link href="/assets/summernote/summernote-bs4.min.css" rel="stylesheet">
+<script src="/assets/summernote/summernote-bs4.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <link href="https://cdn.jsdelivr.net/css-toggle-switch/latest/toggle-switch.css" rel="stylesheet" />
@@ -733,7 +742,7 @@ $('.sucursales_check').on('change', (e) => {
             <div class="col-md-12">
               <div class="overview-wrap">
                 <h2 class="title-1 pb-3">
-                  Mis Publicaciones
+                  Mis publicaciones
                 </h2>
               </div>
             </div>
@@ -745,7 +754,7 @@ $('.sucursales_check').on('change', (e) => {
               <div class="card-body">
                 <div class="float-right" style="margin-bottom: 20px;">
                   <a href="/crear_publicacion">
-                    Crear Publicación
+                    Crear publicación
                   </a>
                 </div>
                 <table class="table dataTable tabla_" id="tabla_">
@@ -824,7 +833,7 @@ $('.sucursales_check').on('change', (e) => {
 
             <div class="card-blank" style="width: 65%;margin-left: 15px; margin-bottom: 20px;">
               <div class="overview-wrap pt-4 pl-4 pr-4">
-                <h2 class="title-1">Crear Publicación</h2>
+                <h2 class="title-1">Crear publicación</h2>
                 <div class="float-right"><a href="/mispublicaciones" id="volver_publicaciones"> Volver </a></div>
               </div>
               <form action="/crear_publicacion" method="post" id="form_mis_publicaciones">
@@ -903,7 +912,7 @@ $('.sucursales_check').on('change', (e) => {
                         Desde <input type="time" class="form-control" placeholder="Desde" name="desde" id="desde" value="{{sucursales.0.desde}}">
                       </div>
                       <div class="col">
-                        A <input type="time" class="form-control" placeholder="Hasta" name="hasta" id="hasta" value="{{sucursales.0.hasta}}">
+                        Hasta <input type="time" class="form-control" placeholder="Hasta" name="hasta" id="hasta" value="{{sucursales.0.hasta}}">
                       </div>
                     </div>
                   </div>
@@ -920,7 +929,7 @@ $('.sucursales_check').on('change', (e) => {
                   </div>
                   <div class="form-row">
                     <div class="col-md-3">
-                      <label for="inputEmail4">Título Principal</label>
+                      <label for="inputEmail4">Título principal</label>
                       <input type="text" class="form-control" id="titulo" placeholder="Nombre" name="titulo" required>
                     </div>
                     <div class="col-md-3">
@@ -933,7 +942,7 @@ $('.sucursales_check').on('change', (e) => {
                       <input type="number" class="form-control" id="billetera" name="billetera" step="0.01" required readonly>
                     </div>
                      <div class="col-md-3">
-                      <label for="inputPassword4">Costo Domicilio</label>
+                      <label for="inputPassword4">Costo domicilio</label>
                       <input type="number" class="form-control" id="costo_domicilio" name="costo_domicilio" step="0.01" required  >
                     </div>
                   </div>
@@ -956,8 +965,8 @@ $('.sucursales_check').on('change', (e) => {
                       </select>
                     </div>
                     <div class="form-group col-md-5">
-                      <label for="inputState">Servicio a Domicilio</label><br>
-                      <label id=""><input type="checkbox" id="domicilio_check" name="domicilio"> Tiene servicio a Domicilio</label>
+                      <label for="inputState">Servicio a domicilio</label><br>
+                      <label id=""><input type="checkbox" id="domicilio_check" name="domicilio"> Tiene servicio a domicilio</label>
                     </div>
                   </div>
 
@@ -965,10 +974,46 @@ $('.sucursales_check').on('change', (e) => {
                     <div class="form-group col-md-6">
                       <label for="exampleFormControlTextarea1">Descripción</label>
                       <textarea class="form-control" id="descripcion" rows="3" name="descripcion"></textarea>
+                      <script>
+										$('#descripcion').summernote({
+											placeholder: 'Ingrese aqui la descripción',
+											tabsize: 2,
+											height: 150,
+											width: 450,
+											toolbar: [
+												// [groupName, [list of button]]
+												['style', ['bold', 'italic', 'underline', 'clear']],
+												['font', ['strikethrough', 'superscript', 'subscript']],
+												['fontsize', ['fontsize']],
+												//['color', ['color']],
+												['para', ['ul', 'ol', 'paragraph']],
+												['height', ['height']]
+											]
+										});
+									//	$('#summernote').summernote('justifyLeft');
+									</script>
                     </div>
                     <div class="form-group col-md-6">
                       <label for="exampleFormControlTextarea1">Condiciones</label>
                       <textarea class="form-control" id="condiciones" rows="3" name="condiciones"></textarea>
+                         <script>
+										$('#condiciones').summernote({
+											placeholder: 'Ingrese aqui la condición',
+											tabsize: 2,
+											height: 150,
+											width: 450,
+											toolbar: [
+												// [groupName, [list of button]]
+												['style', ['bold', 'italic', 'underline', 'clear']],
+												['font', ['strikethrough', 'superscript', 'subscript']],
+												['fontsize', ['fontsize']],
+												//['color', ['color']],
+												['para', ['ul', 'ol', 'paragraph']],
+												['height', ['height']]
+											]
+										});
+									//	$('#summernote').summernote('justifyLeft');
+									</script>
                     </div>
                   </div>
                   <div class="form-row">
@@ -987,8 +1032,8 @@ $('.sucursales_check').on('change', (e) => {
                       {{/each}}
                     </div>
                   </div>
-                  <button type="submit" class="btn btn-primary btn_submit">Guardar Cambios</button>
-                  <button type="button" class="btn btn-primary preview">Vista Previa</button>
+                  <button type="submit" class="btn btn-primary btn_submit">Guardar cambios</button>
+                  <button type="button" class="btn btn-primary preview">Vista previa</button>
                 </div>
               </form>
             </div>
@@ -1291,7 +1336,7 @@ $('.sucursales_check').on('change', (e) => {
 
             <div class="card-blank" style="width: 65%;margin-left: 15px; margin-bottom: 10px;">
               <div class="overview-wrap pt-4 pl-4 pr-4">
-                <h2 class="title-1">Editar Publicación</h2>
+                <h2 class="title-1">Editar publicación</h2>
                 <div class="float-right"><a href="/mispublicaciones" id="volver_publicaciones"> Volver </a></div>
               </div>
               <form action="/editar_publicacion" method="post" id="form_mis_publicaciones">
@@ -1383,7 +1428,7 @@ $('.sucursales_check').on('change', (e) => {
                   </div>
                   <div class="form-row">
                     <div class="col-md-3 mb-3">
-                      <label for="inputEmail4">Título Principal</label>
+                      <label for="inputEmail4">Título principal</label>
                       <input type="text" class="form-control" id="titulo" placeholder="Nombre" name="titulo" required value="{{publicacion.titulo}}">
                     </div>
                     <div class="col-md-3 mb-3">
@@ -1396,7 +1441,7 @@ $('.sucursales_check').on('change', (e) => {
                       <input type="number" class="form-control" id="billetera" name="billetera" step="0.01" required value="{{publicacion.billetera}}" readonly>
                     </div>
                     <div class="col-md-3 mb-3">
-                      <label for="inputPassword4">Costo Domicilio</label>
+                      <label for="inputPassword4">Costo domicilio</label>
                       <input type="number" class="form-control" id="costo_domicilio" name="costo_domicilio" step="0.01" required value="{{publicacion.costo_domicilio}}" >
                     </div>
                   </div>
@@ -1420,8 +1465,8 @@ $('.sucursales_check').on('change', (e) => {
                       </select>
                     </div>
                     <div class="form-group col-md-5">
-                      <label for="inputState">Servicio a Domicilio</label><br>
-                      <label id=""><input type="checkbox" id="domicilio_check" name="domicilio" {{#if publicacion.domicilio}}checked{{/if}}> Tiene servicio a Domicilio</label>
+                      <label for="inputState">Servicio a domicilio</label><br>
+                      <label id=""><input type="checkbox" id="domicilio_check" name="domicilio" {{#if publicacion.domicilio}}checked{{/if}}> ¿Tiene servicio a domicilio?</label>
                     </div>
                   </div>
 
@@ -1429,10 +1474,46 @@ $('.sucursales_check').on('change', (e) => {
                     <div class="form-group col-md-6">
                       <label for="exampleFormControlTextarea1">Descripción</label>
                       <textarea class="form-control" id="descripcion" rows="3" name="descripcion">{{publicacion.descripcion}}</textarea>
+                      <script>
+										$('#descripcion').summernote({
+											placeholder: 'Ingrese aqui la descripción',
+											tabsize: 2,
+											height: 150,
+											width: 450,
+											toolbar: [
+												// [groupName, [list of button]]
+												['style', ['bold', 'italic', 'underline', 'clear']],
+												['font', ['strikethrough', 'superscript', 'subscript']],
+												['fontsize', ['fontsize']],
+												//['color', ['color']],
+												['para', ['ul', 'ol', 'paragraph']],
+												['height', ['height']]
+											]
+										});
+									//	$('#summernote').summernote('justifyLeft');
+									</script>
                     </div>
                     <div class="form-group col-md-6">
                       <label for="exampleFormControlTextarea1">Condiciones</label>
                       <textarea class="form-control" id="condiciones" rows="3" name="condiciones">{{publicacion.condiciones}}</textarea>
+                      <script>
+										$('#condiciones').summernote({
+											placeholder: 'Ingrese aqui la descripción',
+											tabsize: 2,
+											height: 150,
+											width: 450,
+											toolbar: [
+												// [groupName, [list of button]]
+												['style', ['bold', 'italic', 'underline', 'clear']],
+												['font', ['strikethrough', 'superscript', 'subscript']],
+												['fontsize', ['fontsize']],
+												//['color', ['color']],
+												['para', ['ul', 'ol', 'paragraph']],
+												['height', ['height']]
+											]
+										});
+									//	$('#summernote').summernote('justifyLeft');
+									</script>
                     </div>
                   </div>
                   <div class="form-row">
@@ -1454,7 +1535,7 @@ $('.sucursales_check').on('change', (e) => {
                       {{/each}}
                     </div>
                   </div>
-                  <button type="submit" class="btn btn-primary btn_submit">Guardar Cambios</button>
+                  <button type="submit" class="btn btn-primary btn_submit">Guardar cambios</button>
                   <button type="button" class="btn btn-primary preview">Vista Previa</button>
                 </div>
               </form>

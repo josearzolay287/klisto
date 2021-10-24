@@ -941,6 +941,16 @@ margin-left: -5px;
 </script>
 <script>
   $(function () {
+    $('#guardar_agenda').submit((e)=>{
+     
+      console.log($('#loggeado').text())
+      if ($('#loggeado').text() == "Empresa" || $('#loggeado').text() == "Administrador"){
+         e.preventDefault()
+        Swal.fire('No está loggeado como cliente, verifique su cuenta')
+        return true
+      }
+
+    })
     $('.add_cupon').on('click', (e) => {
 
       let cupon = $('#cupon').val()
@@ -1068,6 +1078,9 @@ if (data.mensaje == 'USADO'){
         $('input[name="costo_domicilio"]').val('{{publicacion.costo_domicilio}}')
         $('input[name="distrito"]').prop('checked', false);
         $('#distritos_habilitados').removeAttr('style')
+        $('#distrito_input_div').attr('style', 'display: none')
+        
+
         $('#costo_trans').text('{{publicacion.costo_domicilio}}')
         let suma = parseInt($('#costo_trans').text()) + parseInt($('#costo_serv').text())
         $('#total_pga').text(suma)
@@ -1144,8 +1157,6 @@ if (data.mensaje == 'USADO'){
 </script>
 {{#if msg}}
 <label id="msgs">{{msg}}</label>
-
-
 {{/if}}
 
 
@@ -1278,9 +1289,9 @@ if (data.mensaje == 'USADO'){
                         class="checkeds-p">Local</span>
                     </div>
 
-                    <button type="button" class="btn btn-primary" id="activar_reservar">
+                    <a type="button" class="btn btn-primary" id="activar_reservar" href="#reservar">
                       Reservar
-                    </button>
+                    </a>
 
                     <div class="cat-gallery-gallery-presentation pt-3">
                       <strong>Categorías:</strong> <span>{{publicacion.categoria}}</span>
@@ -1356,9 +1367,9 @@ if (data.mensaje == 'USADO'){
                       <span id="sucursales_p"></span></p>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group" id="distrito_input_div">
                       <label for="">Distrito:*</label>
-                      <input type="text" class="form-control" id="" name="distrito_tercero">
+                      <input type="text" class="form-control" id="distrito_input" name="distrito_tercero">
                     </div>
                     <div class="form-group">
                       <label for="">Dirección:*</label>
@@ -1617,11 +1628,11 @@ let fin = moment(ha, 'HH:mm a')
                   </div>
                 </div>
                 <div class="row">
-                  {{#if user.name}}<span id="loggeado">log</span>{{/if}}
+                  {{#if user.name}}<span id="loggeado" hidden>{{user.tipo}}</span>{{/if}}
                   <div class="col-12 pt-3">
-                    <button type="button" class="btn btn-primary active"
+                    <button  class="btn btn-primary active"
                       style="width: 100%;padding: 1.5rem; font-size: 25px; font-weight: 700; border-radius: 15px; background-color:var(--color-verde); color:white;"
-                      data-toggle="modal" data-target="#exampleModal" disabled id="button_finish_reserv">
+                     {{#if user.name}}type="submit"{{else}}type="button" data-toggle="modal" data-target="#exampleModal"{{/if}} disabled id="button_finish_reserv">
                       Realizar reserva
                     </button>
                   </div>

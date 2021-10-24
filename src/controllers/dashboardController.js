@@ -1378,6 +1378,10 @@ if (tipo == "Principal") {
  exports.ver_publicacion = (req, res) => {
   let id_publicacion = req.params.id
   const user = res.locals.user;
+  let msg = false;
+  if (req.params.msg) {
+    msg = req.params.msg
+  }
   Modulo_BD.publicacionesbyId(id_publicacion).then((data) =>{
     let publicacion = JSON.parse(data)[0]
    // console.log(publicacion)
@@ -1404,7 +1408,8 @@ console.log(sucursales)
      dash_cliente: true,
      user,publicacion_activa:true,
      publicacion,usuario,
-     sucursales,fechas_agenda, encargados
+     sucursales,fechas_agenda, encargados,
+     msg
    });
   }).catch((err) => {
     console.log(err);
@@ -1423,9 +1428,13 @@ console.log(sucursales)
 
  exports.guardar_agenda = (req, res) => {
    console.log(req.body)
-   
+   const user = res.locals.user;
+ 
   const {fecha, id_publicacion,h_desde, h_hasta,id_encargado, distrito,  sucursal, nombre_del_tercero, telefono_tercero, direccion_tercero,lugar_serv_propio,costo_domicilio, comentario_p,monto_pagar, cupon_aplicado} = req.body;
-  const user = res.locals.user;
+
+  if (fecha == '' || h_desde == '' || h_hasta == '') {
+    res.redirect(`/publicacion/${id_publicacion}`)
+  }
   const f = new Date(fecha);
 						f.toLocaleString()
 						 

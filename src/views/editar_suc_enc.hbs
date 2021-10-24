@@ -8,7 +8,7 @@
             <div class="col-md-12">
               <div class="overview-wrap">
                 <h2 class="title-1">
-                 <a href="/minegocio">Mis Negocios</a> 
+                 <a href="/minegocio">Mis negocios</a> 
                 </h2>
                 <div class="overview-wrap">
                 <div class="float-right"><a href="/minegocio" id="volver_empleados"> Volver </a></div>
@@ -20,13 +20,13 @@
           <div class="row m-t-25">
             <div class="col-md-12">
               <div class="card-blank">
-                <h2 class="title-1 pt-4 pl-4">Editar Local: {{sucursales.tipo}}</h2>
+                <h2 class="title-1 pt-4 pl-4">Editar local: {{sucursales.tipo}}</h2>
                 <form action="/guardar_editar_local" method="post">
                 <input type="text" name="id_sucursal" class="form-control" value="{{sucursales.id}}" hidden>
                 <input type="text" name="link" class="form-control" value="{{user.name}}" hidden>
                   <div class="card-body">
                      <div class="form-group">
-                      <label>Nombre del Local</label>
+                      <label>Nombre del local</label>
                       <input type="text" name="nombre_local" class="form-control" required  value="{{sucursales.nombre}}"/>
                     </div>
                     <div class="form-group">
@@ -38,12 +38,13 @@
                       <input id="last_name" type="text" name="distrito"   class="form-control" required value="{{sucursales.distrito}}"/>
                     </div>
                     <div class="form-group">
-                      <label>Direccion</label>
+                      <label>Dirección</label>
                       <input type="text" name="direccion" class="form-control" required value="{{sucursales.direccion}}" />
                     </div>
                     <div class="form-group">
-                      <label>Telefono</label>
-                        <input id="last_name" type="text" name="telefono"  class="form-control" required value="{{sucursales.telefono}}"/>
+                      <label>Teléfono</label>
+                        <input id="last_name" type="number" name="telefono"  class="form-control" required value="{{sucursales.telefono}}" maxlength="9"
+                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
                       </div>
                       <div class="form-group">
                       <label>Qué distritos atiende?</label>
@@ -95,13 +96,13 @@
                                                     <option value="{{dias}}" selected>{{dias}}</option>
                                                   {{/each}}
                                                 <optgroup label="Días">
-                                                    <option value="Lunes">Lunes</option>
-                                                    <option value="Martes">Martes</option>
-                                                    <option value="Miercoles">Miercoles</option>
-                                                    <option value="Jueves">Jueves</option>
-                                                    <option value="Viernes">Viernes</option>
-                                                    <option value="Sabado">Sabado</option>
-                                                    <option value="Domingo">Domingo</option>
+                                                    <option >Lunes</option>
+                                                    <option >Martes</option>
+                                                    <option >Miércoles</option>
+                                                    <option >Jueves</option>
+                                                    <option >Viernes</option>
+                                                    <option >Sábado</option>
+                                                    <option >Domingo</option>
                                                 </optgroup>                                                
                                             </select>
                                         </div>
@@ -119,10 +120,10 @@
 
                       <div class="row">
                           <div class="col">
-                           Horario Break  Desde <input type="time" class="form-control" placeholder="Desde" name="break_desde" id="desde" value="{{sucursales.hora_break_desde}}">
+                           Horario break  desde <input type="time" class="form-control" placeholder="Desde" name="break_desde" id="desde" value="{{sucursales.hora_break_desde}}">
                       </div>
                       <div class="col">
-                       Horario Break  Hasta <input type="time" class="form-control" placeholder="Hasta" name="break_hasta" id="hasta" value="{{sucursales.hora_break_hasta}}">
+                       Horario break  hasta <input type="time" class="form-control" placeholder="Hasta" name="break_hasta" id="hasta" value="{{sucursales.hora_break_hasta}}">
                       </div>
                       </div>
                     <center><button class="btn btn-success mt-4" type="submit"> Guardar </button></center>
@@ -141,7 +142,7 @@
           <div class="row">
             <div class="col-md-12">
               <div class="overview-wrap">
-                <h2 class="title-1">Editar Empleado</h2>
+                <h2 class="title-1">Editar empleado</h2>
                 <div class="float-right"><a href="/minegocio" id="volver_empleados"> Volver </a></div>
               </div>
             </div>
@@ -173,8 +174,9 @@
                       <input type="text" name="correo" class="form-control" required  value="{{encargado.correo}}"/>
                     </div>
                     <div class="form-group">
-                      <label>Telefonos</label>
-                      <input id="last_name" type="text" name="telefono"  class="form-control" required value="{{encargado.telefono}}"/></div>
+                      <label>Teléfonos</label>
+                      <input id="last_name" type="number" name="telefono"  class="form-control" required value="{{encargado.telefono}}" maxlength="9"
+                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/></div>
 
                     <center><button class="btn btn-success mt-4" type="submit"> Guardar </button></center>
                   </div>
@@ -192,7 +194,7 @@
             <div class="col-md-12">
               <div class="overview-wrap">
                 <h2 class="title-1">
-                 <a href="/minegocio">Mis Negocios</a> 
+                 <a href="/minegocio">Mis negocios</a> 
                 </h2>
                 <div class="overview-wrap">
                 <div class="float-right"><a href="/minegocio" id="volver_empleados"> Volver </a></div>
@@ -204,13 +206,13 @@
           <div class="row ">
             <div class="col-md-12">
               <div class="card-blank">
-                <h2 class="title-1 pt-4 pl-4">Crear Sucursal</h2>
+                <h2 class="title-1 pt-4 pl-4">Crear sucursal</h2>
                 <form action="/crear_sucursal" method="post">
                 <input type="text" name="id_usuario" class="form-control" hidden value="{{user.id}}">
                 <input type="text" name="link" class="form-control" hidden value="{{user.name}}">
                   <div class="card-body">
                     <div class="form-group">
-                      <label>Nombre del Local</label>
+                      <label>Nombre del local</label>
                       <input type="text" name="nombre_local" class="form-control" required  />
                     </div>
                     <div class="form-group">
@@ -222,12 +224,13 @@
                       <input id="last_name" type="text" name="distrito"   class="form-control" required />
                     </div>
                     <div class="form-group">
-                      <label>Direccion</label>
+                      <label>Dirección</label>
                       <input type="text" name="direccion" class="form-control" required  />
                     </div>
                     <div class="form-group">
                       <label>Telefono</label>
-                      <input id="last_name" type="text" name="telefono"  class="form-control" required /></div>
+                      <input id="last_name" type="number" name="telefono"  class="form-control" required maxlength="9"
+                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/></div>
                       <div class="form-group">
                       <label>Qué distritos atiende?</label>
                       <!--<input id="last_name" type="text" name="distritos_atendidos"  placeholder="Ej.: Miraflores, San Borja,etc" class="form-control" required value="{{sucursales.distritos}}"/>-->
@@ -272,13 +275,13 @@
                                             <label class="" for="select2-multiple">Seleccione los dias de trabajo</label>
                                             <select class="select2 form-select" id="select2-multiple" multiple name="dias_laborables">
                                                 <optgroup label="Días">
-                                                    <option value="Lunes">Lunes</option>
-                                                    <option value="Martes">Martes</option>
-                                                    <option value="Miercoles">Miercoles</option>
-                                                    <option value="Jueves">Jueves</option>
-                                                    <option value="Viernes">Viernes</option>
-                                                    <option value="Sabado">Sabado</option>
-                                                    <option value="Domingo">Domingo</option>
+                                                    <option >Lunes</option>
+                                                    <option >Martes</option>
+                                                    <option >Miércoles</option>
+                                                    <option >Jueves</option>
+                                                    <option >Viernes</option>
+                                                    <option >Sábado</option>
+                                                    <option >Domingo</option>
                                                 </optgroup>                                                
                                             </select>
                                         </div>
@@ -295,10 +298,10 @@
 
                       <div class="row">
                           <div class="col">
-                           Horario Break  Desde <input type="time" class="form-control" placeholder="Desde" name="break_desde" id="desde">
+                           Horario break  desde <input type="time" class="form-control" placeholder="Desde" name="break_desde" id="desde">
                       </div>
                       <div class="col">
-                       Horario Break  Hasta <input type="time" class="form-control" placeholder="Hasta" name="break_hasta" id="hasta">
+                       Horario break  hasta <input type="time" class="form-control" placeholder="Hasta" name="break_hasta" id="hasta">
                       </div>
                       </div>
                     <center><button class="btn btn-success mt-4" type="submit"> Guardar </button></center>

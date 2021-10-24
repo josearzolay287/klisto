@@ -202,13 +202,13 @@
           <div class="row" style="margin-top: 5px;">
             {{#if movimientos}} <div class="col-lg-6 mb-3 mb-lg-0">
               <div class="card card-box bg-gradient text-white pl-4 pt-3 pb-2" style="border-radius: 30px !important; ">
-                <h2 style="line-height: 1.5;" class="title-1">Saldo Actual: S/ {{saldo_actual}}</h2>
+                <h2 style="line-height: 1.5;" class="title-1">Saldo actual: S/ {{saldo_actual}}</h2>
                 <h2 style="line-height: 1.5;" class="title-1">Para retiro: S/ {{para_retiro}}</h2>
               </div>
             </div>
             <div class="col-lg-6 d-lg-flex flex-column justify-content-center" style="font-size: 14px;">
               <a class="btn btn-primary btn-block mb-3 mb-lg-0 btn_pay" style="color: white;">Pagar</a>
-              <a href="/pagos" class="btn btn-primary btn-block mb-3 mb-lg-0">Ver Pagos</a>
+              <a href="/pagos" class="btn btn-primary btn-block mb-3 mb-lg-0">Ver pagos</a>
               <!--		<a href="/mis_pago" class="btn btn-primary btn-block mb-3 mb-lg-0">Mis retiros</a>-->
             </div>
             <div class="col-12" style="margin-top: 1.5rem;">
@@ -257,7 +257,7 @@
                               Monto
                             </th>
                             <th>
-                              Status del Pago
+                              Status del pago
                             </th>
                             <th>
                               Billetera
@@ -354,7 +354,7 @@
                             <label for="inputEmail4">Observaciones</label>
                             <input type="text" class="form-control" id="titulo" placeholder="Observaciones"
                               name="observaciones">
-                            <label for="inputEmail4">Fecha de Pago</label>
+                            <label for="inputEmail4">Fecha de pago</label>
                             <input type="date" class="form-control" id="titulo" placeholder="Observaciones"
                               name="fecha_pago">
                             <label for="inputState">Estado</label>
@@ -365,7 +365,7 @@
                             </select>
                           </div>
                           <div class="form-group col-md-6">
-                            <label for="inputState">Vacucher de Pago</label>
+                            <label for="inputState">Voucher de Pago</label>
                             <center>
                               <img id="imageSelected" class="shadow mb-5"
                                 src="https://javierg.mosquedacordova.com/klizto/images/ico-image.png" width="200"
@@ -418,10 +418,10 @@
                             Monto
                           </th>
                           <th class="text-xs-center">
-                            Fecha de Pago
+                            Fecha de pago
                           </th>
                           <th class="text-xs-center">
-                            F. Registro pago
+                            F. registro pago
                           </th>
                           <th class="text-xs-center">
                             Estado
@@ -430,10 +430,10 @@
                             Comprobante
                           </th>
                           <th class="text-xs-center">
-                            Id Ventas
+                            Id ventas
                           </th>
                           <th class="text-xs-center">
-                            Id Publicación
+                            Id publicación
                           </th>
                           <th class="text-xs-center">
                             Observación
@@ -456,7 +456,7 @@
 
                             <button type="button" class="btn btn-primary" data-toggle="modal"
                               data-target="#exampleModalCenter">
-                              Click Para ver
+                              Click para ver
                             </button>
                             <style>
                               .modal-backdrop {
@@ -531,12 +531,12 @@
                             <label for="inputEmail4">Observaciones</label>
                             <input type="text" class="form-control" id="titulo" placeholder="Observaciones"
                               name="observaciones" value="{{parsed_.observaciones}}">
-                            <label for="inputEmail4">Fecha de Pago</label>
+                            <label for="inputEmail4">Fecha de pago</label>
                             <input type="date" class="form-control" id="titulo" placeholder="Observaciones"
                               name="fecha_pago" value="{{parsed_.fecha_pago}}">
                           </div>
                           <div class="form-group col-md-6">
-                            <label for="inputState">Vacucher de Pago</label>
+                            <label for="inputState">Voucher de Pago</label>
                             <center>
                               <img id="imageSelected" class="shadow mb-5"
                                 src="{{#if parsed_.comprobante}}/assets/img_up/{{parsed_.comprobante}}{{else}}https://javierg.mosquedacordova.com/klizto/images/ico-image.png{{/if}}"

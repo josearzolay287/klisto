@@ -1,3 +1,7 @@
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <style>
   .main-content{
     padding-top: 50px;
@@ -27,6 +31,9 @@
                 </div>
               </div>
             </div>
+            <a class="btn btn-primary" href="/negocios/{{user.name}}" target="_blank">Ver mi perfil</a>
+            <p id="p1" class="d-none"></p>
+            <a class="btn btn-primary" data-bs-id="{{user.name}}" id="copyPerfil">Copiar link de mi perfil</a>
             <div class="row m-t-25">
               <div class="col-md-4">
                 <div class="card-blank m-b-25">
@@ -49,7 +56,7 @@
                   <div class="card-header-blank">
                     <span class="card-title" style="font-size: 20px;">
                       <strong>
-                        Ventas Recientes
+                        Ventas recientes
                       </strong>
                     </span>
                   </div>
@@ -65,7 +72,7 @@
                   <div class="card-header-blank">
                     <span class="card-title" style="font-size: 20px;">
                       <strong>
-                        Nuevas Citas
+                        Nuevas citas
                       </strong>
                     </span>
                   </div>
@@ -78,67 +85,30 @@
               </div>
             </div>
             <div class="row">
-              <!--<div class="col-md-6">
+            <div class="col-md-5">
                 <div class="card-blank m-b-25">
                   <div class="card-header-blank">
                     <span class="card-title" style="font-size: 20px;">
                       <strong>
-                        Últimas Transacciones
+                       Video
                       </strong>
                     </span>
                   </div>
                   <div class="card-body">
                     <div class="table-responsive table-responsive-data2">
-                      <table class="table table-data2">
-                        <tbody>
-                          <tr class="tr-shadow">
-                            <td align="left">
-                              <label class="au-checkbox">
-                                <input type="checkbox" disabled=""  checked/>
-                                <span class="au-checkmark"></span>
-                              </label>
-                            </td>
-                            <td>
-                              <h5>
-                                Depósito de servicio
-                              </h5>
-                              18 de Marzo, 2021
-                            </td>
-                            <td align="right">
-                              -$45
-                            </td>
-                          </tr>
-                          <tr class="spacer"></tr>
-                          <tr class="tr-shadow">
-                            <td align="left">
-                              <label class="au-checkbox">
-                                <input type="checkbox" disabled="" checked/>
-                                <span class="au-checkmark"></span>
-                              </label>
-                            </td>
-                            <td>
-                              <h5>
-                                Depósito de servicio
-                              </h5>
-                              18 de Marzo, 2021
-                            </td>
-                            <td align="right">
-                              -$45
-                            </td>
-                          </tr>
-                          
-                        </tbody>
-                      </table>
+        <video class="" src="../assets/uploads/" controls width="450" height="240">
+					Tu navegador no admite el elemento <code>video</code>.
+				  </video> 
                     </div>
                   </div>
                 </div>
-              </div>-->
+              </div>
               <div class="col-md">
                 <div class="card-blank m-b-25">
                   <div class="card-header-blank">
                     <span class="card-title" style="font-size: 20px;">
                       <strong>
-                        Publicaciones Activas
+                        Publicaciones activas
                       </strong>
                     </span>
                   </div>
@@ -196,3 +166,29 @@
     </div>
   </div>
 </div>
+
+<script>
+  $(function(){
+ $('#copyPerfil').on('click', function (e) {
+   console.log(e.target.dataset.bsId)
+      var id_ = e.target.dataset.bsId
+    if (typeof id_ =="undefined") {
+      return console.log(id_)
+    }
+    let direction_copy = location.host + `/negocios/${id_}`;
+    $('#p1').text(direction_copy)
+    copyToClipboard('#p1')
+
+  });
+
+  })
+  function copyToClipboard(elemento) {
+  var $temp = $("<textarea>")
+  var brRegex = /<br\s*[\/]?>/gi;
+  $("body").append($temp);
+  $temp.val($(elemento).html().replace(brRegex, "\r\n")).select();
+  document.execCommand("copy");
+  $temp.remove();
+  Swal.fire('Pedido copiado en el portapapeles')
+  }
+</script>

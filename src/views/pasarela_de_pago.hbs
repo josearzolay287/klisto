@@ -69,7 +69,7 @@
                     Precio
                   </th>
                   <th class="text-center">
-                    Metodo de Pago
+                    Metodo de pago
                   </th>
                 </tr>
               </thead>
@@ -80,9 +80,7 @@
                   <td class="text-center">{{#if Backcoin}}{{amount}} {{else}}1{{/if}}</td>
                   <td class="text-center">S/{{monto_soles}}</td>
                   <td class="text-center">
-                      <a  href="" onclick="showPago('MP','paypal')" name="metodo_pago" value="Mercado Pago" style="color: var(--verde-color);">
                         <i class="fas fa-money-bill-wave"></i>
-                      </a>
                       Mercado Pago
 
                     <!--  <input type="radio" id="tarjeta" name="metodo_pago" value="PayPal" onclick="showPago('paypal','MP')">PayPal
@@ -167,7 +165,7 @@
                      <input type="hidden" name="costo_domicilio" id="form-checkout__id_publicacion" value="{{costo_domicilio}}" />
                       <input type="hidden" name="cupon_aplicado" id="form-checkout__id_publicacion" value="{{cupon_aplicado}}" />
                     <div class="progress">
-  <div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 0;">Procesando pago...
+  <div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 0;" hidden>Procesando pago...
               Por favor espere...</div>
 </div>
                     
@@ -258,6 +256,7 @@
                       const cardData = cardForm.getCardFormData();
                       console.log('CardForm data available: ', cardData)
                       const progressBar = document.querySelector(".progress-bar");
+                        progressBar.removeAttribute("hidden");
                         progressBar.setAttribute("style", "width: 100%");
                       $('#form-checkout').submit();
 

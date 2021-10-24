@@ -140,6 +140,7 @@ exports.createUser_client = async (req, res) => {
     return res.render("reg_cliente", {
       pageName: "Registro Cliente",
       layout: "page-form",
+      reg_:true,
       messages: req.flash(),
     });
   }
@@ -165,6 +166,24 @@ exports.createUser_client = async (req, res) => {
       messages: req.flash(),
     });
   }
+  passport.authenticate("local", function (err, user, info) {
+    if (err) {
+      console.log(err)
+      return next(err);
+    }
+    if (!user) {
+      console.log('info')
+      console.log(err)
+      return res.send(info.message);
+    }
+    req.logIn(user, function (err) {
+      if (err) {
+        return next(err);
+      }
+      console.log('info2')
+      return res.redirect('/dash_cliente');
+    });
+  })(req, res);
 };
 exports.createUser_empresa = async (req, res) => {
   const { email,name_empresa,
@@ -175,9 +194,10 @@ exports.createUser_empresa = async (req, res) => {
   if (password !== confirmPassword) {
     req.flash("error", "Las contraseñas no son iguales");
 
-    return res.render("reg_cliente", {
-      pageName: "Registro Cliente",
+    return res.render("reg_empresa", {
+      pageName: "Registro Empresa",
       layout: "page-form",
+      reg_:true,
       messages: req.flash(),
     });
   }
@@ -193,7 +213,6 @@ exports.createUser_empresa = async (req, res) => {
         distrito: distrito,nombre: name_empresa,usuarioId: id_usuario
       }).then((data_sucursal) =>{
         let parsed_sucursal = data_sucursal.toJSON()
-        console.log(parsed_sucursal)
         let sucursalId =parsed_sucursal.id
         Encargados.create({
           nombre: nombre_empleado,apellido: apellido_empleado, correo: correo_empleado,  telefono: telefono_empleado,tipo:'Encargado', sucursaleId: sucursalId
@@ -204,7 +223,6 @@ exports.createUser_empresa = async (req, res) => {
         });
       });
     });
-    res.redirect("/login");
   } catch (err) {
     console.log(err);
     if (err.errors) {
@@ -221,6 +239,25 @@ exports.createUser_empresa = async (req, res) => {
       messages: req.flash(),
     });
   }
+
+  passport.authenticate("local", function (err, user, info) {
+    if (err) {
+      console.log(err)
+      return next(err);
+    }
+    if (!user) {
+      console.log('info')
+      console.log(err)
+      return res.send(info.message);
+    }
+    req.logIn(user, function (err) {
+      if (err) {
+        return next(err);
+      }
+      console.log('info2')
+      return res.redirect('/dashboard');
+    });
+  })(req, res);
 };
 
 // Actualizar usuario en la base de datos

@@ -1,3 +1,6 @@
 {
-    "prettier.withNodeModules": true
+    "prettier.withNodeModules": true,
+    "cSpell.words": [
+        "userid"
+    ]
 }

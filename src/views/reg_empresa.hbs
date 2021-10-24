@@ -1,57 +1,547 @@
-
-
-
 <style>
-	      body{
-        background-image: url("../assets/img/header.JPG");
-      }
-      #registrarse{
-        width: 100%;
-        height: 100vh;
-        max-height: 1080px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-        #registrarse .caja-stilo{
-            border-radius: 15px;
-            background-color: #eaeaea;
-            margin-top: 3rem;
-            width: 100%;
-            overflow: hidden;
-        }
-        @media (min-width:1200px){
+  body {
+    background-color: white;
+    background: white;
+  }
 
-            #registrarse .container{
-                width: 1000px;
-            }
+  .header .menu-front .navbar-brand img {
+    height: 70px;
+  }
 
-        }
-        #registrarse .form-control {
-            display: block;
-            width: 100%;
-            height: 50px;
-            padding: .375rem .75rem;
-            font-size: 1rem;
-            font-weight: 400;
-            line-height: 1.5;
-            color: #495057;
-            background-color: #f2f2f2;
-            background-clip: padding-box;
-            border: 1px solid #ced4da;
-            border-radius: 10px;
-            transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-            margin-bottom: 2rem;
-        }
-        #registrarse .form-control:focus{
-            box-shadow: none;
-        }
-        #registrarse .form-control:active{
-            box-shadow: none;
-        }
-        .caja-stilo a{
-            color: #f7c400;
-        }
+  .menu-front .bg-light {
+    background-color: transparent !important;
+  }
+
+  .navbar-light .navbar-nav .active>.nav-link,
+  .navbar-light .navbar-nav .nav-link.active,
+  .navbar-light .navbar-nav .nav-link.show,
+  .navbar-light .navbar-nav .show>.nav-link {
+    color: white;
+  }
+
+  .navbar-light .navbar-nav .nav-link {
+    color: white;
+  }
+
+  .navbar-light .ingresar .nav-link {
+    color: white;
+    background-color: #f7c400;
+    border-radius: 25px;
+    padding: .2rem 2rem;
+    margin-top: .3rem;
+    margin-left: 1rem;
+  }
+
+  .contenido-header {
+    width: 100%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .video-inicio {
+    width: 50%;
+  }
+
+  .img-yt {
+    width: 100%;
+    height: 300px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .img-yt i {
+    background-color: #f7c400;
+    padding: 20px;
+    font-size: 30px;
+    clip-path: circle(50% at 50% 50%);
+    color: white;
+  }
+
+  .titulo-inicio {
+    width: 50%;
+  }
+
+  .contenido-header h1 {
+    font-weight: bold;
+    color: white;
+    text-align: right;
+  }
+
+  .contenido-header .container {
+    width: 1000px;
+  }
+
+  .boton-titulo {
+    background-color: #f7c400;
+    padding: .2rem 2rem;
+    float: right;
+    border-radius: 20px;
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+  }
+
+  .boton-titulo:hover {
+    background-color: #f7c400;
+    padding: .2rem 2rem;
+    float: right;
+    border-radius: 20px;
+    text-decoration: none;
+    color: white;
+  }
+
+  .cont-servicios {
+    width: 100%;
+    border-radius: 20px;
+    padding: 1rem;
+    font-size: 13px;
+    color: white;
+  }
+
+  .cont-servicios img {
+    height: 80px;
+  }
+
+  .cont-servicios p {
+    font-size: 10px;
+    margin: 0;
+  }
+
+  .servicios {
+    background-color: #f2f2f2;
+  }
+
+  .cont-categorias {
+    width: 85%;
+    padding: 1.5rem;
+    background-color: #c1f2d7;
+    border-radius: 25px;
+    margin: auto;
+  }
+
+  .cont-categorias img {
+    width: 60%;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+  }
+
+  .cont-categorias h3 {
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+
+  .categorias h1 {
+    font-weight: bold;
+    font-size: 4rem;
+    margin-top: 8rem;
+  }
+
+  .contador {
+    background-color: #06cc60;
+    margin-top: 10rem;
+  }
+
+  .contador h1 {
+    text-align: center;
+    color: white;
+    font-size: 6rem;
+    font-weight: bold;
+  }
+
+  .contador p {
+    font-size: 2rem;
+    color: white;
+    text-align: center;
+    font-weight: 500;
+  }
+
+  .footer {
+    background-image: url("../assets/img/footer.jpg");
+    height: 500px;
+    border-radius: 50px 50px 0px 0px;
+    -moz-border-radius: 50px 50px 0px 0px;
+    -webkit-border-radius: 50px 50px 0px 0px;
+    border: 0px solid #000000;
+    position: relative;
+  }
+
+  @media (max-width: 1440px) {
+    .footer {
+      background-image: url("../assets/img/footer-2.jpg");
+      background-size: cover;
+    }
+  }
+
+  .img-footer {
+    height: calc(500px - 75px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .footer img {
+    width: 250px;
+    height: auto;
+  }
+
+  .footer .text-footer {
+    position: absolute;
+    bottom: 0;
+    background: rgb(0 0 0 / 25%);
+    padding: 2rem;
+    width: 100%;
+    text-align: center;
+  }
+
+  .footer a {
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.6rem;
+  }
+
+  .mas-nuevo h1 {
+    font-size: 4rem;
+    font-weight: bold;
+  }
+
+  .card-mas-nuevo {
+    width: 100%;
+    height: 295px;
+    background-color: #f7f7f7;
+    border-radius: 20px;
+  }
+
+  .img-card img {
+    width: 100%;
+    height: 175px;
+    border-radius: 15px 15px 0px 0px;
+    -moz-border-radius: 15px 15px 0px 0px;
+    -webkit-border-radius: 15px 15px 0px 0px;
+  }
+
+  .cont-card {
+    padding: 1rem;
+    position: relative;
+  }
+
+  .cont-card h5 {
+    font-weight: bold;
+    padding-bottom: .7rem;
+  }
+
+  .cont-card span {
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .precio-buscador span {
+    color: #06cc60;
+    float: left;
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  .buscador-vermas a {
+    text-decoration: none;
+    background: #f7c400;
+    float: right;
+    border-radius: 20px;
+    padding: .1rem 1rem;
+    color: white;
+    font-size: 14px;
+  }
+
+  .grid-services {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+  }
+
+  .grid-services>*:nth-child(2) .cont-servicios {
+    position: relative;
+  }
+
+  .grid-services>*:nth-child(2) .cont-servicios::before,
+  .grid-services>*:nth-child(2) .cont-servicios::after {
+    content: "";
+    display: block;
+    width: 100px;
+    height: 100px;
+    background-image: url('../assets/img/flecha-spiral.svg');
+    background-size: 100px;
+    position: absolute;
+  }
+
+  .grid-services>*:nth-child(2) .cont-servicios::before {
+    transform: rotate(90deg);
+    bottom: 100%;
+    left: -2rem;
+    margin-bottom: 1rem;
+  }
+
+  .grid-services>*:nth-child(2) .cont-servicios::after {
+    top: 0;
+    left: calc(100% + 1rem);
+  }
+
+  .contador-up {
+    margin-top: -3rem;
+  }
+
+  .contador-up path {
+    fill: white;
+  }
+
+  .categorias::before {
+    background-image: url("../assets/img/k.png");
+    content: "";
+    width: 50px;
+    height: 62px;
+    position: absolute;
+    background-size: cover;
+    left: 10%;
+    top: 10%;
+    transform: rotate(-10deg);
+    opacity: .3;
+  }
+
+  .categorias::after {
+    background-image: url("../assets/img/k.png");
+    content: "";
+    width: 50px;
+    height: 62px;
+    position: absolute;
+    background-size: cover;
+    right: 10%;
+    bottom: -3%;
+    transform: rotate(-10deg);
+    opacity: .3;
+  }
+
+  .categorias {
+    position: relative;
+  }
+
+  .cont-servicios h3 {
+    color: white;
+    font-weight: bold;
+    margin: 0;
+  }
+
+  .nav-home {
+    font-size: 18px;
+  }
+
+  .nav-home li a {
+    border-bottom: 2px solid #d7d7d7;
+    text-transform: uppercase;
+    color: #d7d7d7;
+    font-weight: 600;
+  }
+
+  .nav-home li a:hover {
+    border-bottom: 2px solid #06cc60;
+    text-transform: uppercase;
+    color: #06cc60;
+  }
+
+  .nav-home li>.active {
+    color: #06cc60;
+    border-bottom: 2px solid #06cc60;
+  }
+
+  .servicios::before {
+    content: '';
+    background-image: url(../assets/img/header-curve.png);
+    background-size: cover;
+    width: 100%;
+    max-width: 1920px;
+    height: 150px;
+    position: absolute;
+    top: -149px;
+    left: 0;
+  }
+
+  .contador:before {
+    content: '';
+    background-image: url("../assets/img/counte-up.png");
+    background-size: cover;
+    width: 100%;
+    max-width: 1920px;
+    height: 150px;
+    position: absolute;
+    top: -149px;
+    left: 0;
+  }
+
+  .contador::after {
+    content: '';
+    background-image: url("../assets/img/counte-bottom.png");
+    background-size: cover;
+    width: 100%;
+    max-width: 1920px;
+    height: 150px;
+    position: absolute;
+    bottom: -149px;
+    left: 0;
+  }
+
+  #asistir {
+    background-image: url('../assets/img/cuadro-amarillo.png');
+    background-size: cover;
+    margin-top: -5rem;
+    min-width: 330px;
+    min-height: 170px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #buscar {
+    margin-top: -3rem;
+    background-image: url('../assets/img/cuadro-amarillo.png');
+    background-size: cover;
+    min-width: 330px;
+    min-height: 170px;
+    display: flex;
+    align-items: center;
+  }
+
+  #reservar {
+    background-image: url('../assets/img/cuadro-verde.png');
+    background-size: cover;
+    margin-top: 7rem;
+    min-width: 330px;
+    min-height: 170px;
+    display: flex;
+    align-items: center;
+  }
+
+  @media (max-width:1200px) {
+    #buscar {
+      min-width: 250px !important;
+      min-height: 140px !important;
+    }
+
+    .cont-servicios img {
+      height: 60px;
+    }
+
+    #reservar {
+      min-width: 200px;
+      min-height: 135px;
+    }
+
+    #asistir {
+      min-width: 200px;
+      min-height: 140px;
+    }
+  }
+
+  @media(max-width:1024px) {
+    .grid-services {
+      display: block;
+    }
+
+    .grid-services>*:nth-child(2) .cont-servicios::before {
+      display: none;
+    }
+
+    .grid-services>*:nth-child(2) .cont-servicios::after {
+      display: none;
+    }
+
+    #buscar {
+      margin-top: 0px;
+      min-height: 140px;
+      background-size: 100% 100%;
+    }
+
+    #reservar {
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      min-height: 140px;
+      background-size: 100% 100%;
+    }
+
+    #asistir {
+      margin-top: 0;
+      margin-bottom: 2rem;
+      min-height: 140px;
+      background-size: 100% 100%;
+    }
+
+    .categorias h1 {
+      font-size: 3rem;
+    }
+  }
+</style>
+<style>
+  body {
+    background-image: url("../assets/img/header.JPG");
+  }
+
+  #registrarse {
+    width: 100%;
+    height: 100vh;
+    max-height: 1080px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #registrarse .caja-stilo {
+    border-radius: 15px;
+    background-color: #eaeaea;
+    margin-top: 3rem;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  @media (min-width:1200px) {
+
+    #registrarse .container {
+      width: 1000px;
+    }
+
+  }
+
+  #registrarse .form-control {
+    display: block;
+    width: 100%;
+    height: 50px;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #f2f2f2;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 10px;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    margin-bottom: 2rem;
+  }
+
+  #registrarse .form-control:focus {
+    box-shadow: none;
+  }
+
+  #registrarse .form-control:active {
+    box-shadow: none;
+  }
+
+  .caja-stilo a {
+    color: #f7c400;
+  }
 
 
 
@@ -60,227 +550,268 @@
 
 
 
-#regForm {
-  background-color: #ffffff;
-  margin: auto;
-  width: 70%;
-  min-width: 300px;
-  position: relative;
-}
+  #regForm {
+    background-color: #ffffff;
+    margin: auto;
+    width: 70%;
+    min-width: 300px;
+    position: relative;
+  }
 
-input {
-  padding: 10px;
-  width: 100%;
-  font-size: 17px;
-  border: 1px solid #aaaaaa;
-}
+  input {
+    padding: 10px;
+    width: 100%;
+    font-size: 17px;
+    border: 1px solid #aaaaaa;
+  }
 
-/* Mark input boxes that gets an error on validation: */
-input.invalid {
-  background-color: #ffdddd !important;
-}
+  /* Mark input boxes that gets an error on validation: */
+  input.invalid {
+    background-color: #ffdddd !important;
+  }
 
-/* Hide all steps by default: */
-.tab {
-  display: none;
-}
+  /* Hide all steps by default: */
+  .tab {
+    display: none;
+  }
 
-button {
+  button {
     background-color: #06cc60;
     color: #ffffff;
     border: none;
     padding: 2px 30px;
     border-radius: 20px;
     margin-top: 30px;
-}
+  }
 
-button:hover {
-  opacity: 0.8;
-}
+  button:hover {
+    opacity: 0.8;
+  }
 
-#prevBtn {
-  background-color: #bbbbbb;
-}
+  #prevBtn {
+    background-color: #bbbbbb;
+  }
 
-/* Make circles that indicate the steps of the form: */
-.step {
-  height: 15px;
-  width: 15px;
-  margin: 0 2px;
-  background-color: #bbbbbb;
-  border: none;  
-  border-radius: 50%;
-  display: inline-block;
-  opacity: 0.5;
-}
+  /* Make circles that indicate the steps of the form: */
+  .step {
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbbbbb;
+    border: none;
+    border-radius: 50%;
+    display: inline-block;
+    opacity: 0.5;
+  }
 
-.step.active {
+  .step.active {
     opacity: 1;
     background: #06cc60;
-}
-/* Mark the steps that are finished and valid: */
-.step.finish {
-    background-color: #06cc60;
-}
+  }
 
-.registro-negocio-img{
+  /* Mark the steps that are finished and valid: */
+  .step.finish {
+    background-color: #06cc60;
+  }
+
+  .registro-negocio-img {
     width: 110px;
     height: 110px;
     clip-path: circle(50% at 50% 50%);
-}
-
-
-
-    </style>
-
-  <div>{{#if messages}}
-    {{#showAlerts messages}}
-    {{/showAlerts}}
-    {{/if}}</div>
-
-
-    <section id="registrarse">
-        <div class="container">
-            <div class="row">
-                <div class="caja-stilo">
-                    <div style="background-color: white; padding: 1rem; border-radius: 20px;">
-                        <div class="col-md-12">
-                            <h3 class="text-center mb-5">Regitrarse</h3>
-                        </div>
-                        <form id="regForm" action="/registrar_empresa" method="post">
-                            <!-- One "tab" for each step in the form: -->
-                            <div class="tab">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label for="">Correo Electronico</label>
-                                        <input type="email" class="form-control"  name="email">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="">Nombre del Local Principal</label>
-                                        <input type="text" class="form-control" name="name_empresa">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="">Contraseña</label>
-                                        <input type="password" class="form-control" name="password">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="">Confirmar Contraseña</label>
-                                        <input type="password" class="form-control" name="confirmPassword">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <h3>Datos del negocio</h3>
-                                        <span>
-                                            Esta es la información del LOCAL de tu negocio. (más adelante podrás agregar más locales de ser necesario .)
-                                        </span>
-                                        <div class="row">
-                                            <div class="col-md-2">
-                                                 <img id="imageSelected" class="registro-negocio-img"
+  }
+</style>
+<section id="registrarse">
+  <div class="container">
+    <div class="row">
+      <div class="caja-stilo">
+        <div style="background-color: white; padding: 1rem; border-radius: 20px;">
+          <div class="col-md-12">
+            <h3 class="text-center mb-5">Registrarse</h3>
+          </div>
+          <form id="regForm" action="/registrar_empresa" method="post">
+            <!-- One "tab" for each step in the form: -->
+            <div>{{#if messages}}
+              {{#showAlerts messages}}
+              {{/showAlerts}}
+              {{/if}}</div>
+            <div class="tab">
+              <div class="row">
+                <div class="col-md-6">
+                  <label for="">Correo Electronico</label>
+                  <input type="email" class="form-control" name="email">
+                </div>
+                <div class="col-md-6">
+                  <label for="">Nombre de usuario</label>
+                  <input type="text" class="form-control" name="usuario_name">
+                </div>
+                <div class="col-md-6">
+                  <label for="">Contraseña</label>
+                  <input type="password" class="form-control" name="password">
+                </div>
+                <div class="col-md-6">
+                  <label for="">Confirmar Contraseña</label>
+                  <input type="password" class="form-control" name="confirmPassword">
+                </div>
+              </div>
+            </div>
+            <div class="tab">
+              <div class="row">
+                <div class="col-12">
+                  <h3>Datos del negocio</h3>
+                  <span>
+                    Esta es la información del LOCAL de tu negocio (más adelante podrás agregar más locales de ser
+                    necesario).
+                  </span>
+                  <div class="row">
+                    <div class="col-md-2">
+                      <img id="imageSelected" class="registro-negocio-img"
                         src="https://javierg.mosquedacordova.com/klizto/images/ico-image.png" width="300" height="300"
                         onclick="document.getElementById('profile-img').click();" />
                       <input
                         class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
                         id="profile-img" type="file" accept=".png" name="image" style="display: none;" />
-                    <input type="text" id="profile_img_" class="" name='photo1' hidden>
-                                                <!--<img class="registro-negocio-img" src="" alt="">-->
+                      <input type="text" id="profile_img_" class="" name='photo1' hidden>
+                      <!--<img class="registro-negocio-img" src="" alt="">-->
 
-                                            </div>
-                                            <div class="col-md-10 pl-3 pt-1">
-                                                <h4><strong>Logo</strong></h4>
-                                                <span>Recomendado: Imagen cuadrada. Ejm: 300x300 px</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="">Departamento</label>
-                                        <input type="text" class="form-control" name="departamento">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="">Distrito</label>
-                                        <input type="text" class="form-control" name="distrito">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label>Dirección</label>
-                                        <textarea class="form-control" rows="3" style="height:100px;" name="direccion"></textarea>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label>Descripción</label>
-                                        <textarea class="form-control" rows="3" style="height:100px;"  name="descripcion"></textarea>
-                                    </div>
-                                    <div class="col-12">
-                                        <label>Teléfono</label>
-                                        <input type="number" class="form-control" name="telefono">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <h3>DATOS BANCARIOS</h3>
-                                        <span>Esta es la información de la cuenta de bancaria donde recibirás tus ganacias.</span>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="">Banco</label>
-                                        <select class="form-control" name="bank_id">
-                      <option value="BBVA">
-                        BBVA
-                      </option>
-                      <option value="BCP">
-                        BCP
-                      </option>
-                    </select>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="">Cuenta Bancaria</label>
-                                        <input type="number" class="form-control"  name="cuenta"  maxlength="22" >
-                                    </div>
-                                    <div class="col-12">
-                                        <h3>DATOS DEL REPRESENTANTE DEL NEGOCIO</h3>
-                                        <span>Esta es la información del representante del negocio encargado de las reservas.</span>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="">Nombre</label>
-                                        <input type="text" class="form-control" name="nombre_empleado">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="">Apellido</label>
-                                        <input type="text" class="form-control" name="apellido_empleado">
-                                    </div>
-                                    <div class="col-12">
-                                        <label for="">Celular personal</label>
-                                        <input type="number" class="form-control" name="telefono_empleado">
-                                    </div>
-                                </div>
-                            </div>
-                            <div style="overflow:auto; position: absolute; width: 100%;">
-                                <button type="button" id="prevBtn" onclick="nextPrev(-1)">Volver</button>
-                                <button type="button" id="nextBtn" onclick="nextPrev(1)" style="float: right;">Siguiente</button>
-                            </div>
-                            <!-- Circles which indicates the steps of the form: -->
-                            <div style="text-align:center;margin-top:40px;">
-                              <span class="step"></span>
-                              <span class="step"></span>
-                              <span class="step"></span>
-                            </div>
-                        </form>
                     </div>
-                    <div>
-                        <p class="text-center pt-3">
-                            ¿Ya tienes cuenta? <a href="/login">Inicia sesión</a>
-                        </p>
+                    <div class="col-md-10 pl-3 pt-1">
+                      <h4><strong>Lógo</strong></h4>
+                      <span>Recomendado: Imagen cuadrada. Ejm: 300x300 px</span>
                     </div>
+                  </div>
                 </div>
+                <div class="col-md-6">
+                  <label for="">Nombre del local principal</label>
+                  <input type="text" class="form-control" name="name_empresa">
+                </div>
+                <div class="col-md-6">
+                  <label for="">Departamento</label>
+                  {{!-- <input type="text" class="form-control" name="departamento"> --}}
+                  <select class="select2 form-select" name="departamento">
+                    <option>Lima</option>
+                    <option>Callao</option>
+                  </select>
+                </div>
+                <div class="col-md-6 ">
+                  <label for="">Distrito</label>
+                  {{!-- <input type="text" class="form-control" name="distrito"> --}}
+                  <select class="select2 form-select" name="distrito">
+                    <option value="Cercado de Lima">Cercado de Lima</option>
+                    <option value="Ate">Ate</option>
+                    <option value="Comas">Comas</option>
+                    <option value="Barranco">Barranco</option>
+                    <option value="Breña">Breña</option>
+                    <option value="Comas">Comas</option>
+                    <option value="Chorrillos">Chorrillos</option>
+                    <option value="El Agustino">El Agustino</option>
+                    <option value="Jesús María">Jesús María</option>
+                    <option value="La Molina">La Molina</option>
+                    <option value="La Victoria">La Victoria</option>
+                    <option value="Lince">Lince</option>
+                    <option value="Magdalena del Mar">Magdalena del Mar</option>
+                    <option value="Miraflores">Miraflores</option>
+                    <option value="Pueblo Libre">Pueblo Libre</option>
+                    <option value="Puente Piedra">Puente Piedra</option>
+                    <option value="Rimac">Rimac</option>
+                    <option value="San Isidro">San Isidro</option>
+                    <option value="Independencia">Independencia</option>
+                    <option value="San Juan de Miraflores">San Juan de Miraflores</option>
+                    <option value="San Luis">San Luis</option>
+                    <option value="San Martin de Porres">San Martin de Porres</option>
+                    <option value="San Miguel">San Miguel</option>
+                    <option value="Santiago de Surco">Santiago de Surco</option>
+                    <option value="Surquillo">Surquillo</option>
+                    <option value="Villa María del Triunfo">Villa María del Triunfo</option>
+                    <option value="San Juan de Lurigancho">San Juan de Lurigancho</option>
+                    <option value="Santa Rosa">Santa Rosa</option>
+                    <option value="Los Olivos">Los Olivos</option>
+                    <option value="San Borja">San Borja</option>
+                    <option value="Villa El Savador">Villa El Savador</option>
+                    <option value="Santa Anita">Santa Anita</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label>Dirección</label>
+                  <textarea class="form-control" rows="3" style="height:100px;" name="direccion"></textarea>
+                </div>
+                <div class="col-md-6">
+                  <label>Descripción</label>
+                  <textarea class="form-control" rows="3" style="height:100px;" name="descripcion"></textarea>
+                </div>
+                <div class="col-12">
+                  <label>Teléfono</label>
+                  <input type="number" class="form-control" name="telefono" maxlength="9"
+                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                </div>
+              </div>
             </div>
+            <div class="tab">
+              <div class="row">
+                <div class="col-12">
+                  <h3>DATOS BANCARIOS</h3>
+                  <span>Esta es la información de la cuenta de bancaria donde recibirás tus ganacias.</span>
+                </div>
+                <div class="col-md-6">
+                  <label for="">Banco</label>
+                  <select class="form-control" name="bank_id">
+                    <option value="BBVA">
+                      BBVA
+                    </option>
+                    <option value="BCP">
+                      BCP
+                    </option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label for="">Cuenta Bancaria</label>
+                  <input type="number" class="form-control" name="cuenta" maxlength="22"
+                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                </div>
+                <div class="col-12">
+                  <h3>DATOS DEL REPRESENTANTE DEL NEGOCIO</h3>
+                  <span>Esta es la información del representante del negocio encargado de las reservas.</span>
+                </div>
+                <div class="col-md-6">
+                  <label for="">Nombre</label>
+                  <input type="text" class="form-control" name="nombre_empleado">
+                </div>
+                <div class="col-md-6">
+                  <label for="">Apellido</label>
+                  <input type="text" class="form-control" name="apellido_empleado">
+                </div>
+                <div class="col-12">
+                  <label for="">Celular personal</label>
+                  <input type="number" class="form-control" name="telefono_empleado" maxlength="9"
+                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                </div>
+              </div>
+            </div>
+            <div style="overflow:auto; position: absolute; width: 100%;">
+              <button type="button" id="prevBtn" onclick="nextPrev(-1)">Volver</button>
+              <button type="button" id="nextBtn" onclick="nextPrev(1)" style="float: right;">Siguiente</button>
+            </div>
+            <!-- Circles which indicates the steps of the form: -->
+            <div style="text-align:center;margin-top:40px;">
+              <span class="step"></span>
+              <span class="step"></span>
+              <span class="step"></span>
+            </div>
+          </form>
         </div>
-        
-    </section>
+        <div>
+          <p class="text-center pt-3">
+            ¿Ya tienes cuenta? <a href="/login">Inicia sesión</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
 <script>
   var currentTab = 0; // Current tab is set to be the first tab (0)
   showTab(currentTab); // Display the current tab
-  
+
   function showTab(n) {
     // This function will display the specified tab of the form...
     var x = document.getElementsByClassName("tab");
@@ -299,7 +830,7 @@ button:hover {
     //... and run a function that will display the correct step indicator:
     fixStepIndicator(n)
   }
-  
+
   function nextPrev(n) {
     // This function will figure out which tab to display
     var x = document.getElementsByClassName("tab");
@@ -318,7 +849,7 @@ button:hover {
     // Otherwise, display the correct tab:
     showTab(currentTab);
   }
-  
+
   function validateForm() {
     // This function deals with validation of the form fields
     var x, y, i, valid = true;
@@ -329,6 +860,10 @@ button:hover {
       // If a field is empty...
       if (y[i].value == "") {
         // add an "invalid" class to the field:
+        console.log(y[i].name)
+        if (y[i].name == "image" || y[i].name == "photo1") {
+          alert('Falta subir un logo');
+        }
         y[i].className += " invalid";
         // and set the current valid status to false
         valid = false;
@@ -340,7 +875,7 @@ button:hover {
     }
     return valid; // return the valid status
   }
-  
+
   function fixStepIndicator(n) {
     // This function removes the "active" class of all steps...
     var i, x = document.getElementsByClassName("step");
