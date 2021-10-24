@@ -13,6 +13,9 @@ exports.dashboard = (req, res) => {
 }
 
  if (tipo_user == "Administrador") {
+  Modulo_BD.PublicidadActDestino('Dashboard negocio').then((respuesta1) =>{
+    let video = JSON.parse(respuesta1)
+    console.log(video)
   Modulo_BD.publicaciones(user.id).then((respuesta) =>{
     let publicaciones = JSON.parse(respuesta)
     console.log(user);
@@ -22,9 +25,10 @@ exports.dashboard = (req, res) => {
       dashboard: true,
       publicaciones,
       admin:true,
-      user,
+      user,video
     });
   })
+})
  }else{
   Modulo_BD.publicaciones(user.id).then((respuesta) =>{
     let publicaciones = JSON.parse(respuesta)
@@ -45,6 +49,9 @@ exports.dashboard = (req, res) => {
           
         }
         console.log(contar_citas);
+        Modulo_BD.PublicidadActDestino('Dashboard negocio').then((respuesta1) =>{
+          let video = JSON.parse(respuesta1)
+
     res.render("dashboard", {
       pageName: "Dashboard",
       dashboardPage: true,
@@ -52,9 +59,10 @@ exports.dashboard = (req, res) => {
       publicaciones,
       parsed_wallet,
       contar_ventas,
-      user,contar_citas
+      user,contar_citas,video
     })
   })
+})
     });
   })
 })
@@ -1018,7 +1026,7 @@ exports.configuraciones = (req, res) => {
 
  //PUBLICIDAD
 
- exports.publicidad = (req, res) => {
+ exports.videos_admin = (req, res) => {
   const user = res.locals.user;
   let msg = false;
    var logo =false;
@@ -1032,8 +1040,8 @@ exports.configuraciones = (req, res) => {
 
      console.log(publicidad)
     //console.log(req);
-     res.render("publicidad", {
-     pageName: "Mis publicidad",
+     res.render("videos_admin", {
+     pageName: "Mis videos",
      public: true,
      dashboardPage: true,
      publicidad,
@@ -1045,7 +1053,7 @@ exports.configuraciones = (req, res) => {
   })   
    
  };
- exports.crear_publicidad = (req, res) => {
+ exports.crear_videos_admin = (req, res) => {
   const user = res.locals.user;
   let msg = false;
    var logo =false;
@@ -1054,8 +1062,8 @@ exports.configuraciones = (req, res) => {
     logo = true
   }
 
-     res.render("publicidad", {
-     pageName: "Crear publicidad",
+     res.render("videos_admin", {
+     pageName: "Crear video",
      dashboardPage: true,
      crear_public:true,
      logo:true, 
@@ -1064,26 +1072,26 @@ exports.configuraciones = (req, res) => {
    });
  };
 
- exports.guardar_publicidad = (req, res) => {
-  const {userid,nombre,  estado,photo } = req.body;
+ exports.guardar_videos_admin = (req, res) => {
+  const {userid,nombre,  estado,photo, destino} = req.body;
 
-   Modulo_BD.guardar_publicidad(userid, nombre,  estado,photo).then((respuesta) =>{
+   Modulo_BD.guardar_publicidad(userid, nombre,  estado,photo, destino).then((respuesta) =>{
  
-     let msg="Se creó con exito la publicidad: ";
-      res.redirect('/publicidad/'+msg)
+     let msg="Se creó con exito el video ";
+      res.redirect('/videos_admin/'+msg)
 
    })   
  };
 
- exports.editar_publicidad = (req, res) => {
+ exports.editar_videos_admin = (req, res) => {
   const user = res.locals.user;
   let id_ct = req.params.id
 
   Modulo_BD.publicidadbyId(id_ct).then((data) =>{
     let edit_publi = JSON.parse(data)[0]
     console.log(edit_publi)
-     res.render("publicidad", {
-    pageName: "Editar publicidad",
+     res.render("videos_admin", {
+    pageName: "Editar videos",
     dashboardPage: true,
     edit_publi,
     logo:true,
@@ -1097,19 +1105,19 @@ exports.configuraciones = (req, res) => {
   })  
  };
 
- exports.guardar_editar_publicidad = (req, res) => {
+ exports.guardar_editar_videos_admin = (req, res) => {
   const user = res.locals.user;
-  const {id_configuracion, nombre, estado,  photo} = req.body;
+  const {id_configuracion, nombre, estado,  photo,destino} = req.body;
 
-   Modulo_BD.guardaredit_publicidad(id_configuracion, nombre, estado,  photo, user.id).then((respuesta) =>{
+   Modulo_BD.guardaredit_publicidad(id_configuracion, nombre, estado,  photo, user.id,destino).then((respuesta) =>{
     
      console.log(respuesta)
-     let msg="Se actualizó con exito la publicidad"
-      res.redirect('/publicidad/'+msg)
+     let msg="Se actualizó con exito el video"
+      res.redirect('/videos_admin/'+msg)
 
    })   
  };
- exports.delete_public = (req, res) => {
+ exports.delete_videos_admin = (req, res) => {
   const user = res.locals.user;
   let tipo = req.params.tipo
   let id_ = req.params.id

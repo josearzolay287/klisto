@@ -149,13 +149,13 @@ router.get('/politicas_page', dashboardController.politicas_page);
 
 
 //PUBLICIDAD
-router.get('/publicidad',authController.authenticatedUser, dashboardController.publicidad);
-router.get('/publicidad/:msg',authController.authenticatedUser, dashboardController.publicidad);
-router.get('/crear_publicidad',authController.authenticatedUser, dashboardController.crear_publicidad);
-router.post('/crear_publicidad',authController.authenticatedUser, dashboardController.guardar_publicidad);
-router.get('/editar_publicidad/:id',authController.authenticatedUser, dashboardController.editar_publicidad);
-router.post('/editar_publicidad',authController.authenticatedUser, dashboardController.guardar_editar_publicidad);
-router.get('/borrar_publicidad/:id',authController.authenticatedUser, dashboardController.delete_public);
+router.get('/videos_admin',authController.authenticatedUser, dashboardController.videos_admin);
+router.get('/videos_admin/:msg',authController.authenticatedUser, dashboardController.videos_admin);
+router.get('/crear_videos_admin',authController.authenticatedUser, dashboardController.crear_videos_admin);
+router.post('/crear_videos_admin',authController.authenticatedUser, dashboardController.guardar_videos_admin);
+router.get('/editar_videos_admin/:id',authController.authenticatedUser, dashboardController.editar_videos_admin);
+router.post('/editar_videos_admin',authController.authenticatedUser, dashboardController.guardar_editar_videos_admin);
+router.get('/borrar_videos_admin/:id',authController.authenticatedUser, dashboardController.delete_videos_admin);
 
 
 //PUBLICACIONES

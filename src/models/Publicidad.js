@@ -21,6 +21,10 @@ const Publicidad = db.define('publicidad', {
 		type: DataTypes.TEXT,
 		allowNull: true,
 	},
+	destino: {
+		type: DataTypes.TEXT,
+		allowNull: true,
+	},
 	
 });
 

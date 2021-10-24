@@ -1450,9 +1450,27 @@ login(email, password) {
   },
   PublicidadAct() {
     return new Promise((resolve, reject) => {
-      Publicidad.findAll({
+      Publicidad.findOne({
         where: {
           estado: 'Activa'
+        }
+      })
+        .then((data) => {
+          let datas = JSON.stringify(data);
+          resolve(datas);
+          ////console.log(id_usuario);
+        })
+        .catch((err) => {
+          ////console.log(err);
+        });
+    });
+  },
+  PublicidadActDestino(destino) {
+    return new Promise((resolve, reject) => {
+      Publicidad.findOne({
+        where: {
+          estado: 'Activa',
+          destino: destino
         }
       })
         .then((data) => {
@@ -1482,10 +1500,10 @@ login(email, password) {
         });
     });
   },
-  guardar_publicidad(userid, nombre, estado, valor) {
+  guardar_publicidad(userid, nombre, estado, valor, destino) {
     return new Promise((resolve, reject) => {
       Publicidad.create({
-        nombre: nombre, estado: estado, imagen: valor, usuarioId: userid
+        nombre: nombre, estado: estado, imagen: valor,destino:destino, usuarioId: userid
       }).then((data_) => {
         let datas = JSON.stringify(data_);
         resolve(datas);
@@ -1496,10 +1514,10 @@ login(email, password) {
         });
     });
   },
-  guardaredit_publicidad(id_configuracion, configuracion, estado, valor, userid) {
+  guardaredit_publicidad(id_configuracion, configuracion, estado, valor, userid,destino) {
     return new Promise((resolve, reject) => {
       Publicidad.update({
-        nombre: configuracion, estado: estado, imagen: valor, usuarioId: userid
+        nombre: configuracion, estado: estado, imagen: valor,destino:destino, usuarioId: userid
       }, {
         where: {
           id: id_configuracion
