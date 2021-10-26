@@ -1,8 +1,10 @@
 <style>
 	.form-message .form-message-error{
 		color: red;
+
 	}
 	.form-message-container{
+    text-align: center;
 		color: red;
 	}
 	      body{
@@ -146,15 +148,13 @@ button:hover {
 </style>
 
 <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 ">
-	<div>	{{#if messages}}
-		{{#showAlerts messages}}
-		{{/showAlerts}}
-	{{/if}}</div>
+
 
 <section id="registrarse">
   <div class="container">
     <div class="row">
       <div class="caja-stilo">
+        
         <div style="background-color: white; padding: 1rem; border-radius: 20px;">
           <div class="col-12">
 			<center >
@@ -162,6 +162,10 @@ button:hover {
             </center>
           </div>
           <div class="col-lg-12" >
+            	<div>	{{#if messages}}
+		{{#showAlerts messages}}
+		{{/showAlerts}}
+	{{/if}}</div>
 			  <form method="post" action="/login" >
 			  			<div>
 				<label class="block font-medium text-sm text-gray-700" for="email">

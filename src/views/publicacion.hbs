@@ -216,13 +216,30 @@ margin-left: -5px;
     box-shadow: none;
     margin-bottom: .7rem;
   }
+  .bootstrap-datetimepicker-widget table td.today:before{
+    border-bottom-color: transparent !important;
+  }
+  @media (max-width:1024px){
+    .dom-loc img{
+      width: 30px;
+      height: 30px;
+      float: left;
+    }
+    .dom-loc span{
+      float: left;
+    }
+    .dom-loc{
+      margin-bottom: 20px;
+    }
+  }
 
   #reservar .active {
-    color: #06cc60;
+    color: white;
     border-radius: 0px;
     background: #eaeaea;
     box-shadow: none;
-    margin-bottom: .7rem;
+    margin-bottom: 0.7rem;
+    background-color: var(--color-verde);
   }
 
   #reservar .btn-outline-success {
@@ -261,6 +278,10 @@ margin-left: -5px;
 
   .bootstrap-datetimepicker-widget table td.active.today::before {
     border-bottom-color: #eaeaea;
+  }
+  .btn-success{
+    background-color: var(--color-verde);
+    border-color: var(--color-verde);
   }
 
 </style>
@@ -764,6 +785,9 @@ margin-left: -5px;
   #continuar_sesion {
     background-color: var(--color-verde);
     border-color: var(--color-verde);
+  }
+  #ver_ubicacion{
+    margin-top: 2rem;
   }
 </style>
 <script>
@@ -1340,12 +1364,18 @@ if (data.mensaje == 'USADO'){
                     </div>
 
                     <div class="form-group" id="locales_habiles" style="display: none;">
+                      <div class="row">
+                                              <div class="col-md-8">
                       <label for="">Escoger local:</label>
                       <select id="sucursales" class="form-control" name="sucursal">
                         <option selected value="0">Seleccione un local</option>
                         {{#sucursalesdisponibles publicacion.sucursales sucursales}}{{/sucursalesdisponibles}}
                         <span id="sucursales_p"></span></p>
-                       <button type="button" id="ver_ubicacion"> Ver Ubicación</button>
+                      </div>
+                      <div class="col-md-4 align-content-center">
+                        <button type="button" id="ver_ubicacion" class="btn btn-success"> Ver Ubicación</button>
+                      </div>
+                      </div>
                     </div>
                     <div class="form-group" id="empleados_" style="display: none;">
                       <label for="">Escoger trabajador:</label>

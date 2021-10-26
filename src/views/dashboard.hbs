@@ -12,7 +12,21 @@
   @media (min-width: 768px){
     .row + .row{
     margin-top: 0px !important;
+    }
   }
+  .video-das{
+    width: 100%;
+  }
+  .btn-primary{
+    background-color: var(--color-verde);
+    color: white !important;
+    border-color: var(--color-verde);
+  }
+  .btn-primary:hover{
+    background-color: #1f7e4a;
+    color: white;
+    border-color: #1f7e4a;
+    box-shadow: none;
   }
 </style>
 <div class="page-container">
@@ -96,7 +110,7 @@
                   </div>
                   <div class="card-body">
                     <div class="table-responsive table-responsive-data2">
-        <video class="" src="../assets/uploads/{{video.imagen}}" controls width="450" height="240">
+        <video class="video-das" src="../assets/uploads/{{video.imagen}}" controls width="450" height="240">
 					Tu navegador no admite el elemento <code>video</code>.
 				  </video> 
                     </div>
