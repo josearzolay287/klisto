@@ -170,6 +170,13 @@
     border: 0px solid #000000;
     position: relative;
   }
+  .ig-logo{
+border: 1px solid black;
+    overflow: hidden;
+    border-radius: 100%;
+    width: 100px;
+    height: 100px;
+  }
 
   @media (max-width: 1440px) {
     .footer {
@@ -491,8 +498,6 @@
 
   #registrarse {
     width: 100%;
-    height: 100vh;
-    max-height: 1080px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -615,9 +620,11 @@
   }
 
   .registro-negocio-img {
-    width: 110px;
-    height: 110px;
+    width: 100px;
+    height: 100px;
     clip-path: circle(50% at 50% 50%);
+    background-image: url('assets/img/descarga.png');
+    background-size: 100% 100%;
   }
 </style>
 <section id="registrarse">
@@ -664,9 +671,11 @@
                   </span>
                   <div class="row">
                     <div class="col-md-2">
-                      <img id="imageSelected" class="registro-negocio-img"
+                      <div class="ig-logo">
+                                              <img id="imageSelected" class="registro-negocio-img"
                         src="https://javierg.mosquedacordova.com/klizto/images/ico-image.png" width="300" height="300"
                         onclick="document.getElementById('profile-img').click();" />
+                      </div>
                       <input
                         class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
                         id="profile-img" type="file" accept=".png" name="image" style="display: none;" />
@@ -680,14 +689,14 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-12">
                   <label for="">Nombre del local principal</label>
                   <input type="text" class="form-control" name="name_empresa">
                 </div>
                 <div class="col-md-6">
                   <label for="">Departamento</label>
                   {{!-- <input type="text" class="form-control" name="departamento"> --}}
-                  <select class="select2 form-select" name="departamento">
+                  <select class="form-control form-select" name="departamento">
                     <option>Lima</option>
                     <option>Callao</option>
                   </select>
@@ -695,7 +704,7 @@
                 <div class="col-md-6 ">
                   <label for="">Distrito</label>
                   {{!-- <input type="text" class="form-control" name="distrito"> --}}
-                  <select class="select2 form-select" name="distrito">
+                  <select class="form-control form-select" name="distrito">
                     <option value="Cercado de Lima">Cercado de Lima</option>
                     <option value="Ate">Ate</option>
                     <option value="Comas">Comas</option>
