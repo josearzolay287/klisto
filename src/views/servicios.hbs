@@ -1,3 +1,5 @@
+<script src="https://kit.fontawesome.com/849e949c38.js" crossorigin="anonymous"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
   crossorigin="anonymous"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -5,7 +7,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.3/moment.min.js"></script>
 <link rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.min.css" />
-<!-- BEGIN: Vendor CSS-->
+   <!-- BEGIN: Page CSS-->
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/core/menu/menu-types/vertical-menu.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/plugins/extensions/ext-component-sliders.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/pages/app-ecommerce.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/plugins/extensions/ext-component-toastr.css">
+    <!-- END: Page CSS-->
+    <!-- BEGIN: Vendor CSS-->
     <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/vendors.min.css">
     <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/extensions/nouislider.min.css">
     <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/extensions/toastr.min.css">
@@ -19,12 +27,6 @@
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css/themes/dark-layout.css">
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css/themes/bordered-layout.css">
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css/themes/semi-dark-layout.css">
-   <!-- BEGIN: Page CSS-->
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/core/menu/menu-types/vertical-menu.css">
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/plugins/extensions/ext-component-sliders.css">
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/pages/app-ecommerce.css">
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/plugins/extensions/ext-component-toastr.css">
-    <!-- END: Page CSS-->
 <style>
   thead .dow {
     background: #f7c400;
@@ -539,11 +541,17 @@ margin-left: -5px;
   .cont-card h5 {
     font-weight: bold;
     padding-bottom: .7rem;
+    font-size: 1.5rem;
+    color: black;
   }
 
   .cont-card span {
     font-size: 14px;
     font-weight: 600;
+    color: black;
+  }
+  .text-body{
+    color: black !important;
   }
 
   .precio-buscador span {
@@ -809,13 +817,76 @@ margin-left: -5px;
   #ver_ubicacion{
     margin-top: 2rem;
   }
+  .pagination__controls{
+    position: absolute;
+    bottom: -2rem;
+    width: 100%;
+  }
+  .pagination li{
+    margin: .5rem;
+  }
+  .ecommerce-application .grid-view{
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+  .precio-buscador{
+    padding: 1rem;
+    margin-top: -1.5rem;
+  }
+  h5{
+    font-family: 'Poppins', sans-serif;
+  }
+  .form-check-input:not(:disabled):checked{
+    box-shadow: none;
+  }
+    .form-check-input:hover{
+    background: var(--color-verde);
+  }
+  .categoria{
+    color: black;
+  }
+  [type=checkbox], [type=radio]{
+    color: var(--color-verde);
+  }
+  .btn-outline-primary:hover:not(.disabled):not(:disabled){
+    background-color: transparent;
+  }
+    .btn-outline-primary:focus:not(.disabled):not(:disabled){
+    background-color: transparent;
+    box-shadow: none;
+  }
+  .btn-outline-primary:not(:disabled):not(.disabled):active, .btn-outline-primary:not(:disabled):not(.disabled).active, .btn-outline-primary:not(:disabled):not(.disabled):focus{
+    background-color: var(--color-verde);
+    color: white;
+  }
+  .dropdown-toggle::after{
+    color: var(--color-verde);
+  }
+  @media(max-width:1170px){
+    .ecommerce-application .grid-view{
+      grid-template-columns:1fr 1fr 1fr;
+    }
+  }
+  @media(max-width:634px){
+    .ecommerce-application .grid-view{
+      grid-template-columns:1fr 1fr;
+    }
+  }
+  @media(max-width:480px){
+    .ecommerce-application .grid-view{
+      grid-template-columns:1fr;
+    }
+  }
+  @media(max-width:991px){
+    .page-container{
+      top:0 !important;
+    }
+  }
 </style>
 
 
 {{#if msg}}
 <label id="msgs">{{msg}}</label>
 {{/if}}
-
 
 
 
@@ -849,7 +920,7 @@ margin-left: -5px;
                                 <div class="ecommerce-header-items">
                                      <div class="result-toggler">
                                         <button class="navbar-toggler shop-sidebar-toggler" type="button" data-bs-toggle="collapse">
-                                            <span class="navbar-toggler-icon d-block d-lg-none"><i data-feather="menu"></i></span>
+                                            <span class="navbar-toggler-icon d-block d-lg-none"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-grid font-medium-3"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg></span>
                                         </button>
                                         {{!-- <div class="search-results">16285 results found</div> --}}
                                     </div>
@@ -903,7 +974,7 @@ margin-left: -5px;
                     <!-- E-commerce Products Starts -->
                     <section id="pagination-2" class="grid-view pagination__list">
  {{#each parse_publi as |publicacion i |}}
-                        <div class="card card-mas-nuevo item pagination__item" data-sort="{{precio}}">
+                                              <div class="card card-mas-nuevo item pagination__item" data-sort="{{precio}}">
                           <label class="card-title nombres" hidden>{{titulo}} </label>
                             <label class="card-title categoria" hidden>{{categoria}} </label>
                             <div class="img-card text-center">
@@ -911,10 +982,10 @@ margin-left: -5px;
                             </div>
                             <div class="cont-card">
                                <span>{{categoria}}</span>
-                                <h6 class="item-name">
-                                    <a class="text-body" >{{#Titulo titulo}}{{/Titulo}}</a>
+                                <h5>
+                                    {{#Titulo titulo}}{{/Titulo}}
                                     {{!-- <span class="card-text item-company">By <a href="#" class="company-name">Apple</a></span> --}}
-                                </h6>
+                                </h5>
                                 {{!-- <p class="card-text item-description">
                                     On Retina display that never sleeps, so it’s easy to see the time and other important information, without
                                     raising or tapping the display. New location features, from a built-in compass to current elevation, help users
@@ -936,6 +1007,9 @@ margin-left: -5px;
                         </div>
           {{/each}}
                     </section>
+                    <div class="start-pagination">
+
+                    </div>
                     <!-- E-commerce Products Ends -->
 
                     <!-- E-commerce Pagination Starts -->
