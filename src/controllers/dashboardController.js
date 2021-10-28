@@ -131,6 +131,7 @@ exports.dashboard = (req, res) => {
       let categorias = JSON.parse(cat)
        res.render("servicios", {
    pageName: "Servicios",
+   servicios:true,
    landingPage:true,
    publicaciones_landing:true,
    categorias,
