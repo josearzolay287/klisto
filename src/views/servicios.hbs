@@ -1,0 +1,1148 @@
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.3/moment.min.js"></script>
+<link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.min.css" />
+<!-- BEGIN: Vendor CSS-->
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/vendors.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/extensions/nouislider.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/extensions/toastr.min.css">
+    <!-- END: Vendor CSS-->
+
+    <!-- BEGIN: Theme CSS-->
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/bootstrap-extended.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/colors.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/components.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/themes/dark-layout.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/themes/bordered-layout.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/themes/semi-dark-layout.css">
+   <!-- BEGIN: Page CSS-->
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/core/menu/menu-types/vertical-menu.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/plugins/extensions/ext-component-sliders.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/pages/app-ecommerce.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/plugins/extensions/ext-component-toastr.css">
+    <!-- END: Page CSS-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.5/pagination.css" />
+<style>
+  thead .dow {
+    background: #f7c400;
+  }
+
+  .bootstrap-datetimepicker-widget table th {
+    color: white;
+  }
+
+  .bootstrap-datetimepicker-widget table .prev,
+  .bootstrap-datetimepicker-widget table .picker-switch,
+  .bootstrap-datetimepicker-widget table .next {
+    color: black;
+  }
+
+  .bootstrap-datetimepicker-widget table td.day,
+  .bootstrap-datetimepicker-widget table th {
+    padding: 15px;
+  }
+
+  .bootstrap-datetimepicker-widget table th {
+    border-radius: 0px;
+  }
+
+  #datetimepicker12 {
+    background: #eaeaea;
+    border-radius: 10px;
+  }
+
+  .table td,
+  .table th {
+    border-top: none;
+  }
+
+  .table thead th {
+    border-bottom: none;
+  }
+
+  #content-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .column {
+    width: 100%;
+    max-width: 600px;
+    padding: 10px; 
+}
+
+  #featured {
+    width: 500px;
+    height: 400px;
+    cursor: pointer;
+    border-radius: 15px;
+  }
+
+  .thumbnail {
+object-fit: cover;
+    width: 150px;
+    height: 70px;
+    cursor: pointer;
+    opacity: 0.5;
+    margin-left: 9px;
+    margin-top: 10px;
+    margin-right: 9px;
+    border-radius: 10px;
+  }
+
+  .thumbnail:hover {
+    opacity: 1;
+  }
+
+  .active {
+    opacity: 1;
+  }
+
+  #slide-wrapper {
+    max-width: 500px;
+    display: flex;
+    min-height: 100px;
+    align-items: center;
+  }
+
+  #slider {
+width: 500px;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: hidden;
+margin-left: -5px;
+  }
+
+  #slider::-webkit-scrollbar {
+    width: 8px;
+
+  }
+
+  #slider::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+
+  }
+
+  #slider::-webkit-scrollbar-thumb {
+    background-color: #dede2e;
+    outline: 1px solid slategrey;
+    border-radius: 100px;
+
+  }
+
+  #slider::-webkit-scrollbar-thumb:hover {
+    background-color: #18b5ce;
+  }
+
+  .arrow {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: .3s;
+  }
+
+  .arrow:hover {
+    opacity: .5;
+    width: 35px;
+    height: 35px;
+  }
+
+  body {
+    background-color: #f5f6f8;
+  }
+
+  #gallery-presentation h2 span {
+    color: #06cc60;
+  }
+
+  #gallery-presentation .btn-primary {
+    background-color: #06cc60;
+    border: 1px solid #06cc60;
+    box-shadow: none;
+    width: 100%;
+    padding: 1rem;
+    border-radius: 10px;
+  }
+
+  #gallery-presentation .btn-primary:hover {
+    background-color: #06cc60;
+    border: 1px solid #06cc60;
+    box-shadow: none;
+  }
+
+  #gallery-presentation .btn-primary:focus {
+    background-color: #06cc60;
+    border: 1px solid #06cc60;
+    box-shadow: none;
+  }
+
+  .cat-gallery-gallery-presentation span {
+    color: #f7c400;
+  }
+
+  #reservar .container {
+    background-color: #ffffff;
+    border-radius: 15px;
+    padding: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  #reservar .form-control {
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #eaeaea;
+    background-clip: padding-box;
+    border: 1px solid #f5f6f8;
+    border-radius: 10px;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  }
+
+  #reservar .btn-primary {
+    background-color: white;
+    border: 1px solid #06cc60;
+    color: #06cc60;
+    border-radius: 0px;
+    box-shadow: none;
+    margin-bottom: .7rem;
+  }
+
+  #reservar .btn-primary:hover {
+    background-color: #06cc60;
+    border: 1px solid #06cc60;
+    color: white;
+    border-radius: 0px;
+    box-shadow: none;
+    margin-bottom: .7rem;
+  }
+
+  #reservar .btn-primary:focus {
+    background-color: #06cc60;
+    border: 1px solid #06cc60;
+    color: white;
+    border-radius: 0px;
+    box-shadow: none;
+    margin-bottom: .7rem;
+  }
+  .bootstrap-datetimepicker-widget table td.today:before{
+    border-bottom-color: transparent !important;
+  }
+  @media (max-width:1024px){
+    .dom-loc img{
+      width: 30px;
+      height: 30px;
+      float: left;
+    }
+    .dom-loc span{
+      float: left;
+    }
+    .dom-loc{
+      margin-bottom: 20px;
+    }
+  }
+
+  #reservar .active {
+    color: white;
+    border-radius: 0px;
+    background: #eaeaea;
+    box-shadow: none;
+    margin-bottom: 0.7rem;
+    background-color: var(--color-verde);
+  }
+
+  #reservar .btn-outline-success {
+    background-color: #06cc60;
+    position: absolute;
+    color: white;
+    border-color: #06cc60;
+    border-radius: 10px;
+    top: 0;
+    right: 0;
+    box-shadow: none;
+    padding: .33rem 1.5rem;
+  }
+
+  #reservar .btn-outline-success:hover {
+    background-color: #06cc60;
+    position: absolute;
+    color: white;
+    border-color: #06cc60;
+    border-radius: 10px;
+    top: 0;
+    right: 0;
+    box-shadow: none;
+  }
+
+  #reservar .btn-outline-success:focus {
+    background-color: #06cc60;
+    position: absolute;
+    color: white;
+    border-color: #06cc60;
+    border-radius: 10px;
+    top: 0;
+    right: 0;
+    box-shadow: none;
+  }
+
+  .bootstrap-datetimepicker-widget table td.active.today::before {
+    border-bottom-color: #eaeaea;
+  }
+  .btn-success{
+    background-color: var(--color-verde);
+    border-color: var(--color-verde);
+  }
+
+</style>
+<style>
+  .pagination{
+    font-size: 15px;
+  }
+  .header .menu-front .navbar-brand img {
+    height: 70px;
+  }
+
+  .menu-front .bg-light {
+    background-color: transparent !important;
+  }
+
+  .navbar-light .navbar-nav .active>.nav-link,
+  .navbar-light .navbar-nav .nav-link.active,
+  .navbar-light .navbar-nav .nav-link.show,
+  .navbar-light .navbar-nav .show>.nav-link {
+    color: #f7c400;
+    font-weight: bold;
+  }
+
+  .navbar-light .navbar-nav .nav-link {
+    color: black;
+    font-weight: bold;
+  }
+
+  .navbar-light .ingresar .nav-link {
+    color: white;
+    background-color: #f7c400;
+    border-radius: 25px;
+    padding: .2rem 2rem;
+    margin-top: .3rem;
+    margin-left: 1rem;
+  }
+
+  .contenido-header {
+    width: 100%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .video-inicio {
+    width: 50%;
+  }
+
+  .img-yt {
+    width: 100%;
+    height: 300px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .img-yt i {
+    background-color: #f7c400;
+    padding: 20px;
+    font-size: 30px;
+    clip-path: circle(50% at 50% 50%);
+    color: white;
+  }
+
+  .titulo-inicio {
+    width: 50%;
+  }
+
+  .contenido-header h1 {
+    font-weight: bold;
+    color: white;
+    text-align: right;
+  }
+
+  .contenido-header .container {
+    width: 1000px;
+  }
+
+  .boton-titulo {
+    background-color: #f7c400;
+    padding: .2rem 2rem;
+    float: right;
+    border-radius: 20px;
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+  }
+
+  .boton-titulo:hover {
+    background-color: #f7c400;
+    padding: .2rem 2rem;
+    float: right;
+    border-radius: 20px;
+    text-decoration: none;
+    color: white;
+  }
+
+  .cont-servicios {
+    width: 100%;
+    border-radius: 20px;
+    padding: 1rem;
+    font-size: 13px;
+    color: white;
+  }
+
+  .cont-servicios img {
+    height: 80px;
+  }
+
+  .cont-servicios p {
+    font-size: 10px;
+    margin: 0;
+  }
+
+  .servicios {
+    background-color: #f2f2f2;
+  }
+
+  .cont-categorias {
+    width: 85%;
+    padding: 1.5rem;
+    background-color: #c1f2d7;
+    border-radius: 25px;
+    margin: auto;
+  }
+
+  .cont-categorias img {
+    width: 60%;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+  }
+
+  .cont-categorias h3 {
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+
+  .categorias h1 {
+    font-weight: bold;
+    font-size: 4rem;
+    margin-top: 8rem;
+  }
+
+  .contador {
+    background-color: #06cc60;
+    margin-top: 10rem;
+  }
+
+  .contador h1 {
+    text-align: center;
+    color: white;
+    font-size: 6rem;
+    font-weight: bold;
+  }
+
+  .contador p {
+    font-size: 2rem;
+    color: white;
+    text-align: center;
+    font-weight: 500;
+  }
+
+  .footer {
+    background-image: url("../assets/img/footer.jpg");
+    height: 500px;
+    border-radius: 50px 50px 0px 0px;
+    -moz-border-radius: 50px 50px 0px 0px;
+    -webkit-border-radius: 50px 50px 0px 0px;
+    border: 0px solid #000000;
+    position: relative;
+  }
+
+  @media (max-width: 1440px) {
+    .footer {
+      background-image: url("../assets/img/footer-2.jpg");
+      background-size: cover;
+    }
+  }
+
+  .img-footer {
+    height: calc(500px - 75px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .footer img {
+    width: 250px;
+    height: auto;
+  }
+
+  .footer .text-footer {
+    position: absolute;
+    bottom: 0;
+    background: rgb(0 0 0 / 25%);
+    padding: 2rem;
+    width: 100%;
+    text-align: center;
+  }
+
+  .footer a {
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.6rem;
+  }
+
+  .mas-nuevo h1 {
+    font-size: 4rem;
+    font-weight: bold;
+  }
+
+  .card-mas-nuevo {
+    width: 100%;
+    height: 295px;
+    background-color: #f7f7f7;
+    border-radius: 20px;
+  }
+
+  .img-card img {
+    width: 100%;
+    height: 175px;
+    border-radius: 15px 15px 0px 0px;
+    -moz-border-radius: 15px 15px 0px 0px;
+    -webkit-border-radius: 15px 15px 0px 0px;
+  }
+
+  .cont-card {
+    padding: 1rem;
+    position: relative;
+  }
+
+  .cont-card h5 {
+    font-weight: bold;
+    padding-bottom: .7rem;
+  }
+
+  .cont-card span {
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .precio-buscador span {
+    color: #06cc60;
+    float: left;
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  .buscador-vermas a {
+    text-decoration: none;
+    background: #f7c400;
+    float: right;
+    border-radius: 20px;
+    padding: .1rem 1rem;
+    color: white;
+    font-size: 14px;
+  }
+
+  .grid-services {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+  }
+
+  .grid-services>*:nth-child(2) .cont-servicios {
+    position: relative;
+  }
+
+  .grid-services>*:nth-child(2) .cont-servicios::before,
+  .grid-services>*:nth-child(2) .cont-servicios::after {
+    content: "";
+    display: block;
+    width: 100px;
+    height: 100px;
+    background-image: url('../assets/img/flecha-spiral.svg');
+    background-size: 100px;
+    position: absolute;
+  }
+
+  .grid-services>*:nth-child(2) .cont-servicios::before {
+    transform: rotate(90deg);
+    bottom: 100%;
+    left: -2rem;
+    margin-bottom: 1rem;
+  }
+
+  .grid-services>*:nth-child(2) .cont-servicios::after {
+    top: 0;
+    left: calc(100% + 1rem);
+  }
+
+  .contador-up {
+    margin-top: -3rem;
+  }
+
+  .contador-up path {
+    fill: white;
+  }
+
+  .categorias::before {
+    background-image: url("../assets/img/k.png");
+    content: "";
+    width: 50px;
+    height: 62px;
+    position: absolute;
+    background-size: cover;
+    left: 10%;
+    top: 10%;
+    transform: rotate(-10deg);
+    opacity: .3;
+  }
+
+  .categorias::after {
+    background-image: url("../assets/img/k.png");
+    content: "";
+    width: 50px;
+    height: 62px;
+    position: absolute;
+    background-size: cover;
+    right: 10%;
+    bottom: -3%;
+    transform: rotate(-10deg);
+    opacity: .3;
+  }
+
+  .categorias {
+    position: relative;
+  }
+
+  .cont-servicios h3 {
+    color: white;
+    font-weight: bold;
+    margin: 0;
+  }
+
+  .nav-home {
+    font-size: 18px;
+  }
+
+  .nav-home li a {
+    border-bottom: 2px solid #d7d7d7;
+    text-transform: uppercase;
+    color: #d7d7d7;
+    font-weight: 600;
+  }
+
+  .nav-home li a:hover {
+    border-bottom: 2px solid #06cc60;
+    text-transform: uppercase;
+    color: #06cc60;
+  }
+
+  .nav-home li>.active {
+    color: #06cc60;
+    border-bottom: 2px solid #06cc60;
+  }
+
+  .servicios::before {
+    content: '';
+    background-image: url(../assets/img/header-curve.png);
+    background-size: cover;
+    width: 100%;
+    max-width: 1920px;
+    height: 150px;
+    position: absolute;
+    top: -149px;
+    left: 0;
+  }
+
+  .contador:before {
+    content: '';
+    background-image: url("../assets/img/counte-up.png");
+    background-size: cover;
+    width: 100%;
+    max-width: 1920px;
+    height: 150px;
+    position: absolute;
+    top: -149px;
+    left: 0;
+  }
+
+  .contador::after {
+    content: '';
+    background-image: url("../assets/img/counte-bottom.png");
+    background-size: cover;
+    width: 100%;
+    max-width: 1920px;
+    height: 150px;
+    position: absolute;
+    bottom: -149px;
+    left: 0;
+  }
+
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 200px;
+    height: 45px;
+  }
+
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 30px;
+  }
+
+  .slider:before {
+    position: absolute;
+    content: attr(data-content);
+    left: 4px;
+    bottom: 3px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 30px;
+    display: inline-block;
+    vertical-align: middle;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: var(--color-verde);
+    color: white;
+  }
+
+  .switch-toggle {
+    width: 15em;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc !important;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 30px !important;
+  }
+
+  .switch-toggle label:not(.disabled) {
+    cursor: pointer;
+  }
+
+  .switch-candy a {
+    border-radius: 30px !important;
+    border: none !important;
+    background-color: white;
+    box-shadow: 0 1px 1px rgb(0 0 0 / 20%), inset 0 1px 1px rgb(255 255 255 / 45%);
+    background-color: var(--color-verde);
+    background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.2), transparent);
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.2), transparent);
+  }
+
+  input:checked+.slider:before {
+    -webkit-transform: translateX(105px);
+    -ms-transform: translateX(105px);
+    transform: translateX(105px);
+    content: attr(data-content);
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+  .switch-toggle input+label {
+    padding: .32em 0.5em;
+  }
+
+  .switch-light.switch-candy input~span span:first-child,
+  .switch-light.switch-candy input:checked~span span:nth-child(2),
+  .switch-candy input:checked+label {
+    color: white;
+  }
+
+  .select2-container--default .select2-selection--single .select2-selection__arrow b {
+    top: 100% !important;
+  }
+
+  #continuar_sesion {
+    background-color: var(--color-verde);
+    border-color: var(--color-verde);
+  }
+  #ver_ubicacion{
+    margin-top: 2rem;
+  }
+</style>
+
+
+{{#if msg}}
+<label id="msgs">{{msg}}</label>
+{{/if}}
+
+
+
+
+<div class="page-container" {{#if publicaciones_landing}}style='padding-left: 0;' {{/if}}>
+  <div class="main-content" {{#if publicaciones_landing}}style='padding-top: 15px;' {{/if}}>
+    <div class="section__content section__content--p30">
+
+        <div class="container-fluid">
+          <div class="row" {{#if publicaciones_landing}}style='display: none;' {{/if}}>
+            <div class="col-md-12">
+              <div class="overview-wrap">
+                <h2 class="title-1">
+                  <div class="float-right"><a href="/dash_cliente" id="volver_publicaciones"> Volver </a></div>
+                </h2>
+              </div>
+            </div>
+          </div>
+
+
+     <div class="app-content ecommerce-application">
+        <div class="content-overlay"></div>
+        <div class="header-navbar-shadow"></div>
+        <div class="content-wrapper container-xxl p-0">
+
+            <div class="content-detached content-right">
+                <div class="content-body">
+                    <!-- E-commerce Content Section Starts -->
+                    <section id="ecommerce-header">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="ecommerce-header-items">
+                                    {{!-- <div class="result-toggler">
+                                        <button class="navbar-toggler shop-sidebar-toggler" type="button" data-bs-toggle="collapse">
+                                            <span class="navbar-toggler-icon d-block d-lg-none"><i data-feather="menu"></i></span>
+                                        </button>
+                                        <div class="search-results">16285 results found</div>
+                                    </div> --}}
+                                    <div class="view-options d-flex">
+                                        <div class="btn-group dropdown-sort">
+                                            <button type="button" class="btn btn-outline-primary dropdown-toggle me-1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <span class="active-sorting">Ordenar</span>
+                                            </button>
+                                            <div class="dropdown-menu">
+                                                {{!-- <a class="dropdown-item" href="#">Featured</a> --}}
+                                                <a class="dropdown-item resetSorting" id="resetSorting">Reset</a>
+                                                <a class="dropdown-item" id="masbajosort">Precio más bajo</a>
+                                                <a class="dropdown-item" id="masaltosort">Precio más Alto</a>
+                                            </div>
+                                        </div>
+                                        {{!-- <div class="btn-group" role="group">
+                                            <input type="radio" class="btn-check" name="radio_options" id="radio_option1" autocomplete="off" checked />
+                                            <label class="btn btn-icon btn-outline-primary view-btn grid-view-btn" for="radio_option1"><i data-feather="grid" class="font-medium-3"></i></label>
+                                            <input type="radio" class="btn-check" name="radio_options" id="radio_option2" autocomplete="off" />
+                                            <label class="btn btn-icon btn-outline-primary view-btn list-view-btn" for="radio_option2"><i data-feather="list" class="font-medium-3"></i></label>
+                                        </div> --}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- E-commerce Content Section Starts -->
+
+                    <!-- background Overlay when sidebar is shown  starts-->
+                    <div class="body-content-overlay"></div>
+                    <!-- background Overlay when sidebar is shown  ends-->
+
+                    <!-- E-commerce Search Bar Starts -->
+                    <section id="ecommerce-searchbar" class="ecommerce-searchbar">
+                        <div class="row mt-1">
+                            <div class="col-sm-12">
+                                <div class="input-group input-group-merge">
+                                    {{!-- <input type="text" class="form-control search-product" id="shop-search" placeholder="Search Product" aria-label="Search..." aria-describedby="shop-search" />
+                                    <span class="input-group-text"><i data-feather="search" class="text-muted"></i></span> --}}
+                      <input class="form-control mr-sm-2 header-buscador" type="text" name="search" placeholder="Buscar" id="buscador" style="margin-right: 0 !important;">
+                      {{!-- <button class="btn btn-outline-success my-2 my-sm-0 header-buscador-buttom" type="submit">
+                        <i class="fas fa-search" style="font-size: 30px;"></i>
+                      </button> --}}
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- E-commerce Search Bar Ends -->
+<div id="data-container"></div>
+<div id="pagination-container"></div>
+                    <!-- E-commerce Products Starts -->
+                    <section id="pagination-2" class="grid-view pagination__list">
+ {{#each parse_publi as |publicacion i |}}
+                        <div class="card card-mas-nuevo item pagination__item" data-sort="{{precio}}">
+                          <label class="card-title nombres" hidden>{{titulo}} </label>
+                            <label class="card-title categoria" hidden>{{categoria}} </label>
+                            <div class="img-card text-center">
+                                    <img class="img-fluid card-img-top" src="../assets/img_up/{{#fotoPrincipalPublicacion fotos}}{{/fotoPrincipalPublicacion}}" alt="img-placeholder" />
+                            </div>
+                            <div class="cont-card">
+                               <span>{{categoria}}</span>
+                                <h6 class="item-name">
+                                    <a class="text-body" >{{#Titulo titulo}}{{/Titulo}}</a>
+                                    {{!-- <span class="card-text item-company">By <a href="#" class="company-name">Apple</a></span> --}}
+                                </h6>
+                                {{!-- <p class="card-text item-description">
+                                    On Retina display that never sleeps, so it’s easy to see the time and other important information, without
+                                    raising or tapping the display. New location features, from a built-in compass to current elevation, help users
+                                    better navigate their day, while international emergency calling1 allows customers to call emergency services
+                                    directly from Apple Watch in over 150 countries, even without iPhone nearby. Apple Watch Series 5 is available
+                                    in a wider range of materials, including aluminium, stainless steel, ceramic and an all-new titanium.
+                                </p> --}}
+                            </div>
+                            <div class="precio-buscador ">
+                                 <span>
+                                    S/ {{precio}}
+                                </span>
+                                <div class="buscador-vermas">
+                                    <a href="/publicacion/{{id}}">
+                                        Ver más
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+          {{/each}}
+                    </section>
+                    <!-- E-commerce Products Ends -->
+
+                    <!-- E-commerce Pagination Starts -->
+                    {{!-- <section id="ecommerce-pagination">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <nav aria-label="Page navigation example">
+                                    <ul class="pagination justify-content-center mt-2">
+                                        <li class="page-item prev-item"><a class="page-link" href="#"></a></li>
+                                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                        <li class="page-item" aria-current="page"><a class="page-link" href="#">4</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">5</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">6</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">7</a></li>
+                                        <li class="page-item next-item"><a class="page-link" href="#"></a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </section> --}}
+                    <!-- E-commerce Pagination Ends -->
+
+                </div>
+            </div>
+            <div class="sidebar-detached sidebar-left">
+                <div class="sidebar">
+                    <!-- Ecommerce Sidebar Starts -->
+                    <div class="sidebar-shop">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h6 class="filter-heading d-none d-lg-block">Filtros</h6>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <!-- Price Range ends -->
+
+                                <!-- Categories Starts -->
+                                <div id="product-categories">
+                                    <h6 class="filter-title">Categorias</h6>
+                                    <ul class="list-unstyled categories-list">
+                                       <li>
+                                            <div class="form-check">
+                                                <input type="radio" id="category" name="category-filter" class="form-check-input select_cat" value="Todas" checked/>
+                                                <label class="form-check-label" for="category">Todas</label>
+                                            </div>
+                                        </li>
+                                      {{#each categorias as |categoria i|}}
+                                          <li>
+                                            <div class="form-check">
+                                                <input type="radio" id="category{{i}}" name="category-filter" class="form-check-input select_cat" value="{{nombre}}"/>
+                                                <label class="form-check-label" for="category{{i}}">{{nombre}}</label>
+                                            </div>
+                                        </li>
+                         {{/each}}
+                                        
+                                       
+                                    </ul>
+                                </div>
+                                <!-- Categories Ends -->
+
+                                <!-- Brand ends -->
+
+
+                                <!-- Clear Filters Starts -->
+                                <div id="clear-filters">
+                                    <button type="button" class="btn w-100 btn-primary resetSorting">Limpiar Filtros</button>
+                                </div>
+                                <!-- Clear Filters Ends -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Ecommerce Sidebar Ends -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+        </div>
+    </div>
+
+
+  </div>
+
+</div>
+ 
+ 
+<script>
+
+  $(function () {
+
+    jQuery(".select_cat").on('click',function(e){
+	console.log(e.target.value)
+    $(".select_cat").removeClass("active"); 
+    $(e.target).addClass("active"); 
+     //this.attr("class", "nav-link select_cat active");
+  var categoria = $('.categoria');
+   var buscando =  (e.target.value).toLowerCase();
+   var item='';
+   for( var i = 0; i < categoria.length; i++ ){
+       item = $(categoria[i]).html().toLowerCase();
+        for(var x = 0; x < item.length; x++ ){
+            if(buscando == 'todas'){
+                $(categoria[i]).parents('.item').show(); 
+            }else if( buscando.length == 0 || item.indexOf( buscando ) > -1 ){
+                $(categoria[i]).parents('.item').show(); 
+                $(categoria[i]).parents('.item').attr('active');
+            }else{
+                 $(categoria[i]).parents('.item').hide();
+            }
+        }
+   }
+});
+  
+    $('#correo_tercero').on('change', (e) => {
+      ///let fecha = $('#fecha_ag').val()
+      let correo = e.target.value
+      let pass = $('#pass').val()
+      console.log(correo)
+      console.log(pass)
+      const data = new FormData();
+      data.append("correo", correo);
+      data.append('password', pass);
+      $.ajax({
+        url: '/verificar_usuario',
+        type: 'POST',
+        data: data,
+        cache: false,
+        contentType: false,
+        processData: false,
+        /*xhr: function () {        
+            var xhr = $.ajaxSettings.xhr();
+            xhr.upload.onprogress = function (event) {
+                var perc = Math.round((event.loaded / event.total) * 100);
+               // $("#nombreArchivoCalendario1").text(inputFile.name);
+               
+                $("#progressBar1").text(perc + '%');
+                $("#progressBar1").css('width', perc + '%');
+            };
+            return xhr;
+        },
+        beforeSend: function (xhr) {
+          displayLoading()
+            $("#progressBar1").text('0%');
+            $("#progressBar1").css('width', '0%');
+        },*/
+        success: function (data, textStatus, jqXHR) {
+          console.log(data)
+          if (data == 0) {
+            $('.password_r').removeAttr('style')
+            $('#password_c').removeAttr('style')
+            console.log(data)
+            $('#continuar_sesion').removeAttr('disabled')
+
+          }
+          $('.password_r').removeAttr('style')
+          $('#continuar_sesion').removeAttr('disabled')
+        },
+        error: function (jqXHR, textStatus) {
+          console.log('error:' + jqXHR)
+        }
+      });
+    })
+let items = $('#ecommerce-products > div');
+
+// store original index order on load:
+items.each((i, el) => $(el).data('index', i));
+
+	$('#masbajosort').on('click', function () {
+  console.log('dd')
+		var divOrder = $("#ecommerce-products > div").sort(function (a, b) {
+        var contentA =parseInt( $(a).data('sort'));
+      var contentB =parseInt( $(b).data('sort'));
+      return (contentA < contentB) ? -1 : (contentA > contentB) ? 1 : 0;
+		});		
+		$("#ecommerce-products").html(divOrder);    
+	});
+
+  	$('#masaltosort').on('click', function () {
+  console.log('dd')
+		var divOrder = $("#ecommerce-products > div").sort(function (a, b) {
+        var contentA =parseInt( $(a).data('sort'));
+      var contentB =parseInt( $(b).data('sort'));
+      return (contentA > contentB) ? -1 : (contentA < contentB) ? 1 : 0;
+		});		
+		$("#ecommerce-products").html(divOrder);    
+	});
+  
+  $('.resetSorting').on('click', () => {
+ window.location.reload()
+});
+
+
+
+  })
+  function template(data) {
+    var html = '<ul>';
+    $.each(data, function(index, item){
+        html += '<li>'+ item +'</li>';
+    });
+    html += '</ul>';
+    return html;
+}
+</script>

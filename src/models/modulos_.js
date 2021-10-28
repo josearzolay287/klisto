@@ -509,6 +509,20 @@ login(email, password) {
         });
     });
   },
+  publicacionesAllLimit(limit, offset) {
+    return new Promise((resolve, reject) => {
+      Publicaciones.findAndCountAll()
+        .then((data) => {
+          let datas = JSON.stringify(data);
+
+          resolve(datas);
+          ////console.log(id_usuario);
+        })
+        .catch((err) => {
+          ////console.log(err);
+        });
+    });
+  },
   publicaciones(id_usuario) {
     return new Promise((resolve, reject) => {
       Publicaciones.findAll({

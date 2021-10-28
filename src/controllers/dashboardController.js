@@ -118,6 +118,28 @@ exports.dashboard = (req, res) => {
   
  };
 
+ exports.servicios = (req, res) => {
+  const user = res.locals.user;
+  let limit = 2;   // number of records per page
+  let offset = 0;
+
+  Modulo_BD.publicacionesAllLimit(limit, offset).then((data)=>{
+    let parse_publi = JSON.parse(data)
+    console.log(parse_publi)
+    parse_publi =parse_publi.rows
+    Modulo_BD.categoriasAct().then((cat) =>{
+      let categorias = JSON.parse(cat)
+       res.render("servicios", {
+   pageName: "Servicios",
+   landingPage:true,
+   publicaciones_landing:true,
+   categorias,
+   parse_publi
+ });
+  })
+ })
+
+};
 
  //CLIENTE DATOS
  exports.guardar_cliente = (req, res) => {

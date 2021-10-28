@@ -137,8 +137,15 @@ $("#loading").show();
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/js/tempusdominus-bootstrap-4.min.js" ></script>
 
 <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/js/jQuery.paginate.js"></script>
     <!-- END: Page JS-->
 <script>
+  $(function(){
+    $('#pagination-2').paginate({
+        	items_per_page: 4
+        });
+  })
 	var minDate, maxDate;
  
 // Custom filtering function which will search data in column four between two values
@@ -164,6 +171,7 @@ $.fn.dataTable.ext.search.push(
 );
  
 $(document).ready(function() {
+      
     // Create date inputs
     minDate = new DateTime($('#min'), {
         format: 'DD/MM/YYYY'

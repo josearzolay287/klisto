@@ -68,7 +68,9 @@ router.get('/forgot-password', userController.forgot_password);
 router.post('/update-profile', authController.authenticatedUser, userController.UpdateUser);
 router.post('/update_client', authController.authenticatedUser, dashboardController.guardar_cliente);
 
-
+//SERVICIOS
+router.get('/servicios',dashboardController.servicios);
+router.get('/servicios/:msg',dashboardController.servicios);
 
 // Dashboard
 router.get('/dashboard', authController.authenticatedUser, dashboardController.dashboard);
