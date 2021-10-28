@@ -5,27 +5,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.3/moment.min.js"></script>
 <link rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.min.css" />
-<!-- BEGIN: Vendor CSS-->
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/vendors.min.css">
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/extensions/nouislider.min.css">
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/extensions/toastr.min.css">
-    <!-- END: Vendor CSS-->
 
-    <!-- BEGIN: Theme CSS-->
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/bootstrap-extended.css">
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/colors.css">
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/components.css">
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/themes/dark-layout.css">
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/themes/bordered-layout.css">
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/themes/semi-dark-layout.css">
-   <!-- BEGIN: Page CSS-->
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/core/menu/menu-types/vertical-menu.css">
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/plugins/extensions/ext-component-sliders.css">
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/pages/app-ecommerce.css">
-    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/plugins/extensions/ext-component-toastr.css">
-    <!-- END: Page CSS-->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.5/pagination.css" />
 <style>
   thead .dow {
     background: #f7c400;
@@ -837,7 +817,7 @@ margin-left: -5px;
 
 
      <div class="app-content ecommerce-application">
-        <div class="content-overlay"></div>
+        
         <div class="header-navbar-shadow"></div>
         <div class="content-wrapper container-xxl p-0">
 
@@ -848,12 +828,12 @@ margin-left: -5px;
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="ecommerce-header-items">
-                                    {{!-- <div class="result-toggler">
+                                     <div class="result-toggler">
                                         <button class="navbar-toggler shop-sidebar-toggler" type="button" data-bs-toggle="collapse">
                                             <span class="navbar-toggler-icon d-block d-lg-none"><i data-feather="menu"></i></span>
                                         </button>
-                                        <div class="search-results">16285 results found</div>
-                                    </div> --}}
+                                        {{!-- <div class="search-results">16285 results found</div> --}}
+                                    </div>
                                     <div class="view-options d-flex">
                                         <div class="btn-group dropdown-sort">
                                             <button type="button" class="btn btn-outline-primary dropdown-toggle me-1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -880,7 +860,7 @@ margin-left: -5px;
                     <!-- E-commerce Content Section Starts -->
 
                     <!-- background Overlay when sidebar is shown  starts-->
-                    <div class="body-content-overlay"></div>
+                    {{!-- <div class="body-content-overlay"></div> --}}
                     <!-- background Overlay when sidebar is shown  ends-->
 
                     <!-- E-commerce Search Bar Starts -->
@@ -1028,7 +1008,24 @@ margin-left: -5px;
 
 </div>
  
- 
+     <!-- BEGIN: Vendor JS-->
+    <script src="../../../app-assets/vendors/js/vendors.min.js"></script>
+    <!-- BEGIN Vendor JS-->
+
+    <!-- BEGIN: Page Vendor JS-->
+    <script src="../../../app-assets/vendors/js/extensions/wNumb.min.js"></script>
+    <script src="../../../app-assets/vendors/js/extensions/nouislider.min.js"></script>
+    <script src="../../../app-assets/vendors/js/extensions/toastr.min.js"></script>
+    <!-- END: Page Vendor JS-->
+
+    <!-- BEGIN: Theme JS-->
+    <script src="../../../app-assets/js/core/app-menu.js"></script>
+    <script src="../../../app-assets/js/core/app.js"></script>
+    <!-- END: Theme JS-->
+
+    <!-- BEGIN: Page JS-->
+    <script src="../../../app-assets/js/scripts/pages/app-ecommerce.js"></script>
+    <!-- END: Page JS-->
 <script>
 
   $(function () {
