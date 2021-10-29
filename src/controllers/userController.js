@@ -17,6 +17,7 @@ exports.formLogin = (req, res) => {
     pageName: "Login",
     layout: "page-form",
     error,
+    reg_: true
   });
 };
 
