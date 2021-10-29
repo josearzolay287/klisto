@@ -364,6 +364,27 @@ login(email, password) {
       });
     });
   },
+  SucursalesPrincipal() {
+    return new Promise((resolve, reject) => {
+      Sucursales.findAll({
+        where: {
+          tipo: 'Principal',
+        }, include: [ {
+            association: Sucursales.Usuarios,
+          }
+
+        ],
+      })
+        .then((data) => {
+          let data_p = JSON.stringify(data);
+          resolve(data_p);
+          ////console.log(id_usuario);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    });
+  },
 
 
 //CLIENTE

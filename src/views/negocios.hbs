@@ -918,17 +918,17 @@ margin-left: -5px;
         <div class="content-wrapper container-xxl p-0">
 
             <div class="content-detached content-right">
-                <div class="content-body">
+                <div class="">
                     <!-- E-commerce Content Section Starts -->
                     <section id="ecommerce-header">
-                        <div class="row">
+                        {{!-- <div class="row">
                             <div class="col-sm-12">
                                 <div class="ecommerce-header-items">
                                      <div class="result-toggler">
                                         <button class="navbar-toggler shop-sidebar-toggler" type="button" data-bs-toggle="collapse">
                                             <span class="navbar-toggler-icon d-block d-lg-none"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-grid font-medium-3"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg></span>
                                         </button>
-                                        {{!-- <div class="search-results">16285 results found</div> --}}
+                                        <div class="search-results">16285 results found</div>
                                     </div>
                                     <div class="view-options d-flex">
                                         <div class="btn-group dropdown-sort">
@@ -936,22 +936,22 @@ margin-left: -5px;
                                                 <span class="active-sorting">Ordenar</span>
                                             </button>
                                             <div class="dropdown-menu">
-                                                {{!-- <a class="dropdown-item" href="#">Featured</a> --}}
+                                                <a class="dropdown-item" href="#">Featured</a>
                                                 <a class="dropdown-item resetSorting" id="resetSorting">Reset</a>
                                                 <a class="dropdown-item" id="masbajosort">Precio más bajo</a>
                                                 <a class="dropdown-item" id="masaltosort">Precio más Alto</a>
                                             </div>
                                         </div>
-                                        {{!-- <div class="btn-group" role="group">
+                                        <div class="btn-group" role="group">
                                             <input type="radio" class="btn-check" name="radio_options" id="radio_option1" autocomplete="off" checked />
                                             <label class="btn btn-icon btn-outline-primary view-btn grid-view-btn" for="radio_option1"><i data-feather="grid" class="font-medium-3"></i></label>
                                             <input type="radio" class="btn-check" name="radio_options" id="radio_option2" autocomplete="off" />
                                             <label class="btn btn-icon btn-outline-primary view-btn list-view-btn" for="radio_option2"><i data-feather="list" class="font-medium-3"></i></label>
-                                        </div> --}}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </section>
                     <!-- E-commerce Content Section Starts -->
 
@@ -979,34 +979,27 @@ margin-left: -5px;
 <div id="pagination-container"></div>
                     <!-- E-commerce Products Starts -->
                     <section id="pagination-2" class="grid-view pagination__list">
- {{#each parse_publi as |publicacion i |}}
-                                              <div class="card card-mas-nuevo item pagination__item" data-sort="{{precio}}">
-                          <label class="card-title nombres" hidden>{{titulo}} </label>
-                            <label class="card-title categoria" hidden>{{categoria}} </label>
+ {{#each parse_suc as |sucu i |}}
+                                              <div class="card card-mas-nuevo item pagination__item" >
+                          <label class="card-title nombres" hidden>{{nombre}} </label>
+                            {{!-- <label class="card-title categoria" hidden>{{categoria}} </label> --}}
                             <div class="img-card text-center">
-                                    <img class="img-fluid card-img-top" src="../assets/img_up/{{#fotoPrincipalPublicacion fotos}}{{/fotoPrincipalPublicacion}}" alt="img-placeholder" />
+                                    <img class="img-fluid card-img-top" src="../assets/img_up/{{usuario.photo}}" alt="img-placeholder" />
                             </div>
                             <div class="cont-card">
-                               <span>{{categoria}}</span>
+                               {{!-- <span>{{categoria}}</span> --}}
                                 <h5>
-                                    {{#Titulo titulo}}{{/Titulo}}
+                                    {{nombre}}
                                     {{!-- <span class="card-text item-company">By <a href="#" class="company-name">Apple</a></span> --}}
                                 </h5>
-                                {{!-- <p class="card-text item-description">
-                                    On Retina display that never sleeps, so it’s easy to see the time and other important information, without
-                                    raising or tapping the display. New location features, from a built-in compass to current elevation, help users
-                                    better navigate their day, while international emergency calling1 allows customers to call emergency services
-                                    directly from Apple Watch in over 150 countries, even without iPhone nearby. Apple Watch Series 5 is available
-                                    in a wider range of materials, including aluminium, stainless steel, ceramic and an all-new titanium.
-                                </p> --}}
+                               <p class="card-text item-description">
+                                    {{descripcion}}
+                                </p>
                             </div>
                             <div class="precio-buscador ">
-                                 <span>
-                                    S/ {{precio}}
-                                </span>
                                 <div class="buscador-vermas">
-                                    <a href="/publicacion/{{id}}">
-                                        Ver más
+                                    <a href="/negocios/{{link}}">
+                                        Ir al negocio
                                     </a>
                                 </div>
                             </div>
@@ -1042,7 +1035,7 @@ margin-left: -5px;
 
                 </div>
             </div>
-            <div class="sidebar-detached sidebar-left">
+            {{!-- <div class="sidebar-detached sidebar-left">
                 <div class="sidebar">
                     <!-- Ecommerce Sidebar Starts -->
                     <div class="sidebar-shop">
@@ -1093,7 +1086,7 @@ margin-left: -5px;
                     <!-- Ecommerce Sidebar Ends -->
 
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 

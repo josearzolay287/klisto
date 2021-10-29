@@ -122,21 +122,14 @@ $("#loading").show();
     <!-- BEGIN: Page JS-->
     <script src="../../../app-assets/js/scripts/forms/form-select2.js"></script>
     <!-- END: Page JS-->
+     <script src="/assets/js/jquery.rating.pack.js"></script>
 	<script src="/assets/js/script.js"></script>
 	<script src="/assets/js/script2.js"></script>
-  <script src="/assets/js/jquery.rating.pack.js"></script>
-	<!-- BEGIN: Page JS
-    <script src="../../../app-assets/js/scripts/pages/modal-add-new-cc.js"></script>
-    <script src="../../../app-assets/js/scripts/pages/page-pricing.js"></script>
-    <script src="../../../app-assets/js/scripts/pages/modal-add-new-address.js"></script>
-    <script src="../../../app-assets/js/scripts/pages/modal-create-app.js"></script>
-    <script src="../../../app-assets/js/scripts/pages/modal-two-factor-auth.js"></script>
-    <script src="../../../app-assets/js/scripts/pages/modal-edit-user.js"></script>
-    <script src="../../../app-assets/js/scripts/pages/modal-share-project.js"></script>-->
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/js/tempusdominus-bootstrap-4.min.js" ></script>
 
 <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+
 {{#if servicios}}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script type="text/javascript" src="assets/js/jQuery.paginate.js"></script>
@@ -144,10 +137,12 @@ $("#loading").show();
     <!-- END: Page JS-->
 <script>
   $(function(){
+    {{#if servicios}}
     $('#pagination-2').paginate({
-        	items_per_page: 2
+        	items_per_page:5
         });
   })
+  {{/if}}
 	var minDate, maxDate;
  
 // Custom filtering function which will search data in column four between two values

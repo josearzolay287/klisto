@@ -70,8 +70,13 @@ router.post('/update_client', authController.authenticatedUser, dashboardControl
 
 //SERVICIOS
 router.get('/servicios',dashboardController.servicios);
-router.get('/servicios/:msg',dashboardController.servicios);
 
+//NEGOCIOS
+router.get('/negocios',dashboardController.negocios_list);
+
+
+//PARA EL LANDGIN ACA
+router.get('/negocios/:id', dashboardController.negocio_view);
 // Dashboard
 router.get('/dashboard', authController.authenticatedUser, dashboardController.dashboard);
 router.get('/micuenta',authController.authenticatedUser, dashboardController.micuenta);
@@ -193,8 +198,6 @@ router.get('/confirmar_miscompras/:id/:estado/:billetera', authController.authen
 
 
 
-//PARA EL LANDGIN ACA
-router.get('/negocios/:id', dashboardController.negocio_view);
 
 
 

@@ -141,6 +141,28 @@ exports.dashboard = (req, res) => {
  })
 
 };
+exports.negocios_list = (req, res) => {
+  const user = res.locals.user;
+  let limit = 2;   // number of records per page
+  let offset = 0;
+
+  Modulo_BD.SucursalesPrincipal().then((data)=>{
+    let parse_suc = JSON.parse(data)
+    console.log(parse_suc)
+    Modulo_BD.categoriasAct().then((cat) =>{
+      let categorias = JSON.parse(cat)
+       res.render("negocios", {
+   pageName: "Negocios",
+   servicios:true,
+   landingPage:true,
+   publicaciones_landing:true,
+   categorias,
+   parse_suc
+ });
+  })
+ })
+
+};
 
  //CLIENTE DATOS
  exports.guardar_cliente = (req, res) => {
@@ -1559,7 +1581,7 @@ res.redirect('/pasarela_publicacion/comprar')
       principal,
       parse_publi,
       promedio,
-      layout: "page-form",
+     // layout: "page-form",
       id_negocio
       //user,
     });
