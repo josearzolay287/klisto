@@ -789,6 +789,36 @@ margin-left: -5px;
   #ver_ubicacion{
     margin-top: 2rem;
   }
+  @media(max-width:480px){
+    .checkeds-p{
+      margin-top: 3px;
+    }
+    .dom-loc span{
+      margin-left: 5px;
+      margin-right: 10px;
+    }
+    #ver_ubicacion{
+    background-color: #06CC60;
+    color: white;
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 12px;
+    }
+#reservar .active{
+  background-color: #06CC60;
+}
+    #reservar .btn-outline-success{
+      margin: 0px !important ;
+    }
+    .bootstrap-datetimepicker-widget table td.day, .bootstrap-datetimepicker-widget table th{
+      padding: 8px;
+    }
+    .bootstrap-datetimepicker-widget table td.day{
+      height: 5px;
+    line-height: 5px;
+    width: 5px;
+    }
+  }
 </style>
 <script>
   function select_hora(hora_desde, hora_hasta, id) {
@@ -1660,8 +1690,8 @@ let fin = moment(ha, 'HH:mm a')
                 <div class="row">
                   {{#if user.name}}<span id="loggeado" hidden>{{user.tipo}}</span>{{/if}}
                   <div class="col-12 pt-3">
-                    <button  class="btn btn-primary active"
-                      style="width: 100%;padding: 1.5rem; font-size: 25px; font-weight: 700; border-radius: 15px; background-color:var(--color-verde); color:white;"
+                    <button  class="btn btn-primary active "
+                      style="width: 100%;padding: 1.5rem; font-size: 25px; font-weight: 700; border-radius: 15px; background-color:#06CC60; color:white;"
                      {{#if user.name}}type="submit"{{else}}type="button" data-toggle="modal" data-target="#exampleModal"{{/if}} disabled id="button_finish_reserv">
                       Realizar reserva
                     </button>
