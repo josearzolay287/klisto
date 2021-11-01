@@ -38,6 +38,17 @@
 
 
 	<style type="text/css">
+  .ir-arriba{
+  display:none;
+  background-repeat:no-repeat;
+  font-size:20px;
+  color:var(--color-verde);
+  cursor:pointer;
+  position:fixed;
+  bottom:10px;
+  right:10px;
+  z-index:2;
+}
   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap');
     #nprogress {
       pointer-events: none;
@@ -149,8 +160,15 @@
         align-items: center;
     }
   </style>
+  
 </head>
 <body >
+  <a class="ir-arriba"  javascript:void(0) title="Volver arriba">
+  <span class="fa-stack">
+    <i class="fa fa-circle fa-stack-2x" style="color: var(--color-verde);"></i>
+    <i class="fa fa-arrow-up fa-stack-1x fa-inverse"></i>
+  </span>
+</a>
 	{{#if landingPage}}
 	  <div class="header">   
       

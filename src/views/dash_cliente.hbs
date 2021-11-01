@@ -1,8 +1,8 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 {{#if msg}}
 <label id="msgs">{{msg}}</label>
-
-
 {{/if}}
 <script>
   $( document ).ready(function() {
@@ -391,48 +391,93 @@ border-bottom: 2px solid #06cc60;
      
 
             <section class="mas-nuevo ">
-        <div class="container">
+        <div class="container" style="margin-left: 0; margin-right:0;">
             <div class="row">
-                <div class="col-12">
-                    <ul class="nav justify-content-center nav-home">
-                        <li class="nav-item">
-                            <a class="nav-link active select_cat" style="cursor: pointer;">Todas</a>
-                        </li>
-                        {{#each categorias as |categoria i|}}
-                        <li class="nav-item">
-                            <a class="nav-link select_cat" style="cursor: pointer;">{{categoria.nombre}}</a>
-                        </li>
-                         {{/each}}
-                    </ul>
-                </div>
-            </div>
-                <div class="row">
-                    {{#each publicaciones as |publicacion i |}}
-                <div class="col-md-3 col-sm-6 item">
-                    <div class="card-mas-nuevo">
-                        <div class="img-card">
-                            <img src="../assets/img_up/{{#fotoPrincipalPublicacion publicacion.fotos}}{{/fotoPrincipalPublicacion}}" alt="">
-                        </div>
-                        <div class="cont-card">
-                            <span>{{categoria}}</span>
-                            <label class="card-title nombres" hidden>{{publicacion.titulo}} </label>
-                            <label class="card-title categoria" hidden>{{publicacion.categoria}} </label>
-                            <h5>{{#Titulo titulo}}{{/Titulo}}</h5>
-                            <div class="precio-buscador">
-                                <span>
-                                    S/ {{precio}}
-                                </span>
-                                <div class="buscador-vermas">
-                                    <a href="/ver_publicacion/{{id}}">
-                                        Ver más
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+            <div class="col-md-5">
+                <div class="card-blank m-b-25">
+                  <div class="card-header-blank">
+                    <span class="card-title" style="font-size: 20px;">
+                      <strong>
+                       Video
+                      </strong>
+                    </span>
+                  </div>
+                  <div class="card-body">
+                    <div class="table-responsive table-responsive-data2">
+        <video class="video-das" src="../assets/uploads/{{video.imagen}}" controls width="450" height="240">
+					Tu navegador no admite el elemento <code>video</code>.
+				  </video> 
                     </div>
+                  </div>
                 </div>
-          {{/each}}
-    </div>
+              </div>
+<div class="col-md">
+                <div class="card-blank m-b-25">
+                  <div class="card-header-blank">
+                    <span class="card-title" style="font-size: 20px;">
+                      <strong>
+                        Mis últimas compras
+                      </strong>
+                    </span>
+                  </div>
+                  <div class="card-body">
+                    <div class="table--no-card m-b-30">
+                      <table class="table table-borderless">
+                         <thead>
+													<tr>
+														<th>
+															Fecha
+														</th>
+														<th>
+															Concepto
+														</th>
+														<th>
+															Status
+														</th>
+														<th>
+															Monto
+														</th>
+													</tr>
+												</thead>
+                        <tbody>
+                           {{#each parsed_ventas as |compra i|}}
+                    <tr>
+                      <td>
+                        {{#formatoFecha createdAt}}{{/formatoFecha}}
+                      </td>
+                      <td>
+                        {{publicacione.titulo}}
+                      </td>
+                      <td>
+                        <span>
+                          <span><strong style="color: {{#ColorSucursal estado}}{{/ColorSucursal}};"	id="estado">{{estado}}</strong></span>
+                        </span>
+                      </td>
+                      <td>
+                        S/ {{monto}}
+                      </td>
+                      {{!-- <td align="center">
+                        <div class="table-data-feature">
+                          <a class="item" href="/editar_publicacion/{{publicacion.id}}" data-toggle="tooltip"
+                            data-placement="top" title="Editar" id="empleados_button">
+                            <i class="fas fa-edit"></i>
+                          </a>
+                          <a class="item delete {{publicacion.id}} {{publicacion.tipo}}" href="#"
+                            id="delete_publicacion" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
+                            <i class="fas fa-trash-alt {{publicacion.id}} {{publicacion.tipo}}"></i>
+                          </a>
+                        </div>
+                      </td> --}}
+                    </tr>
+                    {{/each}}
+                          
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
         </div>
     </section>
         </div>

@@ -217,19 +217,19 @@
 																			</div>
 																			<div class="row" style="margin-top: 5px;">
 																				<div class="col-sm">
-																					{{venta.Agenda.id}}
+																					{{venta.agenda.id}}
 																				</div>
 																				<div class="col-sm">
-																					{{venta.Agenda.fecha_agenda}}
+																					{{venta.agenda.fecha_agenda}}
 																				</div>
 																				<div class="col-sm">
-																					{{venta.Agenda.estado}}
+																					{{venta.agenda.estado}}
 																				</div>
 																				<div class="col-sm">
-																					{{venta.Agenda.hora_cita_desde}}
+																					{{venta.agenda.hora_cita_desde}}
 																				</div>
 																				<div class="col-sm">
-																					{{venta.Agenda.hora_cita_hasta}}
+																					{{venta.agenda.hora_cita_hasta}}
 																				</div>
 																				<div class="col-sm">
 																					{{#empleados_agenda ../sucursales venta.Agenda.encargadoId}}{{/empleados_agenda}}
@@ -248,19 +248,19 @@
 																			</div>
 																			<div class="row" style="margin-top: 5px;">
 																				<div class="col-sm">
-																					{{venta.Agenda.nombre_del_tercero}}
+																					{{venta.agenda.nombre_del_tercero}}
 																				</div>
 																				<div class="col-sm">
-																					{{venta.Agenda.telefono_tercero}}
+																					{{venta.agenda.telefono_tercero}}
 																				</div>
 																				<div class="col-sm">
-																					{{#direccion_agenda ../sucursales venta.Agenda.direccion_tercero}}{{/direccion_agenda}}
+																					{{#direccion_agenda ../sucursales venta.agenda.direccion_tercero}}{{/direccion_agenda}}
 																				</div>
 																				<div class="col-sm">
-																					{{venta.Agenda.lugar_serv_propio}}
+																					{{venta.agenda.lugar_serv_propio}}
 																				</div>
 																				<div class="col-sm">
-																					{{venta.Agenda.comentario}}
+																					{{venta.agenda.comentario}}
 																				</div>
 																				<div class="col-sm">
 																					
@@ -289,10 +289,10 @@
 																	<i class="fas fa-calendar-alt  {{venta.id}}"
 																		style="color: green;"></i>
 																</a>
-																<a class="item cancelar {{venta.id}} cliente {{venta.AgendaId}} {{venta.estado}} "
+																<a class="item cancelar {{venta.id}} cliente {{venta.agendaId}} {{venta.estado}} "
 																	href="#" id="delete_venta" data-toggle="tooltip"
 																	data-placement="top" title="Cancelar">
-																	<i class="fas fa-ban {{venta.id}} cliente {{venta.AgendaId}} {{venta.estado}} "
+																	<i class="fas fa-ban {{venta.id}} cliente {{venta.agendaId}} {{venta.estado}} "
 																		style="color: red;"></i>
 																</a>
 															</div>

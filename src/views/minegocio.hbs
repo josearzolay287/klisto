@@ -3,6 +3,17 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
  <style>
+     .btn-primary{
+    background-color: var(--color-verde);
+    color: white !important;
+    border-color: var(--color-verde);
+  }
+  .btn-primary:hover{
+    background-color: #1f7e4a;
+    color: white;
+    border-color: #1f7e4a;
+    box-shadow: none;
+  }
 th.headerSortUp { 
   background-image: url('assets/img/asc.gif') !important; 
       background-repeat: no-repeat;
@@ -32,12 +43,29 @@ table.tablesorter thead tr .header {
  }
 </style>
 <script>
- 
-  $(function () {
+   $(function(){
+ $('#copyPerfil').on('click', function (e) {
+   console.log(e.target.dataset.bsId)
+      var id_ = e.target.dataset.bsId
+    if (typeof id_ =="undefined") {
+      return console.log(id_)
+    }
+    let direction_copy = location.host + `/negocios/${id_}`;
+    $('#p1').text(direction_copy)
+    copyToClipboard('#p1')
 
- 
+  });
 
-})
+  })
+  function copyToClipboard(elemento) {
+  var $temp = $("<textarea>")
+  var brRegex = /<br\s*[\/]?>/gi;
+  $("body").append($temp);
+  $temp.val($(elemento).html().replace(brRegex, "\r\n")).select();
+  document.execCommand("copy");
+  $temp.remove();
+  Swal.fire('Link copiado en el portapapeles')
+  }
 </script>
 
 {{#if msg}}
@@ -95,6 +123,8 @@ table.tablesorter thead tr .header {
                   <input type="text" id="profile_img_" class="" name='photo1' value="{{user.photo}}" hidden>
                   <button type="submit" class="btn btn-primary">Guardar cambios</button>
                   <a class="btn btn-primary" href="/negocios/{{user.name}}" target="_blank">Ver mi perfil</a>
+                       <p id="p1" class="d-none"></p>
+            <a class="btn btn-primary" data-bs-id="{{user.name}}" id="copyPerfil">Copiar link de mi perfil</a>
                  </form>
               </div>
             </div>

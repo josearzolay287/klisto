@@ -286,6 +286,42 @@ margin-left: -5px;
 
 </style>
 <style>
+  .popup {
+        position: absolute;
+        width: 100%;
+        height: 100vh;
+        top: 0;
+        left: 0;
+    }
+
+    .contenido-popup {
+        /*  position: relative;
+            width: 50%;
+            height: 60vh;*/
+        background-color: white;
+        top: 20%;
+        left: 25%;
+        /*border-radius: 20px;*/
+        padding: 2rem;
+        /*  -webkit-box-shadow: 0px 0px 11px 0px rgba(0,0,0,0.72); 
+            box-shadow: 0px 0px 11px 0px rgba(0,0,0,0.72);*/
+    }
+
+    .contenido-popup h3 {
+        color: #06cc60;
+    }
+
+    .contenido-popup a {
+        color: #f7c400;
+    }
+
+    .contenido-popup span {
+        color: white;
+        background-color: #06cc60;
+        border-radius: 5px;
+        padding: .1rem .5rem;
+        margin-right: 5px;
+    }
   .header .menu-front .navbar-brand img {
     height: 70px;
   }
@@ -1169,8 +1205,8 @@ if (data.mensaje == 'USADO'){
       $('#hasta_preview').text($(`#horaH${id_suc}`).text())
       $('#desde_break').text($(`#horabreakD${id_suc}`).text())
       $('#hasta_break').text($(`#horabreakH${id_suc}`).text())
-
       $('#empleados_').removeAttr('style')
+      $(`#localdir${id_suc}`).removeAttr('style')
     })
 
 
@@ -1406,8 +1442,9 @@ if (data.mensaje == 'USADO'){
                         <span id="sucursales_p"></span></p>
                       </div>
                       <div class="col-md-4 align-content-center">
-                        <button type="button" id="ver_ubicacion" class="btn btn-success"> Ver Ubicación</button>
+                        <button type="button" id="ver_ubicacion" class="btn btn-success" data-toggle="modal" data-target="#ubicacion_ver"> Ver Ubicación</button>
                       </div>
+
                       </div>
                     </div>
                     <div class="form-group" id="empleados_" style="display: none;">
@@ -1717,6 +1754,37 @@ let fin = moment(ha, 'HH:mm a')
         </div>
     </div>
     <!-- Modal -->
+                          <div class="modal fade" id="ubicacion_ver" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                    <h3>
+                        <strong>
+                            LOCALES
+                        </strong>
+                    </h3>
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="contenido-popup">
+                {{#each sucursales as |sucursal i|}}
+                <p id="localdir{{id}}" style="display: none;">
+                    <b>
+                        Local de {{nombre}}:
+                    </b>
+                    <br>
+                    {{direccion}}. {{distrito}}
+                    <!--<a href="">(Ver ubicación en mapa)</a>-->
+
+                </p>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</div>
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">

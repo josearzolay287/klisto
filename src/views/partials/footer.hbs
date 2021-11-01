@@ -136,8 +136,9 @@ $("#loading").show();
 {{/if}}
     <!-- END: Page JS-->
 <script>
+  {{#if servicios}}
   $(function(){
-    {{#if servicios}}
+    
     $('#pagination-2').paginate({
         	items_per_page:5
         });
@@ -168,7 +169,7 @@ $.fn.dataTable.ext.search.push(
 );
  
 $(document).ready(function() {
-      
+      irArriba();
     // Create date inputs
     minDate = new DateTime($('#min'), {
         format: 'DD/MM/YYYY'
@@ -207,6 +208,13 @@ $(document).ready(function() {
         table.draw();
     });
 });
+function irArriba(){
+  $('.ir-arriba').click(function(){ $('body,html').animate({ scrollTop:'0px' },1000); });
+  $(window).scroll(function(){
+    if($(this).scrollTop() > 0){ $('.ir-arriba').slideDown(600); }else{ $('.ir-arriba').slideUp(600); }
+  });
+  $('.ir-abajo').click(function(){ $('body,html').animate({ scrollTop:'1000px' },1000); });
+}
 </script>	
 </body>
 </html>

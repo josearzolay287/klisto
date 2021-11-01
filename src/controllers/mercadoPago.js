@@ -213,6 +213,9 @@ exports.pagar = async (req, res, next) => {
 exports.pasarela2 = async (req, res, next) => {
   //let id_publicacion = req.body.id_publicacion;
   console.log("Cookies :  ", req.cookies);
+  if (!req.cookies) {
+    res.redirect(`/dash_cliente`)
+  }
   let id_publicacion = req.cookies.compra.id;
   let id_agenda = req.cookies.compra.id_agenda;
   let costo_domicilio = req.cookies.compra.costo_domicilio;
@@ -306,7 +309,9 @@ if (description_[1] != "") {
     BD_conect.guardar_wallet_ventas(monto,estado,comprobante,publicacionId,usuarioId,monto_billetera,user.id, id_agenda, costo_domicilio,cupon).then((resultado) => {
        console.log(resultado)
        res.clearCookie()
+       exito ={'publicacionId': publicacionId, 'estado': estado, 'monto':monto,'id_agenda':id_agenda}
       msg = "Su pago se aprobó con éxito"
+      res.cookie('exito_compra' , exito, {maxAge: 25000,});
       res.redirect('/dash_cliente/'+msg)
      });
       

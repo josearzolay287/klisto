@@ -655,10 +655,10 @@ login(email, password) {
         });
     });
   },
-  guardar_Agenda(fecha, id_publicacion, h_desde, h_hasta, id_encargado, lugar_servicio, nombre_del_tercero, telefono_tercero, direccion_tercero, lugar_serv_propio, comentario, distrito_domicilio) {
+  guardar_Agenda(fecha, id_publicacion, h_desde, h_hasta, id_encargado, lugar_servicio, nombre_del_tercero, telefono_tercero, direccion_tercero, lugar_serv_propio, comentario, distrito_domicilio, usuarioId) {
     return new Promise((resolve, reject) => {
       Agenda.create({
-        fecha_agenda: fecha, hora_cita_desde: h_desde, hora_cita_hasta: h_hasta, lugar_servicio: lugar_servicio, nombre_del_tercero: nombre_del_tercero, telefono_tercero: telefono_tercero, direccion_tercero: direccion_tercero, lugar_serv_propio: lugar_serv_propio, comentario: comentario, encargadoId: id_encargado, publicacioneId: id_publicacion, direccion_propio_otra: distrito_domicilio
+        fecha_agenda: fecha, hora_cita_desde: h_desde, hora_cita_hasta: h_hasta, lugar_servicio: lugar_servicio, nombre_del_tercero: nombre_del_tercero, telefono_tercero: telefono_tercero, direccion_tercero: direccion_tercero, lugar_serv_propio: lugar_serv_propio, comentario: comentario, encargadoId: id_encargado, publicacioneId: id_publicacion, direccion_propio_otra: distrito_domicilio, usuarioId:usuarioId
       }).then((data_) => {
         let datas = JSON.stringify(data_);
         resolve(datas);
@@ -866,9 +866,9 @@ login(email, password) {
   guardar_wallet_ventas(monto, estado, comprobante, publicacionId, usuarioId, monto_wallet, id_comprador, id_agenda, costo_domicilio, cupon) {
     return new Promise((resolve, reject) => {
       Ventas.create({
-        monto: monto, estado: "Por confirmar", comprobante: comprobante, id_comprador: id_comprador, publicacioneId: publicacionId, costo_domicilio: costo_domicilio, usuarioId: usuarioId, AgendaId: id_agenda, observacion: cupon
+        monto: monto, estado: "Por confirmar", comprobante: comprobante, id_comprador: id_comprador, publicacioneId: publicacionId, costo_domicilio: costo_domicilio, usuarioId: usuarioId, agendaId: id_agenda, observacion: cupon
       }).then((data_venta) => {
-        console.log(data_venta)
+        //console.log(data_venta)
         Agenda.update({ estado: "Por confirmar" }, {
           where: {
             id: id_agenda
@@ -1092,6 +1092,33 @@ login(email, password) {
           // Will escape title and validate DESC against a list of valid direction parameters
           ["updatedAt", "DESC"],
         ],
+      })
+        .then((data) => {
+          let datas = JSON.stringify(data);
+          resolve(datas);
+          ////console.log(id_usuario);
+        })
+        .catch((err) => {
+          ////console.log(err);
+        });
+    });
+  },
+  VentasbyIdCompradorlimit5(usuarioId) {
+    return new Promise((resolve, reject) => {
+      Ventas.findAll({
+        where: {
+          id_comprador: usuarioId
+        }, include: [
+          {
+            association: Ventas.Publicaciones,
+          },
+          {
+            association: Ventas.Agenda,
+          },
+        ], order: [
+          // Will escape title and validate DESC against a list of valid direction parameters
+          ["updatedAt", "DESC"],
+        ],limit: 1
       })
         .then((data) => {
           let datas = JSON.stringify(data);

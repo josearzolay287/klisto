@@ -70,6 +70,40 @@ exports.dashboard = (req, res) => {
 
 };
 
+ //DASH CLIENTE
+ exports.dash_cliente = (req, res) => {
+  const user = res.locals.user;
+   console.log(user);
+   let msg = false;
+   var logo =false;
+  if (req.params.msg) {
+    msg = req.params.msg
+    logo = true
+  }
+
+   Modulo_BD.publicacionesAll().then((data) =>{
+    let publicaciones = JSON.parse(data)
+    console.log(publicaciones)
+    Modulo_BD.categoriasAct().then((cat) =>{
+      let categorias = JSON.parse(cat)
+      Modulo_BD.PublicidadActDestino('Dashboard negocio').then((respuesta1) =>{
+        let video = JSON.parse(respuesta1)
+Modulo_BD.VentasbyIdCompradorlimit5(user.id).then((resultado_ventas) => { 
+    let parsed_ventas = JSON.parse(resultado_ventas);
+    console.log(parsed_ventas);
+   res.render("dash_cliente", {
+     pageName: "Mi cuenta",
+     dashboardPage: true,
+     dash_cliente: true,
+     user,categorias,
+     publicaciones,msg,video,parsed_ventas
+   });
+  })
+})
+})
+  })
+ };
+
   exports.micuenta = (req, res) => {
     const user = res.locals.user;
     let tipo = user.tipo
@@ -1402,31 +1436,7 @@ if (tipo == "Principal") {
  };
 
 
- //DASH CLIENTE
- exports.dash_cliente = (req, res) => {
-  const user = res.locals.user;
-   console.log(user);
-   let msg = false;
-   var logo =false;
-  if (req.params.msg) {
-    msg = req.params.msg
-    logo = true
-  }
-   Modulo_BD.publicacionesAll().then((data) =>{
-    let publicaciones = JSON.parse(data)
-    console.log(publicaciones)
-    Modulo_BD.categoriasAct().then((cat) =>{
-      let categorias = JSON.parse(cat)
-   res.render("dash_cliente", {
-     pageName: "Mi cuenta",
-     dashboardPage: true,
-     dash_cliente: true,
-     user,categorias,
-     publicaciones,msg
-   });
-  })
-  })
- };
+
 
  exports.ver_publicacion = (req, res) => {
   let id_publicacion = req.params.id
@@ -1517,7 +1527,7 @@ console.log(sucursales)
               }
 
 
-  Modulo_BD.guardar_Agenda(fecha,id_publicacion, h_desde,h_hasta,id_encargado, tipo_servicio, nombre_del_tercero, telefono_tercero, lugar_servicio,lugar_serv_propio, comentario_p,distrito_domicilio).then((data) =>{
+  Modulo_BD.guardar_Agenda(fecha,id_publicacion, h_desde,h_hasta,id_encargado, tipo_servicio, nombre_del_tercero, telefono_tercero, lugar_servicio,lugar_serv_propio, comentario_p,distrito_domicilio, user.id).then((data) =>{
     let agenda = JSON.parse(data)
     let id_agenda = agenda.id
 

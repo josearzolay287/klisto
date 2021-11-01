@@ -1,5 +1,5 @@
 $(function() {
-if ( $("#msgs").length ) {
+if ( $("#msgs").length >0 ) {
     let mensaje = $('#msgs').text();
   Swal.fire(mensaje)
  }
