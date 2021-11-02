@@ -6,6 +6,7 @@
 {{/if}}
 <script>
   $( document ).ready(function() {
+       $('#venta_exitosa').hide(15000);
   //CATEGORIAS SEARCH
 jQuery(".select_cat").on('click',function(e){
 	console.log(e.target)
@@ -32,6 +33,17 @@ jQuery(".select_cat").on('click',function(e){
 });
 </script>
 <style>
+      .btn-primary{
+    background-color: var(--color-verde);
+    color: white !important;
+    border-color: var(--color-verde);
+  }
+  .btn-primary:hover{
+    background-color: #1f7e4a;
+    color: white;
+    border-color: #1f7e4a;
+    box-shadow: none;
+  }
       .header .menu-front .navbar-brand img{
         height: 70px;
       }
@@ -391,7 +403,7 @@ border-bottom: 2px solid #06cc60;
      
 
             <section class="mas-nuevo ">
-        <div class="container" style="margin-left: 0; margin-right:0;">
+        <div class="container" style="margin-left: 0; margin-right:0;max-width:100%">
             <div class="row">
             <div class="col-md-5">
                 <div class="card-blank m-b-25">
@@ -476,8 +488,27 @@ border-bottom: 2px solid #06cc60;
                     </div>
                   </div>
                 </div>
+</div>
+            </div>
+            {{#if venta_exitosa}}
+                        <div class="row" id="venta_exitosa">
+            <div class="col">
+<div class="card text-center">
+  <div class="card-header">
+   <h5 class="card-title">¡¡Gracias por su compra!!</h5> 
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Su compra #{{venta_exitosa.id}} se procesó con éxito.</h5>
+    <p class="card-text">Solo debe esperar a ser confirmada por el negocio, lo cual se hará como máximo hasta 10 horas antes al horario reservado</p>
+    <a href="/miscompras" class="btn btn-primary">Ver mis compras</a>
+  </div>
+  <div class="card-footer text-muted">
+  </div>
+</div>
               </div>
             </div>
+{{/if}}
+
         </div>
     </section>
         </div>

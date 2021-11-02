@@ -71,7 +71,7 @@ exports.dashboard = (req, res) => {
 };
 
  //DASH CLIENTE
- exports.dash_cliente = (req, res) => {
+ exports.dash_cliente = async (req, res) => {
   const user = res.locals.user;
    console.log(user);
    let msg = false;
@@ -80,7 +80,13 @@ exports.dashboard = (req, res) => {
     msg = req.params.msg
     logo = true
   }
-
+let venta_exitosa = false
+console.log("Cookies :  ", req.cookies);
+if (req.cookies.exito_compra) {
+  console.log('venta exitosa'+ req.cookies.exito_compra.id_agenda)
+  venta_exitosa = JSON.parse(await Modulo_BD.VentasbyIdAgenda(req.cookies.exito_compra.id_agenda))
+}
+console.log(venta_exitosa)
    Modulo_BD.publicacionesAll().then((data) =>{
     let publicaciones = JSON.parse(data)
     console.log(publicaciones)
@@ -90,13 +96,12 @@ exports.dashboard = (req, res) => {
         let video = JSON.parse(respuesta1)
 Modulo_BD.VentasbyIdCompradorlimit5(user.id).then((resultado_ventas) => { 
     let parsed_ventas = JSON.parse(resultado_ventas);
-    console.log(parsed_ventas);
    res.render("dash_cliente", {
      pageName: "Mi cuenta",
      dashboardPage: true,
      dash_cliente: true,
      user,categorias,
-     publicaciones,msg,video,parsed_ventas
+     publicaciones,msg,video,parsed_ventas,venta_exitosa
    });
   })
 })

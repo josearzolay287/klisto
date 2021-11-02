@@ -1118,6 +1118,33 @@ login(email, password) {
         ], order: [
           // Will escape title and validate DESC against a list of valid direction parameters
           ["updatedAt", "DESC"],
+        ],limit: 4
+      })
+        .then((data) => {
+          let datas = JSON.stringify(data);
+          resolve(datas);
+          ////console.log(id_usuario);
+        })
+        .catch((err) => {
+          ////console.log(err);
+        });
+    });
+  },
+  VentasbyIdAgenda(id) {
+    return new Promise((resolve, reject) => {
+      Ventas.findOne({
+        where: {
+          agendaId: id
+        }, include: [
+          {
+            association: Ventas.Publicaciones,
+          },
+          {
+            association: Ventas.Agenda,
+          },
+        ], order: [
+          // Will escape title and validate DESC against a list of valid direction parameters
+          ["updatedAt", "DESC"],
         ],limit: 1
       })
         .then((data) => {
