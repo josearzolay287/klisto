@@ -113,7 +113,7 @@
         margin: auto;
     }
     .cont-categorias img{
-        width: 50%;
+        width: 40%;
         margin-bottom: 1rem;
         margin-top: 1rem;
     }
@@ -175,12 +175,10 @@
         background: rgb(0 0 0 / 25%);
         padding: 2rem;
         width: 100%;
-        text-align: center;
     }
     .footer a{
         text-decoration: none;
         color: white;
-        text-align: center;
         font-weight: 700;
         font-size: 15px;
     }
@@ -427,6 +425,18 @@ align-items: center;
         font-size: 3rem;
     }
 }
+@media(max-width:1024px){
+    .row{
+        width: 100%;
+        margin-right: 0;
+    margin-left: 0;
+    }
+    .h3, h3{
+        font-size: 1.3rem !important;
+    }
+    
+
+}
 @media(max-width:480px){
     .contenido-header{
         height: auto;
@@ -446,9 +456,7 @@ align-items: center;
     .boton-titulo{
         float: left;
     }
-    .row{
-        width: 100%;
-    }
+
     #buscar,#reservar,#asistir{
         margin-left: auto;
         margin-right: auto;
@@ -676,9 +684,27 @@ jQuery(".select_cat").on('click',function(e){
             <img src="../assets/img/logo-blanco.png" alt="">
         </div>
         <div class="text-footer">
-            <a href="#">
-                Copyright 2021 Klizto | Todos los derechos reservados
-            </a>
+            <div class="row">
+            <div class="col-md-7">
+                <a href="#">
+                    Copyright 2021 Klizto | Todos los derechos reservados
+                </a>
+            </div>
+            <div class="col-md-5">
+                <a href="">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a href="">
+                    <i class="fab fa-instagram"></i> 
+                </a>
+                <a href="">
+                    Terminos y Condiciones
+                </a>
+                <a href="">
+                    política de privacidad
+                </a>
+            </div>
+            </div>
         </div>
     </section>
 </div>
