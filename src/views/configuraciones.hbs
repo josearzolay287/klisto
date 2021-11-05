@@ -3,6 +3,23 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+<style>
+  @media(max-width:1279px){
+  .card-body .col-md-12{
+      overflow: scroll !important;
+    }
+        .float-right a{
+      color: #06cc60;
+      font-size: .8rem;
+    }
+  }
+  @media(max-width:991px){
+        .main-content{
+      padding-top: 0;
+    }
+  }
+</style>
+
 <script>
   $(function () {
   
@@ -103,7 +120,9 @@ if (nombre == "Comisión"){
                   </a>
                 </div>
                  
-                <table class="table dataTable" id="tabla_configuraciones">
+              <div class="row">
+                <div class="col-md-12">
+                                  <table class="table dataTable" id="tabla_configuraciones">
                   <thead>
                     <tr>
                       <th>
@@ -157,6 +176,8 @@ if (nombre == "Comisión"){
 
                   </tbody>
                 </table>
+                </div>
+              </div>
               </div>
             </div>
           </div>

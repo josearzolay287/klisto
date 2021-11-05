@@ -9,6 +9,22 @@
 
   })
 </script>
+<style>
+  @media(max-width:1279px){
+  .card-body .col-md-12{
+      overflow: scroll !important;
+    }
+        .float-right a{
+      color: #06cc60;
+      font-size: .8rem;
+    }
+  }
+  @media(max-width:991px){
+        .main-content{
+      padding-top: 0;
+    }
+  }
+</style>
 {{#if msg}}
 <label id="msgs">{{msg}}</label>
 
@@ -34,11 +50,15 @@
           <div class="col-md-12">
             <div class="card-blank">
               <div class="card-body">
-                <div class="float-right" style="margin-bottom: 20px;">
+                <div class="row">
+                  <div class="col-md-12">
+                  <div class="float-right" style="margin-bottom: 20px;">
                   <a href="/crear_categoria">
                     Crear categoría
                   </a>
                 </div>
+                  </div>
+                  <div class="col-md-12">
                 <table class="table dataTable" id="tabla_mis_categorias">
                   <thead>
                     <tr>
@@ -89,6 +109,8 @@
 
                   </tbody>
                 </table>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

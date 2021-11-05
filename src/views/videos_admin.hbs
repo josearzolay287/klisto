@@ -3,6 +3,31 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+<style>
+  @media(max-width:1279px){
+  .card-body .col-md-12{
+      overflow: scroll !important;
+    }
+        .float-right a{
+      color: #06cc60;
+      font-size: .8rem;
+    }
+        #tabla__previous, #tabla__next{
+      display: none;
+    }
+    .page-item.active .page-link{
+      background-color: #06cc60;
+      border-color:#06cc60;
+    }
+  }
+  @media(max-width:991px){
+        .main-content{
+      padding-top: 0;
+    }
+  }
+
+</style>
+
 <script>
   $(function () {
    $('.delete').on('click', (e)=>{
@@ -101,13 +126,17 @@ $.ajax({
           <div class="col-md-12">
             <div class="card-blank">
               <div class="card-body">
-                <div class="float-right" style="margin-bottom: 20px;">
+                 
+<div class="row">
+  <div class="col-md-12">
+                    <div class="float-right" style="margin-bottom: 20px;">
                   <a href="/crear_videos_admin">
                     Crear video
                   </a>
                 </div>
-                 
-                <table class="table dataTable" id="tabla_">
+  </div>
+  <div class="col-md-12">
+                    <table class="table dataTable" id="tabla_">
                   <thead>
                     <tr>
                       <th>
@@ -190,6 +219,8 @@ $.ajax({
 
                   </tbody>
                 </table>
+  </div>
+</div>
               </div>
             </div>
           </div>
