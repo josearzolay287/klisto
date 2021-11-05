@@ -14,6 +14,44 @@ th.headerSortUp {
  /* background-color: #3399FF; */
 }
 .linea-oculta{display: none;}
+  @media(max-width:1279px){
+    .card-blank #tabla__wrapper .col-sm-12{
+      overflow: scroll !important;
+    }
+    .card-blank #tabla__wrapper .col-sm-12::-webkit-scrollbar{
+      height: 20px;
+    }
+        #copyPerfil{
+      margin-top: 1rem;
+    }
+  }
+   @media(max-width:1024px){
+    .card-blank h3{
+      font-weight: 600;
+    font-size: 1rem;
+    padding: 0;
+    float: left;
+    }
+    .float-right a{
+      color: #06cc60;
+      font-size: .8rem;
+    }
+    .float-right{
+      margin-top: -4px;
+    }
+    #tabla__previous, #tabla__next{
+      display: none;
+    }
+    .page-item.active .page-link{
+      background-color: #06cc60;
+      border-color:#06cc60;
+    }
+  }
+  @media(max-width:480px){
+    .soloReg{
+      margin-bottom: 1rem;
+    }
+  }
 </style>
 <script>
   $(function () {
@@ -34,7 +72,9 @@ th.headerSortUp {
     <div class="col-md-12">
               <div class="card-blank">
                 <div class="card-body">
-                  <h3>
+                <div class="row">
+                  <div class="col-md-12">
+                                      <h3>
                     Usuarios
                   </h3>
                   
@@ -43,7 +83,9 @@ th.headerSortUp {
                     Crear usuario
                   </a>
                 </div>
-                  <table class="table dataTable tablesorter tabla_usuarios_admin" id="tabla_">
+                  </div>
+                  <div class="col-md-12">
+                                      <table class="table dataTable tablesorter tabla_usuarios_admin" id="tabla_">
                     <thead>
                       <tr>
                         <th>
@@ -100,6 +142,8 @@ th.headerSortUp {
                     </tbody>
 
                   </table>
+                  </div>
+                </div>
                 </div>
               </div>
             </div>
@@ -110,7 +154,7 @@ th.headerSortUp {
 {{#if crea_usuario}}
     <form action="/crear_usuarios_a" method="post">
       <div class="row">
-        <div class="col-lg-12">
+        <div class="col-md-12">
           <!---->
           <div class="card">
             <div class="card-body">
@@ -210,7 +254,7 @@ th.headerSortUp {
 {{#if editar_usuario}}
     <form action="/editar_usuarios_a" method="post">
     <input
-                  class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full"
+                  class=" soloReg border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full"
                   type="text" name="userid" value="{{usuario.id}}"/>
       <div class="row">
         <div class="col-lg-12">
