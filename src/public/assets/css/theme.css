@@ -848,16 +848,20 @@ section {
     border-radius: 30px;
 }
 .card-blank .btn-primary{
-    background-color: var(--color-verde);
-    border: var(--color-verde);
-}
+    background-color: #06cc60 !important;
+    color: white !important;
+    border-color: #06cc60 !important;
+  }
 .card-blank .btn-primary:hover{
-    background-color: #09a550;
-    border: #09a550;
-}
+    background-color: #1f7e4a !important;
+    color: white;
+    border-color: #1f7e4a !important;
+    box-shadow: none;
+  }
 .card-blank .btn-primary:focus{
-    background-color: #09a550;
-    border: #09a550;
+    background-color: #1f7e4a !important;
+    color: white;
+    border-color: #1f7e4a !important;
     box-shadow: none;
 }
 .card-blank > card-body > h1{
