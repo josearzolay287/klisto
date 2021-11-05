@@ -4,9 +4,9 @@
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
  <style>
      .btn-primary{
-    background-color: var(--color-verde);
+    background-color: #06cc60;
     color: white !important;
-    border-color: var(--color-verde);
+    border-color: #06cc60;
   }
   .btn-primary:hover{
     background-color: #1f7e4a;
@@ -41,6 +41,48 @@ table.tablesorter thead tr .header {
     margin-top: 0px !important;
   }
  }
+   @media(max-width:1024px){
+    .row{
+      width: 100% !important;
+      margin-left: 0;
+      margin-right: 0;
+    }
+    .card-blank{
+      margin-left: 0 !important;
+      width: 100% !important;
+    }
+    .card-blank h3{
+      font-weight: 600;
+    font-size: 1rem;
+    padding: 0;
+    float: left;
+    }
+    .float-right a{
+      color: #06cc60;
+      font-size: .8rem;
+    }
+    .float-right{
+      margin-top: -4px;
+    }
+    #tabla__previous, #tabla__next{
+      display: none;
+    }
+    .page-item.active .page-link{
+      background-color: #06cc60;
+      border-color:#06cc60;
+    }
+  }
+  @media(max-width:1279px){
+    .card-blank #tabla__wrapper .col-sm-12{
+      overflow: scroll !important;
+    }
+    .card-blank #tabla__wrapper .col-sm-12::-webkit-scrollbar{
+      height: 20px;
+    }
+        #copyPerfil{
+      margin-top: 1rem;
+    }
+  }
 </style>
 <script>
    $(function(){

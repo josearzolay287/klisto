@@ -221,15 +221,35 @@ margin-left: -5px;
   }
   @media (max-width:1024px){
     .dom-loc img{
-      width: 30px;
-      height: 30px;
+      width: 20px;
+      height: 20px;
       float: left;
+    }
+    .checkeds-img{
+      margin-top: 5px !important;
     }
     .dom-loc span{
       float: left;
     }
     .dom-loc{
       margin-bottom: 20px;
+    }
+  }
+  @media(max-width:480px){
+    .total{
+      font-size: 1.2rem;
+    }
+    .agregar-cupon{
+      font-size: 14px;
+    }
+    .cupon-agregado{
+      width: calc(100% - 100px);
+    }
+    .bootstrap-datetimepicker-widget table th{
+      height: 12px;
+      line-height: 12px;
+      width: 12px;
+      font-size: 10px;
     }
   }
 
@@ -840,14 +860,16 @@ margin-left: -5px;
     padding: 0.5rem;
     border-radius: 12px;
     }
-#reservar .active{
-  background-color: #06CC60;
-}
-.switch-toggle label:nth-child(2):nth-last-child(4) ~ input:checked:nth-child(3) + label ~ a{
-   background-color: #06CC60;
-}
+    #reservar .active{
+      background-color: #06CC60;
+    }
+    .switch-toggle label:nth-child(2):nth-last-child(4) ~ input:checked:nth-child(3) + label ~ a{
+      background-color: #06CC60;
+    }
     #reservar .btn-outline-success{
       margin: 0px !important ;
+      font-size: 12px;
+    padding: 0.55rem 0.5rem;
     }
     .bootstrap-datetimepicker-widget table td.day, .bootstrap-datetimepicker-widget table th{
       padding: 8px;
@@ -856,6 +878,7 @@ margin-left: -5px;
       height: 5px;
     line-height: 5px;
     width: 5px;
+    font-size: 10px;
     }
   }
 </style>
@@ -1681,8 +1704,8 @@ let fin = moment(ha, 'HH:mm a')
                     </div>
                   </div>
                   <div class="col-md-12">
-                    <div style="float: left; padding-top: .35rem;">Agregar cupón:</div>
-                    <div style="float: right; width: calc(100% - 125px); position: relative;">
+                    <div class="agregar-cupon" style="float: left; padding-top: .35rem;">Agregar cupón:</div>
+                    <div class="cupon-agregado" style="float: right; width: calc(100% - 125px); position: relative;">
                       <input type="text" class="form-control" id="cupon">
                       <button class="btn btn-outline-success my-2 my-sm-0 add_cupon" type="button">
                         Añadir
@@ -1712,14 +1735,14 @@ let fin = moment(ha, 'HH:mm a')
                 <div class="row">
                   <div class="col-12 pt-3">
                     <div style="float: left;">
-                      <h2>
+                      <h2 class="total">
                         <strong>
                           TOTAL A PAGAR:
                         </strong>
                       </h2>
                     </div>
                     <div style="float: right;">
-                      <h2>
+                      <h2 class="total">
                         <strong>
                           S/<span id="total_pga">{{publicacion.precio}}</span>
                         </strong>
