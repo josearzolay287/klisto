@@ -889,14 +889,14 @@ margin-left: -5px;
     .page-container{
       top:0 !important;
     }
-    .CloseSidebar{
-    display: block;
-    margin-top: 1rem;
-    margin-left: 2rem;
-    margin-bottom: -2.5rem;
+    .CloseSidebar {
     font-size: 30px;
     line-height: 30px;
     font-weight: bold;
+    display: block;
+    position: absolute;
+    top: 5%;
+    left: 8%;
     }
   }
 </style>
@@ -904,7 +904,7 @@ margin-left: -5px;
 
   $(document).ready(function(){
 	$(".CloseSidebar").click(function(){
-		$(".sidebar-shop").removeClass("show");
+    $(".show").remove();
 	});
 });
 
