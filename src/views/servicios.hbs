@@ -28,6 +28,9 @@
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css/themes/bordered-layout.css">
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css/themes/semi-dark-layout.css">
 <style>
+  .CloseSidebar{
+    display: none;
+  }
   thead .dow {
     background: #f7c400;
   }
@@ -886,8 +889,26 @@ margin-left: -5px;
     .page-container{
       top:0 !important;
     }
+    .CloseSidebar{
+    display: block;
+    margin-top: 1rem;
+    margin-left: 2rem;
+    margin-bottom: -2.5rem;
+    font-size: 30px;
+    line-height: 30px;
+    font-weight: bold;
+    }
   }
 </style>
+<script>
+
+  $(document).ready(function(){
+	$(".CloseSidebar").click(function(){
+		$(".sidebar-shop").removeClass("show");
+	});
+});
+
+</script>
 
 
 {{#if msg}}
@@ -1052,6 +1073,9 @@ margin-left: -5px;
                             </div>
                         </div>
                         <div class="card">
+                          <div class="CloseSidebar">
+                            x
+                          </div>
                             <div class="card-body">
                                 <!-- Price Range ends -->
 
