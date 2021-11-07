@@ -631,6 +631,26 @@ border: 1px solid black;
   h4{
     font-size: 1rem;
   }
+  @media(max-width:480px){
+    #registrarse .form-control{
+        font-size: 14px;
+        margin-bottom: 0px;
+        height: 35px;
+    }
+    label{
+        font-size: 14px;
+    }
+    .mb-5, .my-5{
+        margin-bottom: 1rem !important;
+    }
+    button{
+      font-size: 12px;
+      padding: 2px 15px;
+    }
+    #tab-bottom{
+      margin-top: 30px !important;
+    }
+}
 </style>
 <section id="registrarse">
   <div class="container">
@@ -805,7 +825,7 @@ border: 1px solid black;
               <button type="button" id="nextBtn" onclick="nextPrev(1)" style="float: right;">Siguiente</button>
             </div>
             <!-- Circles which indicates the steps of the form: -->
-            <div style="text-align:center;margin-top:40px;">
+            <div style="text-align:center;margin-top:40px;" id="tab-bottom">
               <span class="step"></span>
               <span class="step"></span>
               <span class="step"></span>
