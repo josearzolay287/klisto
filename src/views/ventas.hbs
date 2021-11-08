@@ -59,6 +59,13 @@
 	.dataTables_wrapper .dataTables_filter input {
 		border: 1px solid #6b7280;
 	}
+	@media(max-width:480px){
+		.card-body input{
+			border: 1px solid #ced4da;
+			border-radius: 0.25rem;
+			width: 100%;
+		}
+	}
 </style>
 <script>
 	$(document).ready(function () {
@@ -202,13 +209,9 @@
 								<div class="card-blank">
 
 									<div class="card-body">
-										<table border="0" cellspacing="5" cellpadding="5">
-											<tbody>
-												<tr>
-													<td>
-														<label for="inputState">Status</label>
-													</td>
-													<td>
+										<div class="row">
+											<div class="col-md-4">
+											<label for="inputState">Status</label>
 														<select id="status_filter" class="form-control"
 															name="status_filter">
 															<option value="" selected>Todos</option>
@@ -216,14 +219,16 @@
 															<option value="Realizada">Realizada</option>
 															<option value="Por confirmar">Por confirmar</option>
 														</select>
-													</td>
-													<td>Fecha inicio:</td>
-													<td><input type="text" id="min" name="min"></td>
-													<td>Fecha final:</td>
-													<td><input type="text" id="max" name="max"></td>
-												</tr>
-											</tbody>
-										</table>
+											</div>
+											<div class="col-md-4">
+													<label for="">Fecha inicio:</label>
+													<input type="text" id="min" name="min">
+											</div>
+											<div class="col-md-4">
+													<label for="">Fecha final: </label>
+													<input type="text" id="max" name="max">
+											</div>
+										</div>
 										<table class="table dataTable " id="tabla_">
 											<thead>
 												<tr>
