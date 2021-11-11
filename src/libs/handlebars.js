@@ -178,6 +178,31 @@ module.exports = {
 		// console.log(aux[0])
 		 return out;
 		},
+	// fotoPublicacion1: (fotos, posit) => {
+
+	// 	var aux = fotos.split(",");
+	// 	 var out = "";
+	// 		 if (aux[posit]=="") {
+	// 			return out+=	 ``
+	// 		 }else{
+	// 			 console.log(aux[posit])
+	// 			 if (typeof aux[posit] == "undefined") {
+	// 				return out+=	 ``
+	// 			 }
+	// 			formato= (aux[posit]).split('.')
+				
+	// 			if (formato[1] == "mp4" || formato[1] == "ogg" || formato[1] == "webm") {
+	// 				out+=	`<video class="thumbnail" src="../assets/uploads/${aux[posit]}" controls width="320" height="240">
+	// 				Tu navegador no admite el elemento <code>video</code>.
+	// 			  </video> `
+	// 			}else{
+	// 			   out+=	`<img class="thumbnail"
+	// 		   src="../assets/img_up/${aux[posit]}">` 
+	// 			}
+	// 		 }
+	// 	// console.log(aux[0])
+	// 	 return out;
+	// 	},
 	fotoPublicacion1: (fotos, posit) => {
 
 		var aux = fotos.split(",");
@@ -196,8 +221,8 @@ module.exports = {
 					Tu navegador no admite el elemento <code>video</code>.
 				  </video> `
 				}else{
-				   out+=	`<img class="thumbnail"
-			   src="../assets/img_up/${aux[posit]}">` 
+				   out+=	`	<a href="#"><img src="../assets/img_up/${aux[posit]}" alt="Orange Fish"/></a>
+				   <img src="../assets/img_up/${aux[posit]}" class="thumbnail"/>` 
 				}
 			 }
 		// console.log(aux[0])
