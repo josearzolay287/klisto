@@ -6,7 +6,7 @@
 <link rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.min.css" />
 <link href="https://cdn.jsdelivr.net/css-toggle-switch/latest/toggle-switch.css" rel="stylesheet" />
-
+<link href="../assets/css/style_slider.css" rel="stylesheet" />
 
 <style>
   thead .dow {
@@ -893,7 +893,7 @@ margin-left: -5px;
   }
 
   $(function () {
-    activar_reservar
+    
     $('#activar_reservar').on('click', (e) => {
       $('#off').click()
       $('#reservar').removeAttr('style')
@@ -1309,7 +1309,59 @@ if (data.mensaje == 'USADO'){
                 <div class="row">
                   <div class="col-md-6">
                     <div id="content-wrapper">
-                      <div class="column">
+	<ul id="slideshow">
+		<li><h3>TinySlideshow v1</h3>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut urna. Mauris nulla. Donec nec mauris. Proin nulla dolor, bibendum et, dapibus in, euismod ut, felis.</p>
+
+			<a href="#"><img src="../assets/img_up/{{#fotoPublicacion1Pri publicacion.fotos 0}}{{/fotoPublicacion1Pri}}" alt="Orange Fish"/></a>
+			<img src="../assets/img_up/{{#fotoPublicacion1Pri publicacion.fotos 0}}{{/fotoPublicacion1Pri}}" class="thumbnail"/>
+		</li>
+    <li>
+      <h3>TinySlideshow v1</h3>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut urna. Mauris nulla. Donec nec mauris. Proin nulla dolor, bibendum et, dapibus in, euismod ut, felis.</p>
+			<a href="#"><img src="../assets/img_up/{{#fotoPublicacion1Pri publicacion.fotos 1}}{{/fotoPublicacion1Pri}}" alt="Orange Fish"/></a>
+			<img src="../assets/img_up/{{#fotoPublicacion1Pri publicacion.fotos 1}}{{/fotoPublicacion1Pri}}" class="thumbnail"/>
+		</li>
+	</ul>
+	<div id="wrapper">
+		<div id="fullsize">
+			<div id="imgprev" class="imgnav" title="Previous Image"></div>
+			<div id="imglink"></div>
+			<div id="imgnext" class="imgnav" title="Next Image"></div>
+			<div id="image"></div>
+		</div>
+		<div id="thumbnails">
+			<div id="slideleft" title="Slide Left"></div>
+			<div id="slidearea">
+				<div id="slider"></div>
+			</div>
+			<div id="slideright" title="Slide Right"></div>
+		</div>
+	</div>
+  <script type="text/javascript" src="../assets/js/script_slider_img.js"></script>
+<script type="text/javascript">
+	$T('slideshow').style.display='none';
+	$T('wrapper').style.display='block';
+	var slideshow=new TINY.slideshow("slideshow");
+	window.onload=function(){
+		slideshow.auto=true;
+		slideshow.speed=5;
+		slideshow.link="linkhover";
+		//slideshow.info="information";
+		slideshow.thumbs="slider";
+		slideshow.left="slideleft";
+		slideshow.right="slideright";
+		slideshow.scrollSpeed=4;
+		slideshow.spacing=0;
+		slideshow.active="#fff";
+		slideshow.init("slideshow","image","imgprev","imgnext","imglink","slidearea");
+	}
+</script>
+
+
+
+
+                      {{!-- <div class="column">
                         <span id="replace">
                           <img id="featured"
                           src="../assets/img_up/{{#fotoPublicacion1Pri publicacion.fotos 0}}{{/fotoPublicacion1Pri}}">
@@ -1365,7 +1417,7 @@ if (data.mensaje == 'USADO'){
                         })
 
 
-                      </script>
+                      </script> --}}
 
                     </div>
                   </div>
