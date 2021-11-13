@@ -217,12 +217,12 @@ module.exports = {
 				formato= (aux[posit]).split('.')
 				
 				if (formato[1] == "mp4" || formato[1] == "ogg" || formato[1] == "webm") {
-					out+=	`<video class="thumbnail" src="../assets/uploads/${aux[posit]}" controls width="320" height="240">
+					out+=	`<video src="../assets/uploads/${aux[posit]}" controls width="320" height="240">
 					Tu navegador no admite el elemento <code>video</code>.
 				  </video> `
 				}else{
-				   out+=	`	<a href="#"><img src="../assets/img_up/${aux[posit]}" alt="Orange Fish"/></a>
-				   <img src="../assets/img_up/${aux[posit]}" class="thumbnail"/>` 
+				   out+=	`	
+				   <img src="../assets/img_up/${aux[posit]}"/>` 
 				}
 			 }
 		// console.log(aux[0])
