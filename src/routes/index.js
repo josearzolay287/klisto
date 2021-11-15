@@ -77,6 +77,7 @@ router.get('/negocios',dashboardController.negocios_list);
 
 //PARA EL LANDGIN ACA
 router.get('/negocios/:id', dashboardController.negocio_view);
+router.get('/afiliar', dashboardController.afiliar);
 // Dashboard
 router.get('/dashboard', authController.authenticatedUser, dashboardController.dashboard);
 router.get('/micuenta',authController.authenticatedUser, dashboardController.micuenta);

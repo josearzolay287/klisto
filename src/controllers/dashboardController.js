@@ -69,7 +69,6 @@ exports.dashboard = (req, res) => {
  }
 
 };
-
  //DASH CLIENTE
  exports.dash_cliente = async (req, res) => {
   const user = res.locals.user;
@@ -220,6 +219,17 @@ exports.negocios_list = (req, res) => {
  };
 
 
+ //AFILIAR
+ exports.afiliar = (req, res) => {
+
+res.render("land_afiliar", {
+   pageName: "Servicios",
+   afiliar:true,
+   publicaciones_landing:true,
+   reg_:true,
+ });
+
+};
 
 
 
