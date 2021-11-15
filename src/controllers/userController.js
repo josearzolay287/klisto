@@ -72,7 +72,7 @@ exports.forgot_password = (req, res) => {
 exports.formCreateUser = (req, res) => {
   res.render("register", {
     pageName: "Registrate",
-    layout: "page-form",
+    layout: "page-form",reg_:true
   });
 };
 exports.formCreateUser_client = (req, res) => {
@@ -124,7 +124,7 @@ exports.createUser = async (req, res) => {
     }
     res.render("register", {
       dashboardPage: true,
-      logo:true, 
+      logo:true, reg_:true,
       crea_usuario:true,
       messages: req.flash(),
     });
