@@ -24,6 +24,17 @@
 <label id="msgs">{{msg}}</label>
 {{/if}}
 <style>
+	@media(max-width:480px){
+		.dataTables_wrapper .dataTables_paginate .paginate_button.disabled, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:active{
+			display: none;
+		}
+		[multiple], [type=date], [type=datetime-local], [type=email], [type=month], [type=number], [type=password], [type=search], [type=tel], [type=text], [type=time], [type=url], [type=week], select, textarea{
+			border-color: #6b7280 !important;
+		}
+		.main-content{
+			margin-top: 0px !important;
+		}
+	}
 	table>thead>tr {
 		font-weight: bolder;
 	}
@@ -58,6 +69,11 @@
 
 	.dataTables_wrapper .dataTables_filter input {
 		border: 1px solid #6b7280;
+	}
+	@media(max-width:480px){
+		.card-body .row{
+			overflow: scroll !important;
+		}
 	}
 </style>
 <script>
@@ -119,27 +135,24 @@
 							<div class="col-md-12">
 								<div class="card-blank">
 									<div class="card-body">
-										<table border="0" cellspacing="5" cellpadding="5" style="margin-bottom: 10px;">
-											<tbody>
-												<tr class="mb-2">
-													<td><label for="inputState">Status</label></td>
-													<td>
-														<select id="status_filter" class="form-control"
-															name="status_filter">
-															<option value="" selected>Todos</option>
-															<option value="Confirmada">Confirmada</option>
-															<option value="Realizada">Realizada</option>
-															<option value="Por confirmar">Por confirmar</option>
-														</select>
+										<div class="row">
+											<div class="col-md-4">
+												<label for="inputState">Status</label>
+												<select id="status_filter" class="form-control" name="status_filter">
+													<option value="" selected>Todos</option>
+													<option value="Confirmada">Confirmada</option>
+													<option value="Realizada">Realizada</option>
+													<option value="Por confirmar">Por confirmar</option>
+												</select>
+											</div>
+											<div class="col-md-4">
+												Fecha inicio: <input type="text" id="min" name="min">
+											</div>
+											<div class="col-md-4">
+												Fecha final: <input type="text" id="max" name="max">
+											</div>
+										</div>
 
-													</td>
-													<td>Fecha inicio:</td>
-													<td><input type="text" id="min" name="min"></td>
-													<td>Fecha final:</td>
-													<td><input type="text" id="max" name="max"></td>
-												</tr>
-											</tbody>
-										</table>
 										<div class="card-body">
 											<table class="table dataTable" id="tabla_">
 												<thead>
