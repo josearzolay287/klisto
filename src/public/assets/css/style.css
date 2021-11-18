@@ -19658,8 +19658,8 @@ table.dataTable>thead .sorting:after, table.dataTable>thead .sorting_asc:after, 
 }
 .page-item.active .page-link{
 	color: white !important;
-	background-color: var(--color-verde)!important;
-	border-color: var(--color-verde) !important;
+	background-color: #06CC60 !important;
+	border-color: #06CC60 !important;
 }
 .search_header input:focus{
 	border-color: transparent !important;

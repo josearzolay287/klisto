@@ -1,3 +1,13 @@
+<style>
+  .title-1 a, .float-right a{
+    color: #06CC60 !important;
+  }
+  @media(max-width:1050px){
+    .card-body .row{
+      overflow: scroll;
+    }
+  }
+</style>
 <div class="page-container">
   <div class="main-content">
     <div class="section__content section__content--p30">
@@ -21,7 +31,9 @@
             <div class="col-md-12">
               <div class="card-blank">
                 <div class="card-body">
-                  <h3>
+                  <div class="row">
+                    <div class="col-12">
+                                        <h3>
                     Empleados
                   </h3>
                   <table class="table dataTable">
@@ -91,6 +103,8 @@
 
                     </tbody>
                   </table>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
