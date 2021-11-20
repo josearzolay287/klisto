@@ -19685,3 +19685,7 @@ ul #dropdownMenu2 i{
 #reservar .btn-primary{
 	width: 100% !important;
 }
+
+.show-header-left{
+	display: block !important;
+}
