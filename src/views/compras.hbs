@@ -71,7 +71,7 @@
 	.dataTables_wrapper .dataTables_filter input {
 		border: 1px solid #6b7280;
 	}
-	@media(max-width:480px){
+	@media(max-width:1050px){
 		.card-body .row{
 			overflow: scroll !important;
 		}
@@ -233,67 +233,142 @@
 
 																	<div class="modal-body">
 																		<div class="container">
+																			<div class="row align-items-start">
+																				<div class="col-sm">
+																					<div class="row">
+																						<div class="col-12" style="font-weight: bold;">
+																							Id 
+																						</div>
+																					</div>
+																					<div class="row">
+																						<div class="col-12">
+																							{{venta.agenda.id}}
+																						</div>
+																					</div>
+																				</div>
+																				<div class="col-sm">
+																					<div class="row">
+																						<div class="col-12" style="font-weight: bold;">
+																							Fecha 
+																						</div>
+																					</div>
+																					<div class="row">
+																						<div class="col-12">
+																							{{venta.agenda.fecha_agenda}}
+																						</div>
+																					</div>																					
+																				</div>
+																				<div class="col-sm"> 
+																					<div class="row">
+																						<div class="col-12" style="font-weight: bold;">
+																							Estado 
+																						</div>
+																					</div>
+																					<div class="row">
+																						<div class="col-12">
+																							{{venta.agenda.estado}}
+																						</div>
+																					</div>																					
+																				</div>
+																				<div class="col-sm">
+																					<div class="row">
+																						<div class="col-12" style="font-weight: bold;">
+																							Hora-Desde
+																						</div>
+																					</div>
+																					<div class="row">
+																						<div class="col-12">
+																							{{venta.agenda.hora_cita_desde}}
+																						</div>
+																					</div>																					
+																				</div>
+																				<div class="col-sm">
+																					<div class="row">
+																						<div class="col-12" style="font-weight: bold;">
+																							Hora-Hasta
+																						</div>
+																					</div>
+																					<div class="row">
+																						<div class="col-12">
+																							{{venta.agenda.hora_cita_hasta}}
+																						</div>
+																					</div>
+																				</div>
+																				<div class="col-sm">
+																					<div class="row">
+																						<div class="col-12" style="font-weight: bold;">
+																							Empleado
+																						</div>
+																					</div>
+																					<div class="row">
+																						<div class="col-12">
+																							{{#empleados_agenda ../sucursales venta.agenda.encargadoId}}{{/empleados_agenda}}
+																						</div>
+																					</div>
+																				</div>
+																			</div>
+
 																			<div class="row align-items-start"
-																				style="font-weight: bold;">
-																				<div class="col-sm"> Id </div>
-																				<div class="col-sm"> Fecha </div>
-																				<div class="col-sm"> Estado </div>
-																				<div class="col-sm">
-																					Hora-Desde
+																				style="border-top: solid;">
+																				<div class="col-sm">  
+																					<div class="row">
+																						<div class="col-12" style="font-weight: bold;">
+																							Nombre
+																						</div>
+																					</div>
+																					<div class="row">
+																						<div class="col-12">
+																							{{venta.agenda.nombre_del_tercero}}
+																						</div>
+																					</div>
+																				</div>
+																				<div class="col-sm"> 
+																					<div class="row">
+																						<div class="col-12" style="font-weight: bold;">
+																							Teléfono 
+																						</div>
+																					</div>
+																					<div class="row">
+																						<div class="col-12">
+																							{{venta.agenda.telefono_tercero}}
+																						</div>
+																					</div>
+																				</div>
+																				<div class="col-sm">  
+																					<div class="row">
+																						<div class="col-12" style="font-weight: bold;">
+																							Dirección 
+																						</div>
+																					</div>
+																					<div class="row">
+																						<div class="col-12">
+																							{{#direccion_agenda ../sucursales venta.agenda.direccion_tercero}}{{/direccion_agenda}}
+																						</div>
+																					</div>
+																				</div>
+																				<div class="col-sm"> 
+																					<div class="row">
+																						<div class="col-12" style="font-weight: bold;">
+																							Lugar 
+																						</div>
+																					</div>
+																					<div class="row">
+																						<div class="col-12">
+																							{{venta.agenda.lugar_serv_propio}}
+																						</div>
+																					</div>
 																				</div>
 																				<div class="col-sm">
-																					Hora-Hasta
-																				</div>
-																				<div class="col-sm">
-																					Empleado
-																				</div>
-																			</div>
-																			<div class="row" style="margin-top: 5px;">
-																				<div class="col-sm">
-																					{{venta.agenda.id}}
-																				</div>
-																				<div class="col-sm">
-																					{{venta.agenda.fecha_agenda}}
-																				</div>
-																				<div class="col-sm">
-																					{{venta.agenda.estado}}
-																				</div>
-																				<div class="col-sm">
-																					{{venta.agenda.hora_cita_desde}}
-																				</div>
-																				<div class="col-sm">
-																					{{venta.agenda.hora_cita_hasta}}
-																				</div>
-																				<div class="col-sm">
-																					{{#empleados_agenda ../sucursales venta.agenda.encargadoId}}{{/empleados_agenda}}
-																				</div>
-																			</div>
-																			<div class="row align-items-start"
-																				style="font-weight: bold; border-top: solid;">
-																				<div class="col-sm"> Nombre </div>
-																				<div class="col-sm"> Teléfono </div>
-																				<div class="col-sm"> Dirección </div>
-																				<div class="col-sm">Lugar </div>
-																				<div class="col-sm">Comentario</div>
-																				<div class="col-sm">
-																					
-																				</div>
-																			</div>
-																			<div class="row" style="margin-top: 5px;">
-																				<div class="col-sm">
-																					{{venta.agenda.nombre_del_tercero}}
-																				</div>
-																				<div class="col-sm">
-																					{{venta.agenda.telefono_tercero}}
-																				</div>
-																				<div class="col-sm">
-																					{{#direccion_agenda ../sucursales venta.agenda.direccion_tercero}}{{/direccion_agenda}}
-																				</div>
-																				<div class="col-sm">
-																					{{venta.agenda.lugar_serv_propio}}
-																				</div>
-																				<div class="col-sm">
-																					{{venta.agenda.comentario}}
+																					<div class="row">
+																						<div class="col-12" style="font-weight: bold;">
+																							Comentario 
+																						</div>
+																					</div>
+																					<div class="row">
+																						<div class="col-12">
+																							{{venta.agenda.comentario}}
+																						</div>
+																					</div>
 																				</div>
 																				<div class="col-sm">
 																					
