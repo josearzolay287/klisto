@@ -227,6 +227,7 @@ res.render("land_afiliar", {
    afiliar:true,
    publicaciones_landing:true,
    reg_:true,
+   footer:true
  });
 
 };
@@ -879,7 +880,7 @@ var id_agenda = req.params.id_agenda
     Modulo_BD.SucursalesAll().then((resultado_sucursales) => { 
       let sucursales = JSON.parse(resultado_sucursales);
     res.render("compras", {
-      pageName: "Mis compras",
+      pageName: "Mis reservas",
       miscompras: true,
       dashboardPage: true,      
       dash_cliente: true,            
@@ -1219,8 +1220,8 @@ exports.configuraciones = (req, res) => {
   Modulo_BD.eliminar_publicidad(id_).then((respuesta) =>{
     
      console.log(respuesta)
-  let msg = "Publicidad eliminada con éxito"
-  res.redirect('/publicidad/'+msg)
+  let msg = "Video eliminado con éxito"
+  res.redirect('/videos_admin/'+msg)
 
    })   
  };

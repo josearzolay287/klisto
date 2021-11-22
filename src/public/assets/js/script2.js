@@ -284,6 +284,7 @@ jQuery("#categorias").change(function(){
 const tabla_usuarios_admin = document.getElementsByClassName('tabla_usuarios_admin')
 
 if(tabla_usuarios_admin){
+
   $('.delete').on('click', (e)=>{
     let id = e.target.classList.item(2)
     let tipo = e.target.classList.item(3)

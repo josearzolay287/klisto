@@ -7,16 +7,18 @@ exports.showLandingPage = (req, res) => {
   }
   Modulo_BD.publicacionesAll().then((data)=>{
     let parse_publi = JSON.parse(data)
-    console.log(parse_publi)
     Modulo_BD.categoriasAct().then((cat) =>{
       let categorias = JSON.parse(cat)
+      Modulo_BD.PublicidadActDestino('Landing').then((respuesta1) =>{
+        let video = JSON.parse(respuesta1)
+        console.log(video)
     res.render("home", {
           pageName: "Inicio",
           landingPage: true,
           home:true,
           msg,categorias,
           layout: false,
-          parse_publi
+          parse_publi,video
         });
   }).catch((err) => {
     console.log(err);
@@ -24,50 +26,10 @@ exports.showLandingPage = (req, res) => {
 }).catch((err) => {
   console.log(err);
 });
+}).catch((err) => {
+  console.log(err);
+});
          
-};
-
-exports.showRank = (req, res) => {
-  Modulo_BD.obtenerSoundCD().then((resultadoS) => {
-    var parsedSound = JSON.parse(resultadoS);
-    //console.log(parsedSound)
-    Modulo_BD.obtenerSoundNew().then((resultadoT) => {
-      var parsed_new = JSON.parse(resultadoT);
-      res.render("ranking", {
-        pageName: "Inicio",
-        landingPage: true,
-        parsed_new,
-        parsedSound,
-        layout: false,
-      });
-    });
-  });
-};
-exports.showRankDown = (req, res) => {
-  //console.log(req.params)
-
-  let archivo = req.params.id;
-  var parametro_buscar = req.params.id_gate;
-  var correo = req.params.correo;
-  var id_usuario = req.params.id_usuario;
-  Modulo_BD.obtenerSoundCD().then((resultadoS) => {
-    var parsedSound = JSON.parse(resultadoS);
-    //console.log(parsedSound)
-    Modulo_BD.obtenerSoundNew().then((resultadoT) => {
-      var parsed_new = JSON.parse(resultadoT);
-      res.render("ranking", {
-        pageName: "Inicio",
-        parsed_new,
-        parsedSound,
-        landingPage: true,
-        archivo,
-        parametro_buscar,
-        correo,
-        id_usuario,
-        layout: false,
-      });
-    });
-  });
 };
 
 //LANDING PUBLICACIONES

@@ -415,19 +415,20 @@ border-bottom: 2px solid #06cc60;
         <div class="container" style="margin-left: 0; margin-right:0;max-width:100%">
             <div class="row">
             <div class="col-md-5">
-                <div class="card-blank m-b-25">
-                  <div class="card-header-blank">
+                <div class="m-b-25">
+                  {{!-- <div class="card-header-blank">
                     <span class="card-title" style="font-size: 20px;">
                       <strong>
                        Video
                       </strong>
                     </span>
-                  </div>
+                  </div> --}}
                   <div class="card-body">
                     <div class="table-responsive table-responsive-data2">
-        <video class="video-das" src="../assets/uploads/{{video.imagen}}" controls width="450" height="240">
+                      <iframe src="https://www.youtube.com/embed/{{video.imagen}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        {{!-- <video class="video-das" src="../assets/uploads/{{video.imagen}}" controls width="450" height="240">
 					Tu navegador no admite el elemento <code>video</code>.
-				  </video> 
+				  </video>  --}}
                     </div>
                   </div>
                 </div>

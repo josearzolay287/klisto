@@ -46,7 +46,19 @@
 
 <script>
   $(function () {
-   $('.delete').on('click', (e)=>{
+    
+ $('#link_yt').on('keyup', (e)=>{
+   console.log('hola')
+   let extract = $('#link_yt').val()
+   let split_e = extract.split('=')
+   console.log(split_e[1])
+ $('#embed_yt').attr('src', `https://www.youtube.com/embed/${split_e[1]}`)
+   $('#youtube_embed').removeClass('d-none')
+   $('#link_ytshort').val(split_e[1])
+ })
+
+
+   $('.delete_videos_admin').on('click', (e)=>{
     let id = e.target.classList.item(2)
     let tipo = e.target.classList.item(3)
     Swal.fire({
@@ -68,11 +80,10 @@
 
 
 $('#publi_img').on('change', (e)=>{
- const archivos = e.target.files;
-    const data = new FormData();
-
-    data.append("archivo", archivos[0]);
-$.ajax({
+  const archivos = e.target.files;
+  const data = new FormData();
+  data.append("archivo", archivos[0]);
+  $.ajax({
       url: '/update-profile/archivo',
       type: 'POST',
       data: data,
@@ -112,8 +123,7 @@ $.ajax({
 })
 
 
-
-
+ 
 
   })
 </script>
@@ -224,7 +234,7 @@ $.ajax({
                             data-placement="top" title="Editar" id="">
                             <i class="fas fa-edit"></i>
                           </a>
-                          <a class="item delete {{publicidad.id}} {{publicidad.nombre}}" href="#"
+                          <a class="item delete_videos_admin {{publicidad.id}} {{publicidad.nombre}}" href="#"
                             id="delete_videos_admin" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
                             <i class="fas fa-trash-alt {{publicidad.id}} {{publicidad.nombre}}"></i>
                           </a>
@@ -270,7 +280,7 @@ $.ajax({
                     </div>
                     <div class="form-group col-md-6">
                       <label for="inputState">Destino</label>
-                      <select id="inputState" class="form-control" name="destino">
+                      <select id="destino_select" class="form-control" name="destino">
                         <option selected >Dashboard cliente</option>
                         <option >Dashboard negocio</option>
                         <option >Landing</option>
@@ -279,13 +289,18 @@ $.ajax({
                     <div class="form-group col-md-6 mb-1">
                       <label for="inputEmail4">Video</label>
                         <center>
-                      <img id="imageSelected5" class="img-fluid"
+                      {{!-- <img id="imageSelected5" class="img-fluid"
                         src="../assets/img/descarga.png"
-                        onclick="document.getElementById('publi_img').click();" width="50px" />
-                      <input
+                        onclick="document.getElementById('publi_img').click();" width="50px" /> --}}
+
+                      {{!-- <input
                         class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
-                        id="publi_img" type="file" accept=".png, .jpg, .mp4, .mkv, .webm" name="image" hidden />
-                      <input type="text" id="imagen5" class="" name='photo' hidden>
+                        id="publi_img" type="file" accept=".png, .jpg, .mp4, .mkv, .webm" name="image" hidden /> --}}
+                      <input type="text" id="link_yt" class="form-control" name='' > 
+                      <input type="text" id="link_ytshort" class="form-control d-none" name='photo' > 
+                      <div id="youtube_embed" class="d-none"> 
+                        <iframe src="https://www.youtube.com/embed/" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen id="embed_yt"></iframe>
+                      </div>
 <div id='progressBar1' class='progress-bar' role='progressbar' aria-valuenow='0' aria-valuemin='0' aria-valuemax='100' style='width: 0%; border-radius: 10px;'>0%
 
 				</div>
@@ -330,26 +345,30 @@ $.ajax({
                     </div>
                     <div class="form-group col-md-6">
                       <label for="inputState">Destino</label>
-                      <select id="inputState" class="form-control" name="destino">
+                      <select id="destino_select" class="form-control" name="destino">
                         <option selected >Dashboard cliente</option>
                         <option >Dashboard negocio</option>
                         <option >Landing</option>
                       </select>
                     </div>
                     <div class="form-group col-md-6 mb-1">
-                                           <label for="inputEmail4">Video</label>
+                      <label for="inputEmail4">Video</label>
                         <center>
-                      <img id="imageSelected5" class="img-fluid"
-                        src="https://javierg.mosquedacordova.com/klizto/images/ico-image.png"
-                        onclick="document.getElementById('publi_img').click();" width="50px" />
-                      <input
+                      {{!-- <img id="imageSelected5" class="img-fluid"
+                        src="../assets/img/descarga.png"
+                        onclick="document.getElementById('publi_img').click();" width="50px" /> --}}
+
+                      {{!-- <input
                         class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
-                        id="publi_img" type="file" accept=".png" name="image" hidden />
+                        id="publi_img" type="file" accept=".png, .jpg, .mp4, .mkv, .webm" name="image" hidden /> --}}
+                      <input type="text" id="link_yt" class="form-control" name='' value="{{edit_publi.imagen}}"> 
+                      <input type="text" id="link_ytshort" class="form-control d-none" name='photo' > 
+                      <div id="youtube_embed" class="d-none"> 
+                        <iframe src="https://www.youtube.com/embed/" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen id="embed_yt"></iframe>
+                      </div>
 <div id='progressBar1' class='progress-bar' role='progressbar' aria-valuenow='0' aria-valuemin='0' aria-valuemax='100' style='width: 0%; border-radius: 10px;'>0%
 
 				</div>
-                      <input type="text" id="imagen5" class="" name='photo' value="{{edit_publi.imagen}}"hidden>
-
                     </center>
                     </div>
                   </div>

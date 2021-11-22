@@ -17,7 +17,8 @@ exports.formLogin = (req, res) => {
     pageName: "Login",
     layout: "page-form",
     error,
-    reg_: true
+    reg_: true,
+    footer: true
   });
 };
 
@@ -72,21 +73,24 @@ exports.forgot_password = (req, res) => {
 exports.formCreateUser = (req, res) => {
   res.render("register", {
     pageName: "Registrate",
-    layout: "page-form",reg_:true
+    layout: "page-form",reg_:true,
+    footer: true
   });
 };
 exports.formCreateUser_client = (req, res) => {
   res.render("reg_cliente", {
     pageName: "Registrate",
     layout: "page-form",    
-    reg_: true
+    reg_: true,
+    footer: true
   });
 };
 exports.formCreateUser_empres = (req, res) => {
   res.render("reg_empresa", {
     pageName: "Registrate",
     layout: "page-form",    
-    reg_: true
+    reg_: true,
+    footer: true
   });
 };
 
@@ -104,6 +108,7 @@ exports.createUser = async (req, res) => {
       logo:true, 
       crea_usuario:true,
       messages: req.flash(),
+      footer: true
     });
   }
   try {
@@ -127,6 +132,7 @@ exports.createUser = async (req, res) => {
       logo:true, reg_:true,
       crea_usuario:true,
       messages: req.flash(),
+      footer: true
     });
   }
 };
@@ -165,6 +171,7 @@ exports.createUser_client = async (req, res) => {
       pageName: "Registrate",
       layout: "page-form",
       messages: req.flash(),
+    footer: true
     });
   }
   passport.authenticate("local", function (err, user, info) {
@@ -200,6 +207,7 @@ exports.createUser_empresa = async (req, res) => {
       layout: "page-form",
       reg_:true,
       messages: req.flash(),
+      footer: true
     });
   }
   try {
@@ -238,6 +246,7 @@ exports.createUser_empresa = async (req, res) => {
       pageName: "Registrate",
       layout: "page-form",
       messages: req.flash(),
+      footer: true
     });
   }
 

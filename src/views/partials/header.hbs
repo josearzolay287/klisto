@@ -21,7 +21,7 @@
         <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" id="theme-styles">
         <link rel="stylesheet" href="assets/css/fotorama.css">
 
-        <script src="assets/js/fotorama.js" type="text/javascript"></script>
+        {{!-- <script src="assets/js/fotorama.js" type="text/javascript"></script> --}}
         
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.10.25/datatables.min.css"/>
         <!--  -->
@@ -37,14 +37,6 @@
 <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.css" />
-
-<script>
-$(document).ready(function() {
-    $('#show-header-left').click(function() {
-        $(".menu-sidebar").addClass('show-header-left');
-    });
-});
-</script>
 
 
 	<style type="text/css">
@@ -253,8 +245,10 @@ $(document).ready(function() {
         <div class="container">
             <div class="row pb-5">
                 <div class="col-md-6">
-                    <div class="img-yt" style="background-image: url('../assets/img/yt-inicio.jpg'); background-size: cover;">
-                        <i class="fas fa-play"></i>
+                  
+                    <div class="img-yt" style="background-size: cover;">
+                    <iframe src="https://www.youtube.com/embed/{{video.imagen}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        
                     </div>
                 </div>
                 <div class="col-md-6 d-flex cont-heade-h1">
@@ -268,8 +262,8 @@ $(document).ready(function() {
                             <br>
                             y sencilla
                         </h1>
-                        <a href="#verservicios" class="boton-titulo">
-                                Ver Servicios
+                        <a href="/servicios" class="boton-titulo">
+                                Ver servicios
                         </a>
                     </div>
                 </div>
