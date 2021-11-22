@@ -959,7 +959,9 @@ margin-left: -5px;
                                             </button>
                                             <div class="dropdown-menu">
                                                 {{!-- <a class="dropdown-item" href="#">Featured</a> --}}
-                                                <a class="dropdown-item resetSorting" id="resetSorting">Reset</a>
+                                                <a class="dropdown-item resetSorting" id="resetSorting">Por Defecto</a>
+                                                <a class="dropdown-item" id="alfabeticoAsc">Alfabetico (A-Z)</a>
+                                                <a class="dropdown-item" id="alfabeticoDsc">Alfabetico (Z-A)</a>
                                                 <a class="dropdown-item" id="masbajosort">Precio más bajo</a>
                                                 <a class="dropdown-item" id="masaltosort">Precio más Alto</a>
                                             </div>
@@ -1002,7 +1004,7 @@ margin-left: -5px;
                     <!-- E-commerce Products Starts -->
                     <section id="pagination-2" class="grid-view pagination__list">
  {{#each parse_publi as |publicacion i |}}
-                                              <div class="card card-mas-nuevo item pagination__item" data-sort="{{precio}}">
+                           <div class="card card-mas-nuevo item pagination__item" data-sort="{{precio}}" data-sortTi="{{titulo}}">
                           <label class="card-title nombres" hidden>{{titulo}} </label>
                             <label class="card-title categoria" hidden>{{categoria}} </label>
                             <div class="img-card text-center">
@@ -1232,18 +1234,38 @@ let items = $('#pagination-2 > div');
 items.each((i, el) => $(el).data('index', i));
 
 	$('#masbajosort').on('click', function () {
-  console.log('dd')
+ 
 		var divOrder = $("#pagination-2 > div").sort(function (a, b) {
+       console.log(parseInt( $(a).data('sort')))
         var contentA =parseInt( $(a).data('sort'));
       var contentB =parseInt( $(b).data('sort'));
       return (contentA < contentB) ? -1 : (contentA > contentB) ? 1 : 0;
 		});		
 		$("#pagination-2").html(divOrder);    
 	});
+	$('#alfabeticoAsc').on('click', function () {
+  
+		var divOrder = $("#pagination-2 > div.item").sort(function (a, b) {
+        var contentA =$(a).data('sortti').toUpperCase();
+      var contentB =$(b).data('sortti').toUpperCase();
+      return (contentA < contentB) ? -1 : (contentA > contentB) ? 1 : 0;
+		});		
+		$("#pagination-2").html(divOrder);    
+	});
+
+  	$('#alfabeticoDsc').on('click', function () {
+  
+		var divOrder = $("#pagination-2 > div.item").sort(function (a, b) {
+        var contentA =$(a).data('sortti').toUpperCase();
+      var contentB =$(b).data('sortti').toUpperCase();
+      return (contentA > contentB) ? -1 : (contentA < contentB) ? 1 : 0;
+		});		
+		$("#pagination-2").html(divOrder);    
+	});
 
   	$('#masaltosort').on('click', function () {
   console.log('dd')
-		var divOrder = $("#pagination-2 > div").sort(function (a, b) {
+		var divOrder = $("#pagination-2 > div ").sort(function (a, b) {
         var contentA =parseInt( $(a).data('sort'));
       var contentB =parseInt( $(b).data('sort'));
       return (contentA > contentB) ? -1 : (contentA < contentB) ? 1 : 0;

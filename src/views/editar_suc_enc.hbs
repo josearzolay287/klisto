@@ -29,6 +29,7 @@
     }
   }
 </style>
+
 <div class="page-container">
   <div class="main-content">
     <div class="section__content section__content--p30">
@@ -63,49 +64,27 @@
                 <div class="form-group">
                   <label for="">Departamento</label>
                   {{!-- <input type="text" class="form-control" name="departamento"> --}}
-                  <select class="form-control form-select" name="departamento">
-                    <option>Lima</option>
-                    <option>Callao</option>
+                  <select class="form-control form-select" name="departamento" id="departamentos">
+                    <option>Seleccione un departamento</option>
+                    <option value="Lima">Lima</option>
+                    <option value="Callao">Callao</option>
                   </select>
                 </div>
                 <div class="form-group">
                   <label for="">Distrito</label>
                   {{!-- <input type="text" class="form-control" name="distrito"> --}}
-                  <select class="form-control form-select" name="distrito">
-                    <option value="Cercado de Lima">Cercado de Lima</option>
-                    <option value="Ate">Ate</option>
-                    <option value="Comas">Comas</option>
-                    <option value="Barranco">Barranco</option>
-                    <option value="Breña">Breña</option>
-                    <option value="Comas">Comas</option>
-                    <option value="Chorrillos">Chorrillos</option>
-                    <option value="El Agustino">El Agustino</option>
-                    <option value="Jesús María">Jesús María</option>
-                    <option value="La Molina">La Molina</option>
-                    <option value="La Victoria">La Victoria</option>
-                    <option value="Lince">Lince</option>
-                    <option value="Magdalena del Mar">Magdalena del Mar</option>
-                    <option value="Miraflores">Miraflores</option>
-                    <option value="Pueblo Libre">Pueblo Libre</option>
-                    <option value="Puente Piedra">Puente Piedra</option>
-                    <option value="Rimac">Rimac</option>
-                    <option value="San Isidro">San Isidro</option>
-                    <option value="Independencia">Independencia</option>
-                    <option value="San Juan de Miraflores">San Juan de Miraflores</option>
-                    <option value="San Luis">San Luis</option>
-                    <option value="San Martin de Porres">San Martin de Porres</option>
-                    <option value="San Miguel">San Miguel</option>
-                    <option value="Santiago de Surco">Santiago de Surco</option>
-                    <option value="Surquillo">Surquillo</option>
-                    <option value="Villa María del Triunfo">Villa María del Triunfo</option>
-                    <option value="San Juan de Lurigancho">San Juan de Lurigancho</option>
-                    <option value="Santa Rosa">Santa Rosa</option>
-                    <option value="Los Olivos">Los Olivos</option>
-                    <option value="San Borja">San Borja</option>
-                    <option value="Villa El Savador">Villa El Savador</option>
-                    <option value="Santa Anita">Santa Anita</option>
+                  <select class="form-control form-select" name="distrito" id="distritpos_lima">
+                    <option>Seleccione un distrito</option>
                   </select>
                 </div>
+                <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+     <script>
+    if ( $("#departamentos option[value='{{sucursales.departamento}}']").length > 0 ){
+  console.log('{{sucursales.departamento}}')
+    $("#departamentos option[value='{{sucursales.departamento}}']").attr("selected", true);
+  }
+
+</script>
                     <div class="form-group">
                       <label>Dirección</label>
                       <input type="text" name="direccion" class="form-control" required value="{{sucursales.direccion}}" />
@@ -287,7 +266,8 @@
                 <div class="form-group">
                   <label for="">Departamento</label>
                   {{!-- <input type="text" class="form-control" name="departamento"> --}}
-                  <select class="form-control form-select" name="departamento">
+                  <select class="form-control form-select" name="departamento" id="departamentos">
+                    <option>Seleccione un departamento</option>
                     <option>Lima</option>
                     <option>Callao</option>
                   </select>
@@ -295,39 +275,8 @@
                 <div class="form-group">
                   <label for="">Distrito</label>
                   {{!-- <input type="text" class="form-control" name="distrito"> --}}
-                  <select class="form-control form-select" name="distrito">
-                    <option value="Cercado de Lima">Cercado de Lima</option>
-                    <option value="Ate">Ate</option>
-                    <option value="Comas">Comas</option>
-                    <option value="Barranco">Barranco</option>
-                    <option value="Breña">Breña</option>
-                    <option value="Comas">Comas</option>
-                    <option value="Chorrillos">Chorrillos</option>
-                    <option value="El Agustino">El Agustino</option>
-                    <option value="Jesús María">Jesús María</option>
-                    <option value="La Molina">La Molina</option>
-                    <option value="La Victoria">La Victoria</option>
-                    <option value="Lince">Lince</option>
-                    <option value="Magdalena del Mar">Magdalena del Mar</option>
-                    <option value="Miraflores">Miraflores</option>
-                    <option value="Pueblo Libre">Pueblo Libre</option>
-                    <option value="Puente Piedra">Puente Piedra</option>
-                    <option value="Rimac">Rimac</option>
-                    <option value="San Isidro">San Isidro</option>
-                    <option value="Independencia">Independencia</option>
-                    <option value="San Juan de Miraflores">San Juan de Miraflores</option>
-                    <option value="San Luis">San Luis</option>
-                    <option value="San Martin de Porres">San Martin de Porres</option>
-                    <option value="San Miguel">San Miguel</option>
-                    <option value="Santiago de Surco">Santiago de Surco</option>
-                    <option value="Surquillo">Surquillo</option>
-                    <option value="Villa María del Triunfo">Villa María del Triunfo</option>
-                    <option value="San Juan de Lurigancho">San Juan de Lurigancho</option>
-                    <option value="Santa Rosa">Santa Rosa</option>
-                    <option value="Los Olivos">Los Olivos</option>
-                    <option value="San Borja">San Borja</option>
-                    <option value="Villa El Savador">Villa El Savador</option>
-                    <option value="Santa Anita">Santa Anita</option>
+                  <select class="form-control form-select" name="distrito" id="distritpos_lima">
+                    <option>Seleccione un distrito</option>
                   </select>
                 </div>
                     <div class="form-group">

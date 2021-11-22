@@ -180,8 +180,8 @@
 border: 1px solid black;
     overflow: hidden;
     border-radius: 100%;
-    width: 60px;
-    height: 60px;
+    width: 100px;
+    height: 100px;
   }
 
   @media (max-width: 1440px) {
@@ -697,9 +697,8 @@ border: 1px solid black;
                   <div class="row">
                     <div class="col-md-2">
                       <div class="ig-logo">
-                                              <img id="imageSelected" class="registro-negocio-img"
-                        src="https://javierg.mosquedacordova.com/klizto/images/ico-image.png" width="300" height="300"
-                        onclick="document.getElementById('profile-img').click();" />
+                        <img id="imageSelected" class=""
+                        src="assets/img/descarga.png" width="100" onclick="document.getElementById('profile-img').click();" style="object-fit: cover;"/>
                       </div>
                       <input
                         class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
@@ -708,9 +707,11 @@ border: 1px solid black;
                       <!--<img class="registro-negocio-img" src="" alt="">-->
 
                     </div>
+                    
                     <div class="col-md-10 pl-3 pt-1">
                       <h4><strong>Lógo</strong></h4>
                       <span>Recomendado: Imagen cuadrada. Ejm: 300x300 px</span>
+                      <button type="button" onclick="document.getElementById('profile-img').click();">Subir imagen</button>
                     </div>
                   </div>
                 </div>
@@ -725,7 +726,8 @@ border: 1px solid black;
                 <div class="col-md-6">
                   <label for="">Departamento</label>
                   {{!-- <input type="text" class="form-control" name="departamento"> --}}
-                  <select class="form-control form-select" name="departamento">
+                  <select class="form-control form-select" name="departamento" id="departamentos">
+                    <option>Seleccione un departamento</option>
                     <option>Lima</option>
                     <option>Callao</option>
                   </select>
@@ -733,39 +735,8 @@ border: 1px solid black;
                 <div class="col-md-6 ">
                   <label for="">Distrito</label>
                   {{!-- <input type="text" class="form-control" name="distrito"> --}}
-                  <select class="form-control form-select" name="distrito">
-                    <option value="Cercado de Lima">Cercado de Lima</option>
-                    <option value="Ate">Ate</option>
-                    <option value="Comas">Comas</option>
-                    <option value="Barranco">Barranco</option>
-                    <option value="Breña">Breña</option>
-                    <option value="Comas">Comas</option>
-                    <option value="Chorrillos">Chorrillos</option>
-                    <option value="El Agustino">El Agustino</option>
-                    <option value="Jesús María">Jesús María</option>
-                    <option value="La Molina">La Molina</option>
-                    <option value="La Victoria">La Victoria</option>
-                    <option value="Lince">Lince</option>
-                    <option value="Magdalena del Mar">Magdalena del Mar</option>
-                    <option value="Miraflores">Miraflores</option>
-                    <option value="Pueblo Libre">Pueblo Libre</option>
-                    <option value="Puente Piedra">Puente Piedra</option>
-                    <option value="Rimac">Rimac</option>
-                    <option value="San Isidro">San Isidro</option>
-                    <option value="Independencia">Independencia</option>
-                    <option value="San Juan de Miraflores">San Juan de Miraflores</option>
-                    <option value="San Luis">San Luis</option>
-                    <option value="San Martin de Porres">San Martin de Porres</option>
-                    <option value="San Miguel">San Miguel</option>
-                    <option value="Santiago de Surco">Santiago de Surco</option>
-                    <option value="Surquillo">Surquillo</option>
-                    <option value="Villa María del Triunfo">Villa María del Triunfo</option>
-                    <option value="San Juan de Lurigancho">San Juan de Lurigancho</option>
-                    <option value="Santa Rosa">Santa Rosa</option>
-                    <option value="Los Olivos">Los Olivos</option>
-                    <option value="San Borja">San Borja</option>
-                    <option value="Villa El Savador">Villa El Savador</option>
-                    <option value="Santa Anita">Santa Anita</option>
+                  <select class="form-control form-select" name="distrito" id="distritpos_lima">
+                    <option>Seleccione un distrito</option>
                   </select>
                 </div>
                 <div class="col-md-6">
