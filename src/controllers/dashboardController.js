@@ -643,7 +643,8 @@ if (user.tipo == "Administrador") {
   if (typeof domicilio == "undefined") {
     dom = ""
   }
-   Modulo_BD.guardar_publicacion(userid, photo,  desde,hasta, titulo, precio,billetera, categoria, estado,  descripcion, condiciones,preparacion, ejecucion,sucursales,empleados,costo_domicilio,dom).then((respuesta) =>{
+  let categorias = categoria.toString()
+   Modulo_BD.guardar_publicacion(userid, photo,  desde,hasta, titulo, precio,billetera, categorias, estado,  descripcion, condiciones,preparacion, ejecucion,sucursales,empleados,costo_domicilio,dom).then((respuesta) =>{
     
      console.log(respuesta)
      let msg="Se creó con exito la publicación"
@@ -720,7 +721,9 @@ var dom = "SI"
 if (typeof domicilio == "undefined") {
   dom = ""
 }
-   Modulo_BD.guardaredit_publicacion(id_publicacion,userid, photo,  desde,hasta, titulo, precio,billetera, categoria, estado,  descripcion, condiciones,preparacion, ejecucion,sucursales,empleados,costo_domicilio,dom).then((respuesta) =>{
+
+let categorias = categoria.toString()
+   Modulo_BD.guardaredit_publicacion(id_publicacion,userid, photo,  desde,hasta, titulo, precio,billetera, categorias, estado,  descripcion, condiciones,preparacion, ejecucion,sucursales,empleados,costo_domicilio,dom).then((respuesta) =>{
     
      console.log(dom)
      let msg="Se actualizó con exito la publicación"+dom

@@ -94,6 +94,7 @@ if ( $("#msgs").length >0 ) {
   const tabla_mispublicaciones = document.getElementById('tabla_')
 
   if (tabla_mispublicaciones) {
+    console.log("publi_tabla")
     $('.delete').on('click', (e) => {
       let id = e.target.classList.item(2)
       let tipo = e.target.classList.item(3)
@@ -125,88 +126,109 @@ if ( $("#msgs").length >0 ) {
     const data = new FormData();
     let imagenX = event.target.id;
     data.append("archivo", archivos[0]);
+    $.ajax({
+      url: '/update-profile/archivo',
+      type: 'POST',
+      data: data,
+      cache: false,
+      contentType: false,
+      processData: false,
+      xhr: function () {        
+          var xhr = $.ajaxSettings.xhr();
+          xhr.upload.onprogress = function (event) {
+              var perc = Math.round((event.loaded / event.total) * 100);
+             // $("#nombreArchivoCalendario1").text(inputFile.name);
+             
+              $(`.${imagenX}-Pro`).text(perc + '%');
+              $(`.${imagenX}-Pro`).css('width', perc + '%');
+          };
+          return xhr;
+      },
+      beforeSend: function (xhr) {
+          $(`.${imagenX}-Pro`).text('0%');
+          $(`.${imagenX}-Pro`).css('width', '0%');
+        
+      },
+      success: function (data, textStatus, jqXHR)
+      {            
+          $(`.${imagenX}-Pro`).addClass("d-none");
+        
 
-    fetch("/update-profile/archivo", {
-      method: "POST",
-      body: data,
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("El archivo " + archivos[0].name + " se ha subido correctamente.")
+          switch (imagenX) {
+            case 'profile-img1':
+              console.log(archivos[0].type)
+              document.getElementById("imagen1").value = archivos[0].name;
+              if (archivos[0].type == "video/webm" || archivos[0].type == "video/mp4"|| archivos[0].type == "video/ogg") {
+                $('#span1').html(`<video title="Video" class="img-fluid" src="../assets/uploads/${archivos[0].name}" width="50" onclick="document.getElementById('profile-img1').click();">
+                </video>`)
+              }else{
+                $('#span1').html(`<img id="imageSelected1" class="img-fluid"
+                src="/assets/img_up/${archivos[0].name}"
+                onclick="document.getElementById('profile-img1').click();" width="65px" style="object-fit: cover;" />`)
+              }                          
+              /*const outputImg1 = document.getElementById("imageSelected1");
+              outputImg1.setAttribute("src", "assets/img_up/" + archivos[0].name);*/
+              break;
+            case 'profile-img2':
+              document.getElementById("imagen2").value = archivos[0].name;
+              const outputImg2 = document.getElementById("imageSelected2");
+              if (archivos[0].type == "video/webm" || archivos[0].type == "video/mp4"|| archivos[0].type == "video/ogg") {
+                $('#span2').html(`<video title="Video" class="img-fluid" src="../assets/uploads/${archivos[0].name}" width="50" onclick="document.getElementById('profile-img2').click();">
+                </video>`)
+              }else{
+                $('#span2').html(`<img id="imageSelected2" class="img-fluid"
+                src="/assets/img_up/${archivos[0].name}"
+                onclick="document.getElementById('profile-img2').click();" width="65px" />`)
+              } 
+              break;
+            case 'profile-img3':
+              document.getElementById("imagen3").value = archivos[0].name;
+              const outputImg3 = document.getElementById("imageSelected3");
+              if (archivos[0].type == "video/webm" || archivos[0].type == "video/mp4"|| archivos[0].type == "video/ogg") {
+                $('#span3').html(`<video title="Video" class="img-fluid" src="../assets/uploads/${archivos[0].name}" width="50" onclick="document.getElementById('profile-img3').click();">
+                </video>`)
+              }else{
+                $('#span3').html(`<img id="imageSelected2" class="img-fluid"
+                src="/assets/img_up/${archivos[0].name}"
+                onclick="document.getElementById('profile-img3').click();" width="65px" />`)
+              } 
+              break;
+            case 'profile-img4':
+              document.getElementById("imagen4").value = archivos[0].name;
+              const outputImg4 = document.getElementById("imageSelected4");
+              if (archivos[0].type == "video/webm" || archivos[0].type == "video/mp4"|| archivos[0].type == "video/ogg") {
+                $('#span4').html(`<video title="Video" class="img-fluid" src="../assets/uploads/${archivos[0].name}" width="50" onclick="document.getElementById('profile-img4').click();">
+                </video>`)
+              }else{
+                $('#span4').html(`<img id="imageSelected2" class="img-fluid"
+                src="/assets/img_up/${archivos[0].name}"
+                onclick="document.getElementById('profile-img4').click();" width="65px" />`)
+              } 
+              break;
+            case 'profile-img5':
+              document.getElementById("imagen5").value = archivos[0].name;
+              const outputImg5 = document.getElementById("imageSelected5");
+              if (archivos[0].type == "video/webm" || archivos[0].type == "video/mp4"|| archivos[0].type == "video/ogg") {
+                $('#span5').html(`<video title="Video" class="img-fluid" src="../assets/uploads/${archivos[0].name}" width="50" onclick="document.getElementById('profile-img5').click();">
+                </video>`)
+              }else{
+                $('#span5').html(`<img id="imageSelected2" class="img-fluid"
+                src="/assets/img_up/${archivos[0].name}"
+                onclick="document.getElementById('profile-img5').click();" width="65px" />`)
+              } 
+              break;
+            default:
+              console.log('Lo lamentamos, por el momento no disponemos de ' + expr + '.');
+          }
 
-
-        switch (imagenX) {
-          case 'profile-img1':
-            console.log(archivos[0].type)
-            document.getElementById("imagen1").value = archivos[0].name;
-            if (archivos[0].type == "video/webm" || archivos[0].type == "video/mp4"|| archivos[0].type == "video/ogg") {
-              $('#span1').html(`<video title="Video" class="img-fluid" src="../assets/uploads/${archivos[0].name}" width="50" onclick="document.getElementById('profile-img1').click();">
-              </video>`)
-            }else{
-              $('#span1').html(`<img id="imageSelected1" class="img-fluid"
-              src="/assets/img_up/${archivos[0].name}"
-              onclick="document.getElementById('profile-img1').click();" width="50px" />`)
-            }                          
-            /*const outputImg1 = document.getElementById("imageSelected1");
-            outputImg1.setAttribute("src", "assets/img_up/" + archivos[0].name);*/
-            break;
-          case 'profile-img2':
-            document.getElementById("imagen2").value = archivos[0].name;
-            const outputImg2 = document.getElementById("imageSelected2");
-            if (archivos[0].type == "video/webm" || archivos[0].type == "video/mp4"|| archivos[0].type == "video/ogg") {
-              $('#span2').html(`<video title="Video" class="img-fluid" src="../assets/uploads/${archivos[0].name}" width="50" onclick="document.getElementById('profile-img2').click();">
-              </video>`)
-            }else{
-              $('#span2').html(`<img id="imageSelected2" class="img-fluid"
-              src="/assets/img_up/${archivos[0].name}"
-              onclick="document.getElementById('profile-img2').click();" width="50px" />`)
-            } 
-            break;
-          case 'profile-img3':
-            document.getElementById("imagen3").value = archivos[0].name;
-            const outputImg3 = document.getElementById("imageSelected3");
-            if (archivos[0].type == "video/webm" || archivos[0].type == "video/mp4"|| archivos[0].type == "video/ogg") {
-              $('#span3').html(`<video title="Video" class="img-fluid" src="../assets/uploads/${archivos[0].name}" width="50" onclick="document.getElementById('profile-img3').click();">
-              </video>`)
-            }else{
-              $('#span3').html(`<img id="imageSelected2" class="img-fluid"
-              src="/assets/img_up/${archivos[0].name}"
-              onclick="document.getElementById('profile-img3').click();" width="50px" />`)
-            } 
-            break;
-          case 'profile-img4':
-            document.getElementById("imagen4").value = archivos[0].name;
-            const outputImg4 = document.getElementById("imageSelected4");
-            if (archivos[0].type == "video/webm" || archivos[0].type == "video/mp4"|| archivos[0].type == "video/ogg") {
-              $('#span4').html(`<video title="Video" class="img-fluid" src="../assets/uploads/${archivos[0].name}" width="50" onclick="document.getElementById('profile-img4').click();">
-              </video>`)
-            }else{
-              $('#span4').html(`<img id="imageSelected2" class="img-fluid"
-              src="/assets/img_up/${archivos[0].name}"
-              onclick="document.getElementById('profile-img4').click();" width="50px" />`)
-            } 
-            break;
-          case 'profile-img5':
-            document.getElementById("imagen5").value = archivos[0].name;
-            const outputImg5 = document.getElementById("imageSelected5");
-            if (archivos[0].type == "video/webm" || archivos[0].type == "video/mp4"|| archivos[0].type == "video/ogg") {
-              $('#span5').html(`<video title="Video" class="img-fluid" src="../assets/uploads/${archivos[0].name}" width="50" onclick="document.getElementById('profile-img5').click();">
-              </video>`)
-            }else{
-              $('#span5').html(`<img id="imageSelected2" class="img-fluid"
-              src="/assets/img_up/${archivos[0].name}"
-              onclick="document.getElementById('profile-img5').click();" width="50px" />`)
-            } 
-            break;
-          default:
-            console.log('Lo lamentamos, por el momento no disponemos de ' + expr + '.');
-        }
-
-
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+      
+      },
+      error: function (jqXHR, textStatus) { 
+          $("#progressBar2").text('100% - Error al cargar el archivo');
+          $("#progressBar2").removeClass("progress-bar-success");
+          $("#progressBar2").addClass("progress-bar-danger");
+      }
+  });
   };
   const formUpdateProfile = document.getElementById('form_mis_publicaciones')
   const profileImg1 = $('.img_publicacion')//document.getElementById("profile-img1");
@@ -284,8 +306,10 @@ jQuery("#categorias").change(function(){
 const tabla_usuarios_admin = document.getElementsByClassName('tabla_usuarios_admin')
 
 if(tabla_usuarios_admin){
-
+  console.log("publi_user")
+   
   $('.delete').on('click', (e)=>{
+    console.log(tabla_usuarios_admin)
     let id = e.target.classList.item(2)
     let tipo = e.target.classList.item(3)
     Swal.fire({

@@ -171,7 +171,7 @@ module.exports = {
 		var aux = fotos.split(",");
 		 var out = "";
 			 if (aux[posit]=="") {
-				out+=	 `foto_camara.png`
+				out+=	 ``
 			 }else{
 				out+=	`${aux[posit]}`
 			 }
@@ -232,19 +232,19 @@ module.exports = {
 			var aux = fotos.split(",");
 			 var out = "";
 				 if (aux[posit]=="") {
-					out+=	 `<img id="imageSelected1" class="img-fluid"
+					out+=	 `<span id="span${img}"><img id="imageSelected${img}" class="img-fluid"
 					src="../assets/img_up/foto_camara.png"
-					onclick="document.getElementById('profile-img${img}').click();" width="50px" title="Imagen"/>`
+					onclick="document.getElementById('profile-img${img}').click();" width="50px" title="Imagen"/></span>`
 				 }else{
 					formato= (aux[posit]).split('.')
 					console.log(formato)
 					if (formato[1] == "mp4" || formato[1] == "ogg" || formato[1] == "webm") {
-						out+=	`<video title="Video" class="img-fluid" src="../assets/uploads/${aux[posit]}" width="50" onclick="document.getElementById('profile-img${img}').click();">
-					  </video> `
+						out+=	`<span id="span${img}"><video title="Video" class="img-fluid" src="../assets/uploads/${aux[posit]}" width="50" onclick="document.getElementById('profile-img${img}').click();">
+					  </video> </span>`
 					}else{
-					   out+=	`<img id="imageSelected1" class="img-fluid"
+					   out+=	`<span id="span${img}"><img id="imageSelected${img}" class="img-fluid"
 					   src="../assets/img_up/${aux[posit]}"
-					   onclick="document.getElementById('profile-img${img}').click();" width="50px" title="Imagen"/>` 
+					   onclick="document.getElementById('profile-img${img}').click();" width="50px" title="Imagen"/></span>` 
 					}
 				 }
 			// console.log(aux[0])

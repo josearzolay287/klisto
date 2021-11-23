@@ -591,7 +591,7 @@ login(email, password) {
 
       })
         .catch((err) => {
-          console.log(err);
+          reject(err);
         });
     });
   },

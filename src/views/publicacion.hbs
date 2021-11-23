@@ -3,8 +3,10 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.3/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment-with-locales.min.js" ></script>
 <link rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.min.css" />
+  
 <link href="https://cdn.jsdelivr.net/css-toggle-switch/latest/toggle-switch.css" rel="stylesheet" />
 <link href="../assets/css/style_slider.css" rel="stylesheet" />
 <link  href="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
@@ -1530,7 +1532,7 @@ if (data.mensaje == 'USADO'){
                       </strong>
                     </p>
                     <p>
-                      {{publicacion.descripcion}}
+                      {{#breaklines publicacion.descripcion}}{{/breaklines}}
                     </p>
 
                     <div class="dom-loc pb-3 d-none">
@@ -1541,7 +1543,7 @@ if (data.mensaje == 'USADO'){
                     </div>
                     <div class="dom-loc pb-3">
                       <img src="../assets/img/{{#if publicacion.domicilio}}checked.svg{{else}}cancel.svg{{/if}}" alt="" class="checkeds-img"><span
-                        style="margin-top: 3px;">Domicilio</span>
+                        style="margin-top: 3px;margin-right: 20px;">Domicilio</span>
                       <img src="../assets/img/checked.svg" alt="" class="checkeds-img" style="margin-top: 0;"><span
                         class="checkeds-p">Local</span>
                     </div>
@@ -1564,8 +1566,8 @@ if (data.mensaje == 'USADO'){
 
                   <div class="col d-flex justify-content-center">
                     <div class="switch-toggle switch-3 switch-candy switch">
-                      <input id="on" name="state-d" type="radio"  value="Domicilio" {{#if publicacion.domicilio}}{{else}}disabled{{/if}}/>
-                      <label for="on" >Domicilio</label>
+                      <input id="on" name="state-d" type="radio"   {{#if publicacion.domicilio}}value="Domicilio"{{else}}disabled{{/if}}/>
+                      <label for="on" >{{#if publicacion.domicilio}}Domicilio{{else}}{{/if}}</label>
 
                       <input id="off" name="state-d" type="radio" value="Local"/>
                       <label for="off">Local</label>
@@ -1669,10 +1671,11 @@ if (data.mensaje == 'USADO'){
                       <script type="text/javascript">
                         $(function () {
                           $('#datetimepicker12').datetimepicker({
+                            locale: 'es',
                             inline: true,
                             sideBySide: true,
-                            format: 'L',
-
+                            format: 'L',                           
+                    
                           });
                              // SCRIP BASE DE DATOS
     var fecha_agenda_ar = []
