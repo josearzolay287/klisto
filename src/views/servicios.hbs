@@ -120,6 +120,7 @@
                            <div class="card card-mas-nuevo item pagination__item" data-sort="{{precio}}" data-sortTi="{{titulo}}">
                           <label class="card-title nombres" hidden>{{titulo}} </label>
                             <label class="card-title categoria" hidden>{{categoria}} </label>
+                            <label class="card-title domicilio" hidden>{{domicilio}}</label>
                             <div class="img-card text-center">
                                     <img class="img-fluid card-img-top" src="../assets/img_up/{{#fotoPrincipalPublicacion fotos}}{{/fotoPrincipalPublicacion}}" alt="img-placeholder" />
                             </div>
@@ -206,11 +207,54 @@
                                         
                                        
                                     </ul>
+                                </div> <!-- Categories Ends -->
+                                <!-- Distritos start -->
+                    <div id="product-categories">
+                                    <h6 class="filter-title">Distritos</h6>
+                                    <ul class="list-unstyled categories-list">
+                                       <li>
+                                            <div class="form-check">
+                                                <input type="radio" id="distritos" name="distritos-filter" class="form-check-input select_cat" value="Todas" checked/>
+                                                <label class="form-check-label" for="distritos">Todas</label>
+                                            </div>
+                                        </li>
+                                      {{#each categorias as |categoria i|}}
+                                          <li>
+                                            <div class="form-check">
+                                                <input type="radio" id="distritos{{i}}" name="distritos-filter" class="form-check-input select_cat" value="{{nombre}}"/>
+                                                <label class="form-check-label" for="distritos{{i}}">{{nombre}}</label>
+                                            </div>
+                                        </li>
+                         {{/each}}
+                                        
+                                       
+                                    </ul>
                                 </div>
-                                <!-- Categories Ends -->
+                               
 
-                                <!-- Brand ends -->
+                                <!-- Distritos ends -->
+                                <!-- Atención start -->
+                    <div id="product-atencion">
+                                    <h6 class="filter-title">Atención</h6>
+                                    <ul class="list-unstyled categories-list">
+                                       <li>
+                                            <div class="form-check">
+                                                <input type="radio" id="domicilio" name="atencion-filter" class="form-check-input select_atencion" value="si" />
+                                                <label class="form-check-label" for="domicilio">Domicilio</label>
+                                            </div>
+                                        </li>
+                                         <li>
+                                            <div class="form-check">
+                                                <input type="radio" id="local" name="atencion-filter" class="form-check-input select_atencion" value="" />
+                                                <label class="form-check-label" for="local">Local</label>
+                                            </div>
+                                        </li> 
+                                       
+                                    </ul>
+                                </div>
+                               
 
+                                <!-- Atención ends -->
 
                                 <!-- Clear Filters Starts -->
                                 <div id="clear-filters">
@@ -259,6 +303,32 @@
 
   $(function () {
 
+    jQuery(".select_atencion").on('click',function(e){
+	console.log(e.target.value)
+    $(".select_atencion").removeClass("active"); 
+    $(e.target).addClass("active"); 
+     //this.attr("class", "nav-link select_cat active");
+  var domicilio = $('.domicilio');
+   var buscandoD =  (e.target.value).toLowerCase();
+   var item='';
+   for( var i = 0; i < domicilio.length; i++ ){
+       item = $(domicilio[i]).html().toLowerCase();
+      if(item == ""){
+        item = 'NO'
+      }
+        for(var x = 0; x < item.length; x++ ){          
+            if(buscandoD == 'todas'){
+                $(domicilio[i]).parents('.item').show(); 
+            }else if( buscandoD.length == 0 || item.indexOf( buscandoD ) > -1 ){              
+                $(domicilio[i]).parents('.item').show(); 
+                $(domicilio[i]).parents('.item').attr('active');
+            }else{
+                 $(domicilio[i]).parents('.item').hide();
+            }
+        }
+   }
+});
+
     jQuery(".select_cat").on('click',function(e){
 	console.log(e.target.value)
     $(".select_cat").removeClass("active"); 
@@ -270,17 +340,22 @@
    for( var i = 0; i < categoria.length; i++ ){
        item = $(categoria[i]).html().toLowerCase();
         for(var x = 0; x < item.length; x++ ){
+          
             if(buscando == 'todas'){
                 $(categoria[i]).parents('.item').show(); 
             }else if( buscando.length == 0 || item.indexOf( buscando ) > -1 ){
+               console.log(item.indexOf( buscando ))
                 $(categoria[i]).parents('.item').show(); 
                 $(categoria[i]).parents('.item').attr('active');
             }else{
+              
                  $(categoria[i]).parents('.item').hide();
             }
         }
    }
 });
+
+
   
     $('#correo_tercero').on('change', (e) => {
       ///let fecha = $('#fecha_ag').val()
