@@ -72,6 +72,7 @@ const Sucursales = db.define('sucursales', {
 Sucursales.Usuarios= Sucursales.belongsTo(Usuarios);
 Sucursales.Encargados = Sucursales.hasMany(Encargados);
 Sucursales.Calificaciones = Sucursales.hasMany(Calificaciones)
+// Sucursales.Calificaciones = Sucursales.hasMany(Calificaciones)
 // Métodos personalizados
 module.exports = Sucursales;
 

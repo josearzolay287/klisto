@@ -210,25 +210,23 @@
                                 </div> <!-- Categories Ends -->
                                 <!-- Distritos start -->
                     <div id="product-categories">
-                                    <h6 class="filter-title">Distritos</h6>
-                                    <ul class="list-unstyled categories-list">
-                                       <li>
-                                            <div class="form-check">
-                                                <input type="radio" id="distritos" name="distritos-filter" class="form-check-input select_cat" value="Todas" checked/>
-                                                <label class="form-check-label" for="distritos">Todas</label>
-                                            </div>
-                                        </li>
-                                      {{#each categorias as |categoria i|}}
-                                          <li>
-                                            <div class="form-check">
-                                                <input type="radio" id="distritos{{i}}" name="distritos-filter" class="form-check-input select_cat" value="{{nombre}}"/>
-                                                <label class="form-check-label" for="distritos{{i}}">{{nombre}}</label>
-                                            </div>
-                                        </li>
-                         {{/each}}
-                                        
-                                       
-                                    </ul>
+                                    {{!-- <h6 class="filter-title">Distritos</h6> --}}
+                                                    <div class="list-unstyled categories-list">
+                  <label for="">Departamento</label>
+                  {{!-- <input type="text" class="form-control" name="departamento"> --}}
+                  <select class="form-control form-select" name="departamento" id="departamentos">
+                    <option>Seleccione un departamento</option>
+                    <option>Lima</option>
+                    <option>Callao</option>
+                  </select>
+                </div>
+                <div class="list-unstyled categories-list ">
+                  <label for="">Distrito</label>
+                  {{!-- <input type="text" class="form-control" name="distrito"> --}}
+                  <select class="form-control form-select select_distrito" name="distrito" id="distritpos_lima">
+                    <option>Seleccione un distrito</option>
+                  </select>
+                </div>
                                 </div>
                                
 
@@ -245,7 +243,7 @@
                                         </li>
                                          <li>
                                             <div class="form-check">
-                                                <input type="radio" id="local" name="atencion-filter" class="form-check-input select_atencion" value="" />
+                                                <input type="radio" id="local" name="atencion-filter" class="form-check-input select_atencion" value="" checked/>
                                                 <label class="form-check-label" for="local">Local</label>
                                             </div>
                                         </li> 
