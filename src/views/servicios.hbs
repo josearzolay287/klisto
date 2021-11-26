@@ -50,15 +50,6 @@
     <div class="section__content section__content--p30">
 
         <div class="container-fluid">
-          <div class="row" {{#if publicaciones_landing}}style='display: none;' {{/if}}>
-            <div class="col-md-12">
-              <div class="overview-wrap">
-                <h2 class="title-1">
-                  <div class="float-right"><a href="/dash_cliente" id="volver_publicaciones"> Volver </a></div>
-                </h2>
-              </div>
-            </div>
-          </div>
 
 
      <div class="ecommerce-application">
@@ -121,13 +112,15 @@
                           <label class="card-title nombres" hidden>{{titulo}} </label>
                             <label class="card-title categoria" hidden>{{categoria}} </label>
                             <label class="card-title domicilio" hidden>{{domicilio}}</label>
+                            <label class="card-title distrito_f" hidden>{{#sucursalesServicios sucursales ../parse_dataSuc}}{{/sucursalesServicios}}</label>
                             <div class="img-card text-center">
                                     <img class="img-fluid card-img-top" src="../assets/img_up/{{#fotoPrincipalPublicacion fotos}}{{/fotoPrincipalPublicacion}}" alt="img-placeholder" />
                             </div>
                             <div class="cont-card">
                                <span>{{categoria}}</span>
                                 <h5>
-                                    {{#Titulo titulo}}{{/Titulo}}
+                                  {{titulo}}
+                                    {{!-- {{#Titulo titulo}}{{/Titulo}} --}}
                                     {{!-- <span class="card-text item-company">By <a href="#" class="company-name">Apple</a></span> --}}
                                 </h5>
                                 {{!-- <p class="card-text item-description">
@@ -162,16 +155,17 @@
                 <div class="sidebar">
                     <!-- Ecommerce Sidebar Starts -->
                     <div class="sidebar-shop">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <h6 class="filter-heading d-none d-lg-block">Filtros</h6>
-                            </div>
-                        </div>
                         <div class="card">
                           <div class="CloseSidebar">
                             x
                           </div>
                             <div class="card-body">
+                              
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h6 class="filter-heading d-none d-lg-block">Filtros</h6>
+                            </div>
+                        </div>
                                 <!-- Price Range ends -->
                                 <div class="row">
                                     <div class="col-12">
@@ -300,7 +294,31 @@
 <script>
 
   $(function () {
-
+    jQuery("#distritpos_lima").on('change',function(e){
+	console.log(e.target.value)
+   // $(".select_cat").removeClass("active"); 
+    $(e.target).addClass("active"); 
+     //this.attr("class", "nav-link select_cat active");
+  var distrito_f = $('.distrito_f');
+   var buscando =  (e.target.value).toLowerCase();
+   var item='';
+   for( var i = 0; i < distrito_f.length; i++ ){
+       item = $(distrito_f[i]).html().toLowerCase();
+        for(var x = 0; x < item.length; x++ ){
+          
+            if(buscando == 'Seleccione un distrito' || buscando =="" ||  buscando =="default"){
+                $(distrito_f[i]).parents('.item').show(); 
+            }else if( buscando.length == 0 || item.indexOf( buscando ) > -1 ){
+               console.log(item.indexOf( buscando ))
+                $(distrito_f[i]).parents('.item').show(); 
+                $(distrito_f[i]).parents('.item').attr('active');
+            }else{
+              
+                 $(distrito_f[i]).parents('.item').hide();
+            }
+        }
+   }
+});
     jQuery(".select_atencion").on('click',function(e){
 	console.log(e.target.value)
     $(".select_atencion").removeClass("active"); 

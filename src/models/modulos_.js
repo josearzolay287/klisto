@@ -314,6 +314,29 @@ login(email, password) {
         });
     });
   },
+  SucursalesbyIdTrr(id) {
+    return new Promise((resolve, reject) => {
+      Sucursales.findOne({attributes:['distrito'],
+        where: {
+          id: id,
+        }, 
+        //include: [
+        //   {
+        //     association: Sucursales.Encargados,
+        //   },
+
+        // ],
+      })
+        .then((data) => {
+          let datas = JSON.stringify(data);
+          resolve(datas);
+          ////console.log(id_usuario);
+        })
+        .catch((err) => {
+          ////console.log(err);
+        });
+    });
+  },
   guardar_editar_sucursal(id_sucursal, link, departamento, distrito, direccion, telefono, nombre_local, distritos_atendidos, dias_laborables, desde, hasta, break_desde, break_hasta) {
     let dist = distritos_atendidos.toString()
     let dias_laborablesS = dias_laborables.toString()
@@ -532,7 +555,7 @@ login(email, password) {
   },
   publicacionesAllLimit(limit, offset) {
     return new Promise((resolve, reject) => {
-      Publicaciones.findAndCountAll()
+      Publicaciones.findAndCountAll({})
         .then((data) => {
           let datas = JSON.stringify(data);
 

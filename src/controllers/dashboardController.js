@@ -161,10 +161,13 @@ Modulo_BD.VentasbyIdCompradorlimit5(user.id).then((resultado_ventas) => {
   let limit = 2;   // number of records per page
   let offset = 0;
 
-  Modulo_BD.publicacionesAllLimit(limit, offset).then((data)=>{
+  Modulo_BD.publicacionesAllLimit(limit, offset).then(async (data)=>{
     let parse_publi = JSON.parse(data)
     console.log(parse_publi)
     parse_publi =parse_publi.rows
+    Modulo_BD.SucursalesAll(limit, offset).then(async (dataSuc)=>{
+      let parse_dataSuc = JSON.parse(dataSuc)
+      console.log(parse_dataSuc)
     Modulo_BD.categoriasAct().then((cat) =>{
       let categorias = JSON.parse(cat)
        res.render("servicios", {
@@ -173,9 +176,10 @@ Modulo_BD.VentasbyIdCompradorlimit5(user.id).then((resultado_ventas) => {
    landingPage:true,
    publicaciones_landing:true,
    categorias,
-   parse_publi
+   parse_publi,parse_dataSuc
  });
   })
+})
  })
 
 };

@@ -54,6 +54,24 @@ module.exports = {
 		   }
 		 return out;
 	},
+	sucursalesServicios: (sucursales, id_suc) => {
+		
+		var aux = sucursales.split(",");
+		let cont =	aux.length;
+		var out = "";
+		let existeElemento = ""
+			 for (let i = 0; i < aux.length; i++) {
+				existeElemento = id_suc.find(element => element.id == aux[i]);
+				 console.log(existeElemento) 	
+				 out	+=`${existeElemento.distrito},` 
+				//  if (id_suc[i].id ==  aux[i]) {
+				// 	out	+=`${id_suc[i].distrito},` 
+					
+				//  }
+			
+			}
+		 return out;
+	},
 	distritos_habilitados: (sucursales, id_suc) => {
 
 		var aux = id_suc.split(",");
