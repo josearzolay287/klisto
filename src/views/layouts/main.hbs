@@ -35,7 +35,8 @@
 						</li>
 						<li class="has-sub"><a href="/{{#if admin}}wallet{{else}}pagos_negocio{{/if}}"><i class="fa fa-credit-card"></i>{{#if admin}}Pagos{{else}}Mi Billetera{{/if}}</a></li>
 						<li {{#if ventas}}class="has-sub active"{{/if}}><a href="/ventas"><i class="fa fa-shopping-cart"></i>{{#if admin}}Ventas{{else}}Mis Ventas{{/if}}</a></li>
-					{{#if admin}}{{else}}	<li {{#if mispublicaciones}}class="has-sub active"{{/if}}><a href="/mispublicaciones"><i class="fa fa-tasks"></i>Mis Publicaciones</a></li>
+					{{#if admin}}{{else}}	<li {{#if mispublicaciones}}class="has-sub active"{{/if}}><a href="/mispublicaciones"><i class="fa fa-tasks"></i>Mis Publicaciones</a></li>{{/if}}
+					{{#if admin}}{{else}}	<li {{#if miscalificaciones}}class="has-sub active"{{/if}}><a href="/calificaciones"><i class="fa fa-info-circle"></i>Mis calificaciones</a></li>
 						<!--<li><a href="#"><i class="fa fa-info-circle"></i>Mis Calificaciones</a></li>
 						<li><a href="#"><i class="fa fa-book"></i>Reportes</a></li>-->{{/if}}
 {{#if admin}}

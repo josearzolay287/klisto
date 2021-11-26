@@ -147,7 +147,7 @@ router.post('/editar_usuarios_a',authController.authenticatedUser, userControlle
 router.get('/delete_usuarios_a/:id/:tipo',authController.authenticatedUser, dashboardController.delete_usuarios_a);
 
 
-
+router.get('/calificaciones',authController.authenticatedUser, dashboardController.calificaciones_negocio);
 
 router.get('/terminos', authController.authenticatedUser, dashboardController.terminos);
 router.get('/terminos/:msg', authController.authenticatedUser, dashboardController.terminos);

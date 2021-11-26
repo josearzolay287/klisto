@@ -51,7 +51,7 @@ exports.dashboard = (req, res) => {
         console.log(contar_citas);
         Modulo_BD.PublicidadActDestino('Dashboard negocio').then((respuesta1) =>{
           let video = JSON.parse(respuesta1)
-
+let host = req.headers.host
     res.render("dashboard", {
       pageName: "Dashboard",
       dashboardPage: true,
@@ -59,7 +59,7 @@ exports.dashboard = (req, res) => {
       publicaciones,
       parsed_wallet,
       contar_ventas,
-      user,contar_citas,video
+      user,contar_citas,video,host
     })
   })
 })
@@ -271,13 +271,13 @@ res.render("land_afiliar", {
       let sucursales = JSON.parse(respuesta)
       console.log(sucursales)
       console.log(sucursales[0].encargados);
-      
+      let host = req.headers.host
        res.render("minegocio", {
       pageName: "Mi cuenta",
       dashboardPage: true,
       minegocio:true,
       sucursales,
-      user,msg,logo, admin
+      user,msg,logo, admin,host
       //admin_dash1: true,
       //layout: "page-form",
       //user,
@@ -286,7 +286,60 @@ res.render("land_afiliar", {
   }
  
  };
-
+ exports.calificaciones_negocio = (req, res) => {
+  const user = res.locals.user;
+   console.log(user);
+   let msg = false;
+   var logo =false;
+  if (req.params.msg) {
+    msg = req.params.msg
+    logo = true
+  }
+  let admin = false
+  if (user.tipo == "Administrador") {
+    admin = true;
+    Modulo_BD.SucursalesAll().then((respuesta) =>{
+      let sucursales = JSON.parse(respuesta)
+      console.log(sucursales)
+      Modulo_BD.calificaciones().then((respuesta) =>{
+        let sucursales = JSON.parse(respuesta)
+        console.log(sucursales)
+      //console.log(sucursales[0].encargados);
+       res.render("calificaciones_negocio", {
+      pageName: "Mis calificaciones",
+      dashboardPage: true,
+      miscalificaciones:true,
+      sucursales,
+      user,msg,logo, admin
+      //admin_dash1: true,
+      //layout: "page-form",
+      //user,
+    });
+    })  
+  }) 
+  }else{
+    Modulo_BD.SucursalPrincipalById(user.id).then((respuesta) =>{
+      let sucursal = JSON.parse(respuesta)
+      console.log(sucursal)
+      Modulo_BD.calificacionesbyUser(sucursal.id).then((respuestaS) =>{
+        let calificaciones = JSON.parse(respuestaS)
+        console.log(calificaciones)
+      //console.log(calificaciones[0].encargados);
+       res.render("calificaciones_negocio", {
+      pageName: "Mis calificaciones",
+      dashboardPage: true,
+      miscalificaciones:true,
+      calificaciones,
+      user,msg,logo, admin
+      //admin_dash1: true,
+      //layout: "page-form",
+      //user,
+    });
+    })  
+  })  
+  }
+ 
+ };
 
  exports.encargados = (req, res) => {
   const user = res.locals.user;

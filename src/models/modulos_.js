@@ -408,6 +408,47 @@ login(email, password) {
         });
     });
   },
+  SucursalPrincipalById(id) {
+    return new Promise((resolve, reject) => {
+      Sucursales.findOne({
+        where: {
+          tipo: 'Principal',
+          usuarioId: id,
+        }, include: [ {
+            association: Sucursales.Usuarios,
+          }
+
+        ],
+      })
+        .then((data) => {
+          let data_p = JSON.stringify(data);
+          resolve(data_p);
+          ////console.log(id_usuario);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    });
+  },
+
+//CALIFICACIONES
+calificacionesbyUser(id) {
+  return new Promise((resolve, reject) => {
+    Calificaciones.findAll({
+      where: {
+        sucursaleId: id,
+      },
+    })
+      .then((data) => {
+        let data_p = JSON.stringify(data);
+        resolve(data_p);
+        ////console.log(id_Cliente);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  });
+},
 
 
 //CLIENTE
