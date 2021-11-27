@@ -34,7 +34,13 @@
 {{#if msg}}
 <label id="msgs">{{msg}}</label>
 {{/if}}
-
+<script>
+    $(document).ready(function(){
+	$(".CloseSidebar").click(function(){
+    $(".show").remove();
+	});
+});
+</script>
 
 
 <div class="page-container" {{#if publicaciones_landing}}style='padding-left: 0;' {{/if}}>
@@ -152,12 +158,12 @@
                             </div>
                         </div>
                         <div class="card">
-                          <div class="CloseSidebar">
+                            <div class="card-body">
+                                                        <div class="CloseSidebar">
                             x
                           </div>
-                            <div class="card-body">
                                 <!-- Price Range ends -->
-                                <div class="row">
+                                <div class="row mt-3">
                                     <div class="col-12">
                                                                         <div class="input-group input-group-merge">
                                     {{!-- <input type="text" class="form-control search-product" id="shop-search" placeholder="Search Product" aria-label="Search..." aria-describedby="shop-search" />
