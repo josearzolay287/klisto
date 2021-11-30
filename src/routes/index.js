@@ -70,9 +70,10 @@ router.post('/update_client', authController.authenticatedUser, dashboardControl
 
 //SERVICIOS
 router.get('/servicios',dashboardController.servicios);
-
+router.post('/servicios',dashboardController.servicios);
 //NEGOCIOS
 router.get('/negocios',dashboardController.negocios_list);
+router.post('/negocios_search',dashboardController.negocios_list);
 
 
 //PARA EL LANDGIN ACA
@@ -90,6 +91,10 @@ router.get('/encargados/:id_sucursal',authController.authenticatedUser, dashboar
 router.post('/agregar_encargado',authController.authenticatedUser, dashboardController.agregar_encargados);
 router.get('/eliminar_encargado/:id_encargado/:id_sucursal',authController.authenticatedUser, dashboardController.delete_encargado);
 router.get('/editar_sucursal/:id_sucursal',authController.authenticatedUser, dashboardController.editar_sucursal);
+
+//venta exitosa
+router.get('/venta_exitosa', authController.authenticatedUser,dashboardController.venta_exitosa);
+router.get('/venta_exitosa/:msg', authController.authenticatedUser,dashboardController.venta_exitosa);
 
 router.get('/editar_encargado/:id_encargado/:id_sucursal',authController.authenticatedUser, dashboardController.editar_encargado);
 router.post('/guardar_editar_local',authController.authenticatedUser, dashboardController.guardar_editar_sucursal);

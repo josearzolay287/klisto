@@ -311,8 +311,8 @@ if (description_[1] != "") {
        res.clearCookie()
        exito ={'publicacionId': publicacionId, 'estado': estado, 'monto':monto,'id_agenda':id_agenda}
       msg = "Su pago se aprobó con éxito"
-      res.cookie('exito_compra' , exito, {maxAge: 250000,});
-      res.redirect('/dash_cliente/'+msg)
+      res.cookie('exito_compra' , exito );//{maxAge: 250000,}
+      res.redirect('/venta_exitosa/'+msg)
      });
       
     }

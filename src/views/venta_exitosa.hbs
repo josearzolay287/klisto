@@ -1,0 +1,370 @@
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+{{#if msg}}
+<label id="msgs">{{msg}}</label>
+{{/if}}
+<script>
+  $( document ).ready(function() {
+       //$('#venta_exitosa').hide(15000);
+
+
+});
+</script>
+<style>
+   .btn-primary{
+    background-color: var(--color-verde);
+    color: white !important;
+    border-color: var(--color-verde);
+  }
+  .btn-primary:hover{
+    background-color: #1f7e4a;
+    color: white;
+    border-color: #1f7e4a;
+    box-shadow: none;
+  }
+	@media(max-width:480px){
+		.dataTables_wrapper .dataTables_paginate .paginate_button.disabled, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:active{
+			display: none;
+		}
+		[multiple], [type=date], [type=datetime-local], [type=email], [type=month], [type=number], [type=password], [type=search], [type=tel], [type=text], [type=time], [type=url], [type=week], select, textarea{
+			border-color: #6b7280 !important;
+		}
+		.main-content{
+			margin-top: 0px !important
+			;
+		}
+	}
+	table>thead>tr {
+		font-weight: bolder;
+	}
+
+	.linea-oculta {
+		display: none;
+	}
+
+	.ingreso {
+		color: green;
+	}
+
+	.egreso {
+		color: red;
+	}
+
+	.card-title {
+		font-size: 1em;
+	}
+
+	.modal-backdrop {
+		position: relative;
+	}
+
+	tbody tr td {
+		padding-right: 20px;
+	}
+
+	.card-body input {
+		height: 30px !important;
+	}
+
+	.dataTables_wrapper .dataTables_filter input {
+		border: 1px solid #6b7280;
+	}
+	@media(max-width:1050px){
+		.card-body .row{
+			overflow: scroll !important;
+		}
+	}
+	.page-item.active .page-link{
+		background-color: #06CC60 !important;
+		border-color: #06CC60 !important;
+	}
+	#min, #max{
+		display: block;
+		width: 100%;
+		height: calc(1.5em + 0.75rem + 2px);
+		padding: 0.375rem 0.75rem;
+		font-size: 1rem;
+		font-weight: 400;
+		line-height: 1.5;
+		color: #495057;
+		background-color: #fff;
+		background-clip: padding-box;
+		border: 1px solid #ced4da;
+		border-radius: 0.25rem;
+		transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+	}
+</style>
+<div class="page-container">
+
+  <div class="main-content">
+    <div class="section__content section__content--p30">
+      <main>
+        <div class="container-fluid">
+     
+
+            <section class="mas-nuevo ">
+        <div class="container" style="margin-left: 0; margin-right:0;max-width:100%">
+            <div class="row">
+            </div>
+            {{#if venta_exitosa}}
+                        <div class="row" id="venta_exitosa">
+            <div class="col">
+<div class="card text-center">
+  <div class="card-header">
+   <h5 class="card-title">¡¡Gracias por su compra!!</h5> 
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Su compra #{{venta_exitosa.id}} se procesó con éxito.</h5>
+    <p class="card-text">Solo debe esperar a ser confirmada por el negocio, lo cual se hará como máximo hasta 10 horas antes al horario reservado.</p>
+    <div class="card-blank">
+									<div class="card-body">
+
+										<div class="card-body">
+											<table class="table dataTable" id="tabla_exitosa">
+												<thead>
+													<tr>
+														<th>
+															{{#if admin}}Usuario{{else}}Id{{/if}}
+														</th>
+														<th>
+															Fecha
+														</th>
+														<th>
+															Concepto
+														</th>
+														<th>
+															Status
+														</th>
+														<th>
+															Monto
+														</th>
+														<th>
+															Comprobante
+														</th>
+														<th>
+															Observación
+														</th>
+														<th align="center">
+															Opciones
+														</th>
+													</tr>
+												</thead>
+												<tbody>
+													
+													<tr>
+														<td>{{venta_exitosa.id}}
+														</td>
+														<td>{{#formatoFecha venta_exitosa.createdAt}}{{/formatoFecha}}</td>
+														<td>
+															{{venta_exitosa.publicacione.titulo}}
+														</td>
+														<td>
+															<span><strong style="color: {{#ColorSucursal venta_exitosa.estado}}{{/ColorSucursal}};"	id="estado">{{venta_exitosa.estado}}</strong></span>
+															<div class="modal fade" id="exampleModalCenter{{venta_exitosa.id}}"
+																tabindex="-1" role="dialog"
+																aria-labelledby="exampleModalCenterTitle"
+																aria-hidden="true">
+
+																<div class="modal-dialog modal-dialog-centered"
+																role="document" style="max-width: 1000px;">
+																<div class="modal-content">
+																	<div class="modal-header">
+																		<button type="button" class="close"
+																			data-dismiss="modal" aria-label="Close">
+																			<span aria-hidden="true">&times;</span>
+																		</button>
+																	</div>
+
+																	<div class="modal-body">
+																		<div class="container">
+																			<div class="row align-items-start">
+																				<div class="col-sm">
+																					<div class="row">
+																						<div class="col-12" style="font-weight: bold;">
+																							Id 
+																						</div>
+																					</div>
+																					<div class="row">
+																						<div class="col-12">
+																							{{venta_exitosa.agenda.id}}
+																						</div>
+																					</div>
+																				</div>
+																				<div class="col-sm">
+																					<div class="row">
+																						<div class="col-12" style="font-weight: bold;">
+																							Fecha 
+																						</div>
+																					</div>
+																					<div class="row">
+																						<div class="col-12">
+																							{{venta_exitosa.agenda.fecha_agenda}}
+																						</div>
+																					</div>																					
+																				</div>
+																				<div class="col-sm"> 
+																					<div class="row">
+																						<div class="col-12" style="font-weight: bold;">
+																							Estado 
+																						</div>
+																					</div>
+																					<div class="row">
+																						<div class="col-12">
+																							{{venta_exitosa.agenda.estado}}
+																						</div>
+																					</div>																					
+																				</div>
+																				<div class="col-sm">
+																					<div class="row">
+																						<div class="col-12" style="font-weight: bold;">
+																							Hora-Desde
+																						</div>
+																					</div>
+																					<div class="row">
+																						<div class="col-12">
+																							{{venta_exitosa.agenda.hora_cita_desde}}
+																						</div>
+																					</div>																					
+																				</div>
+																				<div class="col-sm">
+																					<div class="row">
+																						<div class="col-12" style="font-weight: bold;">
+																							Hora-Hasta
+																						</div>
+																					</div>
+																					<div class="row">
+																						<div class="col-12">
+																							{{venta_exitosa.agenda.hora_cita_hasta}}
+																						</div>
+																					</div>
+																				</div>
+																				<div class="col-sm">
+																					<div class="row">
+																						<div class="col-12" style="font-weight: bold;">
+																							Empleado
+																						</div>
+																					</div>
+																					<div class="row">
+																						<div class="col-12">
+																							{{#empleados_agenda sucursales venta_exitosa.agenda.encargadoId}}{{/empleados_agenda}}
+																						</div>
+																					</div>
+																				</div>
+																			</div>
+
+																			<div class="row align-items-start"
+																				style="border-top: solid;">
+																				<div class="col-sm">  
+																					<div class="row">
+																						<div class="col-12" style="font-weight: bold;">
+																							Nombre
+																						</div>
+																					</div>
+																					<div class="row">
+																						<div class="col-12">
+																							{{venta_exitosa.agenda.nombre_del_tercero}}
+																						</div>
+																					</div>
+																				</div>
+																				<div class="col-sm"> 
+																					<div class="row">
+																						<div class="col-12" style="font-weight: bold;">
+																							Teléfono 
+																						</div>
+																					</div>
+																					<div class="row">
+																						<div class="col-12">
+																							{{venta_exitosa.agenda.telefono_tercero}}
+																						</div>
+																					</div>
+																				</div>
+																				<div class="col-sm">  
+																					<div class="row">
+																						<div class="col-12" style="font-weight: bold;">
+																							Dirección 
+																						</div>
+																					</div>
+																					<div class="row">
+																						<div class="col-12">
+																							{{#direccion_agenda sucursales venta_exitosa.agenda.direccion_tercero}}{{/direccion_agenda}}
+																						</div>
+																					</div>
+																				</div>
+																				<div class="col-sm"> 
+																					<div class="row">
+																						<div class="col-12" style="font-weight: bold;">
+																							Lugar 
+																						</div>
+																					</div>
+																					<div class="row">
+																						<div class="col-12">
+																							{{venta_exitosa.agenda.lugar_serv_propio}}
+																						</div>
+																					</div>
+																				</div>
+																				<div class="col-sm">
+																					<div class="row">
+																						<div class="col-12" style="font-weight: bold;">
+																							Comentario 
+																						</div>
+																					</div>
+																					<div class="row">
+																						<div class="col-12">
+																							{{venta_exitosa.agenda.comentario}}
+																						</div>
+																					</div>
+																				</div>
+																				<div class="col-sm">
+																					
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															</div>
+
+														</td>
+														<td>
+															S/ {{venta_exitosa.monto}}
+														</td>
+														<td>
+															{{venta_exitosa.comprobante}}
+														</td>
+														<td>
+															{{venta_exitosa.observacion}}
+														</td>
+														<td align="center">
+															<div class="table-data-feature">
+																<a class="item " data-toggle="modal"
+																	data-target="#exampleModalCenter{{venta_exitosa.id}}" id="">
+																	<i class="fas fa-calendar-alt  {{venta_exitosa.id}}"
+																		style="color: green;"></i>
+																</a>
+															</div>
+														</td>
+													</tr>
+												</tbody>
+
+											</table>
+										</div>
+									</div>
+								</div>
+    <p class="card-text">Te invitamos a calificar el negocio, luego de realizar tu servicio</p>
+    <a href="/miscompras" class="btn btn-primary">Ver mis reservas</a>
+  </div>
+  <div class="card-footer text-muted">
+  </div>
+</div>
+              </div>
+            </div>
+{{/if}}
+
+        </div>
+    </section>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>

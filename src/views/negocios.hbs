@@ -87,8 +87,8 @@
                                                 <a class="dropdown-item resetSorting" id="resetSorting">Por Defecto</a>
                                                 <a class="dropdown-item" id="alfabeticoAsc">Alfabetico (A-Z)</a>
                                                 <a class="dropdown-item" id="alfabeticoDsc">Alfabetico (Z-A)</a>
-                                                <a class="dropdown-item" id="masbajosort">Precio más bajo</a>
-                                                <a class="dropdown-item" id="masaltosort">Precio más Alto</a>
+                                                {{!-- <a class="dropdown-item" id="masbajosort">Precio más bajo</a>
+                                                <a class="dropdown-item" id="masaltosort">Precio más Alto</a> --}}
                                             </div>
                                         </div>
                                         {{!-- <div class="btn-group" role="group">
@@ -205,7 +205,7 @@
 
                                 <!-- Clear Filters Starts -->
                                 <div id="clear-filters">
-                                    <button type="button" class="btn w-100 btn-primary resetSorting">Limpiar Filtros</button>
+                                    <button type="button" class="btn w-100 btn-primary resetSorting">Ver todos</button>
                                 </div>
                                 <!-- Clear Filters Ends -->
                             </div>
@@ -367,7 +367,7 @@ $('#alfabeticoAsc').on('click', function () {
 	});
   
   $('.resetSorting').on('click', () => {
- window.location.reload()
+ window.location.href ="/negocios"
 });
 
 
