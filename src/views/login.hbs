@@ -184,7 +184,11 @@ button:hover {
   }
 }
 </style>
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+{{#if msg}}
+<label id="msgs" hidden>{{msg}}</label>
+{{/if}}
 <div class="flex flex-col sm:justify-center items-center pt-6 sm:pt-0 ">
 
 

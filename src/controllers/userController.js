@@ -13,12 +13,18 @@ const crypto = require("crypto");
 // Formulario de inicio de sesión
 exports.formLogin = (req, res) => {
   const { error } = res.locals.messages;
+  let msg = false
+
+  if (req.params.msg) {
+    msg = req.params.msg
+  }
   res.render("login", {
     pageName: "Login",
     layout: "page-form",
     error,
     reg_: true,
-    footer: true
+    footer: true,
+    msg
   });
 };
 
@@ -66,6 +72,8 @@ exports.forgot_password = (req, res) => {
   res.render("search-account", {
     pageName: "Buscar Cuenta",
     layout: "page-form",
+    reg_: true,
+    footer: true
   });
 };
 
@@ -376,7 +384,6 @@ exports.sendToken = async (req, res) => {
   const resetUrl = `https://${req.headers.host}/search-account/${usuario.token}`;
 
   res.redirect("/resetpass/" + usuario.token + "/" + email);
-  console.log(resetUrl);
 };
 
 exports.resetPasswordForm = async (req, res) => {
@@ -391,11 +398,12 @@ exports.resetPasswordForm = async (req, res) => {
     req.flash("error", "No válido");
     res.redirect("/search-account");
   }
-
+let token = req.params.token
   // Formulario para generar password
   res.render("reset-password", {
     pageName: "Restablecer contraseña",
     layout: "page-form",
+    token
   });
 };
 
@@ -412,7 +420,7 @@ exports.updatePassword = async (req, res) => {
   });
 
   if (!usuario) {
-    req.flash("error", "No valido");
+    req.flash("error", "Token no valido");
     res.redirect("search-account");
   }
 

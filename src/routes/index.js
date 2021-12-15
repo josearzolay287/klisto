@@ -32,6 +32,7 @@ router.get('/', landingController.showLandingPage);
 
 // Iniciar sesión
 router.get('/login', userController.formLogin);
+router.get('/login/:msg', userController.formLogin);
 router.get('/login/:product/:monto/:modo', userController.formLoginBack);
 router.post('/login',passport.authenticate('local',{ failureRedirect: '/login',failureFlash: 'Usuario o clave invalido.' }), userController.logintemp);
 
@@ -58,7 +59,7 @@ router.get('/actualizo_membresia/:producto/:monto/:modo', EmailCtrl.actualizo_me
 
 // Buscar cuenrta
 router.get('/search-account', userController.formSearchAccount);
-router.post('/search-account', userController.sendToken);
+router.post('/reset_clave', userController.sendToken);
 router.get('/search-account/:token', userController.resetPasswordForm);
 router.post('/search-account/:token', userController.updatePassword);
 router.get('/forgot-password', userController.forgot_password);
