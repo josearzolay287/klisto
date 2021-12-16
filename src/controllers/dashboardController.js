@@ -107,6 +107,36 @@ Modulo_BD.VentasbyIdCompradorlimit5(user.id).then((resultado_ventas) => {
 })
   })
  };
+ //DASH CLIENTE
+ exports.venta_exitosa = async (req, res) => {
+  const user = res.locals.user;
+   console.log(user);
+   let msg = false;
+   var logo =false;
+  if (req.params.msg) {
+    msg = req.params.msg
+    logo = true
+  }
+let venta_exitosa = false
+console.log("Cookies :  ", req.cookies);
+if (req.cookies.exito_compra) {
+  console.log('venta exitosa'+ req.cookies.exito_compra.id_agenda)
+  venta_exitosa = JSON.parse(await Modulo_BD.VentasbyIdAgenda(req.cookies.exito_compra.id_agenda))
+}
+console.log(venta_exitosa)
+Modulo_BD.SucursalesAll().then((resultado_sucursales) => { 
+  let sucursales = JSON.parse(resultado_sucursales);
+
+   res.render("venta_exitosa", {
+     pageName: "Venta exitosa",
+     dashboardPage: true,
+     dash_cliente: true,
+     user,
+     msg,venta_exitosa,sucursales
+   });
+  })
+ };
+
 
   exports.micuenta = (req, res) => {
     const user = res.locals.user;
@@ -160,14 +190,20 @@ Modulo_BD.VentasbyIdCompradorlimit5(user.id).then((resultado_ventas) => {
   const user = res.locals.user;
   let limit = 2;   // number of records per page
   let offset = 0;
-
-  Modulo_BD.publicacionesAllLimit(limit, offset).then(async (data)=>{
+let publicacionSearch;
+console.log(req.body.search)
+if (req.body.search) {
+  publicacionSearch = Modulo_BD.publicacionesfindLike
+  
+}else{
+publicacionSearch = Modulo_BD.publicacionesAllLimit
+}
+publicacionSearch(req.body.search).then(async (data)=>{
     let parse_publi = JSON.parse(data)
-    console.log(parse_publi)
     parse_publi =parse_publi.rows
     Modulo_BD.SucursalesAll(limit, offset).then(async (dataSuc)=>{
       let parse_dataSuc = JSON.parse(dataSuc)
-      console.log(parse_dataSuc)
+      console.log(parse_publi)
     Modulo_BD.categoriasAct().then((cat) =>{
       let categorias = JSON.parse(cat)
        res.render("servicios", {
@@ -187,8 +223,16 @@ exports.negocios_list = (req, res) => {
   const user = res.locals.user;
   let limit = 2;   // number of records per page
   let offset = 0;
-
-  Modulo_BD.SucursalesPrincipal().then((data)=>{
+  let sucursalesSearch;
+  console.log(req.body)
+  console.log(req.body.search2)
+  if (req.body.search2) {
+    sucursalesSearch = Modulo_BD.SucursalesPrincipalLike
+    
+  }else{
+  sucursalesSearch = Modulo_BD.SucursalesPrincipal
+  }
+  sucursalesSearch(req.body.search2).then((data)=>{
     let parse_suc = JSON.parse(data)
     console.log(parse_suc)
     Modulo_BD.categoriasAct().then((cat) =>{

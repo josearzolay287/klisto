@@ -43,23 +43,21 @@ exports.sendEmail = function (req, res) {
 
 exports.sendEmailResetPass = function (req, res) {
   //const {email} = req.body;
-  var token = req.params.mail;
-  var mail = req.params.token;
+  var token = req.params.token;
+  var mail = req.params.mail;
   const resetUrl = `http://${req.headers.host}/search-account/${token}`;
-
+console.log(mail)
   // Definimos el transporter
   var transporter = nodemailer.createTransport({
-    host: "mail.miganancia.net",
-    port: 465,
-    secure: true,
+    service: "Gmail",
     auth: {
-      user: "test@backartist.com",
-      pass: "0Jut6T1WwWnGAC7t8k",
-    },
+        user: "josearzolay287@gmail.com",
+        pass: "lucblfrdktkkcnlh"
+    }
   });
   // Definimos el email
   var mailOptions = {
-    from: "test@backartist.com",
+    from: "test@klisto.com",
     to: mail,
     subject: "Reset Password",
     text: "Click al siguiente enlace para resetear tu contraseña " + resetUrl,
@@ -75,7 +73,7 @@ exports.sendEmailResetPass = function (req, res) {
       console.log("Email sent fine");
       let msg =
         "A su correo se ha enviado el link para resetear su contraseña. Recuerde revisar su correo no deseado";
-      res.redirect("/?msg=" + msg);
+      res.redirect("/login/"+ msg);
 
       //  res.status(200).jsonp(req.body);
     }

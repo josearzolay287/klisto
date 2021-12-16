@@ -430,7 +430,42 @@ login(email, password) {
         });
     });
   },
+  SucursalesPrincipalLike(parametro) {
+    return new Promise((resolve, reject) => {
+      Sucursales.findAll({where: {
+        [Op.and]: [{tipo: 'Principal'},{
+        [Op.or]: [
+        { direccion:  {
+          [Op.like]: `%${parametro}%`
+        }
+      },{distrito: {
+          [Op.like]: `%${parametro}%`
+        }}, 
+        {departamento: {
+          [Op.like]: `%${parametro}%`
+        }},  {nombre: {
+          [Op.like]: `%${parametro}%`
+        }},         
+    ],
+    }]
+        
+      },include: [ {
+        association: Sucursales.Usuarios,
+      }
 
+    ],})
+        .then((data) => {
+          let datas = JSON.stringify(data);
+
+          resolve(datas);
+          ////console.log(id_usuario);
+        })
+        .catch((err) => {
+          console.log(err);
+          reject(err)
+        });
+    });
+  },
 //CALIFICACIONES
 calificacionesbyUser(id) {
   return new Promise((resolve, reject) => {
@@ -594,7 +629,7 @@ calificacionesbyUser(id) {
         });
     });
   },
-  publicacionesAllLimit(limit, offset) {
+  publicacionesAllLimit() {
     return new Promise((resolve, reject) => {
       Publicaciones.findAndCountAll({})
         .then((data) => {
@@ -608,6 +643,35 @@ calificacionesbyUser(id) {
         });
     });
   },
+ publicacionesfindLike(parametro) {
+    return new Promise((resolve, reject) => {
+      Publicaciones.findAndCountAll({where: {
+        [Op.or]: [
+        { titulo:  {
+          [Op.like]: `%${parametro}%`
+        }
+      },{descripcion: {
+          [Op.like]: `%${parametro}%`
+        }}, {condiciones: {
+          [Op.like]: `%${parametro}%`
+        }},           
+    ],
+        
+      },})
+        .then((data) => {
+          let datas = JSON.stringify(data);
+
+          resolve(datas);
+          ////console.log(id_usuario);
+        })
+        .catch((err) => {
+          console.log(err);
+          reject(err)
+        });
+    });
+  },
+
+  
   publicaciones(id_usuario) {
     return new Promise((resolve, reject) => {
       Publicaciones.findAll({

@@ -83,20 +83,11 @@
                                                 <span class="active-sorting">Ordenar</span>
                                             </button>
                                             <div class="dropdown-menu">
-                                                {{!-- <a class="dropdown-item" href="#">Featured</a> --}}
                                                 <a class="dropdown-item resetSorting" id="resetSorting">Por Defecto</a>
                                                 <a class="dropdown-item" id="alfabeticoAsc">Alfabetico (A-Z)</a>
                                                 <a class="dropdown-item" id="alfabeticoDsc">Alfabetico (Z-A)</a>
-                                                <a class="dropdown-item" id="masbajosort">Precio más bajo</a>
-                                                <a class="dropdown-item" id="masaltosort">Precio más Alto</a>
                                             </div>
                                         </div>
-                                        {{!-- <div class="btn-group" role="group">
-                                            <input type="radio" class="btn-check" name="radio_options" id="radio_option1" autocomplete="off" checked />
-                                            <label class="btn btn-icon btn-outline-primary view-btn grid-view-btn" for="radio_option1"><i data-feather="grid" class="font-medium-3"></i></label>
-                                            <input type="radio" class="btn-check" name="radio_options" id="radio_option2" autocomplete="off" />
-                                            <label class="btn btn-icon btn-outline-primary view-btn list-view-btn" for="radio_option2"><i data-feather="list" class="font-medium-3"></i></label>
-                                        </div> --}}
                                     </div>
                                 </div>
                             </div>
@@ -104,27 +95,21 @@
                     </section>
                     <!-- E-commerce Content Section Starts -->
 
-                    <!-- background Overlay when sidebar is shown  starts-->
-                    {{!-- <div class="body-content-overlay"></div> --}}
-                    <!-- background Overlay when sidebar is shown  ends-->
-
                     <!-- E-commerce Search Bar Ends -->
 <div id="data-container"></div>
 <div id="pagination-container"></div>
                     <!-- E-commerce Products Starts -->
                     <section id="pagination-2" class="grid-view pagination__list">
  {{#each parse_suc as |sucu i |}}
-                                              <div class="card card-mas-nuevo item pagination__item" data-sortTi="{{nombre}}" >
+                            <div class="card card-mas-nuevo item pagination__item" data-sortTi="{{nombre}}" >
                           <label class="card-title nombres" hidden>{{nombre}} </label>
-                            {{!-- <label class="card-title categoria" hidden>{{categoria}} </label> --}}
+                          <label class="card-title distrito_f" hidden>{{distrito}}</label>
                             <div class="img-card text-center">
                                     <img class=" card-img-top" src="../assets/img_up/{{usuario.photo}}" alt="img-placeholder" />
                             </div>
                             <div class="cont-card">
-                               {{!-- <span>{{categoria}}</span> --}}
                                 <h5>
                                     {{nombre}}
-                                    {{!-- <span class="card-text item-company">By <a href="#" class="company-name">Apple</a></span> --}}
                                 </h5>
                                <p class="card-text item-description">
                                     {{descripcion}}
@@ -166,46 +151,39 @@
                                 <div class="row mt-3">
                                     <div class="col-12">
                                                                         <div class="input-group input-group-merge">
-                                    {{!-- <input type="text" class="form-control search-product" id="shop-search" placeholder="Search Product" aria-label="Search..." aria-describedby="shop-search" />
-                                    <span class="input-group-text"><i data-feather="search" class="text-muted"></i></span> --}}
                       <input class="form-control mr-sm-2 header-buscador" type="text" name="search" placeholder="Buscar" id="buscador" style="margin-right: 0 !important;">
-                      {{!-- <button class="btn btn-outline-success my-2 my-sm-0 header-buscador-buttom" type="submit">
-                        <i class="fas fa-search" style="font-size: 30px;"></i>
-                      </button> --}}
+                     
                                 </div>
                                     </div>
                                 </div>
 
                                 <!-- Categories Starts -->
-                                <div id="product-categories">
-                                    <h6 class="filter-title">Categorias</h6>
-                                    <ul class="list-unstyled categories-list">
-                                       <li>
-                                            <div class="form-check">
-                                                <input type="radio" id="category" name="category-filter" class="form-check-input select_cat" value="Todas" checked/>
-                                                <label class="form-check-label" for="category">Todas</label>
-                                            </div>
-                                        </li>
-                                      {{#each categorias as |categoria i|}}
-                                          <li>
-                                            <div class="form-check">
-                                                <input type="radio" id="category{{i}}" name="category-filter" class="form-check-input select_cat" value="{{nombre}}"/>
-                                                <label class="form-check-label" for="category{{i}}">{{nombre}}</label>
-                                            </div>
-                                        </li>
-                         {{/each}}
-                                        
-                                       
-                                    </ul>
-                                </div>
                                 <!-- Categories Ends -->
-
+ <div id="product-categories">
+                                    {{!-- <h6 class="filter-title">Distritos</h6> --}}
+                                                    <div class="list-unstyled categories-list">
+                  <label for="">Departamento</label>
+                  {{!-- <input type="text" class="form-control" name="departamento"> --}}
+                  <select class="form-control form-select" name="departamento" id="departamentos">
+                    <option>Seleccione un departamento</option>
+                    <option>Lima</option>
+                    <option>Callao</option>
+                  </select>
+                </div>
+                <div class="list-unstyled categories-list ">
+                  <label for="">Distrito</label>
+                  {{!-- <input type="text" class="form-control" name="distrito"> --}}
+                  <select class="form-control form-select select_distrito" name="distrito" id="distritpos_lima">
+                    <option>Seleccione un distrito</option>
+                  </select>
+                </div>
+                                </div>
                                 <!-- Brand ends -->
 
 
                                 <!-- Clear Filters Starts -->
-                                <div id="clear-filters">
-                                    <button type="button" class="btn w-100 btn-primary resetSorting">Limpiar Filtros</button>
+                                <div id="clear-filters" style=" margin-top: 15px;">
+                                    <button type="button" class="btn w-100 btn-primary resetSorting">Ver todos</button>
                                 </div>
                                 <!-- Clear Filters Ends -->
                             </div>
@@ -249,7 +227,31 @@
 <script>
 
   $(function () {
-
+    jQuery("#distritpos_lima").on('change',function(e){
+	console.log(e.target.value)
+   // $(".select_cat").removeClass("active"); 
+    $(e.target).addClass("active"); 
+     //this.attr("class", "nav-link select_cat active");
+  var distrito_f = $('.distrito_f');
+   var buscando =  (e.target.value).toLowerCase();
+   var item='';
+   for( var i = 0; i < distrito_f.length; i++ ){
+       item = $(distrito_f[i]).html().toLowerCase();
+        for(var x = 0; x < item.length; x++ ){
+          
+            if(buscando == 'Seleccione un distrito' || buscando =="" ||  buscando =="default"){
+                $(distrito_f[i]).parents('.item').show(); 
+            }else if( buscando.length == 0 || item.indexOf( buscando ) > -1 ){
+               console.log(item.indexOf( buscando ))
+                $(distrito_f[i]).parents('.item').show(); 
+                $(distrito_f[i]).parents('.item').attr('active');
+            }else{
+              
+                 $(distrito_f[i]).parents('.item').hide();
+            }
+        }
+   }
+});
     jQuery(".select_cat").on('click',function(e){
 	console.log(e.target.value)
     $(".select_cat").removeClass("active"); 
@@ -289,22 +291,6 @@
         cache: false,
         contentType: false,
         processData: false,
-        /*xhr: function () {        
-            var xhr = $.ajaxSettings.xhr();
-            xhr.upload.onprogress = function (event) {
-                var perc = Math.round((event.loaded / event.total) * 100);
-               // $("#nombreArchivoCalendario1").text(inputFile.name);
-               
-                $("#progressBar1").text(perc + '%');
-                $("#progressBar1").css('width', perc + '%');
-            };
-            return xhr;
-        },
-        beforeSend: function (xhr) {
-          displayLoading()
-            $("#progressBar1").text('0%');
-            $("#progressBar1").css('width', '0%');
-        },*/
         success: function (data, textStatus, jqXHR) {
           console.log(data)
           if (data == 0) {
@@ -367,7 +353,7 @@ $('#alfabeticoAsc').on('click', function () {
 	});
   
   $('.resetSorting').on('click', () => {
- window.location.reload()
+ window.location.href ="/negocios"
 });
 
 

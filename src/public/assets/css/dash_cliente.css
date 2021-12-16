@@ -1,40 +1,31 @@
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<link rel="stylesheet" type="text/css" href="../../../assets/css/dash_cliente.css">
-{{#if msg}}
-<label id="msgs">{{msg}}</label>
-{{/if}}
-<script>
-  $( document ).ready(function() {
-       $('#venta_exitosa').hide(15000);
-  //CATEGORIAS SEARCH
-jQuery(".select_cat").on('click',function(e){
-	console.log(e.target)
-    $(".select_cat").removeClass("active"); 
-    $(e.target).addClass("active"); 
-     //this.attr("class", "nav-link select_cat active");
-  var categoria = $('.categoria');
-   var buscando =  (e.target.innerHTML).toLowerCase();
-   var item='';
-   for( var i = 0; i < categoria.length; i++ ){
-       item = $(categoria[i]).html().toLowerCase();
-        for(var x = 0; x < item.length; x++ ){
-            if(buscando == 'todas'){
-                $(categoria[i]).parents('.item').show(); 
-            }else if( buscando.length == 0 || item.indexOf( buscando ) > -1 ){
-                $(categoria[i]).parents('.item').show(); 
-                $(categoria[i]).parents('.item').attr('active');
-            }else{
-                 $(categoria[i]).parents('.item').hide();
-            }
-        }
-   }
-});
-});
-</script>
+ .btn-primary{
+    background-color: var(--color-verde);
+    color: white !important;
+    border-color: var(--color-verde);
+  }
+  .btn-primary:hover{
+    background-color: #1f7e4a;
+    color: white;
+    border-color: #1f7e4a;
+    box-shadow: none;
+  }
+      .header .menu-front .navbar-brand img{
+        height: 70px;
+      }
+    .header{
+        width: 100%;
+        height: 100vh;
+        max-height: 1080px;
+        background-image:url("../assets/img/header.JPG") ;
+        position: relative;
+    }
+    .menu-front .bg-light {
+        background-color: transparent !important;
+    }
+    .navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link{
+        color: white;
+    }
 
-<<<<<<< HEAD
     .navbar-light .navbar-nav .nav-link{
         color: white;
     }
@@ -359,11 +350,6 @@ border-bottom: 2px solid #06cc60;
     bottom: -149px;
     left: 0;
 }
-iframe{
-  width: 100%;
-  height: 250px;
-  border-radius: 20px;
-}
 @media(max-width:1300px){
     .mas-nuevo .card-mas-nuevo .precio-buscador span{
     font-size: 16px;
@@ -381,129 +367,3 @@ iframe{
         border-color: #06CC60 !important;
       }
     }
-  </style>
-=======
->>>>>>> b3a2f54834649581e8a0f8869ec505639ddcccac
-<div class="page-container">
-
-  <div class="main-content">
-    <div class="section__content section__content--p30">
-      <main>
-        <div class="container-fluid">
-     
-
-            <section class="mas-nuevo ">
-        <div class="container" style="margin-left: 0; margin-right:0;max-width:100%">
-            <div class="row">
-            <div class="col-md-5">
-                <div class="m-b-25">
-                  {{!-- <div class="card-header-blank">
-                    <span class="card-title" style="font-size: 20px;">
-                      <strong>
-                       Video
-                      </strong>
-                    </span>
-                  </div> --}}
-                  <div class="card-body">
-                    <div class="table-responsive table-responsive-data2">
-                      <iframe src="https://www.youtube.com/embed/{{video.imagen}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        {{!-- <video class="video-das" src="../assets/uploads/{{video.imagen}}" controls width="450" height="240">
-					Tu navegador no admite el elemento <code>video</code>.
-				  </video>  --}}
-                    </div>
-                  </div>
-                </div>
-              </div>
-<div class="col-md">
-                <div class="card-blank m-b-25">
-                  <div class="card-header-blank">
-                    <span class="card-title" style="font-size: 20px;">
-                      <strong>
-                        Mis últimas compras
-                      </strong>
-                    </span>
-                  </div>
-                  <div class="card-body">
-                    <div class="table--no-card m-b-30">
-                      <table class="table table-borderless">
-                         <thead>
-													<tr>
-														<th>
-															Fecha
-														</th>
-														<th>
-															Concepto
-														</th>
-														<th>
-															Status
-														</th>
-														<th>
-															Monto
-														</th>
-													</tr>
-												</thead>
-                        <tbody>
-                           {{#each parsed_ventas as |compra i|}}
-                    <tr>
-                      <td>
-                        {{#formatoFecha createdAt}}{{/formatoFecha}}
-                      </td>
-                      <td>
-                        {{publicacione.titulo}}
-                      </td>
-                      <td>
-                        <span>
-                          <span><strong style="color: {{#ColorSucursal estado}}{{/ColorSucursal}};"	id="estado">{{estado}}</strong></span>
-                        </span>
-                      </td>
-                      <td>
-                        S/ {{monto}}
-                      </td>
-                      {{!-- <td align="center">
-                        <div class="table-data-feature">
-                          <a class="item" href="/editar_publicacion/{{publicacion.id}}" data-toggle="tooltip"
-                            data-placement="top" title="Editar" id="empleados_button">
-                            <i class="fas fa-edit"></i>
-                          </a>
-                          <a class="item delete {{publicacion.id}} {{publicacion.tipo}}" href="#"
-                            id="delete_publicacion" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
-                            <i class="fas fa-trash-alt {{publicacion.id}} {{publicacion.tipo}}"></i>
-                          </a>
-                        </div>
-                      </td> --}}
-                    </tr>
-                    {{/each}}
-                          
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                </div>
-</div>
-            </div>
-            {{#if venta_exitosa}}
-                        <div class="row" id="venta_exitosa">
-            <div class="col">
-<div class="card text-center">
-  <div class="card-header">
-   <h5 class="card-title">¡¡Gracias por su compra!!</h5> 
-  </div>
-  <div class="card-body">
-    <h5 class="card-title">Su compra #{{venta_exitosa.id}} se procesó con éxito.</h5>
-    <p class="card-text">Solo debe esperar a ser confirmada por el negocio, lo cual se hará como máximo hasta 10 horas antes al horario reservado</p>
-    <a href="/miscompras" class="btn btn-primary">Ver mis compras</a>
-  </div>
-  <div class="card-footer text-muted">
-  </div>
-</div>
-              </div>
-            </div>
-{{/if}}
-
-        </div>
-    </section>
-        </div>
-      </main>
-    </div>
-  </div>
-</div>

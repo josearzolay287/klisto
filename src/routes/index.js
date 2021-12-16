@@ -32,6 +32,7 @@ router.get('/', landingController.showLandingPage);
 
 // Iniciar sesión
 router.get('/login', userController.formLogin);
+router.get('/login/:msg', userController.formLogin);
 router.get('/login/:product/:monto/:modo', userController.formLoginBack);
 router.post('/login',passport.authenticate('local',{ failureRedirect: '/login',failureFlash: 'Usuario o clave invalido.' }), userController.logintemp);
 
@@ -58,7 +59,7 @@ router.get('/actualizo_membresia/:producto/:monto/:modo', EmailCtrl.actualizo_me
 
 // Buscar cuenrta
 router.get('/search-account', userController.formSearchAccount);
-router.post('/search-account', userController.sendToken);
+router.post('/reset_clave', userController.sendToken);
 router.get('/search-account/:token', userController.resetPasswordForm);
 router.post('/search-account/:token', userController.updatePassword);
 router.get('/forgot-password', userController.forgot_password);
@@ -70,9 +71,10 @@ router.post('/update_client', authController.authenticatedUser, dashboardControl
 
 //SERVICIOS
 router.get('/servicios',dashboardController.servicios);
-
+router.post('/servicios',dashboardController.servicios);
 //NEGOCIOS
 router.get('/negocios',dashboardController.negocios_list);
+router.post('/negocios_search',dashboardController.negocios_list);
 
 
 //PARA EL LANDGIN ACA
@@ -90,6 +92,10 @@ router.get('/encargados/:id_sucursal',authController.authenticatedUser, dashboar
 router.post('/agregar_encargado',authController.authenticatedUser, dashboardController.agregar_encargados);
 router.get('/eliminar_encargado/:id_encargado/:id_sucursal',authController.authenticatedUser, dashboardController.delete_encargado);
 router.get('/editar_sucursal/:id_sucursal',authController.authenticatedUser, dashboardController.editar_sucursal);
+
+//venta exitosa
+router.get('/venta_exitosa', authController.authenticatedUser,dashboardController.venta_exitosa);
+router.get('/venta_exitosa/:msg', authController.authenticatedUser,dashboardController.venta_exitosa);
 
 router.get('/editar_encargado/:id_encargado/:id_sucursal',authController.authenticatedUser, dashboardController.editar_encargado);
 router.post('/guardar_editar_local',authController.authenticatedUser, dashboardController.guardar_editar_sucursal);
