@@ -9302,15 +9302,6 @@ html [class*='section-'].section-top-0 {
 .section-single-inner > * {
 	width: 100%;
 }
-.footer .row {
-	text-align: center;
-}
-
-@media (min-width: 992px) {
-	.footer .row {
-		text-align: left;
-	}
-}
 
 @supports (display: grid) {
 	.section-single-inner {
