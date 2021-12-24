@@ -401,10 +401,9 @@ margin-top: -3rem; background-image: url('../assets/img/cuadro-amarillo.png'); b
         body{
             background-image: url("../assets/img/header.JPG");
         }
-              #registrarse{
+    #registrarse{
         width: 100%;
-        height: 100vh;
-        max-height: 1080px;
+        min-height: 100vh;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -422,9 +421,7 @@ margin-top: -3rem; background-image: url('../assets/img/cuadro-amarillo.png'); b
             }
 
         }
-        #registrarse{
-            height: calc(100vh - 96px);
-        }
+      
         #registrarse .form-control {
             display: block;
             width: 100%;
@@ -548,7 +545,7 @@ button:hover {
     </style>
     <!---->
 
-    <section id="registrarse">
+    <section id="registrarse" class="my-5">
         <div class="container">
             <div class="row">
                 <div class="caja-stilo">
