@@ -37,14 +37,15 @@
 <script>
     $(document).ready(function(){
 	$(".CloseSidebar").click(function(){
-    $(".show").remove();
+    $(".sidebar-shop.show").removeClass('show');
+    $("body").removeClass('modal-open');
 	});
 });
 </script>
 
 
 <div class="page-container" {{#if publicaciones_landing}}style='padding-left: 0;' {{/if}}>
-  <div class="main-content" {{#if publicaciones_landing}}style='padding-top: 15px;' {{/if}} style="min-height: unset !important;">
+  <div class="main-content" style='{{#if publicaciones_landing}}padding-top: 15px; {{/if}} min-height: 500px !important;'>
     <div class="section__content section__content--p30">
 
         <div class="container-fluid">
@@ -136,7 +137,7 @@
             <div class="sidebar-detached sidebar-left">
                 <div class="sidebar">
                     <!-- Ecommerce Sidebar Starts -->
-                    <div class="sidebar-shop">
+                    <div class="sidebar-shop" style="overflow: hidden;">
                         <div class="row">
                             <div class="col-sm-12">
                                 <h6 class="filter-heading d-none d-lg-block">Filtros</h6>
