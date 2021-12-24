@@ -239,7 +239,7 @@ exports.negocios_list = (req, res) => {
       let categorias = JSON.parse(cat)
        res.render("negocios", {
    pageName: "Negocios",
-   servicios:true,
+   negocios:true,
    landingPage:true,
    publicaciones_landing:true,
    categorias,
