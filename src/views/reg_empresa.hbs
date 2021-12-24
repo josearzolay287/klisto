@@ -1,5 +1,5 @@
 <style>
-  h3{
+  h4 {
     font-size: 1rem;
   }
   span{
@@ -652,13 +652,13 @@ border: 1px solid black;
     }
 }
 </style>
-<section id="registrarse">
+<section id="registrarse" class="my-5 mt-md-0" style="height: unset !important;">
   <div class="container">
     <div class="row">
       <div class="caja-stilo">
         <div style="background-color: white; padding: 1rem; border-radius: 20px;">
           <div class="col-md-12">
-            <h3 class="text-center">Registrarse</h3>
+            <h3 class="text-center mb-5">Regitrarse</h3>
           </div>
           <form id="regForm" action="/registrar_empresa" method="post">
             <!-- One "tab" for each step in the form: -->
@@ -757,7 +757,7 @@ border: 1px solid black;
             <div class="tab">
               <div class="row">
                 <div class="col-12">
-                  <h3>DATOS BANCARIOS</h3>
+                  <h4>DATOS BANCARIOS</h4>
                   <span>Esta es la información de la cuenta de bancaria donde recibirás tus ganacias.</span>
                 </div>
                 <div class="col-md-6">
@@ -777,7 +777,7 @@ border: 1px solid black;
                     oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
                 </div>
                 <div class="col-12">
-                  <h3>DATOS DEL REPRESENTANTE DEL NEGOCIO</h3>
+                  <h4>DATOS DEL REPRESENTANTE DEL NEGOCIO</h4>
                   <span>Esta es la información del representante del negocio encargado de las reservas.</span>
                 </div>
                 <div class="col-md-6">
@@ -795,16 +795,18 @@ border: 1px solid black;
                 </div>
               </div>
             </div>
-            <div style="overflow:auto; position: absolute; width: 100%;">
-              <button type="button" id="prevBtn" onclick="nextPrev(-1)">Volver</button>
-              <button type="button" id="nextBtn" onclick="nextPrev(1)" style="float: right;">Siguiente</button>
-            </div>
             <!-- Circles which indicates the steps of the form: -->
             <div style="text-align:center;margin-top:40px;" id="tab-bottom">
               <span class="step"></span>
               <span class="step"></span>
               <span class="step"></span>
               <span class="step"></span>
+            </div>
+            <div class="row m-0">
+              <div class="col-12">
+                <button type="button" id="prevBtn" onclick="nextPrev(-1)">Volver</button>
+                <button type="button" id="nextBtn" onclick="nextPrev(1)" style="float: right;">Siguiente</button>
+              </div>
             </div>
           </form>
         </div>
