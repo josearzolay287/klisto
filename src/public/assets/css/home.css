@@ -16,6 +16,9 @@ body{
 img {
 	object-fit: cover !important;
 }
+.card-blank {
+	border-radius: 8px !important;
+}
 .header .menu-front .navbar-brand img{
   height: 70px;
 }

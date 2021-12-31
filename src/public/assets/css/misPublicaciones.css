@@ -3,9 +3,16 @@
   margin-left: 15px; 
   margin-bottom: 20px;
 }
+.card-blank {
+	border-radius: 8px !important;
+}
 .btn-upload-img{
+	border-radius: 4px !important;
 	font-size: 0.7rem !important;
 	margin-top: 5px
+}
+.btn-primary {
+	border-radius: 4px !important;
 }
 @media (max-width:1024px){
   #crear_publicacion .card-blank{

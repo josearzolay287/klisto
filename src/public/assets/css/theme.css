@@ -75,6 +75,7 @@ button {
 img {
     max-width: 100%;
     height: auto;
+    object-fit: cover;
 }
 
 p {
@@ -871,6 +872,9 @@ section {
     padding-top: 1.25rem;
     padding-left: 1.25rem;
     font-weight: 600;
+}
+.card-blank {
+	border-radius: 8px !important;
 }
 .card-header-blank{
     padding: .75rem 1.25rem;
@@ -14712,4 +14716,7 @@ section {
     overflow:hidden;
     white-space:nowrap;
     text-overflow: ellipsis;
+}
+table thead tr th {
+    white-space: nowrap !important;
 }

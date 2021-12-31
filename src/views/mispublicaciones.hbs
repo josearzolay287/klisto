@@ -318,36 +318,36 @@ $('.sucursales_check').on('change', (e) => {
                   <div class="col" style="padding: 0;">
                     <label for="formGroupExampleInput">Tiempo de duración del servicio:</label>
                     <div class="form-row">
-                      <div class="col">
+                      <div class="col mb-3">
                         Preparación <input type="text" class="form-control" placeholder="Tiempo de Preparación" name="preparacion" id="preparacion">
                       </div>
-                      <div class="col">
+                      <div class="col mb-3">
                         Ejecución <input type="text" class="form-control" placeholder="Tiempo de ejecución" name="ejecucion" id="ejecucion">
                       </div>
                     </div>
                   </div>
                   <div class="form-row">
-                    <div class="col-md-3">
-                      <label for="inputEmail4">Título principal</label>
+                    <div class="col-md-3 mb-3">
+                      Título principal
                       <input type="text" class="form-control" id="titulo" placeholder="Nombre" name="titulo" required>
                     </div>
-                    <div class="col-md-3">
-                      <label for="inputPassword4">Precio</label>
+                    <div class="col-md-3 mb-3">
+                      Precio
                       <input type="number" class="form-control" id="precio" name="precio" step="0.01" required>
                       <input type="number" class="form-control" id="comision" name="comision" step="0.01" value="{{comision.valor}}" hidden>
                     </div>
-                    <div class="col-md-3">
-                      <label for="inputPassword4">Billetera</label>
+                    <div class="col-md-3 mb-3">
+                      Billetera
                       <input type="number" class="form-control" id="billetera" name="billetera" step="0.01" required readonly>
                     </div>
-                     <div class="col-md-3 d-none" id="costo_domicilio">
-                      <label for="inputPassword4">Costo domicilio</label>
+                     <div class="col-md-3 mb-3 d-none" id="costo_domicilio">
+                      Costo domicilio
                       <input type="number" class="form-control" id="costo_domicilio" name="costo_domicilio" step="0.01"  >
                     </div>
                   </div>
                   <div class="form-row">
                     <div class="form-group col-md-4">
-                      <label for="inputState">Categoría</label> 
+                      Categoría 
                       <select id="categorias" multiple class="select2 form-control" name="categoria">
                         {{#each categorias as |categoria i|}}
                         <option value="{{categoria.nombre}}">{{categoria.nombre}} </option>
@@ -356,14 +356,14 @@ $('.sucursales_check').on('change', (e) => {
 
                     </div>
                     <div class="form-group col-md-3">
-                      <label for="inputState">Estado</label>
+                      Estado
                       <select id="inputState" class="form-control" name="estado">
                         <option selected value="Activa">Activa </option>
                         <option value="Inactiva">Inactiva</option>
                       </select>
                     </div>
                     <div class="form-group col-md-5">
-                      <label for="inputState">Servicio a domicilio</label><br>
+                      Servicio a domicilio
                       <label id=""><input type="checkbox" id="domicilio_check" name="domicilio"> Tiene servicio a domicilio</label>
                     </div>
                   </div>

@@ -15,11 +15,14 @@
 			
 		</section><!-- .col-md-7 -->
 		{{#if publicaciones_landing}}{{else}}
-		<aside class="menu-sidebar d-none d-lg-block">
-			<div class="logo">
+		<aside class="menu-sidebar d-none d-lg-block" id="sidebar">
+			<div class="logo d-flex justify-content-between">
 				<a href="{{#if dash_cliente}}/dash_cliente{{else}}/dashboard{{/if}}">
 					<img src="../assets/img/logo_fondo_claro.png" width="140">
 				</a>
+				<button class="btn btn-icon d-lg-none" type="button" data-toggle="collapse" data-target="#sidebar">
+					<b>X</b>
+				</button>
 			</div>
 			<div class="menu-sidebar__content js-scrollbar1">
 				<nav class="navbar-sidebar" style="text-align: left;">
