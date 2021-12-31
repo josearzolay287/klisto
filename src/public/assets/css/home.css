@@ -13,6 +13,9 @@ body{
 	background-color: white;
 	background: white;
 }
+img {
+	object-fit: cover !important;
+}
 .header .menu-front .navbar-brand img{
   height: 70px;
 }

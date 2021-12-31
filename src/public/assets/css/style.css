@@ -19686,6 +19686,9 @@ ul #dropdownMenu2 i{
 	width: 100% !important;
 }
 
+img {
+	object-fit: cover !important;
+}
 .show-header-left{
 	display: block !important;
 }
