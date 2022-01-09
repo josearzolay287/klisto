@@ -873,7 +873,7 @@ section {
     padding-left: 1.25rem;
     font-weight: 600;
 }
-.card-blank {
+.card-blank, .card-box {
 	border-radius: 8px !important;
 }
 .card-header-blank{

@@ -156,8 +156,8 @@
 								<div class="card-blank">
 									<div class="card-body">
 										<div class="row">
-											<div class="col-md-4">
-												<label for="inputState">Status</label>
+											<div class="col-md-4 mb-2">
+												<label for="inputState" class="mb-0">Status</label>
 												<select id="status_filter" class="form-control" name="status_filter">
 													<option value="" selected>Todos</option>
 													<option value="Confirmada">Confirmada</option>
@@ -165,15 +165,17 @@
 													<option value="Por confirmar">Por confirmar</option>
 												</select>
 											</div>
-											<div class="col-md-4">
-												Fecha inicio: <input type="text" id="min" name="min">
+											<div class="col-md-4 mb-2 mb-md-0">
+												<label for="" class="mb-0">Fecha inicio:</label>
+												<input type="text" id="min" name="min" class="form-control">
 											</div>
-											<div class="col-md-4">
-												Fecha final: <input type="text" id="max" name="max">
+											<div class="col-md-4 mb-2 mb-md-0">
+												<label for="" class="mb-0">Fecha final:</label>
+												<input type="text" id="max" name="max" class="form-control">
 											</div>
 										</div>
 
-										<div class="card-body">
+										<div class="table-responsive">
 											<table class="table dataTable" id="tabla_">
 												<thead>
 													<tr>
@@ -411,6 +413,7 @@
 
 											</table>
 										</div>
+										
 									</div>
 								</div>
 								{{/if}}

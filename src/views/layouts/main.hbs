@@ -27,7 +27,12 @@
 			<div class="menu-sidebar__content js-scrollbar1">
 				<nav class="navbar-sidebar" style="text-align: left;">
 					<ul class="list-unstyled navbar__list">
-						<li {{#if dashboard}}class="active"{{/if}}><a href="{{#if dash_cliente}}/dash_cliente{{else}}/dashboard{{/if}}"><i class="fa fa-th-large"></i>Dashboard</a></li>
+						<li class="{{#if dashboard}}active{{/if}} {{#if dash}}active{{/if}}">
+							<a href="{{#if dash_cliente}}/dash_cliente{{else}}/dashboard{{/if}}">
+								<i class="fa fa-th-large"></i>
+								Dashboard
+							</a>
+						</li>
 						<li {{#if micuenta}}class="active"{{/if}}><a href="/micuenta"><i class="fas fa-dollar-sign"></i>Mi Cuenta</a></li>
 						
 						{{#if dash_cliente}}
@@ -36,7 +41,7 @@
 						</ul>{{else}}
 						<li {{#if minegocio}}class="has-sub active"{{/if}}><a class="js-arrow" href="/minegocio"><i class="fa fa-clipboard"></i>{{#if admin}}Negocios{{else}}Mi Negocio{{/if}} </a>
 						</li>
-						<li class="has-sub"><a href="/{{#if admin}}wallet{{else}}pagos_negocio{{/if}}"><i class="fa fa-credit-card"></i>{{#if admin}}Pagos{{else}}Mi Billetera{{/if}}</a></li>
+						<li class="has-sub {{#if movimientos_pagos}}active{{/if}}"><a href="/{{#if admin}}wallet{{else}}pagos_negocio{{/if}}"><i class="fa fa-credit-card"></i>{{#if admin}}Pagos{{else}}Mi Billetera{{/if}}</a></li>
 						<li {{#if ventas}}class="has-sub active"{{/if}}><a href="/ventas"><i class="fa fa-shopping-cart"></i>{{#if admin}}Ventas{{else}}Mis Ventas{{/if}}</a></li>
 					{{#if admin}}{{else}}	<li {{#if mispublicaciones}}class="has-sub active"{{/if}}><a href="/mispublicaciones"><i class="fa fa-tasks"></i>Mis Publicaciones</a></li>{{/if}}
 					{{#if admin}}{{else}}	<li {{#if miscalificaciones}}class="has-sub active"{{/if}}><a href="/calificaciones"><i class="fa fa-info-circle"></i>Mis calificaciones</a></li>

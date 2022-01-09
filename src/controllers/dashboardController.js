@@ -96,9 +96,10 @@ console.log(venta_exitosa)
 Modulo_BD.VentasbyIdCompradorlimit5(user.id).then((resultado_ventas) => { 
     let parsed_ventas = JSON.parse(resultado_ventas);
    res.render("dash_cliente", {
-     pageName: "Mi cuenta",
+     pageName: "Dashboard",
      dashboardPage: true,
      dash_cliente: true,
+     dash: true,
      user,categorias,
      publicaciones,msg,video,parsed_ventas,venta_exitosa
    });
@@ -984,7 +985,7 @@ var id_agenda = req.params.id_agenda
     Modulo_BD.SucursalesAll().then((resultado_sucursales) => { 
       let sucursales = JSON.parse(resultado_sucursales);
     res.render("compras", {
-      pageName: "Mis reservas",
+      pageName: "Mis Reservas",
       miscompras: true,
       dashboardPage: true,      
       dash_cliente: true,            
