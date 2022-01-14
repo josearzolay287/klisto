@@ -11,13 +11,14 @@
     }
     .footer{
         background-image: url("../assets/img/footer.jpg");
-        height: 300px;
+        height: auto;
         border-radius: 50px 50px 0px 0px;
         -moz-border-radius: 50px 50px 0px 0px;
         -webkit-border-radius: 50px 50px 0px 0px;
         border: 0px solid #000000;
         position: relative;
     }
+    
     @media (max-width: 1440px){
         .footer{
             background-image: url("../assets/img/footer-2.jpg");
@@ -29,13 +30,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative !important;
     }
     .footer img{
         width: 200px;
         height: auto;
+        
     }
     .footer .text-footer{
-        position: absolute;
+        position: relative;
         bottom: 0;
         background: rgb(0 0 0 / 25%);
         padding: 2rem;
@@ -50,6 +53,7 @@
     }
     }
   </style>
+  
   {{#if landingPage }}
     <section class="footer">
         <div class="img-footer">
