@@ -5659,6 +5659,8 @@ fieldset:disabled .btn {
 
 .d-block {
   display: block !important; 
+}
+.margen_abajo{
   margin-bottom: 20px !important;
 }
 
