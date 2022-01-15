@@ -165,12 +165,16 @@ table.dataTable>thead .sorting:after, table.dataTable>thead .sorting_asc:after, 
     }
     .cont-heade-h1{
         height: 300px;
-        justify-content: flex-end;
+        justify-content: center !important;
         align-items: center;
     }
-    .bottom-margin-h1{
-        padding-top: 0.5rem;
+    .bottom-padding-div{
+        margin-bottom: 0rem;
     }
+    .align-center{
+        text-align: center !important;
+    }
+    
   </style>
   
 </head>
@@ -256,13 +260,13 @@ table.dataTable>thead .sorting:after, table.dataTable>thead .sorting_asc:after, 
             <div class="row pb-5">
                 <div class="col-md-6">
                   
-                    <div class="img-yt" style="background-size: cover;">
+                    <div class="img-yt bottom-padding-div" style="background-size: cover;">
                     <iframe src="https://www.youtube.com/embed/{{video.imagen}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         
                     </div>
                 </div>
-                <div class="col-md-6 d-flex cont-heade-h1 bottom-margin-h1">
-                    <div>
+                <div class="col-md-6 d-flex cont-heade-h1">
+                    <div class="align-center">
                         <h1>
                             Reserva tus
                             <br>
@@ -279,7 +283,7 @@ table.dataTable>thead .sorting:after, table.dataTable>thead .sorting_asc:after, 
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-6 pt-3 pb-3">
+                <div class="col-md-6 pt-3 pb-0">
                   <h2 class="text-center">    
                     <form class="form-inline my-2 my-lg-0" action="/servicios" method="post" style="margin-right: 5px;">
                       <input class="form-control mr-sm-2 header-buscador" type="text" name="search" placeholder="Buscar Servicio" id="buscador">
