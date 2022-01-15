@@ -468,8 +468,8 @@ margin-left: 0;
 }
 .cont-heade-h1{
   height: auto;
-	  justify-content: flex-start;
-align-items: center;
+	  justify-content: center;
+    align-items: center;
 }
 .contenido-header h1{
   font-size: 2rem;
