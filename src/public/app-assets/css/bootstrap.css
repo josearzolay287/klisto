@@ -5658,7 +5658,9 @@ fieldset:disabled .btn {
   display: inline-block !important; }
 
 .d-block {
-  display: block !important; }
+  display: block !important; 
+}
+
 
 .d-grid {
   display: grid !important; }
