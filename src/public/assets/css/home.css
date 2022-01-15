@@ -77,7 +77,7 @@ img {
 .contenido-header h1{
   font-weight: bold;
   color: white;
-  text-align: right;
+  text-align: center;
 }
 .contenido-header .container{
 width: 1000px;
@@ -85,7 +85,7 @@ width: 1000px;
 .boton-titulo{
   background-color: #f7c400;
   padding: .2rem 2rem;
-  float: right;
+  
   border-radius: 20px;
   text-decoration: none;
   color: white;
@@ -94,7 +94,7 @@ width: 1000px;
 .boton-titulo:hover{
   background-color: #f7c400;
   padding: .2rem 2rem;
-  float: right;
+ 
   border-radius: 20px;
   text-decoration: none;
   color: white;
@@ -468,15 +468,18 @@ margin-left: 0;
 }
 .cont-heade-h1{
   height: auto;
-	  justify-content: center;
+	  justify-content: center !important;
     align-items: center;
+
 }
 .contenido-header h1{
   font-size: 2rem;
-  text-align: left;
+  text-align: center;
+  padding-top: 3rem;
+  margin-bottom: 1rem;
 }
 .boton-titulo{
-  float: left;
+ 
 }
 
 #buscar,#reservar,#asistir{
