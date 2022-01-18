@@ -29,19 +29,19 @@
             .boton-afiliado{
                 background-color: #f7c400;
                 padding: 0.2rem 2rem;
-                float: right;
+              
                 border-radius: 20px;
                 text-decoration: none;
                 color: white;
                 font-weight: 600;
             }
             .boton-afiliado:hover{
-                background-color: #06cc60;
+                background-color: #f7c400;
                 padding: 0.2rem 2rem;
-                float: right;
+                
                 border-radius: 20px;
                 text-decoration: none;
-                color: white;
+                color: black;
                 font-weight: 600;
             }
             .afiliado h1 {
@@ -87,7 +87,7 @@
     border-radius: 25px;
     padding: .2rem 2rem;
     margin-top: .3rem;
-    margin-left: 1rem;
+    text-align: center !important;
   }
 
   .contenido-header {
@@ -106,8 +106,10 @@
   .contenido-header h1 {
     font-weight: bold;
     color: white;
-    text-align: right;
+    text-align: center;
+    margin-bottom: 1rem;
   }
+  
 
   .contenido-header .container {
     width: 1000px;
@@ -460,28 +462,29 @@
     }
   }
 </style>
+
 <div class="flex flex-col sm:justify-center items-center pt-6 sm:pt-0 ">
-
-
-  <div class="afiliado my-5">
+  <div class="contenido-header my-5">
         <div class="container">
-            <div class="row">
+            <div class="row pb-5">
                 <div class="col-md-6">
-                    <div>
+                    
                         <div class="img-yt" style="background-image: url('../assets/img/yt-inicio.jpg'); background-size: cover;">
                             <i class="fas fa-play"></i>
                         </div>
-                    </div>
+                    
                 </div>
-                <div class="col-md-6">
-                    <h1>
-                        Que esperas
-                        <br>
-                        para afiliar
-                        <br>
-                        tu negocio
-                    </h1>
+                <div class="col-md-6 d-flex cont-heade-h1">
+                  <div class="align-center">
+                      <h1>
+                          Que esperas
+                          <br>
+                          para afiliar
+                          <br>
+                          tu negocio
+                      </h1>
                     <a href="/reg_negocio" class="boton-afiliado">Afiliar</a>
+                  </div>
                 </div>
             </div>
         </div>
