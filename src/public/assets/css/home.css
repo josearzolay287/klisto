@@ -230,6 +230,8 @@ justify-content: center;
   float: left;
   font-size: 18px;
   font-weight: bold;
+  align-content: flex-end;
+  
 }
 .buscador-vermas a{
   text-decoration: none;
