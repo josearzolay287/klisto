@@ -188,7 +188,9 @@ jQuery(".select_cat").on('click',function(e){
                             <span>{{categoria}}</span>
                             <label class="card-title nombres" hidden>{{publicacion.titulo}} </label>
                             <label class="card-title categoria" hidden>{{publicacion.categoria}} </label>
-                            <h6 class="text-break">{{#Titulo titulo}}{{/Titulo}}</h6>
+                            <div class="text-nowrap">
+                                <h6>{{#Titulo titulo}}{{/Titulo}}</h6>
+                            </div>
                             <div class="precio-buscador">
                                 <span>
                                     S/ {{precio}}
