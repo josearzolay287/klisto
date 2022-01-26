@@ -1,3 +1,5 @@
+
+
 <script src="https://kit.fontawesome.com/849e949c38.js" crossorigin="anonymous"></script>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
@@ -7,6 +9,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.3/moment.min.js"></script>
 <link rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.min.css" />
+
    <!-- BEGIN: Page CSS-->
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css/core/menu/menu-types/vertical-menu.css">
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css/plugins/extensions/ext-component-sliders.css">
@@ -92,6 +95,8 @@
                                                 <a class="dropdown-item" id="alfabeticoDsc">Alfabetico (Z-A)</a>
                                                 <a class="dropdown-item" id="masbajosort">Precio más bajo</a>
                                                 <a class="dropdown-item" id="masaltosort">Precio más Alto</a>
+                                                <a class="dropdown-item" id="masaltosort">Populares</a>
+                                                <a class="dropdown-item" id="masaltosort">Recientes</a>
                                             </div>
                                         </div>
                                         {{!-- <div class="btn-group" role="group">
@@ -177,10 +182,24 @@
                                 <!-- Price Range ends -->
                                 <div class="row">
                                     <div class="col-12">
-                                     <div class="input-group input-group-merge">                                  
-                      <input class="form-control mr-sm-2 header-buscador" type="text" name="search" placeholder="Buscar servicios" id="buscador" style="margin-right: 0 !important;">
-                                </div>
+                                        <div class="input-group input-group-merge">                                  
+                                            <input class="form-control mr-sm-2 header-buscador" type="text" name="search" placeholder="Buscar servicios" id="buscador" style="margin-right: 0 !important;">
+                                        </div>
                                     </div>
+                                </div>
+
+                                <div class="row mt-3">
+                                    <div class="col-sm-12">
+                                        <h6 class="filter-title">Precio</h6>
+                                        <input type="range" class="form-range border-0 mb-2" id="customRange1">
+                                    </div>
+                                </div>
+
+                                <div class="list-unstyled categories-list mb-1">
+                                    <label for="">Zonas de Delivery</label>
+                                    <select class="form-control form-select select_distrito" name="distrito" id="distritpos_lima">
+                                        <option>Seleccione un distrito</option>
+                                    </select>
                                 </div>
 
                                 <!-- Categories Starts -->
