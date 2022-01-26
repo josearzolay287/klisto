@@ -144,87 +144,80 @@
             <div class="sidebar-detached sidebar-left">
                 <div class="sidebar">
                     <!-- Ecommerce Sidebar Starts -->
-                    <div class="sidebar-shop" style="overflow: hidden;">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <h6 class="filter-heading d-none d-lg-block">Filtros</h6>
-                            </div>
-                        </div>
+                        <div class="sidebar-shop" style="overflow: hidden;">
                         <div class="card">
                             <div class="card-body">
-                                                        <div class="CloseSidebar" role="button">
-                            x
-                          </div>
-                          
-                        <div id="product-categories">
-                                    <h6 class="filter-title">Categorias</h6>
-                                    <ul class="list-unstyled categories-list">
-                                       <li>
-                                            <div class="form-check">
-                                                <input type="radio" id="category" name="category-filter" class="form-check-input select_cat" value="Todas" checked/>
-                                                <label class="form-check-label" for="category">Todas</label>
-                                            </div>
-                                        </li>
-                                      {{#each categorias as |categoria i|}}
-                                          <li>
-                                            <div class="form-check">
-                                                <input type="radio" id="category{{i}}" name="category-filter" class="form-check-input select_cat" value="{{nombre}}"/>
-                                                <label class="form-check-label" for="category{{i}}">{{nombre}}</label>
-                                            </div>
-                                        </li>
-                         {{/each}} 
-                                    </ul>
+                                <div class="CloseSidebar" role="button">
+                                    x
                                 </div>
-
+                                <div class="row mt-3">
+                                    <div class="col-sm-12">
+                                    <h6 class="filter-heading d-none d-lg-block mb-1">Filtros</h6>
+                                    </div>
+                                </div>
+                                <!-- Price Range ends -->
+                                <div class="row">
+                                    <div class="col-12">
+                                    <div class="input-group input-group-merge">                                  
+                                        <input class="form-control mr-sm-2 header-buscador" type="text" name="search" placeholder="Buscar negocio" id="buscador" style="margin-right: 0 !important;">
+                                    </div>
+                                    </div>
+                                </div>
+                                
                                 <div class="list-unstyled categories-list mb-1">
                                     <label for="">Zonas de Delivery</label>
                                     <select class="form-control form-select select_distrito" name="distrito" id="distritpos_lima">
-                                        <option>Seleccione un distrito</option>
+                                      <option>Seleccione un distrito</option>
                                     </select>
                                 </div>
-
-                                <!-- Price Range ends -->
-                                <div class="row mt-3">
-                                    <div class="col-12">
-                                                                        <div class="input-group input-group-merge mb-1">
-                      <input class="form-control mr-sm-2 header-buscador" type="text" name="search" placeholder="Buscar" id="buscador" style="margin-right: 0 !important;">
-                     
+                                <!-- Categories Starts -->
+                                <div id="product-categories">
+                                    <h6 class="filter-title">Categorias</h6>
+                                    <ul class="list-unstyled categories-list">
+                                    <li>
+                                        <div class="form-check">
+                                            <input type="radio" id="category" name="category-filter" class="form-check-input select_cat" value="Todas" checked/>
+                                            <label class="form-check-label" for="category">Todas</label>
+                                        </div>
+                                    </li>
+                                    {{#each categorias as |categoria i|}}
+                                    <li>
+                                        <div class="form-check">
+                                            <input type="radio" id="category{{i}}" name="category-filter" class="form-check-input select_cat" value="{{nombre}}"/>
+                                            <label class="form-check-label" for="category{{i}}">{{nombre}}</label>
+                                        </div>
+                                    </li>
+                                    {{/each}}
+                                    </ul>
                                 </div>
+                                <!-- Categories Ends -->
+                                <!-- Distritos start -->
+                                <div id="product-categories">
+                                    {{!-- 
+                                    <h6 class="filter-title">Distritos</h6>
+                                    --}}
+                                    <div class="list-unstyled categories-list mb-1">
+                                    <label for="">Departamento</label>
+                                    {{!-- <input type="text" class="form-control" name="departamento"> --}}
+                                    <select class="form-control form-select" name="departamento" id="departamentos">
+                                        <option>Seleccione un departamento</option>
+                                        <option>Lima</option>
+                                        <option>Callao</option>
+                                    </select>
+                                    </div>
+                                    <div class="list-unstyled categories-list mb-1">
+                                    <label for="">Distrito</label>
+                                    {{!-- <input type="text" class="form-control" name="distrito"> --}}
+                                    <select class="form-control form-select select_distrito" name="distrito" id="distritpos_lima">
+                                        <option>Seleccione un distrito</option>
+                                    </select>
                                     </div>
                                 </div>
-
-                                <!-- Categories Starts -->
-                                <!-- Categories Ends -->
- <div id="product-categories">
-                                    {{!-- <h6 class="filter-title">Distritos</h6> --}}
-                                                    <div class="list-unstyled categories-list mb-1">
-                  <label for="">Departamento</label>
-                  {{!-- <input type="text" class="form-control" name="departamento"> --}}
-                  <select class="form-control form-select" name="departamento" id="departamentos">
-                    <option>Seleccione un departamento</option>
-                    <option>Lima</option>
-                    <option>Callao</option>
-                  </select>
-                </div>
-                <div class="list-unstyled categories-list mb-1">
-                  <label for="">Distrito</label>
-                  {{!-- <input type="text" class="form-control" name="distrito"> --}}
-                  <select class="form-control form-select select_distrito" name="distrito" id="distritpos_lima">
-                    <option>Seleccione un distrito</option>
-                  </select>
-                </div>
-                                </div>
-                                <!-- Brand ends -->
-
-
-                                <!-- Clear Filters Starts -->
-                                <div id="clear-filters" style=" margin-top: 15px;">
-                                    <button type="button" class="btn w-100 btn-primary resetSorting">Ver todos</button>
-                                </div>
-                                <!-- Clear Filters Ends -->
+                                
+                                
                             </div>
                         </div>
-                    </div>
+                        </div>
                     <!-- Ecommerce Sidebar Ends -->
 
                 </div>
