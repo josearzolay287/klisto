@@ -121,8 +121,9 @@
 <div id="data-container"></div>
 <div id="pagination-container"></div>
                     <!-- E-commerce Products Starts -->
-                    <section id="pagination-2" class="grid-view pagination__list">
- {{#each parse_publi as |publicacion i |}}
+                   <div class="row">
+                    {{#each parse_publi as |publicacion i |}}
+                    <div class="col-md-3 col-6 item">
                            <div class="card card-mas-nuevo item pagination__item" data-sort="{{precio}}" data-sortTi="{{titulo}}">
                           <label class="card-title nombres" hidden>{{titulo}} </label>
                             <label class="card-title categoria" hidden>{{categoria}} </label>
@@ -133,7 +134,7 @@
                             </div>
                             <div class="cont-card">
                                <span>{{categoria}}</span>
-                                <h5>
+                                <h5 class="text-break">
                                   {{titulo}}
                                 </h5>
                                 {{!-- <p class="card-text item-description">
@@ -155,8 +156,15 @@
                                 </div>
                             </div>
                         </div>
-          {{/each}}
-                    </section>
+                        </div>
+                        {{/each}}
+                        </div>
+                    
+
+
+
+
+
                     <div class="start-pagination">
 
                     </div>
