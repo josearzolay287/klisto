@@ -38,11 +38,6 @@
         float: unset;
     }
 }
-@media screen and (max-width: 500px) {
-      a.responsive {
-        font-size: 1.93vw !important;
-      }
-    }
 
 </style>
 <script>
@@ -125,53 +120,58 @@
                     <!-- E-commerce Search Bar Ends -->
 <div id="data-container"></div>
 <div id="pagination-container"></div>
-
-
-
-
-                    <!--Cards de servicios -->
-                    <div class="row">
+                    <!-- E-commerce Products Starts -->
+                   <div class="row">
                     {{#each parse_publi as |publicacion i |}}
-                        <div class="col-md-3 col-6 item">
+                    <div class="col-md-3 col-6 item">
                            <div class="card card-mas-nuevo item pagination__item" data-sort="{{precio}}" data-sortTi="{{titulo}}">
-                                <label class="card-title nombres" hidden>{{titulo}} </label>
-                                <label class="card-title categoria" hidden>{{categoria}} </label>
-                                <label class="card-title domicilio" hidden>{{domicilio}}</label>
-                                <label class="card-title distrito_f" hidden>{{#sucursalesServicios sucursales ../parse_dataSuc}}{{/sucursalesServicios}}</label>
-                                <div class="img-card text-center">
+                          <label class="card-title nombres" hidden>{{titulo}} </label>
+                            <label class="card-title categoria" hidden>{{categoria}} </label>
+                            <label class="card-title domicilio" hidden>{{domicilio}}</label>
+                            <label class="card-title distrito_f" hidden>{{#sucursalesServicios sucursales ../parse_dataSuc}}{{/sucursalesServicios}}</label>
+                            <div class="img-card text-center">
                                     <img class="img-fluid card-img-top" src="../assets/img_up/{{#fotoPrincipalPublicacion fotos}}{{/fotoPrincipalPublicacion}}" alt="img-placeholder" />
-                                </div>
-                                <div class="cont-card">
-                                    <span>{{categoria}}</span>
-                                    <h6 class="text-break">
-                                        {{titulo}}
-                                    </h6>
-                                    {{!-- <p class="card-text item-description">
-                                        On Retina display that never sleeps, so it’s easy to see the time and other important information, without
-                                        raising or tapping the display. New location features, from a built-in compass to current elevation, help users
-                                        better navigate their day, while international emergency calling1 allows customers to call emergency services
-                                        directly from Apple Watch in over 150 countries, even without iPhone nearby. Apple Watch Series 5 is available
-                                        in a wider range of materials, including aluminium, stainless steel, ceramic and an all-new titanium.
-                                    </p> --}}
-                                </div>
-                                <div class="precio-buscador ">
-                                    <span>
-                                        S/ {{precio}}
-                                    </span>
-                                    <div class="buscador-vermas">
-                                        <a href="/publicacion/{{id}}" class="responsive">
-                                            Ver más
-                                        </a>
-                                    </div>
+                            </div>
+                            <div class="cont-card">
+                               <span>{{categoria}}</span>
+                                <h5 class="text-break">
+                                  {{titulo}}
+                                </h5>
+                                {{!-- <p class="card-text item-description">
+                                    On Retina display that never sleeps, so it’s easy to see the time and other important information, without
+                                    raising or tapping the display. New location features, from a built-in compass to current elevation, help users
+                                    better navigate their day, while international emergency calling1 allows customers to call emergency services
+                                    directly from Apple Watch in over 150 countries, even without iPhone nearby. Apple Watch Series 5 is available
+                                    in a wider range of materials, including aluminium, stainless steel, ceramic and an all-new titanium.
+                                </p> --}}
+                            </div>
+                            <div class="precio-buscador ">
+                                 <span>
+                                    S/ {{precio}}
+                                </span>
+                                <div class="buscador-vermas">
+                                    <a href="/publicacion/{{id}}">
+                                        Ver más
+                                    </a>
                                 </div>
                             </div>
                         </div>
-                    {{/each}}
-                    </div>
+                        </div>
+                        {{/each}}
+                        </div>
                     
 
 
-            <!-- Comienzo de filtros -->
+
+
+
+                    <div class="start-pagination">
+
+                    </div>
+                    <!-- E-commerce Products Ends -->
+
+                </div>
+            </div>
             <div class="sidebar-detached sidebar-left">
                 <div class="sidebar">
                     <!-- Ecommerce Sidebar Starts -->
