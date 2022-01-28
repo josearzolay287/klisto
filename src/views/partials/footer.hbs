@@ -52,40 +52,66 @@
         font-size: 15px;
         margin-right: 5px;
     }
+    #wrapper-footer1{
+      text-align: center;
     }
+    @media screen and (max-width: 700px) {
+      a.ttt {
+        font-size: 1.9vw !important;
+      }
+    }
+
+
+    
   </style>
   
   {{#if landingPage }}
     <section class="footer">
-        <div class="img-footer">
-            <img src="../assets/img/logo-blanco.png" class="d-block mx-auto">
+        <div id="wrapper-footer1">
+          <div class="row align-items-center py-4">
+            <div class="col">
+                    <a href="" class="ttt">
+                      <i class="fab fa-youtube fa-2x"></i>
+                    </a>
+                    <a href="" class="ttt">
+                      <i class="fab fa-whatsapp fa-2x"></i>
+                    </a>
+                    <a href="" class="ttt">
+                        <i class="fab fa-facebook fa-2x"></i>
+                    </a>
+                    <a href="" class="ttt">
+                        <i class="fab fa-instagram fa-2x"></i> 
+                    </a>
+            </div>
+            
+            <div class="d-inline-block col">
+                <img src="../assets/img/logo-blanco.png" class="">
+            </div>
+
+            <div class="d-inline-block col">
+                <div class="d-block">
+                  <a href="" class="ttt">
+                      Terminos y Condiciones
+                  </a>
+                </div>
+                <div class="d-block">
+                  <a href="" class="ttt">
+                      Política de Privacidad
+                  </a>
+                </div>
+                
+              </div>
+          </div>
         </div>
+
         <div class="text-footer">
           <div class="row justify-content-center">
             <div class="col-md-10 col-xl-6 mb-2 mb-lg-0">
-                <a href="#">
+                <a href="#" class="ttt">
                     Copyright 2021 Klizto | Todos los derechos reservados.
                 </a>
             </div>
-            <div class="col-md-10 col-xl-6 footerRedS">
-                <a href="">
-                  <i class="fab fa-youtube"></i>
-                </a>
-                <a href="">
-                  <i class="fab fa-whatsapp"></i>
-                </a>
-                <a href="">
-                    <i class="fab fa-facebook"></i>
-                </a>
-                <a href="">
-                    <i class="fab fa-instagram"></i> 
-                </a>
-                <a href="">
-                    Terminos y Condiciones
-                </a>
-                <a href="">
-                    política de privacidad
-                </a>
+            
             </div>
           </div>
         </div>
