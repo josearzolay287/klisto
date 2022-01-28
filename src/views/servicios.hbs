@@ -33,9 +33,19 @@
 <link rel="stylesheet" type="text/css" href="../../../assets/css/servicios.css">
 
 <style>
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
     .sidebar-left {
         float: unset;
+    }
+}
+@media screen and (max-width: 992px) {
+    a.responsiveS {
+        font-size: 3vw !important;
+    }
+}
+@media screen and (max-width: 1300px) {
+    a.responsiveS {
+        font-size: 3vw !important;
     }
 }
 
@@ -120,7 +130,7 @@
                     <!-- E-commerce Search Bar Ends -->
 <div id="data-container"></div>
 <div id="pagination-container"></div>
-                    <!-- E-commerce Products Starts -->
+                    <!-- Cards de servicios -->
                    <div class="row">
                     {{#each parse_publi as |publicacion i |}}
                     <div class="col-md-3 col-6 item">
@@ -134,9 +144,9 @@
                             </div>
                             <div class="cont-card">
                                <span>{{categoria}}</span>
-                                <h5 class="text-break">
+                                <h6 class="text-break">
                                   {{titulo}}
-                                </h5>
+                                </h6>
                                 {{!-- <p class="card-text item-description">
                                     On Retina display that never sleeps, so it’s easy to see the time and other important information, without
                                     raising or tapping the display. New location features, from a built-in compass to current elevation, help users
