@@ -43,6 +43,32 @@
 });
 </script>
 
+<style>
+
+    @media screen and (min-width: 1272px) {
+        .columnN {
+            width: 25%;
+        }
+    }
+
+    @media screen and (max-width: 1271.99px) {
+        .columnN {
+            width: 50%;
+        }
+    }
+
+    @media screen and (max-width: 450px) {
+        p.mobileSize {
+            font-size: 12px !important;
+        }
+    }
+    @media screen and (max-width: 450px) {
+        a.mobileSize {
+            font-size: 12px !important;
+        }
+    }
+
+</style>
 
 <div class="page-container" {{#if publicaciones_landing}}style='padding-left: 0;' {{/if}}>
   <div class="main-content" style='{{#if publicaciones_landing}}padding-top: 15px; {{/if}} min-height: 620px !important;'>
@@ -69,7 +95,7 @@
                 <div class="content-body">
                     <!-- E-commerce Content Section Starts -->
                     <section id="ecommerce-header">
-                        <div class="row">
+                        <div class="row mb-2">
                             <div class="col-sm-12">
                                 <div class="ecommerce-header-items">
                                      <div class="result-toggler">
@@ -101,12 +127,12 @@
                     <!-- E-commerce Search Bar Ends -->
 <div id="data-container"></div>
 <div id="pagination-container"></div>
-                    <!-- E-commerce Products Starts -->
+                    <!-- Cards Negocios -->
                     
                       
                         <div class="row">
                         {{#each parse_suc as |sucu i |}}
-                        <div class="col-md-3 col-6 item">
+                        <div class="item columnN">
                             <div class="card card-mas-nuevo item pagination__item" data-sortTi="{{nombre}}" >
                           <label class="card-title nombres" hidden>{{nombre}} </label>
                           <label class="card-title distrito_f" hidden>{{distrito}}</label>
@@ -117,13 +143,13 @@
                                 <h5 class="text-break">
                                     {{nombre}}
                                 </h5>
-                               <p class="card-text item-description">
+                               <p class="card-text item-description mobileSize">
                                     {{descripcion}}
                                 </p>
                             </div>
-                            <div class="precio-buscador ">
-                                <div class="buscador-vermas">
-                                    <a href="/negocios/{{link}}">
+                            <div class="precio-buscador">
+                                <div class="buscador-vermas mt-1">
+                                    <a href="/negocios/{{link}}" class="mobileSize">
                                         Ir al negocio
                                     </a>
                                 </div>

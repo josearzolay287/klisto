@@ -38,9 +38,24 @@
         float: unset;
     }
 }
-@media screen (max-width: 1200px)   {
+@media screen and (min-width: 1234px) {
+    .columnS {
+        width: 25%;
+    }
+}
+@media screen and (max-width: 1233.9px) {
     .columnS {
         width: 50%;
+    }
+}
+@media screen and (max-width: 450px) {
+    span.mobileSize {
+        font-size: 13px !important;
+    }
+}
+@media screen and (max-width: 450px) {
+    a.mobileSize {
+        font-size: 12px !important;
     }
 }
 
@@ -83,7 +98,7 @@
                 <div class="content-body">
                     <!-- E-commerce Content Section Starts -->
                     <section id="ecommerce-header">
-                        <div class="row">
+                        <div class="row mb-2">
                             <div class="col-sm-12">
                                 <div class="ecommerce-header-items">
                                      <div class="result-toggler">
@@ -154,12 +169,12 @@
                                     in a wider range of materials, including aluminium, stainless steel, ceramic and an all-new titanium.
                                 </p> --}}
                             </div>
-                            <div class="precio-buscador ">
-                                 <span>
+                            <div class="precio-buscador">
+                                 <span class="mobileSize">
                                     S/ {{precio}}
                                 </span>
                                 <div class="buscador-vermas">
-                                    <a href="/publicacion/{{id}}">
+                                    <a href="/publicacion/{{id}}" class="mobileSize">
                                         Ver más
                                     </a>
                                 </div>
