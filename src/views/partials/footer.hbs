@@ -56,11 +56,16 @@
       text-align: center;
     }
     @media screen and (max-width: 700px) {
-      a.ttt {
-        font-size: 1.9vw !important;
+      a.responsive {
+        font-size: 1.93vw !important;
       }
     }
 
+    @media screen and (max-width: 700px) {
+      a.responsive1 {
+        font-size: 2.5vw !important;
+      }
+    }
 
     
   </style>
@@ -70,16 +75,16 @@
         <div id="wrapper-footer1">
           <div class="row align-items-center py-4">
             <div class="col">
-                    <a href="" class="ttt">
+                    <a href="" class="responsive">
                       <i class="fab fa-youtube fa-2x"></i>
                     </a>
-                    <a href="" class="ttt">
+                    <a href="" class="responsive">
                       <i class="fab fa-whatsapp fa-2x"></i>
                     </a>
-                    <a href="" class="ttt">
+                    <a href="" class="responsive">
                         <i class="fab fa-facebook fa-2x"></i>
                     </a>
-                    <a href="" class="ttt">
+                    <a href="" class="responsive">
                         <i class="fab fa-instagram fa-2x"></i> 
                     </a>
             </div>
@@ -90,12 +95,12 @@
 
             <div class="d-inline-block col">
                 <div class="d-block">
-                  <a href="" class="ttt">
+                  <a href="" class="responsive">
                       Terminos y Condiciones
                   </a>
                 </div>
                 <div class="d-block">
-                  <a href="" class="ttt">
+                  <a href="" class="responsive">
                       Política de Privacidad
                   </a>
                 </div>
@@ -107,49 +112,61 @@
         <div class="text-footer">
           <div class="row justify-content-center">
             <div class="col-md-10 col-xl-6 mb-2 mb-lg-0">
-                <a href="#" class="ttt">
+                <a href="#" class="responsive1">
                     Copyright 2021 Klizto | Todos los derechos reservados.
                 </a>
-            </div>
-            
             </div>
           </div>
         </div>
     </section>
 	{{/if}}
-  	{{#if footer }}
-	    <section class="footer">
-        <div class="img-footer">
-            <img src="../assets/img/logo-blanco.png" class="d-block mx-auto">
+  {{#if footer }}
+    <section class="footer">
+        <div id="wrapper-footer1">
+          <div class="row align-items-center py-4">
+            <div class="col">
+                    <a href="" class="responsive">
+                      <i class="fab fa-youtube fa-2x"></i>
+                    </a>
+                    <a href="" class="responsive">
+                      <i class="fab fa-whatsapp fa-2x"></i>
+                    </a>
+                    <a href="" class="responsive">
+                        <i class="fab fa-facebook fa-2x"></i>
+                    </a>
+                    <a href="" class="responsive">
+                        <i class="fab fa-instagram fa-2x"></i> 
+                    </a>
+            </div>
+            
+            <div class="d-inline-block col">
+                <img src="../assets/img/logo-blanco.png" class="">
+            </div>
+
+            <div class="d-inline-block col">
+                <div class="d-block">
+                  <a href="" class="responsive">
+                      Terminos y Condiciones
+                  </a>
+                </div>
+                <div class="d-block">
+                  <a href="" class="responsive">
+                      Política de Privacidad
+                  </a>
+                </div>
+                
+              </div>
+          </div>
         </div>
+
         <div class="text-footer">
-            <div class="row justify-content-center">
+          <div class="row justify-content-center">
             <div class="col-md-10 col-xl-6 mb-2 mb-lg-0">
-                <a href="#">
+                <a href="#" class="responsive1">
                     Copyright 2021 Klizto | Todos los derechos reservados.
                 </a>
             </div>
-            <div class="col-md-10 col-xl-6 footerRedS">
-                <a href="">
-                  <i class="fab fa-youtube"></i>
-                </a>
-                <a href="">
-                  <i class="fab fa-whatsapp"></i>
-                </a>
-                <a href="">
-                    <i class="fab fa-facebook"></i>
-                </a>
-                <a href="">
-                    <i class="fab fa-instagram"></i> 
-                </a>
-                <a href="">
-                    Terminos y Condiciones
-                </a>
-                <a href="">
-                    política de privacidad
-                </a>
-            </div>
-            </div>
+          </div>
         </div>
     </section>
 	{{/if}}
