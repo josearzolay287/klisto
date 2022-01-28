@@ -33,21 +33,20 @@
 <link rel="stylesheet" type="text/css" href="../../../assets/css/servicios.css">
 
 <style>
-@media (min-width: 1200px) {
+@media (min-width: 992px) {
     .sidebar-left {
         float: unset;
     }
 }
-@media screen and (max-width: 992px) {
-    a.responsiveS {
-        font-size: 3vw !important;
+@media screen (max-width: 1200px)   {
+    .columnS {
+        width: 50%;
     }
 }
-@media screen and (max-width: 1300px) {
-    a.responsiveS {
-        font-size: 3vw !important;
-    }
-}
+
+
+
+
 
 </style>
 <script>
@@ -133,7 +132,7 @@
                     <!-- Cards de servicios -->
                    <div class="row">
                     {{#each parse_publi as |publicacion i |}}
-                    <div class="col-md-3 col-6 item">
+                    <div class="item columnS">
                            <div class="card card-mas-nuevo item pagination__item" data-sort="{{precio}}" data-sortTi="{{titulo}}">
                           <label class="card-title nombres" hidden>{{titulo}} </label>
                             <label class="card-title categoria" hidden>{{categoria}} </label>
