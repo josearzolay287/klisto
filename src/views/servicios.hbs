@@ -38,6 +38,30 @@
         float: unset;
     }
 }
+@media screen and (min-width: 1234px) {
+    .columnS {
+        width: 25%;
+    }
+}
+@media screen and (max-width: 1233.9px) {
+    .columnS {
+        width: 50%;
+    }
+}
+@media screen and (max-width: 450px) {
+    span.mobileSize {
+        font-size: 13px !important;
+    }
+}
+@media screen and (max-width: 450px) {
+    a.mobileSize {
+        font-size: 12px !important;
+    }
+}
+
+
+
+
 
 </style>
 <script>
@@ -74,7 +98,7 @@
                 <div class="content-body">
                     <!-- E-commerce Content Section Starts -->
                     <section id="ecommerce-header">
-                        <div class="row">
+                        <div class="row mb-2">
                             <div class="col-sm-12">
                                 <div class="ecommerce-header-items">
                                      <div class="result-toggler">
@@ -120,10 +144,10 @@
                     <!-- E-commerce Search Bar Ends -->
 <div id="data-container"></div>
 <div id="pagination-container"></div>
-                    <!-- E-commerce Products Starts -->
+                    <!-- Cards de servicios -->
                    <div class="row">
                     {{#each parse_publi as |publicacion i |}}
-                    <div class="col-md-3 col-6 item">
+                    <div class="item columnS">
                            <div class="card card-mas-nuevo item pagination__item" data-sort="{{precio}}" data-sortTi="{{titulo}}">
                           <label class="card-title nombres" hidden>{{titulo}} </label>
                             <label class="card-title categoria" hidden>{{categoria}} </label>
@@ -134,9 +158,9 @@
                             </div>
                             <div class="cont-card">
                                <span>{{categoria}}</span>
-                                <h5 class="text-break">
+                                <h6 class="text-break">
                                   {{titulo}}
-                                </h5>
+                                </h6>
                                 {{!-- <p class="card-text item-description">
                                     On Retina display that never sleeps, so it’s easy to see the time and other important information, without
                                     raising or tapping the display. New location features, from a built-in compass to current elevation, help users
@@ -145,12 +169,12 @@
                                     in a wider range of materials, including aluminium, stainless steel, ceramic and an all-new titanium.
                                 </p> --}}
                             </div>
-                            <div class="precio-buscador ">
-                                 <span>
+                            <div class="precio-buscador">
+                                 <span class="mobileSize">
                                     S/ {{precio}}
                                 </span>
                                 <div class="buscador-vermas">
-                                    <a href="/publicacion/{{id}}">
+                                    <a href="/publicacion/{{id}}" class="mobileSize">
                                         Ver más
                                     </a>
                                 </div>
@@ -189,15 +213,18 @@
                                 <!-- Price Range ends -->
                                 <div class="row">
                                     <div class="col-12">
-                                    <div class="input-group input-group-merge">                                  
+                                    <div class="input-group input-group-merge mt-1">                                  
                                         <input class="form-control mr-sm-2 header-buscador" type="text" name="search" placeholder="Buscar servicios" id="buscador" style="margin-right: 0 !important;">
                                     </div>
                                     </div>
                                 </div>
-                                <div class="row mt-3">
-                                    <div class="col-sm-12">
-                                    <h6 class="filter-title">Precio</h6>
-                                    <input type="range" class="form-range border-0 mb-2" id="customRange1">
+                                <div class="row mt-1">
+                                    <h6 class="filter-title mt-1">Precio</h6>
+                                    <div class="col-6">
+                                        <input type="number" name="precioMin" class="form-control mr-sm-2 mb-2" id="precioMin" placeholder="Min.">
+                                    </div>
+                                    <div class="col-6">
+                                        <input type="number" name="precioMax" class="form-control mr-sm-2 mb-2" id="precioMin" placeholder="Max.">
                                     </div>
                                 </div>
                                 <div class="list-unstyled categories-list mb-1">
