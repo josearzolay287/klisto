@@ -172,6 +172,19 @@ table.dataTable>thead .sorting:after, table.dataTable>thead .sorting_asc:after, 
     .align-center{
         text-align: center !important;
     }
+
+    .contenido-popup {
+        /*  position: relative;
+            width: 50%;
+            height: 60vh;*/
+        background-color: white;
+        top: 20%;
+        left: 25%;
+        /*border-radius: 20px;*/
+        padding: 2rem;
+        /*  -webkit-box-shadow: 0px 0px 11px 0px rgba(0,0,0,0.72); 
+            box-shadow: 0px 0px 11px 0px rgba(0,0,0,0.72);*/
+    }
     /*Testeando si se guardan los cambios en git 3*/
   </style>
   
@@ -283,22 +296,22 @@ table.dataTable>thead .sorting:after, table.dataTable>thead .sorting_asc:after, 
             <div class="row">
                 <div class="col-md-6 pt-3 pb-0">
                   <h2 class="text-center">    
-                    <form class="form-inline my-2 my-lg-0" action="/servicios" method="post" style="margin-right: 5px;">
-                      <input class="form-control mr-sm-2 header-buscador" type="text" name="search" placeholder="Buscar Servicio" id="buscador">
-                      <button class="btn btn-outline-success my-2 my-sm-0 header-buscador-buttom" type="submit">
-                        <i class="fas fa-search" style="font-size: 30px;"></i>
-                      </button>
-                    </form>
+                      <form class="form-inline my-2 my-lg-0" action="/servicios" method="post" style="margin-right: 5px;">
+                        <input class="form-control mr-sm-2 header-buscador" type="text" name="search" placeholder="Buscar Servicio" id="buscador">
+                        <button class="btn btn-outline-success my-2 my-sm-0 header-buscador-buttom" type="submit">
+                          <i class="fas fa-search" style="font-size: 30px;"></i>
+                        </button>
+                      </form>
                   </h2>
                 </div>
                 <div class="col-md-6 pt-3 pb-3">
                   <h2 class="text-center">    
-                    <form class="form-inline my-2 my-lg-0" action="/negocios_search" method="post" style="margin-right: 5px;">
-                      <input class="form-control mr-sm-2 header-buscador mb-lg-3" type="text" name="search2" placeholder="Buscar Negocio" id="buscador">
-                      <button class="btn btn-outline-success my-2 my-sm-0 header-buscador-buttom" type="submit">
-                        <i class="fas fa-search" style="font-size: 30px;"></i>
-                      </button>
-                    </form>
+                      <form class="form-inline my-2 my-lg-0" action="/negocios" method="post" style="margin-right: 5px;">
+                        <input class="form-control mr-sm-2 header-buscador mb-lg-3" type="text" name="search2" placeholder="Buscar Negocio" id="buscador">
+                        <button class="btn btn-outline-success my-2 my-sm-0 header-buscador-buttom" type="submit">
+                          <i class="fas fa-search" style="font-size: 30px;"></i>
+                        </button>
+                      </form>
                   </h2>
                 </div>
             </div>
@@ -312,20 +325,13 @@ table.dataTable>thead .sorting:after, table.dataTable>thead .sorting_asc:after, 
     <div class="section__content section__content--p30">
       <div class="container-fluid">
         <div class="header-wrap">
-          <div class="search_header">
-            <form class="form-header" action="" method="POST">
-              <input
-                class="au-input au-input--xl"
-                type="text"
-                name="search"
-                placeholder="Buscar"
-                id="{{#if admin}}buscador_admin{{else}}buscador{{/if}}"
-              />
-              <button class="au-btn--submit" type="submit">
-                <i class="fas fa-search"></i>
-              </button>
-            </form>
-          </div>
+          
+            <button class="btn btn-primary" data-toggle="modal" data-target="#shareProject">
+                    Contactar con soporte
+            </button>
+
+            
+          
           <div class="header-button">
               <div class="d-lg-none" id="show-header-left" role="button" data-toggle="collapse" href="#sidebar">
                 <i class="fas fa-bars"></i>
@@ -412,6 +418,38 @@ table.dataTable>thead .sorting:after, table.dataTable>thead .sorting_asc:after, 
       </div>
     </div>
   </header>
+  <div class="modal fade popup" id="shareProject" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                    <h3>
+                        <strong>
+                            SOPORTE TECNICO
+                        </strong>
+                    </h3>
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="contenido-popup">
+              <p>
+                <b>Numeros de soporte:</b>
+                <br>
+                +51 954318974
+                <br>
+                +51 974927472
+                <br>
+                <br>
+                <b>Email de soporte:</b>
+                <br>
+                soporte_tecnico@klizto.com
+              </p>
+            </div>
+        </div>
+    </div>
+</div>
   {{/if}}
   	{{#if reg_}}
 	  <div class="header">

@@ -59,9 +59,9 @@
     }
 }
 
-
-
-
+.contSize{
+    height: 150px;
+}
 
 </style>
 <script>
@@ -149,16 +149,17 @@
                     {{#each parse_publi as |publicacion i |}}
                     <div class="item columnS">
                            <div class="card card-mas-nuevo item pagination__item" data-sort="{{precio}}" data-sortTi="{{titulo}}">
-                          <label class="card-title nombres" hidden>{{titulo}} </label>
+                            <label class="card-title nombres" hidden>{{titulo}} </label>
                             <label class="card-title categoria" hidden>{{categoria}} </label>
                             <label class="card-title domicilio" hidden>{{domicilio}}</label>
                             <label class="card-title distrito_f" hidden>{{#sucursalesServicios sucursales ../parse_dataSuc}}{{/sucursalesServicios}}</label>
                             <div class="img-card text-center">
                                     <img class="img-fluid card-img-top" src="../assets/img_up/{{#fotoPrincipalPublicacion fotos}}{{/fotoPrincipalPublicacion}}" alt="img-placeholder" />
                             </div>
-                            <div class="cont-card">
+                            <div class="cont-card contSize">
                                <span>{{categoria}}</span>
                                 <h6 class="text-break">
+                                <!--La categoria solo puede tener un maximo de 26 caracteres-->
                                   {{titulo}}
                                 </h6>
                                 {{!-- <p class="card-text item-description">
@@ -170,7 +171,7 @@
                                 </p> --}}
                             </div>
                             <div class="precio-buscador">
-                                 <span class="mobileSize">
+                                <span class="mobileSize">
                                     S/ {{precio}}
                                 </span>
                                 <div class="buscador-vermas">
@@ -230,7 +231,50 @@
                                 <div class="list-unstyled categories-list mb-1">
                                     <label for="">Zonas de Delivery</label>
                                     <select class="form-control form-select select_distrito" name="distrito" id="distritpos_lima">
-                                    <option>Seleccione un distrito</option>
+                                        <option>Seleccione un distrito</option>
+                                        <option>Ancón</option>
+                                        <option>Ate</option>
+                                        <option>Barranco</option>
+                                        <option>Breña</option>
+                                        <option>Carabayllo</option>
+                                        <option>Cercado de Lima</option>
+                                        <option>Chaclacayo</option>
+                                        <option>Chorrillos</option>
+                                        <option>Cieneguilla</option>
+                                        <option>Comas</option>
+                                        <option>El agustino</option>
+                                        <option>Independencia</option>
+                                        <option>Jesús maría</option>
+                                        <option>La molina</option>
+                                        <option>La victoria</option>
+                                        <option>Lince</option>
+                                        <option>Los olivos</option>
+                                        <option>Lurigancho</option>
+                                        <option>Lurín</option>
+                                        <option>Magdalena del mar</option>
+                                        <option>Miraflores</option>
+                                        <option>Pachacámac</option>
+                                        <option>Pucusana</option>
+                                        <option>Pueblo libre</option>
+                                        <option>Puente piedra</option>
+                                        <option>Punta hermosa</option>
+                                        <option>Punta negra</option>
+                                        <option>Rímac</option>
+                                        <option>San bartolo</option>
+                                        <option>San borja</option>
+                                        <option>San isidro</option>
+                                        <option>San Juan de Lurigancho</option>
+                                        <option>San Juan de Miraflores</option>
+                                        <option>San Luis</option>
+                                        <option>San Martin de Porres</option>
+                                        <option>San Miguel</option>
+                                        <option>Santa Anita</option>
+                                        <option>Santa María del Mar</option>
+                                        <option>Santa Rosa</option>
+                                        <option>Santiago de Surco</option>
+                                        <option>Surquillo</option>
+                                        <option>Villa el Salvador</option>
+                                        <option>Villa Maria del Triunfo</option>
                                     </select>
                                 </div>
                                 <!-- Categories Starts -->
@@ -273,6 +317,49 @@
                                     {{!-- <input type="text" class="form-control" name="distrito"> --}}
                                     <select class="form-control form-select select_distrito" name="distrito" id="distritpos_lima">
                                         <option>Seleccione un distrito</option>
+                                        <option>Ancón</option>
+                                        <option>Ate</option>
+                                        <option>Barranco</option>
+                                        <option>Breña</option>
+                                        <option>Carabayllo</option>
+                                        <option>Cercado de Lima</option>
+                                        <option>Chaclacayo</option>
+                                        <option>Chorrillos</option>
+                                        <option>Cieneguilla</option>
+                                        <option>Comas</option>
+                                        <option>El agustino</option>
+                                        <option>Independencia</option>
+                                        <option>Jesús maría</option>
+                                        <option>La molina</option>
+                                        <option>La victoria</option>
+                                        <option>Lince</option>
+                                        <option>Los olivos</option>
+                                        <option>Lurigancho</option>
+                                        <option>Lurín</option>
+                                        <option>Magdalena del mar</option>
+                                        <option>Miraflores</option>
+                                        <option>Pachacámac</option>
+                                        <option>Pucusana</option>
+                                        <option>Pueblo libre</option>
+                                        <option>Puente piedra</option>
+                                        <option>Punta hermosa</option>
+                                        <option>Punta negra</option>
+                                        <option>Rímac</option>
+                                        <option>San bartolo</option>
+                                        <option>San borja</option>
+                                        <option>San isidro</option>
+                                        <option>San Juan de Lurigancho</option>
+                                        <option>San Juan de Miraflores</option>
+                                        <option>San Luis</option>
+                                        <option>San Martin de Porres</option>
+                                        <option>San Miguel</option>
+                                        <option>Santa Anita</option>
+                                        <option>Santa María del Mar</option>
+                                        <option>Santa Rosa</option>
+                                        <option>Santiago de Surco</option>
+                                        <option>Surquillo</option>
+                                        <option>Villa el Salvador</option>
+                                        <option>Villa Maria del Triunfo</option>
                                     </select>
                                     </div>
                                 </div>
