@@ -35,6 +35,44 @@ jQuery(".select_cat").on('click',function(e){
 });
 })
 </script>
+
+<style>
+    @media screen and (max-width: 450px) {
+        span.mobileSize {
+            font-size: 12px !important;
+        }
+    }
+    @media screen and (max-width: 450px) {
+        a.mobileSize {
+            font-size: 10px !important;
+            padding-left: 12px;
+            padding-right: 12px;
+        }
+    }
+    @media screen and (max-width: 450px) {
+        h6.mobileSize {
+            font-size: 13px !important;
+        }
+    }
+    @media screen and (min-width: 1234px) {
+    .columnS {
+        width: 25%;
+        }
+    }
+    @media screen and (max-width: 1233.9px) {
+        .columnS {
+            width: 50%;
+        }
+    }    
+    .contSize{
+        height: 80px;
+    }
+    .pad16{
+        padding: 16px;
+    }
+
+</style>
+
 <div class="main">
     <section class="servicios pb-5" style="padding-top: 8rem;">
         <div class="container">
@@ -179,27 +217,30 @@ jQuery(".select_cat").on('click',function(e){
             </div>
                 <div class="row">
                     {{#each parse_publi as |publicacion i |}}
-                <div class="col-md-3 item">
+                <div class="col-lg-3 col-md-6 col-6 item">
                     <div class="card-mas-nuevo">
                         <div class="img-card">
                             <img src="../assets/img_up/{{#fotoPrincipalPublicacion publicacion.fotos}}{{/fotoPrincipalPublicacion}}" alt="">
                         </div>
-                        <div class="cont-card">
+                        <div class="cont-card contSize">
                             <span>{{categoria}}</span>
-                            <label class="card-title nombres" hidden>{{publicacion.titulo}} </label>
-                            <label class="card-title categoria" hidden>{{publicacion.categoria}} </label>
-                            <h5>{{#Titulo titulo}}{{/Titulo}}</h5>
-                            <div class="precio-buscador">
-                                <span>
+                                <label class="card-title nombres" hidden>{{publicacion.titulo}} </label>
+                                <label class="card-title categoria" hidden>{{publicacion.categoria}} </label>
+                            <h6 class="text-break mobileSize">
+                                {{#Titulo titulo}}{{/Titulo}}
+                            </h6>
+                        </div>
+                            <div class="precio-buscador pad16">
+                                <span class="mobileSize">
                                     S/ {{precio}}
                                 </span>
                                 <div class="buscador-vermas">
-                                    <a href="/publicacion/{{id}}">
+                                    <a href="/publicacion/{{id}}" class="mobileSize">
                                         Ver más
                                     </a>
                                 </div>
                             </div>
-                        </div>
+                        
                     </div>
                 </div>
           {{/each}}

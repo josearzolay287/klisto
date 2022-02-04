@@ -1,3 +1,5 @@
+
+
 <script src="https://kit.fontawesome.com/849e949c38.js" crossorigin="anonymous"></script>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
@@ -7,6 +9,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.3/moment.min.js"></script>
 <link rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.min.css" />
+
    <!-- BEGIN: Page CSS-->
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css/core/menu/menu-types/vertical-menu.css">
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css/plugins/extensions/ext-component-sliders.css">
@@ -34,6 +37,30 @@
     .sidebar-left {
         float: unset;
     }
+}
+@media screen and (min-width: 1234px) {
+    .columnS {
+        width: 25%;
+    }
+}
+@media screen and (max-width: 1233.9px) {
+    .columnS {
+        width: 50%;
+    }
+}
+@media screen and (max-width: 450px) {
+    span.mobileSize {
+        font-size: 13px !important;
+    }
+}
+@media screen and (max-width: 450px) {
+    a.mobileSize {
+        font-size: 12px !important;
+    }
+}
+
+.contSize{
+    height: 150px;
 }
 
 </style>
@@ -71,7 +98,7 @@
                 <div class="content-body">
                     <!-- E-commerce Content Section Starts -->
                     <section id="ecommerce-header">
-                        <div class="row">
+                        <div class="row mb-2">
                             <div class="col-sm-12">
                                 <div class="ecommerce-header-items">
                                      <div class="result-toggler">
@@ -92,6 +119,8 @@
                                                 <a class="dropdown-item" id="alfabeticoDsc">Alfabetico (Z-A)</a>
                                                 <a class="dropdown-item" id="masbajosort">Precio más bajo</a>
                                                 <a class="dropdown-item" id="masaltosort">Precio más Alto</a>
+                                                <a class="dropdown-item" id="masaltosort">Populares</a>
+                                                <a class="dropdown-item" id="masaltosort">Recientes</a>
                                             </div>
                                         </div>
                                         {{!-- <div class="btn-group" role="group">
@@ -115,22 +144,24 @@
                     <!-- E-commerce Search Bar Ends -->
 <div id="data-container"></div>
 <div id="pagination-container"></div>
-                    <!-- E-commerce Products Starts -->
-                    <section id="pagination-2" class="grid-view pagination__list">
- {{#each parse_publi as |publicacion i |}}
+                    <!-- Cards de servicios -->
+                   <div class="row">
+                    {{#each parse_publi as |publicacion i |}}
+                    <div class="item columnS">
                            <div class="card card-mas-nuevo item pagination__item" data-sort="{{precio}}" data-sortTi="{{titulo}}">
-                          <label class="card-title nombres" hidden>{{titulo}} </label>
+                            <label class="card-title nombres" hidden>{{titulo}} </label>
                             <label class="card-title categoria" hidden>{{categoria}} </label>
                             <label class="card-title domicilio" hidden>{{domicilio}}</label>
                             <label class="card-title distrito_f" hidden>{{#sucursalesServicios sucursales ../parse_dataSuc}}{{/sucursalesServicios}}</label>
                             <div class="img-card text-center">
                                     <img class="img-fluid card-img-top" src="../assets/img_up/{{#fotoPrincipalPublicacion fotos}}{{/fotoPrincipalPublicacion}}" alt="img-placeholder" />
                             </div>
-                            <div class="cont-card">
+                            <div class="cont-card contSize">
                                <span>{{categoria}}</span>
-                                <h5>
+                                <h6 class="text-break">
+                                <!--La categoria solo puede tener un maximo de 26 caracteres-->
                                   {{titulo}}
-                                </h5>
+                                </h6>
                                 {{!-- <p class="card-text item-description">
                                     On Retina display that never sleeps, so it’s easy to see the time and other important information, without
                                     raising or tapping the display. New location features, from a built-in compass to current elevation, help users
@@ -139,19 +170,26 @@
                                     in a wider range of materials, including aluminium, stainless steel, ceramic and an all-new titanium.
                                 </p> --}}
                             </div>
-                            <div class="precio-buscador ">
-                                 <span>
+                            <div class="precio-buscador">
+                                <span class="mobileSize">
                                     S/ {{precio}}
                                 </span>
                                 <div class="buscador-vermas">
-                                    <a href="/publicacion/{{id}}">
+                                    <a href="/publicacion/{{id}}" class="mobileSize">
                                         Ver más
                                     </a>
                                 </div>
                             </div>
                         </div>
-          {{/each}}
-                    </section>
+                        </div>
+                        {{/each}}
+                        </div>
+                    
+
+
+
+
+
                     <div class="start-pagination">
 
                     </div>
@@ -162,95 +200,189 @@
             <div class="sidebar-detached sidebar-left">
                 <div class="sidebar">
                     <!-- Ecommerce Sidebar Starts -->
-                    <div class="sidebar-shop" style="overflow: hidden;">
+                        <div class="sidebar-shop" style="overflow: hidden;">
                         <div class="card">
                             <div class="card-body">
-                              
-                            <div class="CloseSidebar" role="button">
-                                x
-                            </div>
-                        <div class="row mt-3">
-                            <div class="col-sm-12">
-                                <h6 class="filter-heading d-none d-lg-block mb-1">Filtros</h6>
-                            </div>
-                        </div>
+                                <div class="CloseSidebar" role="button">
+                                    x
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-sm-12">
+                                    <h6 class="filter-heading d-none d-lg-block mb-1">Filtros</h6>
+                                    </div>
+                                </div>
                                 <!-- Price Range ends -->
                                 <div class="row">
                                     <div class="col-12">
-                                     <div class="input-group input-group-merge">                                  
-                      <input class="form-control mr-sm-2 header-buscador" type="text" name="search" placeholder="Buscar servicios" id="buscador" style="margin-right: 0 !important;">
-                                </div>
+                                    <div class="input-group input-group-merge mt-1">                                  
+                                        <input class="form-control mr-sm-2 header-buscador" type="text" name="search" placeholder="Buscar servicios" id="buscador" style="margin-right: 0 !important;">
+                                    </div>
                                     </div>
                                 </div>
-
+                                <div class="row mt-1">
+                                    <h6 class="filter-title mt-1">Precio</h6>
+                                    <div class="col-6">
+                                        <input type="number" name="precioMin" class="form-control mr-sm-2 mb-2" id="precioMin" placeholder="Min.">
+                                    </div>
+                                    <div class="col-6">
+                                        <input type="number" name="precioMax" class="form-control mr-sm-2 mb-2" id="precioMin" placeholder="Max.">
+                                    </div>
+                                </div>
+                                <div class="list-unstyled categories-list mb-1">
+                                    <label for="">Zonas de Delivery</label>
+                                    <select class="form-control form-select select_distrito" name="distrito" id="distritpos_lima">
+                                        <option>Seleccione un distrito</option>
+                                        <option>Ancón</option>
+                                        <option>Ate</option>
+                                        <option>Barranco</option>
+                                        <option>Breña</option>
+                                        <option>Carabayllo</option>
+                                        <option>Cercado de Lima</option>
+                                        <option>Chaclacayo</option>
+                                        <option>Chorrillos</option>
+                                        <option>Cieneguilla</option>
+                                        <option>Comas</option>
+                                        <option>El agustino</option>
+                                        <option>Independencia</option>
+                                        <option>Jesús maría</option>
+                                        <option>La molina</option>
+                                        <option>La victoria</option>
+                                        <option>Lince</option>
+                                        <option>Los olivos</option>
+                                        <option>Lurigancho</option>
+                                        <option>Lurín</option>
+                                        <option>Magdalena del mar</option>
+                                        <option>Miraflores</option>
+                                        <option>Pachacámac</option>
+                                        <option>Pucusana</option>
+                                        <option>Pueblo libre</option>
+                                        <option>Puente piedra</option>
+                                        <option>Punta hermosa</option>
+                                        <option>Punta negra</option>
+                                        <option>Rímac</option>
+                                        <option>San bartolo</option>
+                                        <option>San borja</option>
+                                        <option>San isidro</option>
+                                        <option>San Juan de Lurigancho</option>
+                                        <option>San Juan de Miraflores</option>
+                                        <option>San Luis</option>
+                                        <option>San Martin de Porres</option>
+                                        <option>San Miguel</option>
+                                        <option>Santa Anita</option>
+                                        <option>Santa María del Mar</option>
+                                        <option>Santa Rosa</option>
+                                        <option>Santiago de Surco</option>
+                                        <option>Surquillo</option>
+                                        <option>Villa el Salvador</option>
+                                        <option>Villa Maria del Triunfo</option>
+                                    </select>
+                                </div>
                                 <!-- Categories Starts -->
                                 <div id="product-categories">
                                     <h6 class="filter-title">Categorias</h6>
                                     <ul class="list-unstyled categories-list">
-                                       <li>
-                                            <div class="form-check">
-                                                <input type="radio" id="category" name="category-filter" class="form-check-input select_cat" value="Todas" checked/>
-                                                <label class="form-check-label" for="category">Todas</label>
-                                            </div>
-                                        </li>
-                                      {{#each categorias as |categoria i|}}
-                                          <li>
-                                            <div class="form-check">
-                                                <input type="radio" id="category{{i}}" name="category-filter" class="form-check-input select_cat" value="{{nombre}}"/>
-                                                <label class="form-check-label" for="category{{i}}">{{nombre}}</label>
-                                            </div>
-                                        </li>
-                         {{/each}}
-                                        
-                                       
+                                    <li>
+                                        <div class="form-check">
+                                            <input type="radio" id="category" name="category-filter" class="form-check-input select_cat" value="Todas" checked/>
+                                            <label class="form-check-label" for="category">Todas</label>
+                                        </div>
+                                    </li>
+                                    {{#each categorias as |categoria i|}}
+                                    <li>
+                                        <div class="form-check">
+                                            <input type="radio" id="category{{i}}" name="category-filter" class="form-check-input select_cat" value="{{nombre}}"/>
+                                            <label class="form-check-label" for="category{{i}}">{{nombre}}</label>
+                                        </div>
+                                    </li>
+                                    {{/each}}
                                     </ul>
-                                </div> <!-- Categories Ends -->
-                                <!-- Distritos start -->
-                    <div id="product-categories">
-                                    {{!-- <h6 class="filter-title">Distritos</h6> --}}
-                                                    <div class="list-unstyled categories-list mb-1">
-                  <label for="">Departamento</label>
-                  {{!-- <input type="text" class="form-control" name="departamento"> --}}
-                  <select class="form-control form-select" name="departamento" id="departamentos">
-                    <option>Seleccione un departamento</option>
-                    <option>Lima</option>
-                    <option>Callao</option>
-                  </select>
-                </div>
-                <div class="list-unstyled categories-list mb-1">
-                  <label for="">Distrito</label>
-                  {{!-- <input type="text" class="form-control" name="distrito"> --}}
-                  <select class="form-control form-select select_distrito" name="distrito" id="distritpos_lima">
-                    <option>Seleccione un distrito</option>
-                  </select>
-                </div>
                                 </div>
-                               
-
+                                <!-- Categories Ends -->
+                                <!-- Distritos start -->
+                                <div id="product-categories">
+                                    {{!-- 
+                                    <h6 class="filter-title">Distritos</h6>
+                                    --}}
+                                    <div class="list-unstyled categories-list mb-1">
+                                    <label for="">Departamento</label>
+                                    {{!-- <input type="text" class="form-control" name="departamento"> --}}
+                                    <select class="form-control form-select" name="departamento" id="departamentos">
+                                        <option>Seleccione un departamento</option>
+                                        <option>Lima</option>
+                                        <option>Callao</option>
+                                    </select>
+                                    </div>
+                                    <div class="list-unstyled categories-list mb-1">
+                                    <label for="">Distrito</label>
+                                    {{!-- <input type="text" class="form-control" name="distrito"> --}}
+                                    <select class="form-control form-select select_distrito" name="distrito" id="distritpos_lima">
+                                        <option>Seleccione un distrito</option>
+                                        <option>Ancón</option>
+                                        <option>Ate</option>
+                                        <option>Barranco</option>
+                                        <option>Breña</option>
+                                        <option>Carabayllo</option>
+                                        <option>Cercado de Lima</option>
+                                        <option>Chaclacayo</option>
+                                        <option>Chorrillos</option>
+                                        <option>Cieneguilla</option>
+                                        <option>Comas</option>
+                                        <option>El agustino</option>
+                                        <option>Independencia</option>
+                                        <option>Jesús maría</option>
+                                        <option>La molina</option>
+                                        <option>La victoria</option>
+                                        <option>Lince</option>
+                                        <option>Los olivos</option>
+                                        <option>Lurigancho</option>
+                                        <option>Lurín</option>
+                                        <option>Magdalena del mar</option>
+                                        <option>Miraflores</option>
+                                        <option>Pachacámac</option>
+                                        <option>Pucusana</option>
+                                        <option>Pueblo libre</option>
+                                        <option>Puente piedra</option>
+                                        <option>Punta hermosa</option>
+                                        <option>Punta negra</option>
+                                        <option>Rímac</option>
+                                        <option>San bartolo</option>
+                                        <option>San borja</option>
+                                        <option>San isidro</option>
+                                        <option>San Juan de Lurigancho</option>
+                                        <option>San Juan de Miraflores</option>
+                                        <option>San Luis</option>
+                                        <option>San Martin de Porres</option>
+                                        <option>San Miguel</option>
+                                        <option>Santa Anita</option>
+                                        <option>Santa María del Mar</option>
+                                        <option>Santa Rosa</option>
+                                        <option>Santiago de Surco</option>
+                                        <option>Surquillo</option>
+                                        <option>Villa el Salvador</option>
+                                        <option>Villa Maria del Triunfo</option>
+                                    </select>
+                                    </div>
+                                </div>
                                 <!-- Distritos ends -->
                                 <!-- Atención start -->
-                    <div id="product-atencion">
+                                <div id="product-atencion">
                                     <h6 class="filter-title">Atención</h6>
                                     <ul class="list-unstyled categories-list">
-                                       <li>
-                                            <div class="form-check">
-                                                <input type="radio" id="domicilio" name="atencion-filter" class="form-check-input select_atencion" value="si" />
-                                                <label class="form-check-label" for="domicilio">Domicilio</label>
-                                            </div>
-                                        </li>
-                                         <li>
-                                            <div class="form-check">
-                                                <input type="radio" id="local" name="atencion-filter" class="form-check-input select_atencion" value="" checked/>
-                                                <label class="form-check-label" for="local">Local</label>
-                                            </div>
-                                        </li> 
-                                       
+                                    <li>
+                                        <div class="form-check">
+                                            <input type="radio" id="domicilio" name="atencion-filter" class="form-check-input select_atencion" value="si" />
+                                            <label class="form-check-label" for="domicilio">Domicilio</label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-check">
+                                            <input type="radio" id="local" name="atencion-filter" class="form-check-input select_atencion" value="" checked/>
+                                            <label class="form-check-label" for="local">Local</label>
+                                        </div>
+                                    </li>
                                     </ul>
                                 </div>
-                               
-
                                 <!-- Atención ends -->
-
                                 <!-- Clear Filters Starts -->
                                 <div id="clear-filters">
                                     <button type="button" class="btn w-100 btn-primary resetSorting">Ver todos</button>
@@ -258,7 +390,7 @@
                                 <!-- Clear Filters Ends -->
                             </div>
                         </div>
-                    </div>
+                        </div>
                     <!-- Ecommerce Sidebar Ends -->
 
                 </div>
