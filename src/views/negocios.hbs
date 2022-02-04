@@ -66,6 +66,16 @@
             font-size: 12px !important;
         }
     }
+    @media screen and (max-width: 450px) {
+        img.mobileSize {
+            height: 120px !important;
+        }
+    }
+    @media screen and (max-width: 450px) {
+        .card-mas-nuevo {
+            height: 250px !important;
+        }
+    }
 
     .contSize{
         height: 150px;
@@ -140,7 +150,7 @@
                           <label class="card-title nombres" hidden>{{nombre}} </label>
                           <label class="card-title distrito_f" hidden>{{distrito}}</label>
                             <div class="img-card text-center">
-                                    <img class=" card-img-top" src="../assets/img_up/{{usuario.photo}}" alt="img-placeholder" />
+                                    <img class="card-img-top mobileSize" src="../assets/img_up/{{usuario.photo}}" alt="img-placeholder" />
                             </div>
                             <div class="cont-card contSize">
                                 <span class="text-break">
