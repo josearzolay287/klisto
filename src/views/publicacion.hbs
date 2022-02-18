@@ -962,7 +962,113 @@ margin-left: -5px;
     width: 5px;
     font-size: 10px;
     }
+    .altura img{
+      height: 20rem !important;
+    }
   }
+  .switch {
+  position: relative;
+  display: inline-block;
+  width: 120px;
+  height: 34px;
+}
+
+.switch input {display:none;}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ca2222;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2ab934;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(85px);
+  -ms-transform: translateX(85px);
+  transform: translateX(85px);
+}
+
+/*------ ADDED CSS ---------*/
+.on
+{
+  display: none;
+}
+
+.on, .off
+{
+  color: white;
+  position: absolute;
+  transform: translate(-50%,-50%);
+  top: 50%;
+  left: 50%;
+  font-size: 10px;
+  font-family: Verdana, sans-serif;
+}
+
+input:checked + .slider .on
+{display: block;}
+
+input:checked + .slider .off
+{display: none;}
+
+.local
+{
+  display: none;
+}
+
+.local, .domicilio
+{
+  color: black;
+  position: absolute;
+  transform: translate(10%,-50%);
+  top: 200%;
+  
+  font-size: 10px;
+  font-family: Verdana, sans-serif;
+}
+
+input:checked+ .slider .local
+{display: block;}
+
+input:checked + .slider .domicilio
+{display: none;}
+
+
+/*--------- END --------*/
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;}
+  
 </style>
 <script>
   function select_hora(hora_desde, hora_hasta, id) {
@@ -1390,17 +1496,14 @@ if (data.mensaje == 'USADO'){
               <div class="container" style="max-width: 1200px !important;">
                 <div class="row">
                   <div class="col-md-6">
-                    <center>
-                      <div class="fotorama" data-nav="thumbs" data-width="450" data-height="450" data-max-height="450" data-max-width="450">
+
+                      <div class="pb-4 altura">
                         {{#fotoPublicacion1 publicacion.fotos 0}}{{/fotoPublicacion1}}
                         {{#fotoPublicacion1 publicacion.fotos 1}}{{/fotoPublicacion1}}
                         {{#fotoPublicacion1 publicacion.fotos 2}}{{/fotoPublicacion1}}
                         {{#fotoPublicacion1 publicacion.fotos 3}}{{/fotoPublicacion1}}
                         {{#fotoPublicacion1 publicacion.fotos 4}}{{/fotoPublicacion1}}
                       </div>
-                    </center>
-
-
 
                     <div id="content-wrapper0" style="display: none;">
 	<ul id="slideshow">
@@ -1565,16 +1668,30 @@ if (data.mensaje == 'USADO'){
                 <div class="row">
 
                   <div class="col d-flex justify-content-center">
-                    <div class="switch-toggle switch-3 switch-candy switch">
-                      <input id="on" name="state-d" type="radio"   {{#if publicacion.domicilio}}value="Domicilio"{{else}}disabled{{/if}}/>
-                      <label for="on" >{{#if publicacion.domicilio}}Domicilio{{else}}{{/if}}</label>
+
+                    <label class="switch">
+                      <input type="checkbox" id="togBtn">
+                      <div class="slider round">
+                        <!--ADDED HTML -->
+                        <span class="on">Local</span>
+                        <span class="off">Domicilio</span>
+                        <span class="local">El servicio será realizado en el local de su elección</span>
+                        <span class="domicilio">El servicio se realizará en la ubicación de domicilio colocado</span>
+                        <!--END-->
+                      </div>
+                    </label>
+
+                    <!--<div class="switch-toggle switch-3 switch-candy switch">
+                      <input id="on" name="state-d" type="radio" {{#if publicacion.domicilio}}value="Domicilio"{{else}}disabled{{/if}}/>
+                      <label for="on">{{#if publicacion.domicilio}}Domicilio{{else}}{{/if}}</label>
 
                       <input id="off" name="state-d" type="radio" value="Local"/>
                       <label for="off">Local</label>
 
                       <a></a>
-                    </div>
+                    </div>-->
                   </div>
+                  
                 </div>
                 <div class="row">
                   <div class="col-12">

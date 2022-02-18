@@ -55,7 +55,7 @@
 }
 @media screen and (max-width: 450px) {
     a.mobileSize {
-        font-size: 12px !important;
+        font-size: 8px !important;
     }
 }
 @media screen and (max-width: 450px) {
@@ -66,16 +66,21 @@
 @media screen and (max-width: 450px) {
     img.mobileSize {
         height: 120px !important;
+    }
+}
+@media screen and (max-width: 450px) {
+    h6.mobileSize {
+        font-size: 10px !important;
     }
 }
 @media screen and (max-width: 450px) {
     .card-mas-nuevo {
-        height: 250px !important;
+        height: 220px !important;
     }
 }
 
 .contSize{
-    height: 150px;
+    height: 80px;
 }
 
 </style>
@@ -159,11 +164,11 @@
                     <!-- E-commerce Search Bar Ends -->
 <div id="data-container"></div>
 <div id="pagination-container"></div>
-                    <!-- Cards de servicios -->
-                   <div class="row">
+                <!-- Cards de servicios -->
+                <div class="row">
                     {{#each parse_publi as |publicacion i |}}
                     <div class="item columnS">
-                           <div class="card card-mas-nuevo item pagination__item" data-sort="{{precio}}" data-sortTi="{{titulo}}">
+                        <div class="card card-mas-nuevo item pagination__item" data-sort="{{precio}}" data-sortTi="{{titulo}}">
                             <label class="card-title nombres" hidden>{{titulo}} </label>
                             <label class="card-title categoria" hidden>{{categoria}} </label>
                             <label class="card-title domicilio" hidden>{{domicilio}}</label>
@@ -172,11 +177,11 @@
                                     <img class="img-fluid card-img-top mobileSize" src="../assets/img_up/{{#fotoPrincipalPublicacion fotos}}{{/fotoPrincipalPublicacion}}" alt="img-placeholder" />
                             </div>
                             <div class="cont-card contSize">
-                               <span>{{categoria}}</span>
-                                <h6 class="text-break">
+                                <h6 class="mobileSize mb-0" style="font-size: 13px; font-weight: 800">{{categoria}}</h6>
+                                <span class="text-break">
                                 <!--La categoria solo puede tener un maximo de 26 caracteres-->
-                                  {{titulo}}
-                                </h6>
+                                    {{titulo}}
+                                </span>
                                 {{!-- <p class="card-text item-description">
                                     On Retina display that never sleeps, so it’s easy to see the time and other important information, without
                                     raising or tapping the display. New location features, from a built-in compass to current elevation, help users
@@ -185,7 +190,7 @@
                                     in a wider range of materials, including aluminium, stainless steel, ceramic and an all-new titanium.
                                 </p> --}}
                             </div>
-                            <div class="precio-buscador">
+                            <div class="precio-buscador d-flex align-items-center justify-content-between">
                                 <span class="mobileSize">
                                     S/ {{precio}}
                                 </span>
