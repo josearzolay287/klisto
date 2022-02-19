@@ -39,19 +39,19 @@ jQuery(".select_cat").on('click',function(e){
 <style>
     @media screen and (max-width: 450px) {
         span.mobileSize {
-            font-size: 12px !important;
+            font-size: 15px !important;
         }
     }
     @media screen and (max-width: 450px) {
         a.mobileSize {
-            font-size: 10px !important;
+            font-size: 8px !important;
             padding-left: 12px;
             padding-right: 12px;
         }
     }
     @media screen and (max-width: 450px) {
         h6.mobileSize {
-            font-size: 13px !important;
+            font-size: 10px !important;
         }
     }
     @media screen and (min-width: 1234px) {
@@ -78,8 +78,12 @@ jQuery(".select_cat").on('click',function(e){
         height: 80px;
     }
     .pad16{
-        padding: 16px;
+        padding-top: 8px;
+        padding-left: 16px;
+        padding-right: 16px;
+        padding-bottom: 16px;
     }
+    
 
 </style>
 
@@ -148,6 +152,7 @@ jQuery(".select_cat").on('click',function(e){
                     <h1 class="text-center mb-5">Categorías</h1>
                 </div>
                 <div class="col-md-4 pb-5">
+                    
                     <div class="cont-categorias">
                         <center><img src="../assets/img/rostro.svg" alt=""></center>
                         <h3 class="text-center">Rostro</h3>
@@ -221,7 +226,7 @@ jQuery(".select_cat").on('click',function(e){
                         <li class="nav-item">
                             <a class="nav-link select_cat" style="cursor: pointer;">{{categoria.nombre}}</a>
                         </li>
-                         {{/each}}
+                        {{/each}}
                     </ul>
                 </div>
             </div>
@@ -232,15 +237,15 @@ jQuery(".select_cat").on('click',function(e){
                         <div class="img-card">
                             <img src="../assets/img_up/{{#fotoPrincipalPublicacion publicacion.fotos}}{{/fotoPrincipalPublicacion}}" class="mobileSize" alt="">
                         </div>
-                        <div class="cont-card contSize">
-                            <span>{{categoria}}</span>
+                        <div class="cont-card contSize pb-0">
+                            <h6 class="mobileSize mb-0" style="font-size: 13px; font-weight: 800">{{categoria}}</h6>
                                 <label class="card-title nombres" hidden>{{publicacion.titulo}} </label>
                                 <label class="card-title categoria" hidden>{{publicacion.categoria}} </label>
-                            <h6 class="text-break mobileSize">
+                            <span >
                                 {{#Titulo titulo}}{{/Titulo}}
-                            </h6>
+                            </span>
                         </div>
-                            <div class="precio-buscador pad16">
+                            <div class="precio-buscador pad16 d-flex align-items-center justify-content-between">
                                 <span class="mobileSize">
                                     S/ {{precio}}
                                 </span>

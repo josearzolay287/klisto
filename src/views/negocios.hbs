@@ -57,8 +57,8 @@
     }
 
     @media screen and (max-width: 450px) {
-        p.mobileSize {
-            font-size: 12px !important;
+        span.mobileSize {
+            font-size: 20px !important;
         }
     }
     @media screen and (max-width: 450px) {
@@ -153,13 +153,13 @@
                                     <img class="card-img-top mobileSize" src="../assets/img_up/{{usuario.photo}}" alt="img-placeholder" />
                             </div>
                             <div class="cont-card contSize">
-                                <span class="text-break">
+                                <p class="text-break mb-0" style="font-size: 13px;">
                                     {{nombre}}
-                                </span>
-                               <p class="card-text item-description mobileSize">
+                                </p>
+                               <span class="card-text item-description mobileSize">
                                    <!--La descripcion solo puede tener un maximo de 32 caracteres-->
                                     {{descripcion}}
-                                </p>
+                                </span>
                             </div>
                             <div class="precio-buscador">
                                 <div class="buscador-vermas mt-1">
@@ -339,7 +339,10 @@
                                     </select>
                                     </div>
                                 </div>
-                                
+                                <hr>
+                                <a href="/servicios" class="boton-titulo">
+                                    Buscar por servicio
+                                </a>
                                 
                             </div>
                         </div>
