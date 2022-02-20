@@ -174,7 +174,7 @@
                             <label class="card-title domicilio" hidden>{{domicilio}}</label>
                             <label class="card-title distrito_f" hidden>{{#sucursalesServicios sucursales ../parse_dataSuc}}{{/sucursalesServicios}}</label>
                             <div class="img-card text-center">
-                                    <img class="img-fluid card-img-top mobileSize" src="../assets/img_up/{{#fotoPrincipalPublicacion fotos}}{{/fotoPrincipalPublicacion}}" alt="img-placeholder" />
+                                    <img class="img-fluid card-img-top mobileSize" src="/assets/img_up/{{#fotoPrincipalPublicacion fotos}}{{/fotoPrincipalPublicacion}}" alt="img-placeholder" />
                             </div>
                             <div class="cont-card contSize">
                                 <h6 class="mobileSize mb-0" style="font-size: 13px; font-weight: 800">{{categoria}}</h6>
@@ -247,10 +247,11 @@
                                     <div class="col-6">
                                         <input type="number" name="precioMax" class="form-control mr-sm-2 mb-2" id="precioMax" placeholder="Max.">
                                     </div>
+                                    <button type="button" id="filtrar-rango" class="btn w-100 btn-primary">Filtrar precios</button>
                                 </div>
                                 <div class="list-unstyled categories-list mb-1">
                                     <label for="">Zonas de Delivery</label>
-                                    <select class="form-control form-select select_distrito" name="distrito" id="distritpos_lima">
+                                    <select class="form-control form-select select_distrito" name="distrito" id="distritpos_lima-delivery">
                                         <option>Seleccione un distrito</option>
                                         <option>Ancón</option>
                                         <option>Ate</option>
@@ -449,6 +450,17 @@
 <script>
 
   $(function () {
+$('#filtrar-rango').click(()=>{
+
+if ($('#precioMin').val()=="" || $('#precioMax').val()==""){
+    swal.fire('Debe establecer un rango minimo y máximo para filtrar precios')
+    return
+}
+window.location.href=`/servicios/${$('#precioMin').val()}/${$('#precioMax').val()}`
+})
+
+
+
     jQuery("#distritpos_lima").on('change',function(e){
 	console.log(e.target.value)
    // $(".select_cat").removeClass("active"); 
@@ -457,11 +469,12 @@
   var distrito_f = $('.distrito_f');
    var buscando =  (e.target.value).toLowerCase();
    var item='';
+   console.log(distrito_f)
    for( var i = 0; i < distrito_f.length; i++ ){
        item = $(distrito_f[i]).html().toLowerCase();
         for(var x = 0; x < item.length; x++ ){
 
-            if(buscando == 'Seleccione un distrito' || buscando =="" ||  buscando =="default"){
+            if(buscando == 'Seleccione un distrito'|| buscando =="seleccione un distrito" || buscando =="" ||  buscando =="default"){
                 $(distrito_f[i]).parents('.item').show(); 
             }else if( buscando.length == 0 || item.indexOf( buscando ) > -1 ){
                console.log(item.indexOf( buscando ))
@@ -474,6 +487,32 @@
         }
    }
 });
+  jQuery("#distritpos_lima-delivery").on('change',function(e){
+	console.log(e.target.value)
+   // $(".select_cat").removeClass("active"); 
+    $(e.target).addClass("active"); 
+     //this.attr("class", "nav-link select_cat active");
+  var distrito_f = $('.distrito_f');
+   var buscando =  (e.target.value).toLowerCase();
+   var item='';
+   for( var i = 0; i < distrito_f.length; i++ ){
+       item = $(distrito_f[i]).html().toLowerCase();
+        for(var x = 0; x < item.length; x++ ){
+
+            if(buscando == 'Seleccione un distrito'|| buscando =="seleccione un distrito" || buscando =="" ||  buscando =="default"){
+                $(distrito_f[i]).parents('.item').show(); 
+            }else if( buscando.length == 0 || item.indexOf( buscando ) > -1 ){
+               console.log(item.indexOf( buscando ))
+                $(distrito_f[i]).parents('.item').show(); 
+                $(distrito_f[i]).parents('.item').attr('active');
+            }else{
+              
+                 $(distrito_f[i]).parents('.item').hide();
+            }
+        }
+   }
+});
+
     jQuery(".select_atencion").on('click',function(e){
 	console.log(e.target.value)
     $(".select_atencion").removeClass("active"); 

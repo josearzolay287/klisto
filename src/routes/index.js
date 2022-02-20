@@ -71,6 +71,8 @@ router.post('/update_client', authController.authenticatedUser, dashboardControl
 
 //SERVICIOS
 router.get('/servicios',dashboardController.servicios);
+router.get('/servicios/:min/:max',dashboardController.servicios);
+router.get('/servicios/:categoria',dashboardController.servicios);
 router.post('/servicios',dashboardController.servicios);
 //NEGOCIOS
 router.get('/negocios',dashboardController.negocios_list);

@@ -670,6 +670,49 @@ calificacionesbyUser(id) {
         });
     });
   },
+  publicacionesRangoPrice(min, max) {
+    return new Promise((resolve, reject) => {
+      Publicaciones.findAndCountAll({where: {
+       precio:  {
+          [Op.between]: [min, max]
+        },  
+        
+      },})
+        .then((data) => {
+          let datas = JSON.stringify(data);
+
+          resolve(datas);
+          ////console.log(id_usuario);
+        })
+        .catch((err) => {
+          console.log(err);
+          reject(err)
+        });
+    });
+  },
+  publicacionesbyCategoria(parametro) {
+    return new Promise((resolve, reject) => {
+      Publicaciones.findAndCountAll({where: {
+        [Op.or]: [
+        { categoria:  {
+          [Op.like]: `%${parametro}%`
+        }
+      },           
+    ],
+        
+      },})
+        .then((data) => {
+          let datas = JSON.stringify(data);
+
+          resolve(datas);
+          ////console.log(id_usuario);
+        })
+        .catch((err) => {
+          console.log(err);
+          reject(err)
+        });
+    });
+  },
 
   
   publicaciones(id_usuario) {

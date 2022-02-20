@@ -193,13 +193,25 @@ Modulo_BD.SucursalesAll().then((resultado_sucursales) => {
   let offset = 0;
 let publicacionSearch;
 console.log(req.body.search)
+console.log(req.params.min)
+let search1, search2
 if (req.body.search) {
+  search1=req.body.search
   publicacionSearch = Modulo_BD.publicacionesfindLike
   
+}else if(req.params.min){
+  search1=req.params.min
+  search2=req.params.max
+  console.log(search1+"-"+search2)
+  publicacionSearch = Modulo_BD.publicacionesRangoPrice
+}else if(req.params.categoria){
+  search1=req.params.categoria
+  publicacionSearch = Modulo_BD.publicacionesbyCategoria
 }else{
 publicacionSearch = Modulo_BD.publicacionesAllLimit
 }
-publicacionSearch(req.body.search).then(async (data)=>{
+
+publicacionSearch(search1,search2).then(async (data)=>{
     let parse_publi = JSON.parse(data)
     parse_publi =parse_publi.rows
     Modulo_BD.SucursalesAll(limit, offset).then(async (dataSuc)=>{
