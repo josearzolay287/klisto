@@ -54,6 +54,12 @@
     }
 }
 @media screen and (max-width: 450px) {
+    .scrollSideBar {
+        overflow-y: auto !important;
+        height: 620px !important;
+    }
+}
+@media screen and (max-width: 450px) {
     a.mobileSize {
         font-size: 8px !important;
     }
@@ -168,27 +174,23 @@
                 <div class="row">
                     {{#each parse_publi as |publicacion i |}}
                     <div class="item columnS">
-                        <div class="card card-mas-nuevo item pagination__item" data-sort="{{precio}}" data-sortTi="{{titulo}}">
+                        <div class="card-mas-nuevo" data-sort="{{precio}}" data-sortTi="{{titulo}}">
                             <label class="card-title nombres" hidden>{{titulo}} </label>
                             <label class="card-title categoria" hidden>{{categoria}} </label>
                             <label class="card-title domicilio" hidden>{{domicilio}}</label>
-                            <label class="card-title distrito_f" hidden>{{#sucursalesServicios sucursales ../parse_dataSuc}}{{/sucursalesServicios}}</label>
+                            <label class="card-title distrito_f" hidden>{{#sucursalesServicios sucursales
+                                ../parse_dataSuc}}{{/sucursalesServicios}}</label>
                             <div class="img-card text-center">
-                                    <img class="img-fluid card-img-top mobileSize" src="../assets/img_up/{{#fotoPrincipalPublicacion fotos}}{{/fotoPrincipalPublicacion}}" alt="img-placeholder" />
+                                <img class="img-fluid card-img-top mobileSize"
+                                    src="../assets/img_up/{{#fotoPrincipalPublicacion fotos}}{{/fotoPrincipalPublicacion}}"
+                                    alt="img-placeholder" />
                             </div>
                             <div class="cont-card contSize">
                                 <h6 class="mobileSize mb-0" style="font-size: 13px; font-weight: 800">{{categoria}}</h6>
                                 <span class="text-break">
-                                <!--La categoria solo puede tener un maximo de 26 caracteres-->
+                                    <!--El titulo solo puede tener un maximo de 26 caracteres-->
                                     {{titulo}}
                                 </span>
-                                {{!-- <p class="card-text item-description">
-                                    On Retina display that never sleeps, so it’s easy to see the time and other important information, without
-                                    raising or tapping the display. New location features, from a built-in compass to current elevation, help users
-                                    better navigate their day, while international emergency calling1 allows customers to call emergency services
-                                    directly from Apple Watch in over 150 countries, even without iPhone nearby. Apple Watch Series 5 is available
-                                    in a wider range of materials, including aluminium, stainless steel, ceramic and an all-new titanium.
-                                </p> --}}
                             </div>
                             <div class="precio-buscador d-flex align-items-center justify-content-between">
                                 <span class="mobileSize">
@@ -201,9 +203,10 @@
                                 </div>
                             </div>
                         </div>
-                        </div>
-                        {{/each}}
-                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+                 <!--/ Cards de servicios -->
                     
 
 
@@ -220,13 +223,13 @@
             <div class="sidebar-detached sidebar-left">
                 <div class="sidebar">
                     <!-- Ecommerce Sidebar Starts -->
-                        <div class="sidebar-shop" style="overflow: hidden;">
+                        <div class="sidebar-shop scrollSideBar">
                         <div class="card">
                             <div class="card-body">
-                                <div class="CloseSidebar" role="button">
+                                <div class="CloseSidebar mb-2" role="button">
                                     x
                                 </div>
-                                <div class="row mt-3">
+                                <div class="row mt-1">
                                     <div class="col-sm-12">
                                     <h6 class="filter-heading d-none d-lg-block mb-1">Filtros</h6>
                                     </div>
