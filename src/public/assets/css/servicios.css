@@ -865,8 +865,8 @@ margin-left: -5px;
     line-height: 30px;
     font-weight: bold;
     display: block;
-    position: absolute;
+    position: relative;
     top: 5%;
-    left: 8%;
+    left: 0%;
     }
   }
