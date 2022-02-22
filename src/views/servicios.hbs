@@ -52,34 +52,22 @@
     span.mobileSize {
         font-size: 13px !important;
     }
-}
-@media screen and (max-width: 450px) {
     .scrollSideBar {
         overflow-y: auto !important;
         height: 620px !important;
     }
-}
-@media screen and (max-width: 450px) {
     a.mobileSize {
         font-size: 8px !important;
     }
-}
-@media screen and (max-width: 450px) {
     img.mobileSize {
         height: 120px !important;
     }
-}
-@media screen and (max-width: 450px) {
     img.mobileSize {
         height: 120px !important;
     }
-}
-@media screen and (max-width: 450px) {
     h6.mobileSize {
         font-size: 10px !important;
     }
-}
-@media screen and (max-width: 450px) {
     .card-mas-nuevo {
         height: 220px !important;
     }
@@ -181,10 +169,7 @@
                             <label class="card-title distrito_f" hidden>{{#sucursalesServicios sucursales
                                 ../parse_dataSuc}}{{/sucursalesServicios}}</label>
                             <div class="img-card text-center">
-                                <img class="img-fluid card-img-top mobileSize"
-                                    src="../assets/img_up/{{#fotoPrincipalPublicacion fotos}}{{/fotoPrincipalPublicacion}}" alt="img-placeholder" />
-                                <img class="img-fluid card-img-top mobileSize"
-                                    src="/assets/img_up/{{#fotoPrincipalPublicacion fotos}}{{/fotoPrincipalPublicacion}}" alt="img-placeholder" />
+                                <img class="img-fluid card-img-top mobileSize" src="/assets/img_up/{{#fotoPrincipalPublicacion fotos}}{{/fotoPrincipalPublicacion}}" alt="img-placeholder"/>
                             </div>
                             <div class="cont-card contSize">
                                 <h6 class="mobileSize mb-0" style="font-size: 13px; font-weight: 800">{{categoria}}</h6>
@@ -251,7 +236,10 @@
                                     <div class="col-6">
                                         <input type="number" name="precioMax" class="form-control mr-sm-2 mb-2" id="precioMax" placeholder="Max.">
                                     </div>
-                                    <button type="button" id="filtrar-rango" class="btn w-100 btn-primary">Filtrar precios</button>
+                                    <div class="col-12 mb-2">
+                                        <button type="button" id="filtrar-rango" class="btn w-100 btn-primary">Filtrar precios</button>
+                                    </div>
+                                    
                                 </div>
                                 <div class="list-unstyled categories-list mb-1">
                                     <label for="">Zonas de Delivery</label>
