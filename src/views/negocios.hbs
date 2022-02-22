@@ -60,18 +60,16 @@
         span.mobileSize {
             font-size: 20px !important;
         }
-    }
-    @media screen and (max-width: 450px) {
+        .scrollSideBar {
+        overflow-y: auto !important;
+        height: 620px !important;
+        }
         a.mobileSize {
             font-size: 12px !important;
         }
-    }
-    @media screen and (max-width: 450px) {
         img.mobileSize {
             height: 120px !important;
         }
-    }
-    @media screen and (max-width: 450px) {
         .card-mas-nuevo {
             height: 250px !important;
         }
@@ -184,13 +182,13 @@
             <div class="sidebar-detached sidebar-left">
                 <div class="sidebar">
                     <!-- Ecommerce Sidebar Starts -->
-                        <div class="sidebar-shop" style="overflow: hidden;">
+                        <div class="sidebar-shop scrollSideBar">
                         <div class="card">
                             <div class="card-body">
-                                <div class="CloseSidebar" role="button">
+                                <div class="CloseSidebar mb-2" role="button">
                                     x
                                 </div>
-                                <div class="row mt-3">
+                                <div class="row mt-1">
                                     <div class="col-sm-12">
                                     <h6 class="filter-heading d-none d-lg-block mb-1">Filtros</h6>
                                     </div>
